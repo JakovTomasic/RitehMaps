@@ -4,7 +4,7 @@ import { NavigationNode } from "../../types/NavigationNode";
 import { NavigationStep } from "../../types/NavigationStep";
 import { MapNavigator } from "../interfaces/MapNavigator";
 
-export class MapNavigatorImpl implements MapNavigator {
+export class SimpleMapNavigatorMockExample implements MapNavigator {
     findShortestPath(startNodeId: number, endNodeFilter: MapNodeFilter): NavigationDirections {
         return new NavigationDirections([
             new NavigationStep([

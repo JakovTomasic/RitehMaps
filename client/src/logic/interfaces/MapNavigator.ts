@@ -1,5 +1,5 @@
-import { NavigationStep } from "../../types/NavigationStep"
+import { NavigationDirections } from "../../types/NavigationDirections"
 
 export interface MapNavigator {
-    findPathSteps(startNodeId: number, endNodeId: number): NavigationStep[]
+    findPathSteps(startNodeId: number, endNodeId: number): NavigationDirections
 }

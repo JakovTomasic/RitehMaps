@@ -1,6 +1,7 @@
-import { SearchRoomSuggestion } from "../../types/SearchRoomSuggestion";
+import { SearchNodeSuggestion } from "../../types/SearchNodeSuggestion";
 
 export interface RoomSearch {
-    searchRoomsOrdered(text: string): SearchRoomSuggestion[]
-    findRoomWithQrCode(qrCodeValue: string): SearchRoomSuggestion | undefined
+    sortedSuggestionsForStart(searchedText: string): SearchNodeSuggestion[]
+    sortedSuggestionsForDestination(searchedText: string): SearchNodeSuggestion[]
+    findRoomWithQrCode(qrCodeValue: string): SearchNodeSuggestion | undefined
 }

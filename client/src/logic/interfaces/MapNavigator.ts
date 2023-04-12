@@ -1,5 +1,6 @@
+import { MapNodeFilter } from "../../types/MapNodeFilter"
 import { NavigationDirections } from "../../types/NavigationDirections"
 
 export interface MapNavigator {
-    findPathSteps(startNodeId: number, endNodeId: number): NavigationDirections
+    findShortestPath(startNodeId: number, endNodeFilter: MapNodeFilter): NavigationDirections
 }

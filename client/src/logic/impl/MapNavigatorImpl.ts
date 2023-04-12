@@ -1,16 +1,18 @@
 import { MapNode } from "../../types/graph/MapNode";
+import { MapNodeFilter } from "../../types/MapNodeFilter";
 import { NavigationDirections } from "../../types/NavigationDirections";
 import { NavigationNode } from "../../types/NavigationNode";
 import { MapNavigator } from "../interfaces/MapNavigator";
 
 export class MapNavigatorImpl implements MapNavigator {
-    findPathSteps(startNodeId: number, endNodeId: number): NavigationDirections {
-        let path = this.findShortestPath(startNodeId, endNodeId);
+    
+    findShortestPath(startNodeId: number, endNodeFilter: MapNodeFilter): NavigationDirections {
+        let path = this.findPathToNearestNode(startNodeId, endNodeFilter);
         let navNodes = this.convertPathToNavigationNodes(path);
         return this.splitNavigationPathIntoSteps(navNodes);
     }
 
-    private findShortestPath(startNodeId: number, endNodeId: number): MapNode[] {
+    private findPathToNearestNode(startNodeId: number, endNodeFilter: MapNodeFilter): MapNode[] {
         throw new Error("Method not implemented.");
     }
 

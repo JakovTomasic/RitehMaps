@@ -8,11 +8,11 @@ export default function Navigation(){
 
     return(
         <>
-            <div className="w-screen h-screen">
+            <div className="relative h-screen w-screen">
                 <Header text={{value: 'Navigation'}} />
-                <DirectionsCard text={{value: 'Skrenite desno'}} />
-                <Image src={prizemlje_gl} alt="prizemlje" />
-                <div className="text-center justify-center flex mt-12 mx-auto mb-4">
+                <DirectionsCard text={{current: 'Skrenite desno', next: 'Idite ravno'}} />
+                <Image className="mb-9 mt-5" src={prizemlje_gl} alt="prizemlje" />
+                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-20">
                     <Button text={{value: 'Back'}} />
                     <Button text={{value: 'Update'}} />
                     <Button text={{value: 'Next'}} />

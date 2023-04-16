@@ -1,11 +1,17 @@
-
+import Navbar from "../components/Navbar";
+import SearchForm from "../components/SearchForm";
 
 export default function Home() {
   return (
-    <>
-      <div>
-        <p className="text-center text-xl">RITEH MAPS</p>
+
+    <div className="h-screen w-screen bg-white flex justify-center items-center">
+      <Navbar />
+
+      <div className="flex flex-col justify-center items-center">
+        <SearchForm />
       </div>
-    </>
-  )
+
+    </div>
+
+  );
 }

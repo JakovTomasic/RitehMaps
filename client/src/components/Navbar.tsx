@@ -25,7 +25,7 @@ const Navbar = () => {
 
           <div className="flex items-center">
             <a href="#" className="px-3 py-1 text-white hover:text-gray-200">
-                Karta
+                Map
             </a>
           </div>
 

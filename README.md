@@ -6,7 +6,7 @@ Please read the [wiki](https://github.com/JakovTomasic/RitehMaps/wiki) before co
 
 ## Installation
 
-To install the code open a terminal and run `git clone https://github.com/JakovTomasic/RitehMaps.git` command. A directory `RitehMaps` with all files (from the main branch) will be created. Simply run `cd RitehMaps` to enter the directory.
+To install the code open a terminal and run `git clone git@github.com:JakovTomasic/RitehMaps.git` command. A directory `RitehMaps` with all files (from the main branch) will be created. Simply run `cd RitehMaps` to enter the directory.
 
 Before running the project you will need to locally install node_modules. To do that, enter the client folder by running `cd client` command from the RitehMaps directory. Then enter command `yarn install` and press enter. All dependencies should be installed.
 

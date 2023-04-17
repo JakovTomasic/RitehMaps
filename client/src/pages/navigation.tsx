@@ -1,8 +1,6 @@
-import Image from "next/image";
 import Button from "../../components/Button";
 import Header from "../../components/Header";
 import DirectionsCard from "../../components/DirectionsCard";
-import groundFloor_main from "../../images/groundFloor_main.png";
 import DrawMap from "../../components/DrawMap";
 
 export default function Navigation(){

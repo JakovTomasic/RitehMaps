@@ -17,7 +17,8 @@ export default function PrettyButton() {
   return (
 
     <button
-      className={`flex items-center justify-center w-10 h-10 rounded-full bg-cyan-600 hover:bg-cyan-700 transition-all duration-300 transform ${isHovering ? 'rotate-45' : ''}`}
+      className={`flex items-center justify-center w-10 h-10 rounded-full 
+      bg-cyan-600 hover:bg-cyan-700 transition-all duration-300 transform ${isHovering ? 'rotate-45' : ''}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
         <Image

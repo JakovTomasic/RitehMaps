@@ -1,4 +1,4 @@
-import { SearchNodeSuggestion } from "../../types/SearchNodeSuggestion";
+import { SearchNodeSuggestion } from "../../types/roomsearch/SearchNodeSuggestion";
 
 export interface RoomSearch {
     sortedSuggestionsForStart(searchedText: string): SearchNodeSuggestion[]

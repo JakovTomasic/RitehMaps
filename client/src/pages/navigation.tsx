@@ -9,13 +9,14 @@ export default function Navigation(){
     return(
         <>
             <div className="relative h-screen w-screen">
-                <Header text={{value: 'Navigation'}} />
-                <DirectionsCard text={{current: 'Skrenite desno', next: 'Idite ravno'}} />
+                <Header text='Navigation' homePath='/' />
+                <DirectionsCard currentText='Skrenite desno' nextText='Idite ravno' 
+                    currentDirection='up-right' nextDirection='up' />
                 <Image className="mb-9 mt-5" src={prizemlje_gl} alt="prizemlje" />
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-20">
-                    <Button text={{value: 'Back'}} />
-                    <Button text={{value: 'Update'}} />
-                    <Button text={{value: 'Next'}} />
+                    <Button text='Back' />
+                    <Button text='Update' />
+                    <Button text='Next' />
                 </div>
             </div>
         </>

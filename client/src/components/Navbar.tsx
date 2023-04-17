@@ -7,7 +7,7 @@ const Navbar = () => {
 
     <nav className="bg-gray-400 fixed top-0 w-full py-2 px-5">
 
-        <div id="navElements" className="flex justify-between">
+        <div className="flex justify-between">
 
           <div className="flex items-center">
             {/*Button that leads to settings*/}

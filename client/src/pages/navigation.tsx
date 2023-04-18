@@ -1,7 +1,7 @@
 import Button from "../../components/Button";
 import Header from "../../components/Header";
 import DirectionsCard from "../../components/DirectionsCard";
-import DrawMap from "../../components/DrawMap";
+import Map from "../../components/Map";
 
 export default function Navigation(){
 
@@ -13,7 +13,7 @@ export default function Navigation(){
                 <DirectionsCard currentText='Turn right' nextText='Go straight' 
                     currentDirection='up-right' nextDirection='up' />
                 <div>
-                    <DrawMap />
+                    <Map />
                 </div>             
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12">
                     <Button text='Back' />

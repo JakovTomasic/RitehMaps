@@ -21,7 +21,7 @@ export class MapNavigatorImpl implements MapNavigator {
     }
 
     private findPathToNearestNode(startNodeId: number, endNodeFilter: MapNodeFilter): MapNode[] {
-        let path: MapNode[];
+        let path: MapNode[] = [];
         let bestDistances = new Map<number, number>(); //nodeId, distance
         let visitedNodes = new Map<number, boolean>(); //nodeId, isVisited
         let parents = new Map<number, number>(); //childId, parentId
@@ -50,15 +50,15 @@ export class MapNavigatorImpl implements MapNavigator {
 
             if(endNodeFilter.satisfies(this.graph.getNode(currentNodeId))){
 
+                path.push(this.graph.getNode(currentNodeId));
+
                 while(parents.has(currentNodeId)){
                     let parentId = parents.get(currentNodeId);
 
                     path.push(this.graph.getNode(parentId));
                     currentNodeId = parentId;
                 }
-                
-                path.push(this.graph.getNode(startNodeId));
-                parents.get(currentNodeId)
+
                 return path.reverse();
             
             }else if(allVisited){

@@ -13,7 +13,7 @@ export default function Navigation(){
                 <DirectionsCard currentText='Turn right' nextText='Go straight' 
                     currentDirection='up-right' nextDirection='up' />
                 <div>
-                    <Map />
+                    <Map layoutImage='main_floor_0'/>
                 </div>             
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12">
                     <Button text='Back' />

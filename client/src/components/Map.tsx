@@ -1,6 +1,5 @@
 import React, { Component, useRef, useState, useEffect } from 'react';
 import * as d3 from 'd3';
-import groundFloor_main from "../images/groundFloor_main.svg";
 
 
 export default class Map extends Component{
@@ -37,7 +36,7 @@ export default class Map extends Component{
 
         const svgElement = d3.select(this.mapRef)
         .append("image")
-        .attr("xlink:href", groundFloor_main.src)
+        .attr("xlink:href", "/submaps/main_floor_0.svg")
         .attr("width", 450)
         .attr("height", 300)  
 

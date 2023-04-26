@@ -1,14 +1,14 @@
-import Button from "../../components/Button";
-import Header from "../../components/Header";
-import DirectionsCard from "../../components/DirectionsCard";
-import Map from "../../components/Map";
+import Button from "../components/Button";
+import Header from "../components/Header";
+import DirectionsCard from "../components/DirectionsCard";
+import Map from "../components/Map";
 
 export default function Navigation(){
 
 
     return(
         <>
-            <div className="relative h-screen w-screen">
+            <div className="relative h-screen w-max">
                 <Header text='Navigation' backPath='/' />
                 <DirectionsCard currentText='Turn right' nextText='Go straight' 
                     currentDirection='up-right' nextDirection='up' />

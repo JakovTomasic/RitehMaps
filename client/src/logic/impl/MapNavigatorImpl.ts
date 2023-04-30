@@ -10,37 +10,44 @@ export class MapNavigatorImpl implements MapNavigator {
     static infinity: number = Number.MAX_SAFE_INTEGER;
     private graph: Graph;
 
-    constructor(graph: Graph){
+    constructor(graph: Graph) {
         this.graph = graph;
     }
-    
+
     findShortestPath(startNodeId: number, endNodeFilter: MapNodeFilter): NavigationDirections {
         let path = this.findPathToNearestNode(startNodeId, endNodeFilter);
         let navNodes = this.convertPathToNavigationNodes(path);
         return this.splitNavigationPathIntoSteps(navNodes);
     }
 
-    private findPathToNearestNode(startNodeId: number, endNodeFilter: MapNodeFilter): MapNode[] {
+    /*private*/ findPathToNearestNode(startNodeId: number, endNodeFilter: MapNodeFilter): MapNode[] {
+
+        if (typeof this.graph.getNode(startNodeId) === "undefined") {
+            throw new Error("Start location not valid.");
+        }
+
         let path: MapNode[] = [];
+        let neighbours: NeighbourConnection[];
+
         let bestDistances = new Map<number, number>(); //nodeId, distance
         let visitedNodes = new Map<number, boolean>(); //nodeId, isVisited
-        let parents = new Map<number, number>(); //childId, parentId
-        let allVisited: boolean;
+        let parents = new Map<number, number>();       //childId, parentId
+
         let currentDistance: number;
         let currentNodeId: number;
-        let neighbours: NeighbourConnection[];
+        let allVisited: boolean;
 
         bestDistances.set(startNodeId, 0);
         visitedNodes.set(startNodeId, false);
-  
-        while(true){
+
+        while (true) {
             currentDistance = MapNavigatorImpl.infinity;
             allVisited = true;
 
             for (let [nodeId, isVisited] of visitedNodes) {   // pronaći data structure koji je sortiran
 
-                if(!isVisited){
-                    if(bestDistances.get(nodeId) < currentDistance){
+                if (!isVisited) {
+                    if (bestDistances.get(nodeId) < currentDistance) {
                         currentDistance = bestDistances.get(nodeId);
                         currentNodeId = nodeId;
                     }
@@ -48,11 +55,11 @@ export class MapNavigatorImpl implements MapNavigator {
                 }
             }
 
-            if(endNodeFilter.satisfies(this.graph.getNode(currentNodeId))){
+            if (endNodeFilter.satisfies(this.graph.getNode(currentNodeId))) {
 
                 path.push(this.graph.getNode(currentNodeId));
 
-                while(parents.has(currentNodeId)){
+                while (parents.has(currentNodeId)) {
                     let parentId = parents.get(currentNodeId);
 
                     path.push(this.graph.getNode(parentId));
@@ -60,31 +67,29 @@ export class MapNavigatorImpl implements MapNavigator {
                 }
 
                 return path.reverse();
-            
-            }else if(allVisited){
+
+            } else if (allVisited) {
                 throw new Error("Destination cannot be reached.");
             }
 
             visitedNodes.set(currentNodeId, true);
-            neighbours = this.graph.getNeighbours(currentNodeId);  
+            neighbours = this.graph.getNeighbours(currentNodeId);
 
-            for(let element of neighbours){
-
+            for (let element of neighbours) {
                 let neighbourId = element.neighbour.id;
                 let neighbourDistance = element.distance;
 
-                if(!bestDistances.has(neighbourId)){
+                if (!bestDistances.has(neighbourId)) {
                     bestDistances.set(neighbourId, currentDistance + neighbourDistance);
                     visitedNodes.set(neighbourId, false);
                     parents.set(neighbourId, currentNodeId);
                     continue;
                 }
-                
-                if(currentDistance + neighbourDistance < bestDistances.get(neighbourId)){
+
+                if (currentDistance + neighbourDistance < bestDistances.get(neighbourId)) {
                     bestDistances.set(neighbourId, currentDistance + neighbourDistance);
                     parents.set(neighbourId, currentNodeId);
                 }
-
             }
         }
     }

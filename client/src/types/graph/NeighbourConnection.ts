@@ -1,6 +1,6 @@
 import { MapNode } from "./MapNode";
 
-export abstract class NeighbourConnection {
+export class NeighbourConnection {
     neighbour: MapNode;
     distance: number;
 

@@ -5,9 +5,9 @@ import { NavigationNode } from "../../types/navigation/NavigationNode";
 import { MapNavigator } from "../interfaces/MapNavigator";
 import { Graph } from "../interfaces/Graph";
 import { NeighbourConnection } from "../../types/graph/NeighbourConnection";
+import { Constants } from "../../utils/Constants";
 
 export class MapNavigatorImpl implements MapNavigator {
-    static infinity: number = Number.MAX_SAFE_INTEGER;
     private graph: Graph;
 
     constructor(graph: Graph) {
@@ -46,7 +46,7 @@ export class MapNavigatorImpl implements MapNavigator {
         unvisitedNodes.add({nodeId: startNodeId, distance: 0});
 
         while (true) {
-            currentDistance = MapNavigatorImpl.infinity;
+            currentDistance = Constants.infinity;
             allVisited = true;
 
             if (unvisitedNodes.length > 0) {

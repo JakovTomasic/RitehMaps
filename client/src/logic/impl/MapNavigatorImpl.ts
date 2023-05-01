@@ -29,36 +29,35 @@ export class MapNavigatorImpl implements MapNavigator {
         let path: MapNode[] = [];
         let neighbours: NeighbourConnection[];
 
+        let parents = new Map<number, number>(); //childId, parentId
         let bestDistances = new Map<number, number>(); //nodeId, distance
-        let visitedNodes = new Map<number, boolean>(); //nodeId, isVisited
-        let parents = new Map<number, number>();       //childId, parentId
+
+        let SortedSet = require('sorted-set');
+        let unvisitedNodes = new SortedSet({
+            hash(item: any) {return item.nodeId},
+            compare(a: any, b: any) {return a.distance - b.distance;}
+        });
 
         let currentDistance: number;
         let currentNodeId: number;
         let allVisited: boolean;
 
         bestDistances.set(startNodeId, 0);
-        visitedNodes.set(startNodeId, false);
+        unvisitedNodes.add({nodeId: startNodeId, distance: 0});
 
         while (true) {
             currentDistance = MapNavigatorImpl.infinity;
             allVisited = true;
 
-            for (let [nodeId, isVisited] of visitedNodes) {   // pronaći data structure koji je sortiran
-
-                if (!isVisited) {
-                    if (bestDistances.get(nodeId) < currentDistance) {
-                        currentDistance = bestDistances.get(nodeId);
-                        currentNodeId = nodeId;
-                    }
-                    allVisited = false;
-                }
+            if (unvisitedNodes.length > 0) {
+                currentNodeId = unvisitedNodes.head().nodeId;
+                currentDistance = unvisitedNodes.head().distance;
+                allVisited = false;
             }
 
             if (endNodeFilter.satisfies(this.graph.getNode(currentNodeId))) {
-
                 path.push(this.graph.getNode(currentNodeId));
-
+                
                 while (parents.has(currentNodeId)) {
                     let parentId = parents.get(currentNodeId);
 
@@ -72,22 +71,18 @@ export class MapNavigatorImpl implements MapNavigator {
                 throw new Error("Destination cannot be reached.");
             }
 
-            visitedNodes.set(currentNodeId, true);
+            unvisitedNodes.shift();
             neighbours = this.graph.getNeighbours(currentNodeId);
 
             for (let element of neighbours) {
                 let neighbourId = element.neighbour.id;
                 let neighbourDistance = element.distance;
+                
+                if (currentDistance + neighbourDistance < bestDistances.get(neighbourId)
+                    || !bestDistances.has(neighbourId)) {
 
-                if (!bestDistances.has(neighbourId)) {
                     bestDistances.set(neighbourId, currentDistance + neighbourDistance);
-                    visitedNodes.set(neighbourId, false);
-                    parents.set(neighbourId, currentNodeId);
-                    continue;
-                }
-
-                if (currentDistance + neighbourDistance < bestDistances.get(neighbourId)) {
-                    bestDistances.set(neighbourId, currentDistance + neighbourDistance);
+                    unvisitedNodes.add({nodeId: neighbourId, distance: bestDistances.get(neighbourId)})
                     parents.set(neighbourId, currentNodeId);
                 }
             }

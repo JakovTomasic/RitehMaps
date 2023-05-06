@@ -8,13 +8,13 @@ export default function Navigation(){
 
     return(
         <>
-            <div className="relative h-screen w-max">
+            <div className="relative w-screen h-screen max-w-md mx-auto my-0">
                 <Header text='Navigation' backPath='/' />
                 <DirectionsCard currentText='Turn right' nextText='Go straight' 
-                    currentDirection='up-right' nextDirection='up' />
-                <div>
-                    <Map layoutImage='main_floor_0'/>
-                </div>             
+                    currentDirection='/images/up-right.png' nextDirection='/images/up.png' />
+                <div>                
+                    <Map layoutImage='/submaps/main_floor_0.svg' enableDrawNodes />            
+                </div>                 
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12">
                     <Button text='Back' />
                     <Button text='Update' />

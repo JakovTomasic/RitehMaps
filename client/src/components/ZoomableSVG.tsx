@@ -1,17 +1,17 @@
 import React, { Component, useRef, useState, useEffect } from 'react';
 import * as d3 from 'd3';
 
-export default function ZoomableSVG( { children, width, height } ){
+export default function ZoomableSVG( { children } ){
 
     const svgRef = useRef()
-    const [k, setK] = useState(1)
+    const [scale, setScale] = useState(1)
     const [x, setX] = useState(0)
     const [y, setY] = useState(0)
 
     useEffect(() => {
         const zoom = d3.zoom().on("zoom", (event) => {
             const { x, y, k } = event.transform
-            setK(k)
+            setScale(k)
             setX(x)
             setY(y)
         })
@@ -21,8 +21,8 @@ export default function ZoomableSVG( { children, width, height } ){
 
 
     return (
-        <svg ref={svgRef} width={width} height={height}>
-            <g transform={`translate(${x},${y})scale(${k})`}>{children}</g>
+        <svg ref={svgRef} width="100%" height="100%">
+            <g transform={`translate(${x},${y})scale(${scale})`}>{children}</g>
         </svg>
     )
 }

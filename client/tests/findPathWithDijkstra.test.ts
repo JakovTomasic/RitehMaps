@@ -4,7 +4,6 @@ import { HallwaysGraphMock } from "../src/logic/mock/HallwaysGraphMock";
 import { MapNodeFilterById } from "../src/types/roomsearch/MapNodeFilterById";
 import { EndNode } from "../src/types/graph/EndNode";
 import { HallwayNode } from "../src/types/graph/HallwayNode";
-import { recreatePath } from "../src/logic/impl/pathfinding/recreatePath";
 
 describe('testing findPathWithDijkstra() with a 6-node graph', () => {
 

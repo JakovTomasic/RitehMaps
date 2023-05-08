@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
 
 function Search() {
-
   const [inputValue, setInputValue] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
-  const [dropdownOptions, setDropdownOptions] = useState([
-    "canteen",
-    "I5",
-    "I7",
-    "P1",
-    "P2",
-    "wc"
-  ]);
+  const [dropdownOptions, setDropdownOptions] = useState([]);
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+  const searchRef = useRef(null);
+
+  const handleInputChange = async (event) => {
+    const inputValue = event.target.value;
+    setInputValue(inputValue);
+
+    const roomSearch = new RoomSearchImpl();
+    const sortedSuggestions = roomSearch.sortedSuggestionsForStart(inputValue);
+    
+    setDropdownOptions(sortedSuggestions.map((suggestion) => suggestion.roomName));
+
     setShowDropdown(true);
   };
 
@@ -23,25 +25,34 @@ function Search() {
     setShowDropdown(false);
   };
 
-  const filteredOptions = dropdownOptions.filter((option) =>
-    option.toLowerCase().includes(inputValue.toLowerCase())
-  );
+  useEffect(() => {
+    // Function to handle clicks outside the search component
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+  
+    document.addEventListener("click", handleClickOutside);
+  
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+  
 
   return (
-
-    <div className="relative">
+    <div className="relative" ref={searchRef}>
       <input
         type="text"
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-cyan-600"
+        className="w-full px-3 py-2 border 
+                  border-gray-300 rounded-md focus:outline-none focus:border-cyan-600"
         placeholder="Search"
         value={inputValue}
         onChange={handleInputChange}
       />
-      {showDropdown && (
 
+      {showDropdown && dropdownOptions.length > 0 && (
         <div className="absolute z-10 w-full bg-white rounded-b-md shadow-lg">
-          {filteredOptions.map((option) => (
-
+          {dropdownOptions.map((option) => (
             <div
               key={option}
               className="py-1 px-3 hover:bg-gray-100 cursor-pointer"
@@ -49,15 +60,10 @@ function Search() {
             >
               {option}
             </div>
-
           ))}
-
         </div>
-
       )}
-
     </div>
-    
   );
 }
 

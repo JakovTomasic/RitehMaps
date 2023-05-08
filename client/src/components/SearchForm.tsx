@@ -1,8 +1,9 @@
 import React from "react";
 import PinIcon from "./PinIcon";
 import DotsIcon from "./DotsIcon";
-import Search from "./Search";
+
 import ChangeArrowsIcon from "./ChangeArrowsIcon";
+import Search from "./Search";
 
 function SearchForm() {
   return (
@@ -39,7 +40,7 @@ function SearchForm() {
 
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
-                      <Search/>
+                    <Search/>
                     </label> 
                   </div>
 

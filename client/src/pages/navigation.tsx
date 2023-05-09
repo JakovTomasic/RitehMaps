@@ -8,13 +8,13 @@ export default function Navigation(){
 
     return(
         <>
-            <div className="relative w-screen h-screen max-w-md mx-auto my-0">
+            {/* w-fill works better for some reason */}
+            <div className="relative w-fill h-screen mx-auto my-0">
                 <Header text='Navigation' backPath='/' />
                 <DirectionsCard currentText='Turn right' nextText='Go straight' 
                     currentDirection='/images/up-right.png' nextDirection='/images/up.png' />
-                <div>                
-                    <Map layoutImage='/submaps/main_floor_0.svg' enableDrawNodes />            
-                </div>                 
+                {/* TODO: read aspect ratio for the current image from some json file (pass image id in Navigation prop) */}
+                <Map layoutImage='/submaps/main_floor_0.svg' enableDrawNodes width={2809.2} height={847.27999}/>  
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12">
                     <Button text='Back' />
                     <Button text='Update' />

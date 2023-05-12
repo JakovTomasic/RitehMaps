@@ -4,8 +4,13 @@ import DotsIcon from "./DotsIcon";
 
 import ChangeArrowsIcon from "./ChangeArrowsIcon";
 import Search from "./Search";
+import { RoomSearch } from "../logic/interfaces/RoomSearch";
 
-function SearchForm() {
+type Prop = {
+  roomSearcher: RoomSearch;
+}
+
+function SearchForm({ roomSearcher }: Prop) {
   return (
 
     <div className="flex items-center w-96">
@@ -29,7 +34,7 @@ function SearchForm() {
 
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
-                      <Search/>
+                      <Search roomSearcher={roomSearcher.sortedSuggestionsForStart}/>
                     </label> 
                   </div>
 
@@ -40,7 +45,7 @@ function SearchForm() {
 
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
-                    <Search/>
+                    <Search roomSearcher={roomSearcher.sortedSuggestionsForDestination}/>
                     </label> 
                   </div>
 

@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
+import { SearchNodeSuggestion } from "../types/SearchNodeSuggestion";
 
-function Search() {
+type Prop = {
+  roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
+}
+
+function Search({ roomSearcher }: Prop) {
   const [inputValue, setInputValue] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [dropdownOptions, setDropdownOptions] = useState([]);
@@ -12,8 +16,7 @@ function Search() {
     const inputValue = event.target.value;
     setInputValue(inputValue);
 
-    const roomSearch = new RoomSearchImpl();
-    const sortedSuggestions = roomSearch.sortedSuggestionsForStart(inputValue);
+    const sortedSuggestions = roomSearcher(inputValue);
     
     setDropdownOptions(sortedSuggestions.map((suggestion) => suggestion.roomName));
 

@@ -5,9 +5,9 @@ import { GraphImpl } from '../logic/impl/graph/GraphImpl';
 import { Graph } from '../logic/interfaces/Graph';
 import { MapNode } from '../types/graph/MapNode';
 import { createGraph } from '../logic/impl/graph/GraphFactory';
-import { rooms } from '../data/rooms';
-import { edges } from '../data/edges';
-import { hallways } from '../data/hallways';
+import { rooms } from '../data/Rooms';
+import { edges } from '../data/Edges';
+import { hallways } from '../data/Hallways';
 
 type Prop = {
     layoutImage: string

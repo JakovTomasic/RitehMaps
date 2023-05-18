@@ -1,5 +1,3 @@
-import { edges } from "../../../data/edges";
-import { rooms } from "../../../data/rooms";
 import { MapNode } from "../../../types/graph/MapNode";
 import { NeighbourConnection } from "../../../types/graph/NeighbourConnection";
 import { Graph } from "../../interfaces/Graph";

@@ -1,6 +1,6 @@
-import { Edge } from "../../../data/edges";
-import { Hallway } from "../../../data/hallways";
-import { Room } from "../../../data/rooms";
+import { Edge } from "../../../data/Edges";
+import { Hallway } from "../../../data/Hallways";
+import { Room } from "../../../data/Rooms";
 import { MapNode } from "../../../types/graph/MapNode";
 
 export type GraphNode = {

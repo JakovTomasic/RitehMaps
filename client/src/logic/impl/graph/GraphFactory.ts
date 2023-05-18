@@ -1,3 +1,4 @@
+import assert from "assert";
 import { AllGraphData } from "../../../data/AllGraphData";
 import { Hallway } from "../../../data/Hallways";
 import { Room } from "../../../data/Rooms";
@@ -58,6 +59,8 @@ function addAllRoomsWithoutConnections(graph: Map<string, GraphNode>, rooms: Roo
 
 function addHallwayProjectionOfNode(allHallwayProjections: Map<string, GraphNode[]>, hallway: Hallway, node: GraphNode) {
     
+    assert(node.node.submapId === hallway.submapId);
+
     let dot: Dot = {x: node.node.xCoordinate, y: node.node.yCoordinate};
     let line: Line = hallwayToLine(hallway);
 
@@ -68,7 +71,7 @@ function addHallwayProjectionOfNode(allHallwayProjections: Map<string, GraphNode
     let graphNode: GraphNode = {
         node: {
             id: id,
-            submapId: node.node.submapId, // TODO: assert same submap id
+            submapId: node.node.submapId,
             xCoordinate: projection.x,
             yCoordinate: projection.y,
         },
@@ -79,6 +82,9 @@ function addHallwayProjectionOfNode(allHallwayProjections: Map<string, GraphNode
 }
 
 function joinTwoHallways(allHallwayProjections: Map<string, GraphNode[]>, hallway1: Hallway, hallway2: Hallway) {
+
+    assert(hallway1.submapId === hallway2.submapId);
+
     let line1 = hallwayToLine(hallway1);
     let line2 = hallwayToLine(hallway2);
     let intersection = calculateLinesIntersection(line1, line2);
@@ -88,7 +94,7 @@ function joinTwoHallways(allHallwayProjections: Map<string, GraphNode[]>, hallwa
     let graphNode: GraphNode = {
         node: {
             id: id,
-            submapId: hallway1.submapId, // TODO: assert same submap id
+            submapId: hallway1.submapId,
             xCoordinate: intersection.x,
             yCoordinate: intersection.y,
         },

@@ -5,9 +5,7 @@ import { GraphImpl } from '../logic/impl/graph/GraphImpl';
 import { Graph } from '../logic/interfaces/Graph';
 import { MapNode } from '../types/graph/MapNode';
 import { createGraph } from '../logic/impl/graph/GraphFactory';
-import { rooms } from '../data/Rooms';
-import { edges } from '../data/Edges';
-import { hallways } from '../data/Hallways';
+import { allGraphData } from '../data/AllGraphData';
 
 type Prop = {
     layoutImage: string
@@ -138,7 +136,7 @@ export default class Map extends Component<Prop>{
             this.drawNodesOnClick()
         
         let startNode = "aaa";
-        let constructedGraph = createGraph(rooms, edges, hallways);
+        let constructedGraph = createGraph(allGraphData);
         let graph = new GraphImpl(constructedGraph);
         this.recursiveWholeGraph(startNode, graph, new Set())
     }

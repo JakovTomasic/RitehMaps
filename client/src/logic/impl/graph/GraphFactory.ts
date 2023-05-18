@@ -1,4 +1,5 @@
 import { AllGraphData } from "../../../data/AllGraphData";
+import { Room } from "../../../data/Rooms";
 import { MapNode } from "../../../types/graph/MapNode";
 
 export type GraphNode = {
@@ -9,7 +10,20 @@ export type GraphNode = {
 export function createGraph(graphData: AllGraphData): Map<string, GraphNode> {
     let graph = new Map<string, GraphNode>();
 
-    graphData.rooms.forEach(room => {
+    addAllRoomsWithoutConnections(graph, graphData.rooms);
+
+    graphData.edges.forEach(edge => {
+        let node1: GraphNode = graph[edge.nodeId1]
+        let node2: GraphNode = graph[edge.nodeId2]
+        node1.neighbours.push(node2.node)
+        node2.neighbours.push(node1.node)
+    });
+
+    return graph;
+}
+
+function addAllRoomsWithoutConnections(graph: Map<string, GraphNode>, rooms: Room[]) {
+    rooms.forEach(room => {
         let graphNode: GraphNode = {
             node: {
                 id: room.nodeId,
@@ -21,13 +35,4 @@ export function createGraph(graphData: AllGraphData): Map<string, GraphNode> {
         }
         graph[room.nodeId] = graphNode
     });
-
-    graphData.edges.forEach(edge => {
-        let node1: GraphNode = graph[edge.nodeId1]
-        let node2: GraphNode = graph[edge.nodeId2]
-        node1.neighbours.push(node2.node)
-        node2.neighbours.push(node1.node)
-    });
-
-    return graph;
 }

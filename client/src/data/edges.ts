@@ -1,5 +1,5 @@
 
-type Edge = {
+export type Edge = {
     nodeId1: string;
     nodeId2: string;
 }

@@ -1,10 +1,11 @@
 
-type Room = {
+export type Room = {
     nodeId: string;
     names: string[];
     submapId: number;
     x: number;
     y: number;
+    type?: string;
 }
 
 export const rooms: Room[] = [

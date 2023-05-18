@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import ZoomableSVG from './ZoomableSVG';
-import { GraphImpl } from '../logic/impl/GraphImpl';
+import { GraphImpl } from '../logic/impl/graph/GraphImpl';
 import { Graph } from '../logic/interfaces/Graph';
 import { MapNode } from '../types/graph/MapNode';
+import { createGraph } from '../logic/impl/graph/GraphFactory';
+import { rooms } from '../data/rooms';
+import { edges } from '../data/edges';
+import { hallways } from '../data/hallways';
 
 type Prop = {
     layoutImage: string
@@ -134,7 +138,8 @@ export default class Map extends Component<Prop>{
             this.drawNodesOnClick()
         
         let startNode = "aaa";
-        let graph = new GraphImpl();
+        let constructedGraph = createGraph(rooms, edges, hallways);
+        let graph = new GraphImpl(constructedGraph);
         this.recursiveWholeGraph(startNode, graph, new Set())
     }
 

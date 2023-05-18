@@ -1,5 +1,5 @@
 
-type Hallway = {
+export type Hallway = {
     id: string;
     submapId: number;
     x1: number;
@@ -9,12 +9,12 @@ type Hallway = {
 }
 
 export const hallways: Hallway[] = [
-    // {
-    //     id: "h1",
-    //     submapId: 1,
-    //     x1: 0,
-    //     y1: 0,
-    //     x2: 100,
-    //     y2: 100,
-    // }
+    {
+        id: "h1",
+        submapId: 1,
+        x1: 0,
+        y1: 0,
+        x2: 100,
+        y2: 100,
+    }
 ]

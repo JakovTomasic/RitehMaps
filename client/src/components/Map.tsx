@@ -143,17 +143,19 @@ export default class Map extends Component<Prop>{
             this.drawNodesOnClick()
         
         let startNode = "aaa";
+        let submapId = 1;
         let constructedGraph = createGraph(allGraphData);
         let graph = new GraphImpl(constructedGraph);
-        this.recursiveWholeGraph(startNode, graph, new Set())
+        this.recursiveWholeGraph(startNode, submapId, graph, new Set())
     }
 
     // TODO: this is just for testing. Remove this or extract it as a testing tool.
-    recursiveWholeGraph(currentNodeId: string, graph: Graph, visited: Set<string>) {
+    recursiveWholeGraph(currentNodeId: string, submapId: number, graph: Graph, visited: Set<string>) {
         let currentNode: MapNode = graph.getNode(currentNodeId);
         graph.getNeighbours(currentNodeId).forEach(element => {
-            if (!visited.has(element.neighbour.id)) {
-                visited.add(element.neighbour.id)
+            let edge = `${currentNodeId}---->${element.neighbour.id}`
+            if (!visited.has(edge) && element.neighbour.submapId == submapId) {
+                visited.add(edge)
 
                 let neighbourNode = graph.getNode(element.neighbour.id)
 
@@ -164,7 +166,7 @@ export default class Map extends Component<Prop>{
                     y2: `${neighbourNode.yCoordinate}%`,
                 })
 
-                this.recursiveWholeGraph(element.neighbour.id, graph, visited)
+                this.recursiveWholeGraph(element.neighbour.id, submapId, graph, visited)
             }
         });
     }

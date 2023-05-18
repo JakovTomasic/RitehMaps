@@ -1,4 +1,5 @@
+import { Submap } from "../../types/Submap";
 
 export interface SubmapProvider {
-    getSubmapImageSourcePath(submapId: number): string
+    getSubmapImage(submapId: number): Submap
 }

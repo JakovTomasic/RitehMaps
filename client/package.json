@@ -15,7 +15,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sorted-set": "^0.3.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "react-select-search": "^4.1.6"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",

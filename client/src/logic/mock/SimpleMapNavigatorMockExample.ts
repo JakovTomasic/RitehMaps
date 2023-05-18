@@ -1,7 +1,7 @@
-import { MapNodeFilter } from "../../types/MapNodeFilter";
-import { NavigationDirections } from "../../types/NavigationDirections";
-import { NavigationNode } from "../../types/NavigationNode";
-import { NavigationStep } from "../../types/NavigationStep";
+import { MapNodeFilter } from "../../types/roomsearch/MapNodeFilter";
+import { NavigationDirections } from "../../types/navigation/NavigationDirections";
+import { NavigationNode } from "../../types/navigation/NavigationNode";
+import { NavigationStep } from "../../types/navigation/NavigationStep";
 import { MapNavigator } from "../interfaces/MapNavigator";
 
 export class SimpleMapNavigatorMockExample implements MapNavigator {

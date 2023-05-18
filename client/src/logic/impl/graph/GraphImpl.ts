@@ -12,17 +12,17 @@ export class GraphImpl implements Graph {
     }
 
     getNode(nodeId: string): MapNode | undefined {
-        return this.graph[nodeId].node
+        return this.graph.get(nodeId).node;
     }
 
     getNeighbours(nodeId: string): NeighbourConnection[] {
-        let node: GraphNode = this.graph[nodeId]
+        let node: GraphNode = this.graph.get(nodeId);
         return node.neighbours.map(neighbour => {
             let connection: NeighbourConnection = {
                 neighbour: neighbour,
                 distance: 0,
-            }
-            return connection
-        })
+            };
+            return connection;
+        });
     }
 }

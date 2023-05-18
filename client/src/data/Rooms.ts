@@ -29,5 +29,12 @@ export const rooms: Room[] = [
         submapId: 1,
         x: 50,
         y: 50,
-    }
+    },
+    {
+        nodeId: "0-17",
+        names: ["0-17"],
+        submapId: 1,
+        x: 95.11,
+        y: 28.87,
+    },
 ]

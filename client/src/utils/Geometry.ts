@@ -42,3 +42,31 @@ export function calculateProjection(dot: Dot, line: Line): Dot {
 
     return projection;
 }
+
+export function calculateLinesIntersection(line1: Line, line2: Line): Dot | null {
+    const { dot1: line1Dot1, dot2: line1Dot2 } = line1;
+    const { dot1: line2Dot1, dot2: line2Dot2 } = line2;
+  
+    const xDiffLine1 = line1Dot1.x - line1Dot2.x;
+    const yDiffLine1 = line1Dot1.y - line1Dot2.y;
+    const xDiffLine2 = line2Dot1.x - line2Dot2.x;
+    const yDiffLine2 = line2Dot1.y - line2Dot2.y;
+  
+    const denominator = xDiffLine1 * yDiffLine2 - yDiffLine1 * xDiffLine2;
+  
+    if (denominator === 0) {
+      // The lines are parallel, no intersection
+      return null;
+    }
+  
+    const c1 = line1Dot1.x * line1Dot2.y - line1Dot1.y * line1Dot2.x;
+    const c2 = line2Dot1.x * line2Dot2.y - line2Dot1.y * line2Dot2.x;
+  
+    const intersectionX = (c1 * xDiffLine2 - c2 * xDiffLine1) / denominator;
+    const intersectionY = (c1 * yDiffLine2 - c2 * yDiffLine1) / denominator;
+  
+    const intersection: Dot = { x: intersectionX, y: intersectionY };
+  
+    return intersection;
+}
+

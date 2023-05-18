@@ -21,4 +21,12 @@ export const edges: Edge[] = [
         nodeId1: "bbb",
         nodeId2: "h1",
     },
+    {
+        nodeId1: "h1",
+        nodeId2: "h2",
+    },
+    {
+        nodeId1: "0-17",
+        nodeId2: "h2",
+    },
 ]

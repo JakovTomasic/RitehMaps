@@ -33,10 +33,17 @@ export default class Map extends Component<Prop>{
 
     private drawNodesOnClick(){
 
+        let width = this.props.width;
+        let height = this.props.height;
+
         const svg = d3.select(this.mapRef)
         svg.on("click", function(event) {
 
-            console.log(d3.pointer(event))
+            let clickedOn = d3.pointer(event)
+            let decimalPlaces = 2
+            let clickedX = Math.round(clickedOn[0] / width * 100 * 10**decimalPlaces) / 10**decimalPlaces;
+            let clickedY = Math.round(clickedOn[1] / height * 100 * 10**decimalPlaces) / 10**decimalPlaces;
+            console.log(`x: ${clickedX},\ny: ${clickedY},`)
 
             svg.append("circle")
             .attr("cx", d3.pointer(event)[0])

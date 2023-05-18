@@ -1,10 +1,19 @@
 
 export abstract class MapNode {
-    id: number;
+    id: string;
     submapId: number;
+    xCoordinate: number;
+    yCoordinate: number;
 
-    constructor(id: number, submapId: number) {
+    constructor(
+        id: string,
+        submapId: number,
+        xCoordinate: number,
+        yCoordinate: number,
+    ) {
         this.id = id;
         this.submapId = submapId;
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
     }
 }

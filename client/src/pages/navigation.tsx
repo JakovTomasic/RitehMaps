@@ -2,19 +2,25 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import DirectionsCard from "../components/DirectionsCard";
 import Map from "../components/Map";
+import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
 
-export default function Navigation(){
 
+type Prop = {
+    submapId: number;
+}
+
+export default function Navigation({ submapId=3 }: Prop){
+
+    const submap = new SubmapProviderImpl();
+    const submapImage = submap.getSubmapImage(submapId);
 
     return(
         <>
-            {/* w-fill works better for some reason */}
             <div className="relative w-fill h-screen mx-auto my-0">
                 <Header text='Navigation' backPath='/' />
                 <DirectionsCard currentText='Turn right' nextText='Go straight' 
                     currentDirection='/images/up-right.png' nextDirection='/images/up.png' />
-                {/* TODO: read aspect ratio for the current image from some json file (pass image id in Navigation prop) */}
-                <Map layoutImage='/submaps/main_floor_0.svg' enableDrawNodes width={2809.2} height={847.27999}/>  
+                <Map layoutImage={submapImage.path} enableDrawNodes width={submapImage.width} height={submapImage.height}/>  
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12">
                     <Button text='Back' />
                     <Button text='Update' />

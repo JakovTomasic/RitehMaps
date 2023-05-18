@@ -136,8 +136,7 @@ export default class Map extends Component<Prop>{
     
         return(
             <div>
-                {/* TODO: remove red background */}
-                <div className="w-full h-full border bg-red-600" style={{aspectRatio: this.props.width / this.props.height}}>
+                <div className="w-full h-full border" style={{aspectRatio: this.props.width / this.props.height}}>
                     <ZoomableSVG>
                         <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>
                             

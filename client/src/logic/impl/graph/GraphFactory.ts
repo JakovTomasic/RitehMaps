@@ -116,13 +116,14 @@ function addAllHallwayProjection(allHallwayProjections: Map<string, GraphNode[]>
 function joinAllHallwayProjections(allHallwayProjections: Map<string, GraphNode[]>, graph: Map<string, GraphNode>) {
     allHallwayProjections.forEach((projections: GraphNode[], hallwayId: string) => {
         for (let i = 0; i < projections.length; i++) {
+            let node1 = projections[i];
+            if (!graph.has(node1.node.id)) {
+                graph.set(node1.node.id, node1);
+            }
+
             for (let j = i+1; j < projections.length; j++) {
-                let node1 = projections[i];
                 let node2 = projections[j];
 
-                if (!graph.has(node1.node.id)) {
-                    graph.set(node1.node.id, node1);
-                }
                 if (!graph.has(node2.node.id)) {
                     graph.set(node2.node.id, node2);
                 }

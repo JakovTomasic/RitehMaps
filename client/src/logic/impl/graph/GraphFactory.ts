@@ -1,7 +1,7 @@
 import assert from "assert";
 import { AllGraphData } from "../../../data/AllGraphData";
 import { Hallway } from "../../../data/Hallways";
-import { Room } from "../../../data/Rooms";
+import { Node } from "../../../data/Nodes";
 import { MapNode } from "../../../types/graph/MapNode";
 import { Dot, Line, calculateLinesIntersection, calculateProjection } from "../../../utils/Geometry";
 
@@ -15,7 +15,7 @@ export function createGraph(graphData: AllGraphData): Map<string, GraphNode> {
     let hallways = new Map<string, Hallway>();
     let allHallwayProjections = new Map<string, GraphNode[]>();
 
-    addAllRoomsWithoutConnections(graph, graphData.rooms);
+    addAllNodesWithoutConnections(graph, graphData.nodes);
 
     graphData.hallways.forEach(hallway => {
         hallways.set(hallway.id, hallway);
@@ -42,18 +42,18 @@ export function createGraph(graphData: AllGraphData): Map<string, GraphNode> {
     return graph;
 }
 
-function addAllRoomsWithoutConnections(graph: Map<string, GraphNode>, rooms: Room[]) {
-    rooms.forEach(room => {
+function addAllNodesWithoutConnections(graph: Map<string, GraphNode>, nodes: Node[]) {
+    nodes.forEach(node => {
         let graphNode: GraphNode = {
             node: {
-                id: room.nodeId,
-                submapId: room.submapId,
-                xCoordinate: room.x,
-                yCoordinate: room.y,
+                id: node.nodeId,
+                submapId: node.submapId,
+                xCoordinate: node.x,
+                yCoordinate: node.y,
             },
             neighbours: []
         };
-        graph.set(room.nodeId, graphNode);
+        graph.set(node.nodeId, graphNode);
     });
 }
 

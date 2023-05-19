@@ -1,15 +1,15 @@
 import { Edge, edges } from "./Edges";
 import { Hallway, hallways } from "./Hallways";
-import { Room, rooms } from "./Rooms";
+import { Node, nodes } from "./Nodes";
 
 export type AllGraphData = {
-    rooms: Room[],
+    nodes: Node[],
     edges: Edge[],
     hallways: Hallway[],
 }
 
 export const allGraphData: AllGraphData = {
-    rooms: rooms,
+    nodes: nodes,
     edges: edges,
     hallways: hallways,
 }

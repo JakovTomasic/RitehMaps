@@ -142,7 +142,7 @@ export default class Map extends Component<Prop>{
         if (typeof this.props.enableDrawNodes !== 'undefined')
             this.drawNodesOnClick()
         
-        let startNode = "aaa";
+        let startNode = "main_entrance";
         let submapId = 1;
         let constructedGraph = createGraph(allGraphData);
         let graph = new GraphImpl(constructedGraph);

@@ -6,27 +6,47 @@ export type Edge = {
 
 export const edges: Edge[] = [
     {
-        nodeId1: "aaa",
-        nodeId2: "bbb",
+        nodeId1: "h_main_f0_main",
+        nodeId2: "h_main_f0_left",
     },
     {
-        nodeId1: "bbb",
-        nodeId2: "ccc",
+        nodeId1: "h_main_f0_main",
+        nodeId2: "h_main_f0_right",
     },
     {
-        nodeId1: "h1",
-        nodeId2: "aaa",
+        nodeId1: "h_main_f0_main",
+        nodeId2: "main_entrance",
     },
     {
-        nodeId1: "bbb",
-        nodeId2: "h1",
+        nodeId1: "h_main_f0_main",
+        nodeId2: "p1",
     },
     {
-        nodeId1: "h1",
-        nodeId2: "h2",
+        nodeId1: "h_main_f0_main",
+        nodeId2: "p2",
     },
     {
-        nodeId1: "0-17",
-        nodeId2: "h2",
+        nodeId1: "h_main_f0_main",
+        nodeId2: "cantine",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "library_left_foor",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "library_right_foor",
+    },
+    {
+        nodeId1: "h_main_f0_right",
+        nodeId2: "0-17",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "f0_left_stairs_up",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "f0_right_stairs_up",
     },
 ]

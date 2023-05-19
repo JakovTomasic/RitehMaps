@@ -121,4 +121,96 @@ export const edges: Edge[] = [
         nodeId1: "h_main_f1_right_main",
         nodeId2: "1-23",
     },
+
+
+    // Main building, floor 1 - floor 2
+    {
+        nodeId1: "f1_left_stairs_up",
+        nodeId2: "f2_left_stairs_down",
+    },
+    {
+        nodeId1: "f1_right_stairs_up",
+        nodeId2: "f2_right_stairs_down",
+    },
+
+
+    // Main building, floor 2 - left
+    {
+        nodeId1: "h_main_f2_left_main",
+        nodeId2: "h_main_f2_left_pathtolab",
+    },
+    {
+        nodeId1: "h_main_f2_left_main",
+        nodeId2: "h_main_f2_left_other",
+    },
+    {
+        nodeId1: "h_main_f2_left_main",
+        nodeId2: "f2_left_stairs_down",
+    },
+    {
+        nodeId1: "h_main_f2_left_main",
+        nodeId2: "f2_left_stairs_up",
+    },
+    {
+        nodeId1: "h_main_f2_left_pathtolab",
+        nodeId2: "main_f2_left_lab_passage",
+    },
+    {
+        nodeId1: "h_main_f2_left_main",
+        nodeId2: "main_f2_left_men_toilet",
+    },
+    {
+        nodeId1: "h_main_f2_left_other",
+        nodeId2: "main_f2_left_women_toilet",
+    },
+    {
+        nodeId1: "h_main_f2_left_main",
+        nodeId2: "2-35",
+    },
+    {
+        nodeId1: "h_main_f2_left_other",
+        nodeId2: "U10",
+    },
+    {
+        nodeId1: "h_main_f2_left_pathtolab",
+        nodeId2: "U8",
+    },
+
+    // Main building, floor 2 - right
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "h_main_f2_right_pathtolab_1",
+    },
+    {
+        nodeId1: "h_main_f2_right_pathtolab_1",
+        nodeId2: "h_main_f2_right_pathtolab_2",
+    },
+    {
+        nodeId1: "h_main_f2_right_pathtolab_2",
+        nodeId2: "h_main_f2_right_pathtolab_3",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "f2_right_stairs_down",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "f2_right_stairs_up",
+    },
+    {
+        nodeId2: "h_main_f2_right_pathtolab_3",
+        nodeId1: "main_f2_right_lab_passage",
+    },
+    {
+        nodeId1: "h_main_f2_right_pathtolab_3",
+        nodeId2: "L13",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "main_f2_right_infrontofU7",
+    },
+    {
+        nodeId2: "main_f2_right_infrontofU7",
+        nodeId1: "U7",
+    },
 ]

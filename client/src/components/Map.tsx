@@ -143,7 +143,7 @@ export default class Map extends Component<Prop>{
             this.drawNodesOnClick()
         
         let startNode = "main_entrance";
-        let submapId = 1;
+        let submapId = 2;
         let constructedGraph = createGraph(allGraphData);
         let graph = new GraphImpl(constructedGraph);
         this.recursiveWholeGraph(startNode, submapId, graph, new Set())
@@ -153,20 +153,22 @@ export default class Map extends Component<Prop>{
     recursiveWholeGraph(currentNodeId: string, submapId: number, graph: Graph, visited: Set<string>) {
         let currentNode: MapNode = graph.getNode(currentNodeId);
         graph.getNeighbours(currentNodeId).forEach(element => {
-            let edge = `${currentNodeId}---->${element.neighbour.id}`
-            if (!visited.has(edge) && element.neighbour.submapId == submapId) {
-                visited.add(edge)
+            let edge = `${currentNodeId}---->${element.neighbour.id}`;
+            if (!visited.has(edge)) {
+                visited.add(edge);
 
                 let neighbourNode = graph.getNode(element.neighbour.id)
 
-                this.connectNodes({
-                    x1: `${currentNode.xCoordinate}%`,
-                    y1: `${currentNode.yCoordinate}%`,
-                    x2: `${neighbourNode.xCoordinate}%`,
-                    y2: `${neighbourNode.yCoordinate}%`,
-                })
+                if (element.neighbour.submapId == submapId && currentNode.submapId == submapId) {
+                    this.connectNodes({
+                        x1: `${currentNode.xCoordinate}%`,
+                        y1: `${currentNode.yCoordinate}%`,
+                        x2: `${neighbourNode.xCoordinate}%`,
+                        y2: `${neighbourNode.yCoordinate}%`,
+                    });
+                }
 
-                this.recursiveWholeGraph(element.neighbour.id, submapId, graph, visited)
+                this.recursiveWholeGraph(element.neighbour.id, submapId, graph, visited);
             }
         });
     }
@@ -175,8 +177,7 @@ export default class Map extends Component<Prop>{
     
         return(
             <div>
-                {/* TODO: remove red background */}
-                <div className="w-full h-full border bg-red-600" style={{aspectRatio: this.props.width / this.props.height}}>
+                <div className="w-full h-full border" style={{aspectRatio: this.props.width / this.props.height}}>
                     <ZoomableSVG>
                         <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>
                             

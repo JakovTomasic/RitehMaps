@@ -15,8 +15,10 @@ type Prop = {
     height: number
 }
 
-const dotRadiusRelative: String = "0.5%"
-const lineStrokeWidthRelative: String = "0.1%"
+const dotRadiusRelative: String = "0.5%";
+const lineStrokeWidthRelative: String = "0.1%";
+const nodeColor: String = "#008a15";
+const connectionColor: String = nodeColor;
 
 export default class Map extends Component<Prop>{
 
@@ -65,7 +67,7 @@ export default class Map extends Component<Prop>{
         .attr("cx", x1)
         .attr("cy", y1)
         .attr("r", dotRadiusRelative)
-        .attr("fill","#41C7F7")
+        .attr("fill", nodeColor)
         .attr("stroke-opacity", 1)
         .attr("stroke-width", 150)
         .classed("animate-pulse", true)
@@ -119,7 +121,7 @@ export default class Map extends Component<Prop>{
         .attr("cx", x2)
         .attr("cy", y2)
         .attr("r", dotRadiusRelative)
-        .attr("fill","#41C7F7")
+        .attr("fill", nodeColor)
         .attr("stroke-opacity", 1)
         .attr("stroke-width", 150)
         .classed("animate-pulse", true)
@@ -129,7 +131,7 @@ export default class Map extends Component<Prop>{
         .attr("y1", y1)
         .attr("x2", x2)
         .attr("y2", y2)
-        .style("stroke", "#41C7F7")
+        .style("stroke", connectionColor)
         .style("stroke-width", lineStrokeWidthRelative)
         .attr("stroke-linecap", "round")
         .attr("stroke-opacity", 0.6)

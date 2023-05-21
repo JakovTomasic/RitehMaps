@@ -1,11 +1,6 @@
-import Button from "../components/Button";
-import Header from "../components/Header";
-import DirectionsCard from "../components/DirectionsCard";
 import Map from "../components/Map";
 
 export default function Graph(){
-
-
     return(
         <div className="relative w-fill mx-auto my-0">
             {/* TODO: read aspect ratio for the current image from some json file */}
@@ -25,7 +20,5 @@ export default function Graph(){
 }
 
 function Separator() {
-    return (
-        <hr className="h-4 my-8 bg-gray-600 border-0"></hr>
-    )
+    return <hr className="h-4 my-8 bg-gray-600 border-0"></hr>
 }

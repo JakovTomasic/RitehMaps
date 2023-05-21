@@ -226,7 +226,7 @@ export const nodes: Node[] = [
         submapId: 3,
         x: 18.59,
         y: 77.58,
-        type: NodeType.STUDENT_ROOM,
+        type: NodeType.OFFICE,
     },
     {
         nodeId: "main_f2_left_men_toilet",
@@ -317,5 +317,171 @@ export const nodes: Node[] = [
         x: 68.14,
         y: 2.64,
         type: NodeType.PASSAGE, // TODO: connect with the lab
+    },
+
+
+
+
+
+
+
+
+
+    // Main building, floor 3 - left
+    {
+        nodeId: "f3_left_stairs_down",
+        names: [],
+        submapId: 4,
+        x: 31.02,
+        y: 61.18,
+        type: NodeType.STAIRS_DOWN,
+    },
+    {
+        nodeId: "U13",
+        names: ["U13"],
+        submapId: 4,
+        x: 22.58,
+        y: 79.5,
+        type: NodeType.CLASSROOM,
+    },
+    {
+        nodeId: "main_f3_left_men_toilet",
+        names: [],
+        submapId: 4,
+        x: 25.06,
+        y: 71.4,
+        type: NodeType.MEN_TOILET,
+    },
+    {
+        nodeId: "main_f3_left_infrontofP3",
+        names: [],
+        submapId: 4,
+        x: 12.64,
+        y: 76.2,
+        type: NodeType.NAVIGATION_MIDNODE,
+    },
+    {
+        nodeId: "P3",
+        names: ["P3"],
+        submapId: 4,
+        x: 10.96,
+        y: 76.67,
+        type: NodeType.CLASSROOM,
+    },
+    {
+        nodeId: "U12",
+        names: ["U12"],
+        submapId: 4,
+        x: 12.64,
+        y: 79.47,
+        type: NodeType.CLASSROOM,
+    },
+    {
+        nodeId: "U14",
+        names: ["U14"],
+        submapId: 4,
+        x: 26.1,
+        y: 79.48,
+        type: NodeType.CLASSROOM,
+    },
+
+    // Main building, floor 3 - center
+    {
+        nodeId: "3-08",
+        names: ["3-08"],
+        submapId: 4,
+        x: 44.24,
+        y: 80.15,
+        type: NodeType.OFFICE,
+    },
+    {
+        nodeId: "U16",
+        names: ["U16"],
+        submapId: 4,
+        x: 44.24,
+        y: 83.49,
+        type: NodeType.CLASSROOM,
+    },
+    {
+        nodeId: "U17",
+        names: ["U17"],
+        submapId: 4,
+        x: 51.14,
+        y: 83.52,
+        type: NodeType.CLASSROOM,
+    },
+
+    // Main building, floor 3 - right
+    {
+        nodeId: "f3_right_stairs_down",
+        names: [],
+        submapId: 4,
+        x: 67.72,
+        y: 61.18,
+        type: NodeType.STAIRS_DOWN,
+    },
+    {
+        nodeId: "f3_right_stairs_down_to_lab",
+        names: [],
+        submapId: 4,
+        x: 72.8,
+        y: 4.7,
+        type: NodeType.STAIRS_DOWN,
+    },
+    {
+        nodeId: "main_f3_right_men_toilet",
+        names: [],
+        submapId: 4,
+        x: 73.87,
+        y: 72.52,
+        type: NodeType.MEN_TOILET,
+    },
+    {
+        nodeId: "3-28",
+        names: ["3-28"],
+        submapId: 4,
+        x: 75.9,
+        y: 79.48,
+        type: NodeType.OFFICE,
+    },
+    {
+        nodeId: "main_f3_right_infrontofP4",
+        names: [],
+        submapId: 4,
+        x: 86.94,
+        y: 76.75,
+        type: NodeType.NAVIGATION_MIDNODE,
+    },
+    {
+        nodeId: "P4",
+        names: ["P4"],
+        submapId: 4,
+        x: 88.18,
+        y: 76.01,
+        type: NodeType.CLASSROOM,
+    },
+    {
+        nodeId: "3-34",
+        names: ["3-34"],
+        submapId: 4,
+        x: 88.44,
+        y: 84.92,
+        type: NodeType.OFFICE,
+    },
+    {
+        nodeId: "3-35",
+        names: ["3-35"],
+        submapId: 4,
+        x: 90.39,
+        y: 84.92,
+        type: NodeType.OFFICE,
+    },
+    {
+        nodeId: "3-36",
+        names: ["3-36"],
+        submapId: 4,
+        x: 95.75,
+        y: 82.96,
+        type: NodeType.OFFICE,
     },
 ]

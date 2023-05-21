@@ -50,6 +50,26 @@ export const edges: Edge[] = [
         nodeId1: "h_main_f0_main",
         nodeId2: "f0_right_stairs_up",
     },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "f0_left_men_toilet",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "f0_left_women_toilet",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "f0_right_men_toilet",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "h_main_f0_middle_to_student_room",
+    },
+    {
+        nodeId1: "h_main_f0_middle_to_student_room",
+        nodeId2: "student_room",
+    },
 
     // Main building, floor 0 - floor 1
     {
@@ -120,6 +140,14 @@ export const edges: Edge[] = [
     {
         nodeId1: "h_main_f1_right_main",
         nodeId2: "1-23",
+    },
+    {
+        nodeId1: "h_main_f1_right_main",
+        nodeId2: "f1_right_men_toilet",
+    },
+    {
+        nodeId1: "h_main_f1_right_other",
+        nodeId2: "f1_right_women_toilet",
     },
 
 
@@ -212,6 +240,14 @@ export const edges: Edge[] = [
     {
         nodeId2: "main_f2_right_infrontofU7",
         nodeId1: "U7",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "f2_right_men_toilet",
+    },
+    {
+        nodeId1: "h_main_f2_right_pathtolab_1",
+        nodeId2: "f2_right_women_toilet",
     },
 
 

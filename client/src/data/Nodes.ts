@@ -89,6 +89,38 @@ export const nodes: Node[] = [
         y: 38.33,
         type: NodeType.STAIRS_UP,
     },
+    {
+        nodeId: "f0_left_men_toilet",
+        names: [],
+        submapId: 1,
+        x: 25.96,
+        y: 55.3,
+        type: NodeType.MEN_TOILET,
+    },
+    {
+        nodeId: "f0_left_women_toilet",
+        names: [],
+        submapId: 1,
+        x: 35.94,
+        y: 55.27,
+        type: NodeType.WOMEN_TOILET,
+    },
+    {
+        nodeId: "f0_right_men_toilet",
+        names: [],
+        submapId: 1,
+        x: 74.78,
+        y: 55.3,
+        type: NodeType.MEN_TOILET,
+    },
+    {
+        nodeId: "student_room",
+        names: ["Student room"],
+        submapId: 1,
+        x: 37.17,
+        y: 26.06,
+        type: NodeType.STUDENT_ROOM,
+    },
 
 
 
@@ -194,6 +226,22 @@ export const nodes: Node[] = [
         x: 84.77,
         y: 70.78,
         type: NodeType.OFFICE,
+    },
+    {
+        nodeId: "f1_right_men_toilet",
+        names: [],
+        submapId: 2,
+        x: 74.59,
+        y: 59.35,
+        type: NodeType.MEN_TOILET,
+    },
+    {
+        nodeId: "f1_right_women_toilet",
+        names: [],
+        submapId: 2,
+        x: 63.15,
+        y: 43.68,
+        type: NodeType.WOMEN_TOILET,
     },
 
 
@@ -317,6 +365,22 @@ export const nodes: Node[] = [
         x: 68.14,
         y: 2.64,
         type: NodeType.PASSAGE,
+    },
+    {
+        nodeId: "f2_right_men_toilet",
+        names: [],
+        submapId: 3,
+        x: 73.75,
+        y: 68.83,
+        type: NodeType.MEN_TOILET,
+    },
+    {
+        nodeId: "f2_right_women_toilet",
+        names: [],
+        submapId: 3,
+        x: 62.33,
+        y: 56.84,
+        type: NodeType.WOMEN_TOILET,
     },
 
 

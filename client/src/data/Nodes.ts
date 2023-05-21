@@ -497,6 +497,51 @@ export const nodes: Node[] = [
 
 
 
+    // Lab building, floor 0
+    {
+        nodeId: "lab_f0_down_stairs_up",
+        names: [],
+        submapId: 101,
+        x: 56.55,
+        y: 85.7,
+        type: NodeType.STAIRS_UP,
+    },
+    {
+        nodeId: "1-117a",
+        names: ["1-117a"],
+        submapId: 101,
+        x: 72.18,
+        y: 78.73,
+        type: NodeType.OFFICE,
+    },
+    {
+        nodeId: "1-102",
+        names: ["1-102"],
+        submapId: 101,
+        x: 18.61,
+        y: 78.74,
+        type: NodeType.OFFICE,
+    },
+    {
+        nodeId: "1-104",
+        names: ["1-104"],
+        submapId: 101,
+        x: 26.79,
+        y: 78.73,
+        type: NodeType.OFFICE,
+    },
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Lab building, floor 1
     {

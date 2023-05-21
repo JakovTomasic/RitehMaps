@@ -212,6 +212,19 @@ export const hallways: Hallway[] = [
 
 
 
+    // Lab building, floor 0
+    {
+        id: "h_lab_f0_down_main",
+        submapId: 101,
+        x1: 16.4,
+        y1: 74.91,
+        x2: 81.51,
+        y2: 74.91,
+    },
+
+
+
+
     // Lab building, floor 1
     {
         id: "h_lab_f1_left_next_to_mainpath",

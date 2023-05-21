@@ -348,6 +348,39 @@ export const edges: Edge[] = [
 
 
 
+
+
+
+
+
+
+    // Lab building floor 0 - floor 1
+    {
+        nodeId1: "lab_f0_down_stairs_up",
+        nodeId2: "lab_f1_right_middle_stairs_down",
+    },
+
+
+    // Lab building floor 0
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "lab_f0_down_stairs_up",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-117a",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-102",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-104",
+    },
+
+
+
     // Main building floor 2 - lab building floor 1
     {
         nodeId1: "lab_f1_left_pathtomainbuilding",

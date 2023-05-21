@@ -3,6 +3,12 @@ import PinIcon from "./PinIcon";
 import DotsIcon from "./DotsIcon";
 import Search from "./Search";
 import ChangeArrowsIcon from "./ChangeArrowsIcon";
+import Link from "next/link";
+
+const data = {
+	startNodeId: 0,
+	endNodeId: 1
+}
 
 function SearchForm() {
   return (
@@ -54,12 +60,19 @@ function SearchForm() {
             </div>
           
           <div className="py-3">
-            <button className="mx-auto py-2 px-4 rounded-md flex items-center justify-center
-                             bg-cyan-600 hover:bg-cyan-700 transition duration-300
-                             text-white text-sm font-bold" 
-                    type="submit">
-              Go
-            </button>
+            <Link 
+                href={{
+					pathname: "/navigation",
+                	query: data 
+                }}
+            >
+				<button className="mx-auto py-2 px-4 rounded-md flex items-center justify-center
+								bg-cyan-600 hover:bg-cyan-700 transition duration-300
+								text-white text-sm font-bold" 
+						type="submit">
+				Go
+				</button>
+            </Link>
           </div>
 
         </form>

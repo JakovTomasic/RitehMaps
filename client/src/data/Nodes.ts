@@ -266,7 +266,7 @@ export const nodes: Node[] = [
         submapId: 3,
         x: 8.87,
         y: 3.7,
-        type: NodeType.PASSAGE, // TODO: connect with the lab
+        type: NodeType.PASSAGE,
     },
 
     // Main building, floor 2 - right
@@ -316,7 +316,7 @@ export const nodes: Node[] = [
         submapId: 3,
         x: 68.14,
         y: 2.64,
-        type: NodeType.PASSAGE, // TODO: connect with the lab
+        type: NodeType.PASSAGE,
     },
 
 
@@ -482,6 +482,93 @@ export const nodes: Node[] = [
         submapId: 4,
         x: 95.75,
         y: 82.96,
+        type: NodeType.OFFICE,
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Lab building, floor 1
+    {
+        nodeId: "lab_f1_left_pathtomainbuilding",
+        names: [],
+        submapId: 102,
+        x: 37.53,
+        y: 93.48,
+        type: NodeType.PASSAGE,
+    },
+    {
+        nodeId: "lab_f1_right_navnode_1",
+        names: [],
+        submapId: 102,
+        x: 83.74,
+        y: 78.73,
+        type: NodeType.NAVIGATION_MIDNODE,
+    },
+    {
+        nodeId: "lab_f1_right_navnode_2",
+        names: [],
+        submapId: 102,
+        x: 85.95,
+        y: 77.93,
+        type: NodeType.NAVIGATION_MIDNODE,
+    },
+    {
+        nodeId: "lab_f1_right_passage_to_main_building",
+        names: [],
+        submapId: 102,
+        x: 88.82,
+        y: 94.06,
+        type: NodeType.PASSAGE,
+    },
+    {
+        nodeId: "lab_f1_right_stairs_down",
+        names: [],
+        submapId: 102,
+        x: 92.51,
+        y: 81.16,
+        type: NodeType.STAIRS_DOWN,
+    },
+    {
+        nodeId: "lab_f1_right_middle_stairs_down",
+        names: [],
+        submapId: 102,
+        x: 63.8,
+        y: 90.15,
+        type: NodeType.STAIRS_DOWN,
+    },
+    {
+        nodeId: "2-102",
+        names: ["2-102"],
+        submapId: 102,
+        x: 44.48,
+        y: 82.88,
+        type: NodeType.OFFICE,
+    },
+    {
+        nodeId: "2-104",
+        names: ["2-104"],
+        submapId: 102,
+        x: 48.75,
+        y: 82.96,
+        type: NodeType.OFFICE,
+    },
+    {
+        nodeId: "2-119",
+        names: ["2-119"],
+        submapId: 102,
+        x: 79.08,
+        y: 82.78,
         type: NodeType.OFFICE,
     },
 ]

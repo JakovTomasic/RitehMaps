@@ -345,4 +345,68 @@ export const edges: Edge[] = [
         nodeId1: "h_main_f3_right_offices_2",
         nodeId2: "3-36",
     },
+
+
+
+    // Main building floor 2 - lab building floor 1
+    {
+        nodeId1: "lab_f1_left_pathtomainbuilding",
+        nodeId2: "main_f2_left_lab_passage",
+    },
+    {
+        nodeId1: "lab_f1_right_passage_to_main_building",
+        nodeId2: "main_f2_right_lab_passage",
+    },
+
+
+
+    // Lab building, floor 1
+    {
+        nodeId1: "lab_f1_left_pathtomainbuilding",
+        nodeId2: "h_lab_f1_left_next_to_mainpath",
+    },
+    {
+        nodeId1: "h_lab_f1_right_main",
+        nodeId2: "h_lab_f1_left_next_to_mainpath",
+    },
+    {
+        nodeId1: "h_lab_f1_right_main",
+        nodeId2: "lab_f1_right_navnode_1",
+    },
+    {
+        nodeId1: "lab_f1_right_navnode_1",
+        nodeId2: "lab_f1_right_navnode_2",
+    },
+    {
+        nodeId1: "lab_f1_right_navnode_2",
+        nodeId2: "h_lab_f1_right_passage_1",
+    },
+    {
+        nodeId1: "h_lab_f1_right_passage_1",
+        nodeId2: "h_lab_f1_right_passage_2",
+    },
+    {
+        nodeId1: "h_lab_f1_right_passage_2",
+        nodeId2: "lab_f1_right_passage_to_main_building",
+    },
+    {
+        nodeId1: "h_lab_f1_right_passage_2",
+        nodeId2: "lab_f1_right_stairs_down",
+    },
+    {
+        nodeId1: "h_lab_f1_right_main",
+        nodeId2: "lab_f1_right_middle_stairs_down",
+    },
+    {
+        nodeId1: "h_lab_f1_right_main",
+        nodeId2: "2-102",
+    },
+    {
+        nodeId1: "h_lab_f1_right_main",
+        nodeId2: "2-104",
+    },
+    {
+        nodeId1: "h_lab_f1_right_main",
+        nodeId2: "2-119",
+    },
 ]

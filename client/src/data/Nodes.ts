@@ -532,12 +532,12 @@ export const nodes: Node[] = [
         type: NodeType.PASSAGE,
     },
     {
-        nodeId: "lab_f1_right_stairs_down",
+        nodeId: "lab_f1_right_stairs_up",
         names: [],
         submapId: 102,
         x: 92.51,
-        y: 81.16,
-        type: NodeType.STAIRS_DOWN,
+        y: 77.45,
+        type: NodeType.STAIRS_UP,
     },
     {
         nodeId: "lab_f1_right_middle_stairs_down",

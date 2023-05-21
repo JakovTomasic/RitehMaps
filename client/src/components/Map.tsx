@@ -9,6 +9,7 @@ import { allGraphData } from '../data/AllGraphData';
 
 type Prop = {
     layoutImage: string
+    layoutId?: number
     enableDrawNodes?: boolean
     width: number
     height: number
@@ -143,7 +144,7 @@ export default class Map extends Component<Prop>{
             this.drawNodesOnClick()
         
         let startNode = "main_entrance";
-        let submapId = 2;
+        let submapId = this.props.layoutId;
         let constructedGraph = createGraph(allGraphData);
         let graph = new GraphImpl(constructedGraph);
         this.recursiveWholeGraph(startNode, submapId, graph, new Set())
@@ -153,7 +154,7 @@ export default class Map extends Component<Prop>{
     recursiveWholeGraph(currentNodeId: string, submapId: number, graph: Graph, visited: Set<string>) {
         let currentNode: MapNode = graph.getNode(currentNodeId);
         graph.getNeighbours(currentNodeId).forEach(element => {
-            let edge = `${currentNodeId}---->${element.neighbour.id}`;
+            let edge = `${currentNodeId}--->${element.neighbour.id}`;
             if (!visited.has(edge)) {
                 visited.add(edge);
 

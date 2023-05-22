@@ -3,12 +3,12 @@ import cheerio from "cheerio";
 import { ProfessorData } from "../data/ProfessorData";
 
 export function getProfessorData() : object { 
-    const contactsURL = "http://www.riteh.uniri.hr/kontakti/";
+    const contactsURL = "https://cors-anywhere.herokuapp.com/http://www.riteh.uniri.hr/kontakti/"; //temporary solution
     const axiosInstance = axios.create();
 
     axiosInstance.get(contactsURL).then((response) => {
         const $ = cheerio.load(response.data);
-        const contactsTableRows = $("#contacts > tbody > tr");
+        const contactsTableRows = $("#contacts > tbody > tr")
         const contacts: ProfessorData[] = [];
         var contactsJSON: string;
 

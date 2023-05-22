@@ -1,23 +1,16 @@
 import axios from "axios";
 import cheerio from "cheerio";
+import { ProfessorData } from "../data/ProfessorData";
 
 export function getProfessorData() : object { 
     const contactsURL = "http://www.riteh.uniri.hr/kontakti/";
     const axiosInstance = axios.create();
 
-    interface professorData {
-        name: string;
-        phoneNumber: string;
-        internalPhoneNumber: string;
-        email: string;
-        room: string;
-        entity: string;
-    }
-
     axiosInstance.get(contactsURL).then((response) => {
         const $ = cheerio.load(response.data);
         const contactsTableRows = $("#contacts > tbody > tr");
-        const contacts: professorData[] = [];
+        const contacts: ProfessorData[] = [];
+        var contactsJSON: string;
 
         contactsTableRows.each((i, element) => {
             const name: string = $(element).find("td:nth-child(1) > a").text();
@@ -39,8 +32,12 @@ export function getProfessorData() : object {
                 entity
             });
         });
-        return contacts;
+
+        contactsJSON = JSON.stringify(contacts);
+        console.log(contactsJSON);
+        return contactsJSON;
 
     }).catch(console.error);
+    
     return [];
 }

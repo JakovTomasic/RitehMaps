@@ -3,7 +3,6 @@ import SearchForm from "../components/SearchForm";
 import {getProfessorData} from "../scripts/ProfessorDataScraper";
 
 export default function Home() {
-  console.log(getProfessorData());
   return (
     <div className="h-screen w-screen bg-white flex justify-center items-center">
       <Navbar />

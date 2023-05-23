@@ -51,9 +51,12 @@ export default class Map extends Component<Prop>{
 
     private connectNodes(){
 
+        var prevNodeX
+        var prevNodeY
+
         const svg = d3.select(this.mapRef)
 
-        this.props.navStep.nodes.map((node) => {
+        this.props.navStep.nodes.forEach((node, index) => {
 
             svg.append("circle")
             .attr("cx", node.xCoordinate)
@@ -63,25 +66,30 @@ export default class Map extends Component<Prop>{
             .attr("stroke-opacity", 1)
             .attr("stroke-width", 150)
 
-        })
+            if(index > 0){
+                svg.append("line")
+                .attr("x1", prevNodeX)
+                .attr("y1", prevNodeY)
+                .attr("x2", node.xCoordinate)
+                .attr("y2", node.yCoordinate)
+                .style("stroke", "#41C7F7")
+                .style("stroke-width", lineStrokeWidthRelative)
+                .attr("stroke-linecap", "round")
+                .attr("stroke-opacity", 0.6)
+            }
 
-        svg.append("line")
-        .attr("x1", this.props.navStep.nodes[0].xCoordinate)
-        .attr("y1", this.props.navStep.nodes[0].yCoordinate)
-        .attr("x2", this.props.navStep.nodes[1].xCoordinate)
-        .attr("y2", this.props.navStep.nodes[1].yCoordinate)
-        .style("stroke", "#41C7F7")
-        .style("stroke-width", lineStrokeWidthRelative)
-        .attr("stroke-linecap", "round")
-        .attr("stroke-opacity", 0.6)
-                      
+            prevNodeX = node.xCoordinate
+            prevNodeY = node.yCoordinate
+
+        })
+                  
     }
 
 
     componentDidMount() {
 
         this.drawMap()
-        if (typeof this.props.enableDrawNodes !== 'undefined')
+        if (this.props.enableDrawNodes == true)
             this.drawNodesOnClick()
         this.connectNodes()
     }
@@ -91,14 +99,12 @@ export default class Map extends Component<Prop>{
         if(prevProps.layoutImage != this.props.layoutImage){
             d3.selectAll("image").remove().exit()
             this.drawMap()
-            d3.selectAll("circle").remove().exit()
-            d3.selectAll("line").remove().exit()
-            this.connectNodes()
         }
-        else{
-            d3.selectAll("line").remove().exit()
-            this.connectNodes()
-        }
+        
+        d3.selectAll("circle").remove().exit()
+        d3.selectAll("line").remove().exit()
+        this.connectNodes()
+    
     }
 
 

@@ -9,6 +9,7 @@ export class SimpleMapNavigatorMockExample implements MapNavigator {
         return new NavigationDirections([
             new NavigationStep([
                 new NavigationNode(1, 831.0047, 507.7395),
+                new NavigationNode(1, 1200, 513),
                 new NavigationNode(1, 1043.5366, 583.6851)
             ]),
             new NavigationStep([

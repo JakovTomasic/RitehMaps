@@ -42,7 +42,7 @@ export default function Navigation(){
                 </div>
                 <Map layoutImage={submapImage.path} enableDrawNodes width={submapImage.width} 
                     height={submapImage.height} navStep={navSteps[currentStep]}/>  
-                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-20 my-12">
+                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12">
                     <Button text='Back' 
                         onClick={() => {
                             if(currentStep > 0) {

@@ -38,7 +38,7 @@ function SearchForm() {
                     </label> 
                   </div>
 
-                </div>
+              </div>
 
                 <div className="mb-4 py-1 w-full">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Where do you want to go?</label>
@@ -51,27 +51,27 @@ function SearchForm() {
 
                 </div>
 
-              </div>
+            </div>
 
               <div className="w-1px items-center justify-center pl-1 pt-1">    
               <ChangeArrowsIcon/>
               </div>
 
-            </div>
+          </div>
           
           <div className="py-3">
             <Link 
                 href={{
-					pathname: "/navigation",
-                	query: data 
+                  pathname: "/navigation",
+                  query: data 
                 }}
             >
-				<button className="mx-auto py-2 px-4 rounded-md flex items-center justify-center
-								bg-cyan-600 hover:bg-cyan-700 transition duration-300
-								text-white text-sm font-bold" 
-						type="submit">
-				Go
-				</button>
+              <button className="mx-auto py-2 px-4 rounded-md flex items-center justify-center
+                      bg-cyan-600 hover:bg-cyan-700 transition duration-300
+                      text-white text-sm font-bold" 
+                  type="submit">
+              Go
+              </button>
             </Link>
           </div>
 

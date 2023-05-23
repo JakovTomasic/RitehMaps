@@ -7,7 +7,7 @@ export class SubmapProviderImpl implements SubmapProvider{
     getSubmapImage(submapId: number): Submap {
 
         var retSubmap: Submap
-        submaps.map((submap) => {
+        submaps.forEach((submap) => {
             if(submap.id == submapId)
                 retSubmap = submap
         })

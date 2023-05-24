@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import rotatingButton from "../images/rotatingButton.png";
+import rotatingButton from "/public/images/rotatingButton.png";
 import Image from "next/image";
 
 export default function PrettyButton() {

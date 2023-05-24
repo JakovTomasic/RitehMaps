@@ -3,6 +3,12 @@ import PinIcon from "./PinIcon";
 import DotsIcon from "./DotsIcon";
 import Search from "./Search";
 import ChangeArrowsIcon from "./ChangeArrowsIcon";
+import Link from "next/link";
+
+const data = {
+	startNodeId: 0,
+	endNodeId: 1
+}
 
 function SearchForm() {
   return (
@@ -32,7 +38,7 @@ function SearchForm() {
                     </label> 
                   </div>
 
-                </div>
+              </div>
 
                 <div className="mb-4 py-1 w-full">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Where do you want to go?</label>
@@ -45,21 +51,28 @@ function SearchForm() {
 
                 </div>
 
-              </div>
+            </div>
 
               <div className="w-1px items-center justify-center pl-1 pt-1">    
               <ChangeArrowsIcon/>
               </div>
 
-            </div>
+          </div>
           
           <div className="py-3">
-            <button className="mx-auto py-2 px-4 rounded-md flex items-center justify-center
-                             bg-cyan-600 hover:bg-cyan-700 transition duration-300
-                             text-white text-sm font-bold" 
-                    type="submit">
+            <Link 
+                href={{
+                  pathname: "/navigation",
+                  query: data 
+                }}
+            >
+              <button className="mx-auto py-2 px-4 rounded-md flex items-center justify-center
+                      bg-cyan-600 hover:bg-cyan-700 transition duration-300
+                      text-white text-sm font-bold" 
+                  type="submit">
               Go
-            </button>
+              </button>
+            </Link>
           </div>
 
         </form>

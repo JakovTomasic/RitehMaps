@@ -1,23 +1,32 @@
 import { SearchNodeSuggestion } from "../../types/SearchNodeSuggestion";
 import { RoomSearch } from "../interfaces/RoomSearch";
-
-import { rooms } from "../../rooms";
+import { nodes, Node } from "../../data/Nodes";
+import { professors, ProfessorData } from "../../data/ProfessorData";
 
 export class RoomSearchImpl implements RoomSearch {
 
     constructor() {
         // A fix for calling a function from another function (https://stackoverflow.com/a/57028664)
-        this.sortedSuggestionsForDestination = this.sortedSuggestionsForDestination.bind(this)
+        this.sortedSuggestionsForDestination = this.sortedSuggestionsForDestination.bind(this);
     }
 
     sortedSuggestionsForStart(searchedText: string): SearchNodeSuggestion[] {
-        
         // Mapping data into SearchNodeSuggestion type objects
-       const unsortedSuggestions : SearchNodeSuggestion[] = rooms.flatMap((room) => {
-            const { names } = room;
+       const nodeSuggestions : SearchNodeSuggestion[] = nodes.flatMap((node: Node) => {
+            const { names } = node;
             const destinationFilter = null;
             return names.map((name) => new SearchNodeSuggestion(name, destinationFilter));
         });
+
+        const professorSuggestions: SearchNodeSuggestion[] = professors.flatMap((professor: ProfessorData) => {
+            const { name, room } = professor;
+            const formattedName = `${name} (${room})`;
+            const destinationFilter = null;
+            return new SearchNodeSuggestion(formattedName, destinationFilter);
+          });
+
+        const unsortedSuggestions: SearchNodeSuggestion[] = nodeSuggestions.concat(professorSuggestions);
+
 
         const filteredSuggestions: SearchNodeSuggestion[] = unsortedSuggestions.filter((suggestion) =>
             suggestion.roomName.toLowerCase().includes(searchedText.toLowerCase())

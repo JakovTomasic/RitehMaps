@@ -15,12 +15,15 @@ function Search({ roomSearcher }: Prop) {
   const handleInputChange = async (event) => {
     const inputValue = event.target.value;
     setInputValue(inputValue);
-
-    const sortedSuggestions = roomSearcher(inputValue);
     
-    setDropdownOptions(sortedSuggestions.map((suggestion) => suggestion.roomName));
-
-    setShowDropdown(true);
+    if (inputValue === "") {
+      setDropdownOptions([]);
+      setShowDropdown(false); 
+    } else {
+      const sortedSuggestions = roomSearcher(inputValue);
+      setDropdownOptions(sortedSuggestions.map((suggestion) => suggestion.roomName));
+      setShowDropdown(true);
+    }
   };
 
   const handleDropdownOptionClick = (option) => {

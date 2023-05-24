@@ -1,5 +1,7 @@
+import { MapNode } from "../../types/graph/MapNode"
+import { NeighbourConnection } from "../../types/graph/NeighbourConnection"
 
 export interface Graph {
-    getNode(nodeId: number): Node | undefined
-    getNeighbours(nodeId: number): Node[]
+    getNode(nodeId: number): MapNode | undefined
+    getNeighbours(nodeId: number): NeighbourConnection[]
 }

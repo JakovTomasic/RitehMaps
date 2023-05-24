@@ -5,6 +5,10 @@ import { rooms } from "../../rooms";
 
 export class RoomSearchImpl implements RoomSearch {
 
+    constructor() {
+        // A fix for calling a function from another function (https://stackoverflow.com/a/57028664)
+        this.sortedSuggestionsForDestination = this.sortedSuggestionsForDestination.bind(this)
+    }
 
     sortedSuggestionsForStart(searchedText: string): SearchNodeSuggestion[] {
         
@@ -16,7 +20,7 @@ export class RoomSearchImpl implements RoomSearch {
         });
 
         const filteredSuggestions: SearchNodeSuggestion[] = unsortedSuggestions.filter((suggestion) =>
-            suggestion.roomName.toLowerCase().startsWith(searchedText.toLowerCase()) || suggestion.roomName.toLowerCase().includes(searchedText.toLowerCase())
+            suggestion.roomName.toLowerCase().includes(searchedText.toLowerCase())
         );
 
         const alphabeticallySortedSuggestions: SearchNodeSuggestion[] = filteredSuggestions.sort((a, b) =>
@@ -27,10 +31,13 @@ export class RoomSearchImpl implements RoomSearch {
     }
 
     sortedSuggestionsForDestination(searchedText: string): SearchNodeSuggestion[] {
-        return [];
+        const allwaysVisibleMockDestination = new SearchNodeSuggestion("Mock, remove me", null);
+        let result = this.sortedSuggestionsForStart(searchedText);
+        result.push(allwaysVisibleMockDestination);
+        return result;
     }
 
     findRoomWithQrCode(qrCodeValue: string): SearchNodeSuggestion | undefined {
-               return undefined;
+        return undefined;
     }
 }

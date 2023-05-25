@@ -1,4 +1,4 @@
-import { SearchNodeSuggestion } from "../../types/SearchNodeSuggestion";
+import { SearchNodeSuggestion } from "../../types/roomsearch/SearchNodeSuggestion";
 import { RoomSearch } from "../interfaces/RoomSearch";
 import { nodes, Node } from "../../data/Nodes";
 import { professors, ProfessorData } from "../../data/ProfessorData";
@@ -11,8 +11,8 @@ export class RoomSearchImpl implements RoomSearch {
     }
 
     sortedSuggestionsForStart(searchedText: string): SearchNodeSuggestion[] {
-        // Mapping data into SearchNodeSuggestion type objects
-       const nodeSuggestions : SearchNodeSuggestion[] = nodes.flatMap((node: Node) => {
+        
+        const nodeSuggestions : SearchNodeSuggestion[] = nodes.flatMap((node: Node) => {
             const { names } = node;
             const destinationFilter = null;
             return names.map((name) => new SearchNodeSuggestion(name, destinationFilter));
@@ -23,7 +23,7 @@ export class RoomSearchImpl implements RoomSearch {
             const formattedName = `${name} (${room})`;
             const destinationFilter = null;
             return new SearchNodeSuggestion(formattedName, destinationFilter);
-          });
+        });
 
         const unsortedSuggestions: SearchNodeSuggestion[] = nodeSuggestions.concat(professorSuggestions);
 

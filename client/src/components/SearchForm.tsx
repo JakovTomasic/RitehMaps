@@ -5,6 +5,7 @@ import DotsIcon from "./DotsIcon";
 import ChangeArrowsIcon from "./ChangeArrowsIcon";
 import Search from "./Search";
 import { RoomSearch } from "../logic/interfaces/RoomSearch";
+import Link from "next/link";
 
 type Prop = {
   roomSearcher: RoomSearch;
@@ -63,7 +64,7 @@ function SearchForm({ roomSearcher }: Prop) {
             <Link 
                 href={{
                   pathname: "/navigation",
-                  query: data 
+                  // query: data 
                 }}
             >
               <button className="mx-auto py-2 px-4 rounded-md flex items-center justify-center

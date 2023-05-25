@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { SearchNodeSuggestion } from "../types/SearchNodeSuggestion";
+import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];

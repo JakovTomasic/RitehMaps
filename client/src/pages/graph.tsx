@@ -36,35 +36,43 @@ function Separator() {
 function navigationStepWithAllNodesFromTheSubmap(submapId: number): NavigationStep {
 
     let startNode = "main_entrance";
+
     let constructedGraph = createGraph(allGraphData);
     let graph = new GraphImpl(constructedGraph, new SubmapProviderImpl());
+
     let visited = new Set<string>();
     visited.add(startNode);
-    const resultPath = recursiveWholeGraph(startNode, submapId, graph, visited);
-    return new NavigationStep(resultPath);
+
+    let nodesPath: NavigationNode[] = [];
+    makeFlatDfsTree(startNode, submapId, graph, visited, nodesPath);
+
+    return new NavigationStep(nodesPath);
 }
 
-function recursiveWholeGraph(currentNodeId: string, submapId: number, graph: Graph, visited: Set<string>): NavigationNode[] {
-    let nodes: NavigationNode[] = [];
+function makeFlatDfsTree(
+    currentNodeId: string,
+    submapId: number,
+    graph: Graph,
+    visited: Set<string>,
+    resultNodes: NavigationNode[],
+) {
     let currentNode: MapNode = graph.getNode(currentNodeId);
     const currentNavNode = new NavigationNode(submapId, currentNode.xCoordinate, currentNode.yCoordinate)
 
     if (currentNode.submapId == submapId) {
-        nodes.push(currentNavNode);
+        resultNodes.push(currentNavNode);
     }
 
     graph.getNeighbours(currentNodeId).forEach(element => {
-        if (!visited.has(element.neighbour.id)) {
-            visited.add(element.neighbour.id);
+        const edge = `${currentNodeId}==>${element.neighbour.id}`;
+        if (!visited.has(edge)) {
+            visited.add(edge);
 
-            const resultNodes = recursiveWholeGraph(element.neighbour.id, submapId, graph, visited);
-            resultNodes.forEach(node => nodes.push(node));
-        }
+            makeFlatDfsTree(element.neighbour.id, submapId, graph, visited, resultNodes);
         
-        if (currentNode.submapId == submapId) {
-            nodes.push(currentNavNode);
+            if (currentNode.submapId == submapId) {
+                resultNodes.push(currentNavNode);
+            }
         }
     });
-
-    return nodes;
 }

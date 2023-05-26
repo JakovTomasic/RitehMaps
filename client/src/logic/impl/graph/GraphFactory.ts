@@ -5,6 +5,7 @@ import { Node } from "../../../data/Nodes";
 import { MapNode } from "../../../types/graph/MapNode";
 import { Dot, Line, calculateLinesIntersection, calculateProjection } from "../../../utils/Geometry";
 import { Edge } from "../../../data/Edges";
+import { hallwayToLine, nodeToDot } from "./Utils";
 
 export type GraphNode = {
     node: MapNode;
@@ -106,7 +107,7 @@ function projectNodeOntoHallway(allHallwayProjections: Map<string, GraphNode[]>,
     
     assert(node.node.submapId === hallway.submapId);
 
-    const dot: Dot = {x: node.node.xCoordinate, y: node.node.yCoordinate};
+    const dot: Dot = nodeToDot(node.node);
     const line: Line = hallwayToLine(hallway);
 
     const projection = calculateProjection(dot, line);
@@ -155,11 +156,4 @@ function joinAllHallwayProjections(allHallwayProjections: Map<string, GraphNode[
             }
         }
     });
-}
-
-function hallwayToLine(hallway: Hallway): Line {
-    return {
-        dot1: {x: hallway.x1, y: hallway.y1},
-        dot2: {x: hallway.x2, y: hallway.y2},
-    }
 }

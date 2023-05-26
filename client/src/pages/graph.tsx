@@ -1,6 +1,7 @@
 import Map from "../components/Map";
 import { allGraphData } from "../data/AllGraphData";
 import { submaps } from "../data/submaps";
+import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
 import { createGraph } from "../logic/impl/graph/GraphFactory";
 import { GraphImpl } from "../logic/impl/graph/GraphImpl";
 import { Graph } from "../logic/interfaces/Graph";
@@ -36,7 +37,7 @@ function navigationStepWithAllNodesFromTheSubmap(submapId: number): NavigationSt
 
     let startNode = "main_entrance";
     let constructedGraph = createGraph(allGraphData);
-    let graph = new GraphImpl(constructedGraph);
+    let graph = new GraphImpl(constructedGraph, new SubmapProviderImpl());
     let visited = new Set<string>();
     visited.add(startNode);
     const resultPath = recursiveWholeGraph(startNode, submapId, graph, visited);

@@ -70,3 +70,8 @@ export function calculateLinesIntersection(line1: Line, line2: Line): Dot | null
     return intersection;
 }
 
+export function eucledianDistance(dot1: Dot, dot2: Dot): number {
+    const dx = dot1.x - dot2.x;
+    const dy = dot1.y - dot2.y;
+    return Math.sqrt(dx*dx + dy*dy);
+}

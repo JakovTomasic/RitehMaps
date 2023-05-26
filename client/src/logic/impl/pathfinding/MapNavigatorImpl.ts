@@ -1,11 +1,18 @@
-import { MapNode } from "../../types/graph/MapNode";
-import { MapNodeFilter } from "../../types/MapNodeFilter";
-import { NavigationDirections } from "../../types/NavigationDirections";
-import { NavigationNode } from "../../types/NavigationNode";
-import { MapNavigator } from "../interfaces/MapNavigator";
+import { MapNode } from "../../../types/graph/MapNode";
+import { MapNodeFilter } from "../../../types/roomsearch/MapNodeFilter";
+import { NavigationDirections } from "../../../types/navigation/NavigationDirections";
+import { NavigationNode } from "../../../types/navigation/NavigationNode";
+import { MapNavigator } from "../../interfaces/MapNavigator";
+import { Graph } from "../../interfaces/Graph";
+import { findPathWithDijkstra } from "./findPathWithDijkstra";
 
 export class MapNavigatorImpl implements MapNavigator {
-    
+    private graph: Graph;
+
+    constructor(graph: Graph) {
+        this.graph = graph;
+    }
+
     findShortestPath(startNodeId: number, endNodeFilter: MapNodeFilter): NavigationDirections {
         let path = this.findPathToNearestNode(startNodeId, endNodeFilter);
         let navNodes = this.convertPathToNavigationNodes(path);
@@ -13,7 +20,7 @@ export class MapNavigatorImpl implements MapNavigator {
     }
 
     private findPathToNearestNode(startNodeId: number, endNodeFilter: MapNodeFilter): MapNode[] {
-        throw new Error("Method not implemented.");
+       return findPathWithDijkstra(startNodeId, endNodeFilter, this.graph);
     }
 
     private convertPathToNavigationNodes(path: MapNode[]): NavigationNode[] {

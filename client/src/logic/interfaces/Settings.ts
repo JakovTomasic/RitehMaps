@@ -1,7 +1,7 @@
-import { Course } from "../../types/Course";
-import { CustomRoomName } from "../../types/CustomRoomName";
-import { Locale } from "../../types/Locale";
-import { Theme } from "../../types/Theme";
+import { Course } from "../../types/settings/Course";
+import { CustomRoomName } from "../../types/settings/CustomRoomName";
+import { Locale } from "../../types/settings/Locale";
+import { Theme } from "../../types/settings/Theme";
 
 export interface Settings {
     getTheme(): Theme

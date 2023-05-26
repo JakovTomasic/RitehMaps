@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import ZoomableSVG from './ZoomableSVG';
-import { NavigationStep } from '../types/NavigationStep';
+import { NavigationStep } from '../types/navigation/NavigationStep';
 
 type Prop = {
     layoutImage: string

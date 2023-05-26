@@ -16,7 +16,7 @@ export default function GraphPage(){
                 return (
                     <div key={submap.id}>
                         <Map layoutImage={submap.path} 
-                            enableDrawNodes
+                            enableDrawNodes={true}
                             width={submap.width}
                             height={submap.height}
                             navStep={navSteps}/>

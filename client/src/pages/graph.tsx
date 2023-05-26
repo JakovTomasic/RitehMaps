@@ -14,14 +14,14 @@ export default function GraphPage(){
             {submaps.map(submap => {
                 const navSteps = navigationStepWithAllNodesFromTheSubmap(submap.id);
                 return (
-                    <>
+                    <div key={submap.id}>
                         <Map layoutImage={submap.path} 
                             enableDrawNodes
                             width={submap.width}
                             height={submap.height}
                             navStep={navSteps}/>
                         <Separator />
-                    </>
+                    </div>
                 );
             })}
         </div>

@@ -1,5 +1,6 @@
 import Map from "../components/Map";
 import { allGraphData } from "../data/AllGraphData";
+import { submaps } from "../data/submaps";
 import { createGraph } from "../logic/impl/graph/GraphFactory";
 import { GraphImpl } from "../logic/impl/graph/GraphImpl";
 import { Graph } from "../logic/interfaces/Graph";
@@ -10,18 +11,19 @@ import { NavigationStep } from "../types/navigation/NavigationStep";
 export default function GraphPage(){
     return(
         <div className="relative w-fill mx-auto my-0">
-            {/* TODO: read aspect ratio for the current image from some json file */}
-            <Map layoutImage='/submaps/main_floor_0.svg' enableDrawNodes width={2809.2} height={847.27997} navStep={navigationStepWithAllNodesFromTheSubmap(1)}/>
-            <Separator />
-            <Map layoutImage='/submaps/main_floor_1.svg' enableDrawNodes width={2851.4399} height={875.59998} navStep={navigationStepWithAllNodesFromTheSubmap(2)}/>
-            <Separator />
-            <Map layoutImage='/submaps/main_floor_2.svg' enableDrawNodes width={2742.04} height={1092.48} navStep={navigationStepWithAllNodesFromTheSubmap(3)}/>
-            <Separator />
-            <Map layoutImage='/submaps/main_floor_3.svg' enableDrawNodes width={2952.5999} height={1335.9199} navStep={navigationStepWithAllNodesFromTheSubmap(4)}/>
-            <Separator />
-            <Map layoutImage='/submaps/lab_floor_0.svg' enableDrawNodes width={2760.1599} height={1083.36} navStep={navigationStepWithAllNodesFromTheSubmap(101)}/>
-            <Separator />
-            <Map layoutImage='/submaps/lab_floor_1.svg' enableDrawNodes width={2721.6802} height={800.23999} navStep={navigationStepWithAllNodesFromTheSubmap(102)}/>
+            {submaps.map(submap => {
+                const navSteps = navigationStepWithAllNodesFromTheSubmap(submap.id);
+                return (
+                    <>
+                        <Map layoutImage={submap.path} 
+                            enableDrawNodes
+                            width={submap.width}
+                            height={submap.height}
+                            navStep={navSteps}/>
+                        <Separator />
+                    </>
+                );
+            })}
         </div>
     );
 }

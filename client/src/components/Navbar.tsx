@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "../images/logo.png";
+import logo from "/public/images/logo.png";
 import PrettyButton from "./PrettyButton";
 
 const Navbar = () => {

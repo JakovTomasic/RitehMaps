@@ -1,16 +1,17 @@
 import React from "react";
 import PinIcon from "./PinIcon";
 import DotsIcon from "./DotsIcon";
-import Search from "./Search";
+
 import ChangeArrowsIcon from "./ChangeArrowsIcon";
+import Search from "./Search";
+import { RoomSearch } from "../logic/interfaces/RoomSearch";
 import Link from "next/link";
 
-const data = {
-	startNodeId: 0,
-	endNodeId: 1
+type Prop = {
+  roomSearcher: RoomSearch;
 }
 
-function SearchForm() {
+function SearchForm({ roomSearcher }: Prop) {
   return (
 
     <div className="flex items-center w-96">
@@ -34,7 +35,7 @@ function SearchForm() {
 
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
-                      <Search/>
+                      <Search roomSearcher={roomSearcher.sortedSuggestionsForStart}/>
                     </label> 
                   </div>
 
@@ -45,7 +46,7 @@ function SearchForm() {
 
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
-                      <Search/>
+                    <Search roomSearcher={roomSearcher.sortedSuggestionsForDestination}/>
                     </label> 
                   </div>
 
@@ -63,7 +64,7 @@ function SearchForm() {
             <Link 
                 href={{
                   pathname: "/navigation",
-                  query: data 
+                  // query: data 
                 }}
             >
               <button className="mx-auto py-2 px-4 rounded-md flex items-center justify-center

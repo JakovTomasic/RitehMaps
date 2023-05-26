@@ -4,8 +4,8 @@ import { createGraph } from "../logic/impl/graph/GraphFactory";
 import { GraphImpl } from "../logic/impl/graph/GraphImpl";
 import { Graph } from "../logic/interfaces/Graph";
 import { MapNode } from "../types/graph/MapNode";
-import { NavigationNode } from '../types/NavigationNode';
-import { NavigationStep } from "../types/NavigationStep";
+import { NavigationNode } from '../types/navigation/NavigationNode';
+import { NavigationStep } from "../types/navigation/NavigationStep";
 
 export default function GraphPage(){
     return(

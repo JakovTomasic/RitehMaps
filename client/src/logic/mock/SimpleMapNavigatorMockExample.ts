@@ -8,21 +8,21 @@ export class SimpleMapNavigatorMockExample implements MapNavigator {
     findShortestPath(startNodeId: number, endNodeFilter: MapNodeFilter): NavigationDirections {
         return new NavigationDirections([
             new NavigationStep([
-                new NavigationNode(1, 831.0047, 507.7395),
-                new NavigationNode(1, 1200, 513),
-                new NavigationNode(1, 1043.5366, 583.6851)
+                new NavigationNode(2, 29.14, 57.90),
+                new NavigationNode(2, 42.20, 58.59),
+                new NavigationNode(2, 36.58, 66.58)
             ]),
             new NavigationStep([
-                new NavigationNode(1, 1043.5366, 583.6851),
-                new NavigationNode(1, 1956.64501953125, 513.369873046875)
+                new NavigationNode(2, 36.58, 66.58),
+                new NavigationNode(2, 68.60, 58.59)
             ]),
             new NavigationStep([
-                new NavigationNode(2, 1852.796875, 730.521728515625),
-                new NavigationNode(2, 2086.7617, 813.4279)
+                new NavigationNode(3, 67.57, 66.87),
+                new NavigationNode(3, 76.10, 74.46)
             ]),
             new NavigationStep([
-                new NavigationNode(2, 2086.7617, 813.4279),
-                new NavigationNode(2, 2519.26123046875, 794.2449951171875)
+                new NavigationNode(3, 76.10, 74.46),
+                new NavigationNode(3, 91.87, 72.7)
             ])
             
         ])

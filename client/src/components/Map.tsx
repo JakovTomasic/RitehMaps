@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 import ZoomableSVG from './ZoomableSVG';
 import { NavigationStep } from '../types/navigation/NavigationStep';
+import { round } from '../utils/Math';
 
 type Prop = {
     layoutImage: string
@@ -33,14 +34,23 @@ export default class Map extends Component<Prop>{
 
     private drawNodesOnClick(){
 
+        const width = this.props.width;
+        const height = this.props.height;
+
         const svg = d3.select(this.mapRef)
         svg.on("click", function(event) {
 
-            console.log(d3.pointer(event))
+            const clickedX = d3.pointer(event)[0];
+            const clickedY = d3.pointer(event)[1];
+
+            const relativeX = round(clickedX / width * 100, 2);
+            const relativeY = round(clickedY / height * 100, 2);
+
+            console.log(`x: ${relativeX},\ny: ${relativeY},`);
 
             svg.append("circle")
-            .attr("cx", d3.pointer(event)[0])
-            .attr("cy", d3.pointer(event)[1])
+            .attr("cx", clickedX)
+            .attr("cy", clickedY)
             .attr("r", dotRadiusRelative)
             .attr("fill","#41C7F7")
             .attr("stroke-opacity", 1)
@@ -59,8 +69,8 @@ export default class Map extends Component<Prop>{
         this.props.navStep.nodes.forEach((node, index) => {
 
             svg.append("circle")
-            .attr("cx", node.xCoordinate)
-            .attr("cy", node.yCoordinate)
+            .attr("cx", `${node.xCoordinate}%`)
+            .attr("cy", `${node.yCoordinate}%`)
             .attr("r", dotRadiusRelative)
             .attr("fill","#41C7F7")
             .attr("stroke-opacity", 1)
@@ -70,19 +80,17 @@ export default class Map extends Component<Prop>{
                 svg.append("line")
                 .attr("x1", prevNodeX)
                 .attr("y1", prevNodeY)
-                .attr("x2", node.xCoordinate)
-                .attr("y2", node.yCoordinate)
+                .attr("x2", `${node.xCoordinate}%`)
+                .attr("y2", `${node.yCoordinate}%`)
                 .style("stroke", "#41C7F7")
                 .style("stroke-width", lineStrokeWidthRelative)
                 .attr("stroke-linecap", "round")
                 .attr("stroke-opacity", 0.6)
             }
 
-            prevNodeX = node.xCoordinate
-            prevNodeY = node.yCoordinate
-
+            prevNodeX = `${node.xCoordinate}%`
+            prevNodeY = `${node.yCoordinate}%`
         })
-                  
     }
 
 
@@ -104,9 +112,7 @@ export default class Map extends Component<Prop>{
         d3.selectAll("circle").remove().exit()
         d3.selectAll("line").remove().exit()
         this.connectNodes()
-    
     }
-
 
     render() {
     

@@ -4,18 +4,18 @@ import { MapNodeFilter } from "../../../types/roomsearch/MapNodeFilter";
 import { Graph } from "../../interfaces/Graph";
 import { recreatePath } from "./recreatePath";
 
-export function findPathWithDijkstra(startNodeId: number, endNodeFilter: MapNodeFilter, graph: Graph): MapNode[] {
+export function findPathWithDijkstra(startNodeId: string, endNodeFilter: MapNodeFilter, graph: Graph): MapNode[] {
 
     if (typeof graph.getNode(startNodeId) === "undefined") 
         throw new Error("Start location not valid.");
 
     let currentDistance: number;
-    let currentNodeId: number;
+    let currentNodeId: string;
     let destinationNode: MapNode;
 
     let neighbours: NeighbourConnection[];
-    let parents = new Map<number, number>();        //childId, parentId
-    let bestDistances = new Map<number, number>();  //nodeId, distance
+    let parents = new Map<string, string>();        //childId, parentId
+    let bestDistances = new Map<string, number>();  //nodeId, distance
     
     let SortedSet = require('sorted-set');
     let unvisitedNodes = new SortedSet({

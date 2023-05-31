@@ -1,5 +1,5 @@
 
-export abstract class MapNode {
+export class MapNode {
     id: string;
     submapId: number;
     xCoordinate: number;

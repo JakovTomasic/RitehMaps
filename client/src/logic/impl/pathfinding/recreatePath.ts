@@ -6,11 +6,10 @@ import { Graph } from "../../interfaces/Graph";
  * 
  * @param parents The first element (key) is the child node ID, and the second element (value) is the parent node ID. 
  */
-
-export function recreatePath(destinationNodeId: number, parents: Map<number, number>, graph: Graph): MapNode[] {
+export function recreatePath(destinationNodeId: string, parents: Map<string, string>, graph: Graph): MapNode[] {
 
     let path: MapNode[] = [];
-    let parentId: number;
+    let parentId: string;
     let parentNode: MapNode;
     let destinationNode: MapNode = graph.getNode(destinationNodeId);
 

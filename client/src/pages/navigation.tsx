@@ -19,9 +19,11 @@ export default function Navigation(){
     
     const mapNav = new SimpleMapNavigatorMockExample()
 
-    const navDirections: NavigationDirections = mapNav.findShortestPath(+data.startNodeId, 
-        new MapNodeFilterById(+data.endNodeId))
-        
+    const navDirections: NavigationDirections = mapNav.findShortestPath(
+        +data.startNodeId,
+        new MapNodeFilterById(data.endNodeId as string)
+    )
+    
     const navSteps: NavigationStep[] = navDirections.steps
 
     const submap = new SubmapProviderImpl()

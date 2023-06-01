@@ -2,6 +2,7 @@ import { SearchNodeSuggestion } from "../../types/roomsearch/SearchNodeSuggestio
 import { RoomSearch } from "../interfaces/RoomSearch";
 import { nodes, Node } from "../../data/Nodes";
 import { professors, ProfessorData } from "../../data/ProfessorData";
+import { MapNodeFilterById } from "../../types/roomsearch/MapNodeFilterById";
 
 export class RoomSearchImpl implements RoomSearch {
 
@@ -14,15 +15,15 @@ export class RoomSearchImpl implements RoomSearch {
         
         const nodeSuggestions : SearchNodeSuggestion[] = nodes.flatMap((node: Node) => {
             const { names } = node;
-            const destinationFilter = null;
-            return names.map((name) => new SearchNodeSuggestion(name, destinationFilter));
+            const destinationFilter = new MapNodeFilterById(node.nodeId);
+            return names.map((name) => new SearchNodeSuggestion(node.nodeId, name, destinationFilter));
         });
 
         const professorSuggestions: SearchNodeSuggestion[] = professors.flatMap((professor: ProfessorData) => {
             const { name, room } = professor;
             const formattedName = `${name} (${room})`;
-            const destinationFilter = null;
-            return new SearchNodeSuggestion(formattedName, destinationFilter);
+            const destinationFilter = new MapNodeFilterById(room);
+            return new SearchNodeSuggestion(room, formattedName, destinationFilter);
         });
 
         const unsortedSuggestions: SearchNodeSuggestion[] = nodeSuggestions.concat(professorSuggestions);
@@ -40,10 +41,7 @@ export class RoomSearchImpl implements RoomSearch {
     }
 
     sortedSuggestionsForDestination(searchedText: string): SearchNodeSuggestion[] {
-        const allwaysVisibleMockDestination = new SearchNodeSuggestion("Mock, remove me", null);
-        let result = this.sortedSuggestionsForStart(searchedText);
-        result.push(allwaysVisibleMockDestination);
-        return result;
+        return this.sortedSuggestionsForStart(searchedText);
     }
 
     findRoomWithQrCode(qrCodeValue: string): SearchNodeSuggestion | undefined {

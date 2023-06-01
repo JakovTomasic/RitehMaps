@@ -18,7 +18,7 @@ export class GraphImpl implements Graph {
     }
 
     getNode(nodeId: string): MapNode | undefined {
-        return this.graph.get(nodeId).node;
+        return this.graph.get(nodeId)?.node;
     }
 
     getNeighbours(nodeId: string): NeighbourConnection[] {

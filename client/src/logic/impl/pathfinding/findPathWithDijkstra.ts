@@ -7,7 +7,7 @@ import { recreatePath } from "./recreatePath";
 export function findPathWithDijkstra(startNodeId: string, endNodeFilter: MapNodeFilter, graph: Graph): MapNode[] {
 
     if (typeof graph.getNode(startNodeId) === "undefined") 
-        throw new Error("Start location not valid.");
+        throw new Error("Start location not valid: " + startNodeId);
 
     let currentDistance: number;
     let currentNodeId: string;

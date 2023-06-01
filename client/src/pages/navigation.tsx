@@ -6,32 +6,51 @@ import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
 import { MapNodeFilterById } from "../types/roomsearch/MapNodeFilterById";
 import { useRouter } from "next/router";
 import { NavigationDirections } from "../types/navigation/NavigationDirections";
-import { SimpleMapNavigatorMockExample } from "../logic/mock/SimpleMapNavigatorMockExample";
 import { NavigationStep } from "../types/navigation/NavigationStep";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { MapNavigatorImpl } from "../logic/impl/pathfinding/MapNavigatorImpl";
+import { GraphImpl } from "../logic/impl/graph/GraphImpl";
+import { createGraph } from "../logic/impl/graph/GraphFactory";
+import { allGraphData } from "../data/AllGraphData";
+import { Submap } from "../types/Submap";
 
 
 export default function Navigation(){
     
-    const router = useRouter()
-    const data = router.query
-    
-    const mapNav = new SimpleMapNavigatorMockExample()
+    const router = useRouter();
+    const [navDirections, setNavDirections] = useState<NavigationDirections>(undefined);
 
-    const navDirections: NavigationDirections = mapNav.findShortestPath(
-        +data.startNodeId,
-        new MapNodeFilterById(data.endNodeId as string)
-    )
-    
-    const navSteps: NavigationStep[] = navDirections.steps
+    useEffect(() => {
+        if(router.isReady){
+            const data = router.query;
 
-    const submap = new SubmapProviderImpl()
+            const baseGraph = createGraph(allGraphData);
+            const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl());
+            const mapNav = new MapNavigatorImpl(graphImpl);
+        
+            const directions: NavigationDirections = mapNav.findShortestPath(
+                data.startNodeId as string,
+                new MapNodeFilterById(data.endNodeId as string)
+            )
+            setNavDirections(directions);
+        }
+    }, [router.isReady]);
 
-    const [currentStep, updateCurrentStep] = useState(0)
+    const navSteps: NavigationStep[] = navDirections?.steps;
+
+    const submap = new SubmapProviderImpl();
+
+    const [currentStepIndex, updateCurrentStepIndex] = useState(0);
     
-    const submapImage = submap.getSubmapImage(navSteps[currentStep].nodes[0].submapId)
-    const numOfSteps = navSteps.length
+    let currentStep: NavigationStep | undefined;
+    let submapImage: Submap | undefined;
+    if (navSteps !== undefined && navSteps.length > 0) {
+        currentStep = navSteps[currentStepIndex];
+        submapImage = submap.getSubmapImage(currentStep.nodes[0].submapId);
+    } else {
+        currentStep = undefined;
+        submapImage = undefined;
+    }
 
 
     return(
@@ -42,21 +61,25 @@ export default function Navigation(){
                     <DirectionsCard currentText='Turn right' nextText='Go straight' 
                         currentDirection='/images/up-right.png' nextDirection='/images/up.png' />
                 </div>
-                <Map layoutImage={submapImage.path} enableDrawNodes width={submapImage.width} 
-                    height={submapImage.height} navStep={navSteps[currentStep]}/>  
+                {
+                    currentStep !== undefined && submapImage !== undefined ?
+                        <Map layoutImage={submapImage.path} width={submapImage.width} 
+                        height={submapImage.height} navStep={currentStep}/>
+                        : <div>Loading...</div>
+                }
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12">
                     <Button text='Back' 
                         onClick={() => {
-                            if(currentStep > 0) {
-                                updateCurrentStep(currentStep-1)
+                            if(currentStepIndex > 0) {
+                                updateCurrentStepIndex(currentStepIndex-1)
                             }
                         }}
                     />
                     <Button text='Update' onClick={() => {router.push('/')}}/>
                     <Button text='Next' 
                         onClick={() => {
-                            if(currentStep < numOfSteps-1) {
-                                updateCurrentStep(currentStep+1)
+                            if(currentStepIndex < navSteps.length-1) {
+                                updateCurrentStepIndex(currentStepIndex+1)
                             }
                         }}
                     />

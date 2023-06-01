@@ -5,7 +5,7 @@ import { NavigationStep } from "../../types/navigation/NavigationStep";
 import { MapNavigator } from "../interfaces/MapNavigator";
 
 export class SimpleMapNavigatorMockExample implements MapNavigator {
-    findShortestPath(startNodeId: number, endNodeFilter: MapNodeFilter): NavigationDirections {
+    findShortestPath(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections {
         return new NavigationDirections([
             new NavigationStep([
                 new NavigationNode(2, 29.14, 57.90),

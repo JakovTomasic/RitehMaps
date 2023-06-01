@@ -3,12 +3,18 @@ import { RoomSearch } from "../interfaces/RoomSearch";
 import { nodes, Node } from "../../data/Nodes";
 import { professors, ProfessorData } from "../../data/ProfessorData";
 import { MapNodeFilterById } from "../../types/roomsearch/MapNodeFilterById";
+import { NodesContainer } from "../interfaces/NodesContainer";
 
 export class RoomSearchImpl implements RoomSearch {
 
-    constructor() {
+    private nodesContainer: NodesContainer;
+
+    constructor(nodesContainer: NodesContainer) {
         // A fix for calling a function from another function (https://stackoverflow.com/a/57028664)
         this.sortedSuggestionsForDestination = this.sortedSuggestionsForDestination.bind(this);
+        this.sortedSuggestionsForStart = this.sortedSuggestionsForStart.bind(this);
+
+        this.nodesContainer = nodesContainer;
     }
 
     sortedSuggestionsForStart(searchedText: string): SearchNodeSuggestion[] {
@@ -26,7 +32,10 @@ export class RoomSearchImpl implements RoomSearch {
             return new SearchNodeSuggestion(room, formattedName, destinationFilter);
         });
 
-        const unsortedSuggestions: SearchNodeSuggestion[] = nodeSuggestions.concat(professorSuggestions);
+        const unsortedSuggestions: SearchNodeSuggestion[] = 
+            nodeSuggestions
+                .concat(professorSuggestions)
+                .filter(node => this.nodesContainer.contains(node.nodeId));
 
 
         const filteredSuggestions: SearchNodeSuggestion[] = unsortedSuggestions.filter((suggestion) =>

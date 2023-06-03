@@ -9,6 +9,7 @@ import { NavigationDirections } from "../types/navigation/NavigationDirections";
 import { SimpleMapNavigatorMockExample } from "../logic/mock/SimpleMapNavigatorMockExample";
 import { NavigationStep } from "../types/navigation/NavigationStep";
 import { useState } from "react";
+import { MapCropperImpl } from "../logic/impl/MapCropperImpl";
 
 
 
@@ -33,6 +34,10 @@ export default function Navigation(){
     const submapImage = submap.getSubmapImage(navSteps[currentStep].nodes[0].submapId)
     const numOfSteps = navSteps.length
 
+    const mapCropper = new MapCropperImpl()
+    const centroidCrop = mapCropper.crop(navSteps[currentStep], submapImage.width, submapImage.height)
+
+
 
     return(
         <>
@@ -45,7 +50,7 @@ export default function Navigation(){
                         currentDirection='/images/up-right.png' nextDirection='/images/up.png' />
                 </div>
                 <Map layoutImage={submapImage.path} enableDrawNodes width={submapImage.width} 
-                    height={submapImage.height} navStep={navSteps[currentStep]}/>  
+                    height={submapImage.height} navStep={navSteps[currentStep]} centroidCrop={centroidCrop}/>  
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
                     <Button text='Back' 
                         onClick={() => {

@@ -1,18 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { NavigationStep } from '../types/navigation/NavigationStep';
 import * as d3 from 'd3';
-import { MapCropperImpl } from '../logic/impl/MapCropperImpl';
+import { CentroidScale } from '../types/navigation/CentroidScale';
 
 type Prop = {
     children: any
     width: number
     height: number
-    navStep?: NavigationStep
+    centroidCrop: CentroidScale
     enableZoom?: boolean
 }
 
 
-export default function ZoomableSVG( { children, width, height, navStep, enableZoom }: Prop ){
+export default function ZoomableSVG( { children, width, height, centroidCrop, enableZoom }: Prop ){
 
 
     const svgRef = useRef()
@@ -36,8 +35,6 @@ export default function ZoomableSVG( { children, width, height, navStep, enableZ
         
     }
     else{
-        const mapCropper = new MapCropperImpl()
-        const centroidCrop = mapCropper.crop(navStep, width, height)
 
         width = centroidCrop.scaledWidth
         height = centroidCrop.scaledHeight

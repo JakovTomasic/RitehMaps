@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import ZoomableSVG from './ZoomableSVG';
 import { NavigationStep } from '../types/navigation/NavigationStep';
 import { round } from '../utils/Math';
+import { CentroidScale } from '../types/navigation/CentroidScale';
 
 type Prop = {
     layoutImage: string
@@ -10,6 +11,7 @@ type Prop = {
     width: number
     height: number
     navStep: NavigationStep
+    centroidCrop: CentroidScale
 }
 
 const dotRadiusRelative: String = "0.5%"
@@ -119,7 +121,7 @@ export default class Map extends Component<Prop>{
         return(
                 <div className="w-full h-2/5 border max-w-3xl mx-auto">
                     <ZoomableSVG width={this.props.width} height={this.props.height} 
-                        navStep={this.props.navStep} enableZoom={false}>
+                        centroidCrop={this.props.centroidCrop} enableZoom={false}>
                         <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>
                             
                         </svg>

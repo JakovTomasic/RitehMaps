@@ -1,0 +1,30 @@
+name: Build and test check
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_run:
+    name: Build project and run unit tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    steps:
+    - name: Print trigger event and user
+      working-directory: ./
+      run: echo "Trigger event - ${{ github.event_name }}, User - ${{ github.actor }}"
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Yarn dependencies
+      run: yarn install
+
+    - name: Build project 
+      run: yarn run build
+
+    - name: Run tests
+      run: yarn test

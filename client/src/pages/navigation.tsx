@@ -37,14 +37,16 @@ export default function Navigation(){
     return(
         <>
             <div className="relative w-fill h-screen mx-auto my-0">
-                <Header text='Navigation' backPath='/' />
-                <div className="mx-auto max-w-sm">
+                <div className="h-1/8">
+                    <Header text='Navigation' backPath='/' />
+                </div>
+                <div className="mx-auto max-w-sm h-1/3">
                     <DirectionsCard currentText='Turn right' nextText='Go straight' 
                         currentDirection='/images/up-right.png' nextDirection='/images/up.png' />
                 </div>
                 <Map layoutImage={submapImage.path} enableDrawNodes width={submapImage.width} 
                     height={submapImage.height} navStep={navSteps[currentStep]}/>  
-                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12">
+                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
                     <Button text='Back' 
                         onClick={() => {
                             if(currentStep > 0) {

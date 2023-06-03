@@ -10,6 +10,6 @@ export class MapNodeFilterById extends MapNodeFilter{
     }
 
     satisfiedBy(node: MapNode): boolean {
-        return (node instanceof MapNode && node.id == this.destinationId);
+        return node !== undefined && node.id == this.destinationId;
     }
 }

@@ -66,7 +66,7 @@ export default class Map extends Component<Prop>{
 
         const svg = d3.select(this.mapRef)
 
-        this.props.navStep.nodes.forEach((node, index) => {
+        this.props.navStep?.nodes.forEach((node, index) => {
 
             svg.append("circle")
             .attr("cx", `${node.xCoordinate}%`)

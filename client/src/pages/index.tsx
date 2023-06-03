@@ -1,9 +1,12 @@
 import Navbar from "../components/Navbar";
 import SearchForm from "../components/SearchForm";
+import { allGraphData } from "../data/AllGraphData";
+import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
 
 export default function Home() {
-  const roomSearch = new RoomSearchImpl();
+  const nodesContainer = new NodesContainerImpl(allGraphData.nodes);
+  const roomSearch = new RoomSearchImpl(nodesContainer);
   
   return (
 

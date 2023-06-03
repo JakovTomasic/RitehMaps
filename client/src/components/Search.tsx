@@ -3,12 +3,13 @@ import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
+  onSelection: (selectedId: string) => void;
 }
 
-function Search({ roomSearcher }: Prop) {
+function Search({ roomSearcher, onSelection }: Prop) {
   const [inputValue, setInputValue] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
-  const [dropdownOptions, setDropdownOptions] = useState([]);
+  const [dropdownOptions, setDropdownOptions] = useState<SearchNodeSuggestion[]>([]);
 
   const searchRef = useRef(null);
 
@@ -21,14 +22,15 @@ function Search({ roomSearcher }: Prop) {
       setShowDropdown(false); 
     } else {
       const sortedSuggestions = roomSearcher(inputValue);
-      setDropdownOptions(sortedSuggestions.map((suggestion) => suggestion.roomName));
+      setDropdownOptions(sortedSuggestions);
       setShowDropdown(true);
     }
   };
 
-  const handleDropdownOptionClick = (option) => {
-    setInputValue(option);
+  const handleDropdownOptionClick = (option: SearchNodeSuggestion) => {
+    setInputValue(option.roomName);
     setShowDropdown(false);
+    onSelection(option.nodeId)
   };
 
   useEffect(() => {
@@ -60,11 +62,11 @@ function Search({ roomSearcher }: Prop) {
         <div className="absolute z-10 w-full bg-white rounded-b-md shadow-lg">
           {dropdownOptions.map((option) => (
             <div
-              key={option}
+              key={option.roomName}
               className="py-1 px-3 hover:bg-gray-100 cursor-pointer"
               onClick={() => handleDropdownOptionClick(option)}
             >
-              {option}
+              {option.roomName}
             </div>
           ))}
         </div>

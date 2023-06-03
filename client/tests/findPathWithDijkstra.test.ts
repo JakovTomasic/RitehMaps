@@ -41,7 +41,7 @@ describe('testing findPathWithDijkstra() with a 6-node graph', () => {
   test('should throw start location error', () => {
     var startNodeId = "-6";
     var mapNodeFilter = new MapNodeFilterById("3");
-    var errorMessage = "Start location not valid.";
+    var errorMessage = "Start location not valid: -6";
 
     expect(() => findPathWithDijkstra(startNodeId, mapNodeFilter, endNodesGraph)).toThrowError(errorMessage);
   });
@@ -108,7 +108,7 @@ describe('testing findPathWithDijkstra() with a 9-node graph', () => {
   test('should throw start location error', () => {
     var startNodeId = "10";
     var mapNodeFilter = new MapNodeFilterById("10");
-    var errorMessage = "Start location not valid.";
+    var errorMessage = "Start location not valid: 10";
 
     expect(() => findPathWithDijkstra(startNodeId, mapNodeFilter, hallwaysGraph)).toThrowError(errorMessage);
   });

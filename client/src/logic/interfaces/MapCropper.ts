@@ -1,6 +1,6 @@
+import { CentroidScale } from "../../types/navigation/CentroidScale";
 import { NavigationStep } from "../../types/navigation/NavigationStep";
-import { Rectangle } from "../../types/navigation/Rectangle";
 
 export interface MapCropper {
-    crop(navigationStep: NavigationStep): Rectangle
+    crop(navigationStep: NavigationStep, width: number, height: number): CentroidScale
 }

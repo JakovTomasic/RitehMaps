@@ -117,9 +117,7 @@ export default class Map extends Component<Prop>{
     render() {
     
         return(
-            <div>
-                <div className="w-full h-full border max-w-3xl mx-auto" 
-                    style={{aspectRatio: this.props.width / this.props.height}}>
+                <div className="w-full h-2/5 border max-w-3xl mx-auto">
                     <ZoomableSVG width={this.props.width} height={this.props.height} 
                         navStep={this.props.navStep} enableZoom={false}>
                         <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>
@@ -127,7 +125,6 @@ export default class Map extends Component<Prop>{
                         </svg>
                     </ZoomableSVG>
                 </div>
-            </div>
         )
     }
 

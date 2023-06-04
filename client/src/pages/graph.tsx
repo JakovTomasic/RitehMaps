@@ -6,6 +6,7 @@ import { createGraph } from "../logic/impl/graph/GraphFactory";
 import { GraphImpl } from "../logic/impl/graph/GraphImpl";
 import { Graph } from "../logic/interfaces/Graph";
 import { MapNode } from "../types/graph/MapNode";
+import { CentroidScale } from "../types/navigation/CentroidScale";
 import { NavigationNode } from '../types/navigation/NavigationNode';
 import { NavigationStep } from "../types/navigation/NavigationStep";
 
@@ -14,13 +15,21 @@ export default function GraphPage(){
         <div className="relative w-fill mx-auto my-0">
             {submaps.map(submap => {
                 const navSteps = navigationStepWithAllNodesFromTheSubmap(submap.id);
+                const fullScale: CentroidScale = {
+                    translateX: 0,
+                    translateY: 0,
+                    stepScale: 1,
+                    scaledWidth: submap.width,
+                    scaledHeight: submap.height,
+                }
                 return (
                     <div key={submap.id}>
                         <Map layoutImage={submap.path} 
                             enableDrawNodes={true}
                             width={submap.width}
                             height={submap.height}
-                            navStep={navSteps}/>
+                            navStep={navSteps}
+                            centroidCrop={fullScale}/>
                         <Separator />
                     </div>
                 );

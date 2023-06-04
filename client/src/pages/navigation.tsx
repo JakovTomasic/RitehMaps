@@ -13,6 +13,9 @@ import { GraphImpl } from "../logic/impl/graph/GraphImpl";
 import { createGraph } from "../logic/impl/graph/GraphFactory";
 import { allGraphData } from "../data/AllGraphData";
 import { Submap } from "../types/Submap";
+import { MapCropperImpl } from "../logic/impl/MapCropperImpl";
+import { CentroidScale } from "../types/navigation/CentroidScale";
+
 
 
 export default function Navigation(){
@@ -44,30 +47,36 @@ export default function Navigation(){
     
     let currentStep: NavigationStep | undefined;
     let submapImage: Submap | undefined;
+    let centroidCrop: CentroidScale
     if (navSteps !== undefined && navSteps.length > 0) {
         currentStep = navSteps[currentStepIndex];
         submapImage = submap.getSubmapImage(currentStep.nodes[0].submapId);
+        const mapCropper = new MapCropperImpl()
+        centroidCrop = mapCropper.crop(currentStep, submapImage.width, submapImage.height)
     } else {
         currentStep = undefined;
         submapImage = undefined;
+        centroidCrop = undefined;
     }
 
 
     return(
         <>
             <div className="relative w-fill h-screen mx-auto my-0">
-                <Header text='Navigation' backPath='/' />
-                <div className="mx-auto max-w-sm">
+                <div className="h-1/8">
+                    <Header text='Navigation' backPath='/' />
+                </div>
+                <div className="mx-auto max-w-sm h-1/3">
                     <DirectionsCard currentText='Turn right' nextText='Go straight' 
                         currentDirection='/images/up-right.png' nextDirection='/images/up.png' />
                 </div>
                 {
-                    currentStep !== undefined && submapImage !== undefined ?
+                    currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
                         <Map layoutImage={submapImage.path} width={submapImage.width} 
-                        height={submapImage.height} navStep={currentStep}/>
+                        height={submapImage.height} navStep={currentStep} centroidCrop={centroidCrop}/>
                         : <div>Loading...</div>
                 }
-                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12">
+                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
                     <Button text='Back' 
                         onClick={() => {
                             if(currentStepIndex > 0) {

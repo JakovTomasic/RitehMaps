@@ -93,7 +93,10 @@ export class MapNavigatorImpl implements MapNavigator {
 
             result.push(currentNode);
 
-            if (Math.abs(edgeWidth) <= maxWidth && Math.abs(edgeHeight) <= maxHeight) {
+            const notTheSameSubmap = currentNode.submapId !== nextNode.submapId;
+            const doesNotFitIntoBounds = Math.abs(edgeWidth) <= maxWidth && Math.abs(edgeHeight) <= maxHeight;
+
+            if (notTheSameSubmap || doesNotFitIntoBounds) {
                 currentNode = nextNode;
                 nextNodeIndex++;
             } else {

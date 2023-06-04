@@ -24,7 +24,6 @@ export default function Navigation(){
         if(router.isReady){
             
             const data = router.query;
-            console.profile();
             const baseGraph = createGraph(allGraphData);
             const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl());
             const mapNav = new MapNavigatorImpl(graphImpl);
@@ -33,7 +32,6 @@ export default function Navigation(){
                 data.startNodeId as string,
                 new MapNodeFilterById(data.endNodeId as string)
             )
-            console.profileEnd();
             setNavDirections(directions);
             
         }

@@ -6,6 +6,8 @@ import { MapNavigator } from "../../interfaces/MapNavigator";
 import { Graph } from "../../interfaces/Graph";
 import { findPathWithDijkstra } from "./findPathWithDijkstra";
 import { NavigationStep } from "../../../types/navigation/NavigationStep";
+import { dijkstraSlow } from "./dijkstraSlow";
+import { dijkstraFast } from "./dijkstraFast";
 
 export class MapNavigatorImpl implements MapNavigator {
     private graph: Graph;
@@ -21,7 +23,17 @@ export class MapNavigatorImpl implements MapNavigator {
     }
 
     private findPathToNearestNode(startNodeId: string, endNodeFilter: MapNodeFilter): MapNode[] {
-       return findPathWithDijkstra(startNodeId, endNodeFilter, this.graph);
+
+        console.profile("Fast Dijkstra profiling");
+        //console.profile("Slow Dijkstra profiling");
+        
+        const result: MapNode[] = dijkstraFast(startNodeId, endNodeFilter, this.graph);
+       // const result: MapNode[] = dijkstraSlow(startNodeId, endNodeFilter, this.graph);
+
+        console.profileEnd("Fast Dijkstra profiling");
+        //console.profileEnd("Slow Dijkstra profiling");
+
+        return result;
     }
 
     private convertPathToNavigationNodes(path: MapNode[]): NavigationNode[] {

@@ -28,7 +28,7 @@ export class MapNavigatorImpl implements MapNavigator {
         //console.profile("Slow Dijkstra profiling");
         
         const result: MapNode[] = dijkstraFast(startNodeId, endNodeFilter, this.graph);
-       // const result: MapNode[] = dijkstraSlow(startNodeId, endNodeFilter, this.graph);
+        //const result: MapNode[] = dijkstraSlow(startNodeId, endNodeFilter, this.graph);
 
         console.profileEnd("Fast Dijkstra profiling");
         //console.profileEnd("Slow Dijkstra profiling");

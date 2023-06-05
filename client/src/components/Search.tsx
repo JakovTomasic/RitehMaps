@@ -1,39 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
-import { useRouter } from "next/router";
-import { RoomSearch } from "../logic/interfaces/RoomSearch";
 
 type Prop = {
-  roomSearcher: RoomSearch;
+  roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
   onSelection: (selectedId: string) => void;
-  flag: number; //start or destination search
+  initialInputValue: string
+  placeholder: string
 }
 
-function Search({ roomSearcher, onSelection, flag }: Prop) {
-  const router = useRouter();
-  const [inputValue, setInputValue] = useState("");
+function Search({ roomSearcher, onSelection, initialInputValue, placeholder }: Prop) {
+
+  const [inputValue, setInputValue] = useState(initialInputValue);
   const [showDropdown, setShowDropdown] = useState(false);
   const [dropdownOptions, setDropdownOptions] = useState<SearchNodeSuggestion[]>([]);
   const searchRef = useRef(null);
-
-
-  useEffect(() => {
-    if(router.isReady){
-      
-      const data = router.query;
-      if(flag==0) {
-        if(data.startNodeId as string != null) {
-          const foundSuggestion = roomSearcher.findRoomByNodeId(data.startNodeId as string);
-          setInputValue(foundSuggestion.roomName);
-        }
-      }
-      if(flag==1) {
-        if(data.endNodeId as string != null) {
-          setInputValue(roomSearcher.findRoomByNodeId(data.endNodeId as string).roomName);
-        }
-      }
-    }
-  }, [router.isReady]);
   
   const handleInputChange =  (event) => {
     const inputValue = event.target.value;
@@ -43,7 +23,7 @@ function Search({ roomSearcher, onSelection, flag }: Prop) {
       setDropdownOptions([]);
       setShowDropdown(false); 
     } else {
-      const sortedSuggestions = roomSearcher.sortedSuggestionsForStart(inputValue);
+      const sortedSuggestions = roomSearcher(inputValue);
       setDropdownOptions(sortedSuggestions);
       setShowDropdown(true);
     }
@@ -54,7 +34,6 @@ function Search({ roomSearcher, onSelection, flag }: Prop) {
     setShowDropdown(false);
     onSelection(option.nodeId)
   };
-
 
   useEffect(() => {
 
@@ -77,7 +56,7 @@ function Search({ roomSearcher, onSelection, flag }: Prop) {
         className="w-full px-3 py-2 border 
                   border-gray-300 rounded-md 
                   focus:outline-none focus:border-cyan-600"
-        placeholder={flag==0 ? "entrance" : "Search"}
+        placeholder={placeholder}
 
         value={inputValue} 
         onChange={handleInputChange}

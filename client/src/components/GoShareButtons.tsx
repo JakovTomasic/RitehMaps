@@ -7,12 +7,11 @@ import ExitXIcon from "./ExitXIcon";
 type GoButtonProps = {
   startNodeId: String;
   destinationNodeId: String;
-  handleClick: () => void;
-  showDiv: boolean;
-  setShowDiv: React.Dispatch<React.SetStateAction<boolean>>;
+  startText: String;
+  destinationText: String;
+  handleShare: () => void;
+  showShareDiv: boolean;
 };
-
-
 
 const GoShareButtons: React.FC<GoButtonProps> = (props) => {
   if (props.destinationNodeId != undefined) {
@@ -26,6 +25,9 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
               startNodeId: (props.startNodeId as string) != null 
                           ? (props.startNodeId as string) : "main_entrance",
               endNodeId: props.destinationNodeId as string,
+              startText: (props.startText as string) != null 
+                          ? (props.startText as string) : "entrance",
+              destinationText: props.destinationText as string,
             },
           }}
         >
@@ -46,6 +48,9 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
               startNodeId: (props.startNodeId as string) != null 
                           ? (props.startNodeId as string) : "main_entrance",
               endNodeId: props.destinationNodeId as string,
+              startText: (props.startText as string) != null 
+                          ? (props.startText as string) : "entrance",
+              destinationText: props.destinationText as string,
             },
           }}
         >
@@ -54,17 +59,17 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
                        bg-cyan-600 focus:bg-cyan-700 transition duration-300 w-10
                         text-white text-sm font-bold"
             type="button"
-            onClick={props.handleClick}
+            onClick={props.handleShare}
           >
             <ShareIcon />
           </button>
         </Link>
 
-        {props.showDiv && 
+        {props.showShareDiv && 
           <div className="absolute flex flex-col items-center justify-center inset-0 z-20">
           <ShareWindow />
           <div className="absolute top-0 right-10 z-40">
-            <ExitXIcon onClick={() => props.setShowDiv(false)} />
+            <ExitXIcon onClick={props.handleShare} />
           </div>
         </div>
         }

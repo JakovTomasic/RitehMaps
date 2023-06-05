@@ -15,7 +15,9 @@ function SearchForm({ roomSearcher }: Prop) {
   const router = useRouter();
   const [startNodeId, setStartNodeId] = useState<String>(undefined);
   const [destinationNodeId, setDestinationNodeId] = useState<String>(undefined);
-  const [showShareDiv, setShowShareDiv] = useState(false);
+  const [startText, setStartText] = useState<String>(undefined);
+  const [destinationText, setDestinationText] = useState<String>(undefined);
+    const [showShareDiv, setShowShareDiv] = useState(false);
 
   useEffect(() => {
     if(router.isReady){
@@ -23,6 +25,8 @@ function SearchForm({ roomSearcher }: Prop) {
       const data = router.query;
       setStartNodeId(data.startNodeId as string);
       setDestinationNodeId(data.endNodeId as string);
+      setStartText(data.startText as string);
+      setDestinationText(data.destinationText as string);
     }
   }, [router.isReady]);
 
@@ -58,8 +62,7 @@ function SearchForm({ roomSearcher }: Prop) {
                       <Search 
                         roomSearcher={roomSearcher.sortedSuggestionsForStart}
                         onSelection={setStartNodeId}
-                        initialInputValue= {roomSearcher.findRoomByNodeId(startNodeId as string) == undefined ?
-                                          "Undefined!": (roomSearcher.findRoomByNodeId(startNodeId as string)).roomName}
+                        initialInputValue= {startText as string}
                         placeholder={"entrance"}
                       />
                     </label> 
@@ -77,8 +80,7 @@ function SearchForm({ roomSearcher }: Prop) {
                     <Search 
                       roomSearcher={roomSearcher.sortedSuggestionsForDestination}
                       onSelection={setDestinationNodeId}
-                      initialInputValue= {(roomSearcher.findRoomByNodeId(destinationNodeId as string)) == undefined ?
-                                          "Undefined!": (roomSearcher.findRoomByNodeId(destinationNodeId as string)).roomName}
+                      initialInputValue= {destinationText as string}
                       placeholder={"Search"}
                     />
                     </label> 
@@ -98,6 +100,8 @@ function SearchForm({ roomSearcher }: Prop) {
             <GoShareButtons 
                 startNodeId={startNodeId} 
                 destinationNodeId={destinationNodeId}
+                startText={startText} 
+                destinationText={destinationText}
                 handleShare ={handleShare}
                 showShareDiv={showShareDiv} 
             />

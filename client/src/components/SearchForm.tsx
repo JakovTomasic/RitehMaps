@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PinIcon from "./PinIcon";
 import DotsIcon from "./DotsIcon";
 import ChangeArrowsIcon from "./ChangeArrowsIcon";
 import Search from "./Search";
 import { RoomSearch } from "../logic/interfaces/RoomSearch";
-import Link from "next/link";
+import GoShareButtons from "./GoShareButtons";
+import { useRouter } from "next/router";
 
 type Prop = {
   roomSearcher: RoomSearch;
 }
 
 function SearchForm({ roomSearcher }: Prop) {
+  const router = useRouter();
   const [startNodeId, setStartNodeId] = useState<String>(undefined);
   const [destinationNodeId, setDestinationNodeId] = useState<String>(undefined);
+  const [showDiv, setShowDiv] = useState(false);
 
+  useEffect(() => {
+    if(router.isReady){
+      
+      const data = router.query;
+      setStartNodeId(data.startNodeId as string);
+      setDestinationNodeId(data.endNodeId as string);
+    }
+  }, [router.isReady]);
+
+  const handleClick = () => {
+    setShowDiv(!showDiv);
+  };
 
   return (
 
@@ -24,7 +39,7 @@ function SearchForm({ roomSearcher }: Prop) {
           {/*div that contains sideDecoration (pins and dots, change arrows) and search inputs*/}
           <div className="flex items-center h-full w-full justify-center" >
 
-            <div className="w-1px h-full flex flex-col items-center justify-center px-2 flex-grow-1 pt-2">    
+            <div className="w-1px h-full flex flex-col items-center justify-center px-2 flex-grow-1 pt-3">    
               <PinIcon color="start" />
               <DotsIcon/>
               <PinIcon color="destination" />
@@ -34,22 +49,34 @@ function SearchForm({ roomSearcher }: Prop) {
             <div className="flex flex-col items-center w-64">
               
               <div className="mb-4 py-1 w-full">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Where are you now?</label>
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Where are you now?
+                  </label>
 
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
-                      <Search roomSearcher={roomSearcher.sortedSuggestionsForStart} onSelection={setStartNodeId}/>
+                      <Search 
+                        roomSearcher={roomSearcher} 
+                        onSelection={setStartNodeId}
+                        flag={0}
+                      />
                     </label> 
                   </div>
 
               </div>
 
                 <div className="mb-4 py-1 w-full">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Where do you want to go?</label>
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Where do you want to go?
+                  </label>
 
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
-                    <Search roomSearcher={roomSearcher.sortedSuggestionsForDestination} onSelection={setDestinationNodeId}/>
+                    <Search 
+                      roomSearcher={roomSearcher} 
+                      onSelection={setDestinationNodeId}
+                      flag={1}
+                    />
                     </label> 
                   </div>
 
@@ -57,14 +84,19 @@ function SearchForm({ roomSearcher }: Prop) {
 
             </div>
 
-              <div className="w-1px items-center justify-center pl-1 pt-1">    
+              <div className="w-1px items-center justify-center pl-1 pt-3">    
               <ChangeArrowsIcon/>
               </div>
 
           </div>
           
-          <div className="py-3">
-            <GoButton startNodeId={startNodeId} destinationNodeId={destinationNodeId} />
+          <div className="flex relative py-3 items-center justify-center z-0">
+            <GoShareButtons 
+                startNodeId={startNodeId} 
+                destinationNodeId={destinationNodeId}
+                handleClick={handleClick}
+                showDiv={showDiv} 
+                setShowDiv={setShowDiv}/>
           </div>
 
         </form>
@@ -76,33 +108,3 @@ function SearchForm({ roomSearcher }: Prop) {
 
 export default SearchForm;
 
-function GoButton(props: {startNodeId: String, destinationNodeId: String}) {
-  if (props.startNodeId !== undefined && props.destinationNodeId !== undefined) {
-    return (
-      <Link 
-        href={{
-          pathname: "/navigation",
-          query: {
-            startNodeId: props.startNodeId as string,
-            endNodeId: props.destinationNodeId as string
-          }
-        }}
-      >
-      <button className="mx-auto w-12 py-2 px-4 rounded-md flex items-center justify-center
-            bg-cyan-600 hover:bg-cyan-700 transition duration-300
-            text-white text-sm font-bold" 
-        type="submit">
-      Go
-      </button>
-      </Link>
-    )
-  } else {
-    return (
-      <div className="mx-auto w-12 py-2 px-4 rounded-md flex items-center justify-center
-            bg-gray-500 hover:bg-gray-700 transition duration-300
-            text-white text-sm font-bold">
-      Go
-      </div>
-    )
-  }
-}

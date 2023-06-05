@@ -23,8 +23,12 @@ export class MapCropperImpl implements MapCropper{
     }
 
     private getStepScale(width: number, height: number): number {
+        const MIN_SCALE = 1;
+        const MAX_SCALE = 10;
+
         const scaleWithoutMargins = Math.min(100/width, 100/height);
         const marginfactor = 0.9;
-        return scaleWithoutMargins * marginfactor;
+        const calculatedScale = scaleWithoutMargins * marginfactor;
+        return Math.min(Math.max(calculatedScale, MIN_SCALE), MAX_SCALE);
     }
 }

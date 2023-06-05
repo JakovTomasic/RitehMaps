@@ -15,7 +15,7 @@ function SearchForm({ roomSearcher }: Prop) {
   const router = useRouter();
   const [startNodeId, setStartNodeId] = useState<String>(undefined);
   const [destinationNodeId, setDestinationNodeId] = useState<String>(undefined);
-  const [showDiv, setShowDiv] = useState(false);
+  const [showShareDiv, setShowShareDiv] = useState(false);
 
   useEffect(() => {
     if(router.isReady){
@@ -26,8 +26,8 @@ function SearchForm({ roomSearcher }: Prop) {
     }
   }, [router.isReady]);
 
-  const handleClick = () => {
-    setShowDiv(!showDiv);
+  const handleShare = () => {
+    setShowShareDiv(!showShareDiv);
   };
 
   return (
@@ -56,9 +56,11 @@ function SearchForm({ roomSearcher }: Prop) {
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
                       <Search 
-                        roomSearcher={roomSearcher} 
+                        roomSearcher={roomSearcher.sortedSuggestionsForStart}
                         onSelection={setStartNodeId}
-                        flag={0}
+                        initialInputValue= {roomSearcher.findRoomByNodeId(startNodeId as string) == undefined ?
+                                          "Undefined!": (roomSearcher.findRoomByNodeId(startNodeId as string)).roomName}
+                        placeholder={"entrance"}
                       />
                     </label> 
                   </div>
@@ -73,9 +75,11 @@ function SearchForm({ roomSearcher }: Prop) {
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
                     <Search 
-                      roomSearcher={roomSearcher} 
+                      roomSearcher={roomSearcher.sortedSuggestionsForDestination}
                       onSelection={setDestinationNodeId}
-                      flag={1}
+                      initialInputValue= {(roomSearcher.findRoomByNodeId(destinationNodeId as string)) == undefined ?
+                                          "Undefined!": (roomSearcher.findRoomByNodeId(destinationNodeId as string)).roomName}
+                      placeholder={"Search"}
                     />
                     </label> 
                   </div>
@@ -94,9 +98,9 @@ function SearchForm({ roomSearcher }: Prop) {
             <GoShareButtons 
                 startNodeId={startNodeId} 
                 destinationNodeId={destinationNodeId}
-                handleClick={handleClick}
-                showDiv={showDiv} 
-                setShowDiv={setShowDiv}/>
+                handleShare ={handleShare}
+                showShareDiv={showShareDiv} 
+            />
           </div>
 
         </form>

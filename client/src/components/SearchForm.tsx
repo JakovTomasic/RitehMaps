@@ -17,7 +17,7 @@ function SearchForm({ roomSearcher }: Prop) {
   const [destinationNodeId, setDestinationNodeId] = useState<String>(undefined);
   const [startText, setStartText] = useState<String>(undefined);
   const [destinationText, setDestinationText] = useState<String>(undefined);
-    const [showShareDiv, setShowShareDiv] = useState(false);
+  const [showShareDiv, setShowShareDiv] = useState(false);
 
   useEffect(() => {
     if(router.isReady){
@@ -61,7 +61,10 @@ function SearchForm({ roomSearcher }: Prop) {
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
                       <Search 
                         roomSearcher={roomSearcher.sortedSuggestionsForStart}
-                        onSelection={setStartNodeId}
+                        onSelection={(selectedNode) => {
+                          setStartNodeId(selectedNode?.nodeId);
+                          setStartText(selectedNode?.roomName);
+                        }}
                         initialInputValue= {startText as string}
                         placeholder={"entrance"}
                       />
@@ -79,7 +82,10 @@ function SearchForm({ roomSearcher }: Prop) {
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
                     <Search 
                       roomSearcher={roomSearcher.sortedSuggestionsForDestination}
-                      onSelection={setDestinationNodeId}
+                      onSelection={(selectedNode) => {
+                        setDestinationNodeId(selectedNode?.nodeId);
+                        setDestinationText(selectedNode?.roomName);
+                      }}
                       initialInputValue= {destinationText as string}
                       placeholder={"Search"}
                     />

@@ -3,7 +3,7 @@ import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
-  onSelection: (selectedId: string) => void;
+  onSelection: (selectedNode: SearchNodeSuggestion | null) => void;
   initialInputValue: string
   placeholder: string
 }
@@ -15,9 +15,14 @@ function Search({ roomSearcher, onSelection, initialInputValue, placeholder }: P
   const [dropdownOptions, setDropdownOptions] = useState<SearchNodeSuggestion[]>([]);
   const searchRef = useRef(null);
   
-  const handleInputChange =  (event) => {
+  useEffect(() => {
+    setInputValue(initialInputValue);
+  }, [initialInputValue])
+
+  const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setInputValue(inputValue);
+    onSelection(null);
     
     if (inputValue === "") {
       setDropdownOptions([]);
@@ -32,7 +37,7 @@ function Search({ roomSearcher, onSelection, initialInputValue, placeholder }: P
   const handleDropdownOptionClick = (option: SearchNodeSuggestion) => {
     setInputValue(option.roomName);
     setShowDropdown(false);
-    onSelection(option.nodeId)
+    onSelection(option)
   };
 
   useEffect(() => {
@@ -57,7 +62,6 @@ function Search({ roomSearcher, onSelection, initialInputValue, placeholder }: P
                   border-gray-300 rounded-md 
                   focus:outline-none focus:border-cyan-600"
         placeholder={placeholder}
-
         value={inputValue} 
         onChange={handleInputChange}
       />

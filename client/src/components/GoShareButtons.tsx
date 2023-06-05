@@ -25,9 +25,6 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
               startNodeId: (props.startNodeId as string) != null 
                           ? (props.startNodeId as string) : "main_entrance",
               endNodeId: props.destinationNodeId as string,
-              startText: (props.startText as string) != null 
-                          ? (props.startText as string) : "entrance",
-              destinationText: props.destinationText as string,
             },
           }}
         >
@@ -49,7 +46,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
                           ? (props.startNodeId as string) : "main_entrance",
               endNodeId: props.destinationNodeId as string,
               startText: (props.startText as string) != null 
-                          ? (props.startText as string) : "entrance",
+                          ? (props.startText as string) : "",
               destinationText: props.destinationText as string,
             },
           }}

@@ -3,19 +3,26 @@ import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
-  onSelection: (selectedId: string) => void;
+  onSelection: (selectedNode: SearchNodeSuggestion | null) => void;
+  initialInputValue: string
+  placeholder: string
 }
 
-function Search({ roomSearcher, onSelection }: Prop) {
-  const [inputValue, setInputValue] = useState("");
+function Search({ roomSearcher, onSelection, initialInputValue, placeholder }: Prop) {
+
+  const [inputValue, setInputValue] = useState(initialInputValue);
   const [showDropdown, setShowDropdown] = useState(false);
   const [dropdownOptions, setDropdownOptions] = useState<SearchNodeSuggestion[]>([]);
-
   const searchRef = useRef(null);
+  
+  useEffect(() => {
+    setInputValue(initialInputValue);
+  }, [initialInputValue])
 
-  const handleInputChange = async (event) => {
+  const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setInputValue(inputValue);
+    onSelection(null);
     
     if (inputValue === "") {
       setDropdownOptions([]);
@@ -30,11 +37,11 @@ function Search({ roomSearcher, onSelection }: Prop) {
   const handleDropdownOptionClick = (option: SearchNodeSuggestion) => {
     setInputValue(option.roomName);
     setShowDropdown(false);
-    onSelection(option.nodeId)
+    onSelection(option)
   };
 
   useEffect(() => {
-    // Function to handle clicks outside the search component
+
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
         setShowDropdown(false);
@@ -52,14 +59,16 @@ function Search({ roomSearcher, onSelection }: Prop) {
       <input
         type="text"
         className="w-full px-3 py-2 border 
-                  border-gray-300 rounded-md focus:outline-none focus:border-cyan-600"
-        placeholder="Search"
-        value={inputValue}
+                  border-gray-300 rounded-md 
+                  focus:outline-none focus:border-cyan-600"
+        placeholder={placeholder}
+        value={inputValue} 
         onChange={handleInputChange}
       />
 
       {showDropdown && dropdownOptions.length > 0 && (
-        <div className="absolute z-10 w-full bg-white rounded-b-md shadow-lg">
+        <div className="absolute z-10 w-full max-h-48 overflow-y-auto
+                       bg-white rounded-b-md shadow-lg">
           {dropdownOptions.map((option) => (
             <div
               key={option.roomName}

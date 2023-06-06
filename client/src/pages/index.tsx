@@ -7,7 +7,7 @@ import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
 export default function Home() {
   const nodesContainer = new NodesContainerImpl(allGraphData.nodes);
   const roomSearch = new RoomSearchImpl(nodesContainer);
-  
+
   return (
 
     <div className="h-screen w-screen bg-white flex justify-center items-center">

@@ -66,10 +66,6 @@ export default function Navigation(){
                 <div className="h-1/8">
                     <Header text='Navigation' backPath='/' />
                 </div>
-                <div className="mx-auto max-w-sm h-1/3">
-                    <DirectionsCard currentText='Turn right' nextText='Go straight' 
-                        currentDirection='/images/up-right.png' nextDirection='/images/up.png' />
-                </div>
                 {
                     currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
                         <Map layoutImage={submapImage.path} width={submapImage.width} 

@@ -19,10 +19,13 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, en
     const [x, setX] = useState(0)
     const [y, setY] = useState(0)
 
+    if(enableZoom == false){
+        width = centroidCrop.scaledWidth
+        height = centroidCrop.scaledHeight
+    }
 
-    if(enableZoom == true){
-
-        useEffect(() => {
+    useEffect(() => {
+        if(enableZoom == true){            
             const zoom = d3.zoom().on("zoom", (event) => {
                 const { x, y, k } = event.transform
                 setScale(k)
@@ -30,21 +33,14 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, en
                 setY(y)
             })
 
-            d3.select(svgRef.current).call(zoom)
-        }, [])
-        
-    }
-    else{
-
-        width = centroidCrop.scaledWidth
-        height = centroidCrop.scaledHeight
-
-        useEffect(() => {
+            d3.select(svgRef.current).call(zoom)           
+        }
+        else{
             setX(centroidCrop.translateX)
             setY(centroidCrop.translateY)
-            setScale(centroidCrop.stepScale)
-        }, [centroidCrop])
-    }
+            setScale(centroidCrop.stepScale)        
+        }
+    }, [centroidCrop])
 
     return (
         <svg height="100%" width="100%" ref={svgRef} viewBox={`0, 0, ${width}, ${height}`}>

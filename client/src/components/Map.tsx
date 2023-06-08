@@ -12,7 +12,7 @@ type Prop = {
     height: number
     navStep: NavigationStep
     centroidCrop: CentroidScale
-    enableZoom: boolean
+    enableZoom?: boolean
 }
 
 const dotRadiusRelative: String = "0.5%"

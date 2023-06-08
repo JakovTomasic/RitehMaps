@@ -1,7 +1,7 @@
 import Button from "../components/Button";
 import Header from "../components/Header";
-import DirectionsCard from "../components/DirectionsCard";
 import Map from "../components/Map";
+import ZoomToggleButton from "../components/ZoomToggleButton";
 import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
 import { MapNodeFilterById } from "../types/roomsearch/MapNodeFilterById";
 import { useRouter } from "next/router";
@@ -58,18 +58,27 @@ export default function Navigation(){
         submapImage = undefined;
         centroidCrop = undefined;
     }
-
+    
+    const [enableZoom, setZoom] = useState(false);
 
     return(
         <>
-            <div className="relative w-fill h-screen mx-auto my-0">
+            <div className="relative w-fill h-screen mx-auto my-0 max-w-3xl">
                 <div className="h-1/8">
                     <Header text='Navigation' backPath='/' />
                 </div>
+                <div className="absolute right-0">
+                    <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
+                        onClick={() => {setZoom(!enableZoom)}} 
+                    />
+                </div>
                 {
                     currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
-                        <Map layoutImage={submapImage.path} width={submapImage.width} 
-                        height={submapImage.height} navStep={currentStep} centroidCrop={centroidCrop}/>
+                        <div className="w-full h-3/4 border">
+                            <Map layoutImage={submapImage.path} width={submapImage.width} 
+                            height={submapImage.height} navStep={currentStep} centroidCrop={centroidCrop}
+                            enableZoom={enableZoom}/>                    
+                        </div>
                         : <div>Loading...</div>
                 }
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">

@@ -1,6 +1,7 @@
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Map from "../components/Map";
+import MapCaption from "../components/MapCaption";
 import ZoomToggleButton from "../components/ZoomToggleButton";
 import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
 import { MapNodeFilterById } from "../types/roomsearch/MapNodeFilterById";
@@ -67,19 +68,22 @@ export default function Navigation(){
                 <div className="h-1/8">
                     <Header text='Navigation' backPath='/' />
                 </div>
-                <div className="absolute right-0">
-                    <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
-                        onClick={() => {setZoom(!enableZoom)}} 
-                    />
-                </div>
                 {
-                    currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
-                        <div className="w-full h-3/4 border">
-                            <Map layoutImage={submapImage.path} width={submapImage.width} 
-                            height={submapImage.height} navStep={currentStep} centroidCrop={centroidCrop}
-                            enableZoom={enableZoom}/>                    
-                        </div>
-                        : <div>Loading...</div>
+                currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
+                <>
+                    <MapCaption imageCaption={submapImage.caption} />
+                    <div className="absolute right-0">
+                        <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
+                            onClick={() => {setZoom(!enableZoom)}} 
+                        />
+                    </div>
+                    <div className="w-full border h-2/3">
+                        <Map layoutImage={submapImage.path} width={submapImage.width} 
+                        height={submapImage.height} navStep={currentStep} centroidCrop={centroidCrop}
+                        enableZoom={enableZoom}/>                    
+                    </div>
+                </>
+                    : <div>Loading...</div>
                 }
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
                     <Button text='Back' 

@@ -29,3 +29,9 @@ export function getNodeBounds(nodes: NavigationNode[]): {minX: number, minY: num
 
     return {minX, minY, maxX, maxY};
 }
+
+export function sameCoordinates(node1: MapNode, node2: MapNode): boolean {
+    return node1.submapId == node2.submapId &&
+        node1.xCoordinate == node2.xCoordinate &&
+        node1.yCoordinate == node2.yCoordinate;
+}

@@ -68,7 +68,6 @@ export default class Map extends Component<Prop>{
         var prevNodeY
 
         const svg = d3.select(this.mapRef)
-
         this.props.navStep?.nodes.forEach((node, index) => {
 
             svg.append("circle")
@@ -79,7 +78,9 @@ export default class Map extends Component<Prop>{
             .attr("stroke-opacity", 1)
             .attr("stroke-width", 150)
 
-            if(index > 0){
+            if(index > 0 && (
+                (round(node.xCoordinate, 2) != round(prevNodeX, 2)) || 
+                (round(node.yCoordinate, 2) != round(prevNodeY, 2)))){
                 
                 svg.append("marker")
                 .attr("id", "triangle")

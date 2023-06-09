@@ -62,6 +62,10 @@ export default class Map extends Component<Prop>{
         })
     }
 
+    private checkCoordinates(x1, x2, y1, y2): boolean{
+        return ((round(x1, 2) != round(x2, 2)) || (round(y1, 2) != round(y2, 2)))
+    }
+
     private connectNodes(){
 
         var prevNodeX
@@ -78,32 +82,34 @@ export default class Map extends Component<Prop>{
             .attr("stroke-opacity", 1)
             .attr("stroke-width", 150)
 
-            if(index > 0 && (
-                (round(node.xCoordinate, 2) != round(prevNodeX, 2)) || 
-                (round(node.yCoordinate, 2) != round(prevNodeY, 2)))){
-                
-                svg.append("marker")
-                .attr("id", "triangle")
-                .attr("refX", -10)
-                .attr("refY", 6)
-                .attr("markerWidth", 30)
-                .attr("markerHeight", 30)
-                .attr("markerUnits","userSpaceOnUse")
-                .attr("orient", "auto")
-                .append("path")
-                .attr("d", "M 0 0 12 6 0 12 3 6")
-                .style("fill", "#06B6D4");
+            if(index > 0){
 
-                svg.append("line")
-                .attr("x1", `${prevNodeX}%`)
-                .attr("y1", `${prevNodeY}%`)
-                .attr("x2", `${node.xCoordinate}%`)
-                .attr("y2", `${node.yCoordinate}%`)
-                .style("stroke", "#41C7F7")
-                .style("stroke-width", lineStrokeWidthRelative)
-                .attr("stroke-linecap", "round")
-                .attr("stroke-opacity", 0.6)
-                .attr("marker-start", "url(#triangle)")
+                var checkCoords = this.checkCoordinates(prevNodeX, node.xCoordinate, prevNodeY, node.yCoordinate)
+
+                if(checkCoords){
+                    svg.append("marker")
+                    .attr("id", "triangle")
+                    .attr("refX", -10)
+                    .attr("refY", 6)
+                    .attr("markerWidth", 30)
+                    .attr("markerHeight", 30)
+                    .attr("markerUnits","userSpaceOnUse")
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M 0 0 12 6 0 12 3 6")
+                    .style("fill", "#06B6D4");
+
+                    svg.append("line")
+                    .attr("x1", `${prevNodeX}%`)
+                    .attr("y1", `${prevNodeY}%`)
+                    .attr("x2", `${node.xCoordinate}%`)
+                    .attr("y2", `${node.yCoordinate}%`)
+                    .style("stroke", "#41C7F7")
+                    .style("stroke-width", lineStrokeWidthRelative)
+                    .attr("stroke-linecap", "round")
+                    .attr("stroke-opacity", 0.6)
+                    .attr("marker-start", "url(#triangle)")
+                }
             }
 
             prevNodeX = node.xCoordinate

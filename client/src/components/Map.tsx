@@ -12,6 +12,7 @@ type Prop = {
     height: number
     navStep: NavigationStep
     centroidCrop: CentroidScale
+    enableZoom?: boolean
 }
 
 const dotRadiusRelative: String = "0.5%"
@@ -61,13 +62,16 @@ export default class Map extends Component<Prop>{
         })
     }
 
+    private coordinatesOverlap(x1, x2, y1, y2): boolean{
+        return ((round(x1, 2) != round(x2, 2)) || (round(y1, 2) != round(y2, 2)))
+    }
+
     private connectNodes(){
 
         var prevNodeX
         var prevNodeY
 
         const svg = d3.select(this.mapRef)
-
         this.props.navStep?.nodes.forEach((node, index) => {
 
             svg.append("circle")
@@ -79,19 +83,37 @@ export default class Map extends Component<Prop>{
             .attr("stroke-width", 150)
 
             if(index > 0){
-                svg.append("line")
-                .attr("x1", prevNodeX)
-                .attr("y1", prevNodeY)
-                .attr("x2", `${node.xCoordinate}%`)
-                .attr("y2", `${node.yCoordinate}%`)
-                .style("stroke", "#41C7F7")
-                .style("stroke-width", lineStrokeWidthRelative)
-                .attr("stroke-linecap", "round")
-                .attr("stroke-opacity", 0.6)
+
+                var checkCoords = this.coordinatesOverlap(prevNodeX, node.xCoordinate, prevNodeY, node.yCoordinate)
+
+                if(checkCoords){
+                    svg.append("marker")
+                    .attr("id", "triangle")
+                    .attr("refX", -10)
+                    .attr("refY", 6)
+                    .attr("markerWidth", 30)
+                    .attr("markerHeight", 30)
+                    .attr("markerUnits","userSpaceOnUse")
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M 0 0 12 6 0 12 3 6")
+                    .style("fill", "#06B6D4");
+
+                    svg.append("line")
+                    .attr("x1", `${prevNodeX}%`)
+                    .attr("y1", `${prevNodeY}%`)
+                    .attr("x2", `${node.xCoordinate}%`)
+                    .attr("y2", `${node.yCoordinate}%`)
+                    .style("stroke", "#41C7F7")
+                    .style("stroke-width", lineStrokeWidthRelative)
+                    .attr("stroke-linecap", "round")
+                    .attr("stroke-opacity", 0.6)
+                    .attr("marker-start", "url(#triangle)")
+                }
             }
 
-            prevNodeX = `${node.xCoordinate}%`
-            prevNodeY = `${node.yCoordinate}%`
+            prevNodeX = node.xCoordinate
+            prevNodeY = node.yCoordinate
         })
     }
 
@@ -113,20 +135,19 @@ export default class Map extends Component<Prop>{
         
         d3.selectAll("circle").remove().exit()
         d3.selectAll("line").remove().exit()
+        d3.selectAll("marker").remove().exit()
         this.connectNodes()
     }
 
     render() {
-    
+
         return(
-                <div className="w-full h-2/5 border max-w-3xl mx-auto">
-                    <ZoomableSVG width={this.props.width} height={this.props.height} 
-                        centroidCrop={this.props.centroidCrop} enableZoom={false}>
-                        <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>
-                            
-                        </svg>
-                    </ZoomableSVG>
-                </div>
+            <ZoomableSVG width={this.props.width} height={this.props.height} 
+                centroidCrop={this.props.centroidCrop} enableZoom={this.props.enableZoom}>
+                <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>
+                    
+                </svg>
+            </ZoomableSVG>
         )
     }
 

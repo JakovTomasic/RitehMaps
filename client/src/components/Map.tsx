@@ -62,7 +62,7 @@ export default class Map extends Component<Prop>{
         })
     }
 
-    private checkCoordinates(x1, x2, y1, y2): boolean{
+    private coordinatesOverlap(x1, x2, y1, y2): boolean{
         return ((round(x1, 2) != round(x2, 2)) || (round(y1, 2) != round(y2, 2)))
     }
 
@@ -84,7 +84,7 @@ export default class Map extends Component<Prop>{
 
             if(index > 0){
 
-                var checkCoords = this.checkCoordinates(prevNodeX, node.xCoordinate, prevNodeY, node.yCoordinate)
+                var checkCoords = this.coordinatesOverlap(prevNodeX, node.xCoordinate, prevNodeY, node.yCoordinate)
 
                 if(checkCoords){
                     svg.append("marker")

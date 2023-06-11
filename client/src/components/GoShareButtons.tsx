@@ -32,7 +32,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
             className="mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 
                       bg-cyan-600 focus:bg-cyan-700 transition duration-300 w-10
                         text-white text-sm font-bold"
-            type="submit"
+            type="button"
           >
             Go
           </button>
@@ -79,7 +79,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
           className="mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 
                        bg-gray-500 cursor-not-allowed
                         text-white text-sm font-bold"
-          type="submit"
+          type="button"
         >
           Go
         </button>

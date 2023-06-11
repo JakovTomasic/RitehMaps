@@ -43,15 +43,26 @@ function Search({ roomSearcher, onSelection, initialInputValue, placeholder }: P
   useEffect(() => {
 
     const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
+      if (showDropdown && searchRef.current && !searchRef.current.contains(event.target)) {
         setShowDropdown(false);
+
+        if (inputValue != null) {
+          const suggestions = roomSearcher(inputValue);
+          if (suggestions.length == 1) {
+            const autoSelectedNode = suggestions[0];
+            onSelection(autoSelectedNode);
+            setInputValue(autoSelectedNode.roomName);
+          } else {
+            setInputValue("");
+          }
+        }
       }
     };
   
     document.addEventListener("click", handleClickOutside);
   
     return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  }, [inputValue]);
   
 
   return (

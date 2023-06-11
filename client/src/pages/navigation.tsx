@@ -64,7 +64,7 @@ export default function Navigation(){
 
     return(
         <>
-            <div className="relative w-fill h-screen mx-auto my-0 max-w-3xl">
+            <div className="absolute w-fill h-full mx-auto left-0 right-0 my-0 max-w-3xl">
                 <div className="h-1/8">
                     <Header text='Navigation' backPath='/' />
                 </div>

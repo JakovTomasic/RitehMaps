@@ -467,6 +467,10 @@ export const edges: Edge[] = [
         nodeId2: "lab_f1_right_stairs_up",
     },
     {
+        nodeId1: "lab_f1_right_stairs_up",
+        nodeId2: "lab_f1_right_navnode_2",
+    },
+    {
         nodeId1: "h_lab_f1_right_main",
         nodeId2: "lab_f1_right_middle_stairs_down",
     },

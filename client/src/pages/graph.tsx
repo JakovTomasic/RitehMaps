@@ -26,6 +26,7 @@ export default function GraphPage(){
                     <div key={submap.id}>
                         <Map layoutImage={submap.path} 
                             enableDrawNodes={true}
+                            enableZoom={true}
                             width={submap.width}
                             height={submap.height}
                             navStep={navSteps}

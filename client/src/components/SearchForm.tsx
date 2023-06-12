@@ -7,26 +7,41 @@ import { RoomSearch } from "../logic/interfaces/RoomSearch";
 import GoShareButtons from "./GoShareButtons";
 import { useRouter } from "next/router";
 
+const DEFAULT_START_ID: string = "main_entrance";
+const DEFAULT_START_NAME: string = "entrance";
+
 type Prop = {
   roomSearcher: RoomSearch;
 }
 
+type SearchInputs = {
+  startNodeId: string,
+  startText: string,
+  destinationNodeId: string,
+  destinationText: string,
+}
+
 function SearchForm({ roomSearcher }: Prop) {
   const router = useRouter();
-  const [startNodeId, setStartNodeId] = useState<String>(undefined);
-  const [destinationNodeId, setDestinationNodeId] = useState<String>(undefined);
-  const [startText, setStartText] = useState<String>(undefined);
-  const [destinationText, setDestinationText] = useState<String>(undefined);
+  const [searchInputs, setSearchInputs] = useState<SearchInputs>({
+    startNodeId: undefined,
+    startText: "",
+    destinationNodeId: undefined,
+    destinationText: "",
+  });
   const [showShareDiv, setShowShareDiv] = useState(false);
+  const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
 
   useEffect(() => {
     if(router.isReady){
       
       const data = router.query;
-      setStartNodeId(data.startNodeId as string);
-      setDestinationNodeId(data.endNodeId as string);
-      setStartText(data.startText as string);
-      setDestinationText(data.destinationText as string);
+      setSearchInputs({
+        startNodeId: data.startNodeId as string,
+        destinationNodeId: data.endNodeId as string,
+        startText: data.startText as string,
+        destinationText: data.destinationText as string,
+      });
     }
   }, [router.isReady]);
 
@@ -62,11 +77,17 @@ function SearchForm({ roomSearcher }: Prop) {
                       <Search 
                         roomSearcher={roomSearcher.sortedSuggestionsForStart}
                         onSelection={(selectedNode) => {
-                          setStartNodeId(selectedNode?.nodeId);
-                          setStartText(selectedNode?.roomName);
+                          setSearchInputs((prevInputs: SearchInputs) => {
+                            return {
+                              ...prevInputs,
+                              startNodeId: selectedNode?.nodeId,
+                              startText: selectedNode?.roomName
+                            }
+                          });
                         }}
-                        initialInputValue= {startText as string}
-                        placeholder={"entrance"}
+                        onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
+                        initialInputValue={searchInputs.startText ?? ""}
+                        placeholder={DEFAULT_START_NAME}
                       />
                     </label> 
                   </div>
@@ -83,10 +104,16 @@ function SearchForm({ roomSearcher }: Prop) {
                     <Search 
                       roomSearcher={roomSearcher.sortedSuggestionsForDestination}
                       onSelection={(selectedNode) => {
-                        setDestinationNodeId(selectedNode?.nodeId);
-                        setDestinationText(selectedNode?.roomName);
+                        setSearchInputs((prevInputs: SearchInputs) => {
+                          return {
+                            ...prevInputs,
+                            destinationNodeId: selectedNode?.nodeId,
+                            destinationText: selectedNode?.roomName
+                          }
+                        });
                       }}
-                      initialInputValue= {destinationText as string}
+                      onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
+                      initialInputValue={searchInputs.destinationText ?? ""}
                       placeholder={"Search"}
                     />
                     </label> 
@@ -96,20 +123,48 @@ function SearchForm({ roomSearcher }: Prop) {
 
             </div>
 
-              <div className="w-1px items-center justify-center pl-1 pt-3">    
-              <ChangeArrowsIcon/>
+              <div className="w-1px items-center justify-center pl-1 pt-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!searchDropdownVisible) {
+                      setSearchInputs((prevInputs: SearchInputs) => {
+                        let nextDestinationId: string;
+                        let nextDestinationText: string;
+                        if (prevInputs.startNodeId === undefined) {
+                          nextDestinationId = DEFAULT_START_ID;
+                          nextDestinationText = DEFAULT_START_NAME;
+                        } else {
+                          nextDestinationId = prevInputs.startNodeId;
+                          nextDestinationText = prevInputs.startText;
+                        }
+
+                        return {
+                          startNodeId: prevInputs.destinationNodeId,
+                          startText: prevInputs.destinationText,
+                          destinationNodeId: nextDestinationId,
+                          destinationText: nextDestinationText,
+                        }
+                      });
+                    }
+                  }}
+                >
+                  <ChangeArrowsIcon/>
+                </button>
               </div>
 
           </div>
           
           <div className="flex relative py-3 items-center justify-center z-0">
             <GoShareButtons 
-                startNodeId={startNodeId} 
-                destinationNodeId={destinationNodeId}
-                startText={startText} 
-                destinationText={destinationText}
+                startNodeId={searchInputs.startNodeId} 
+                destinationNodeId={searchInputs.destinationNodeId}
+                startText={searchInputs.startText} 
+                destinationText={searchInputs.destinationText}
                 handleShare ={handleShare}
-                showShareDiv={showShareDiv} 
+                showShareDiv={showShareDiv}
+                clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
+                defaultStartNodeId={DEFAULT_START_ID}
             />
           </div>
 

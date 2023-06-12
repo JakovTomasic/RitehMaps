@@ -107,7 +107,7 @@ export default class Map extends Component<Prop>{
                     .style("stroke", "#41C7F7")
                     .style("stroke-width", lineStrokeWidthRelative)
                     .attr("stroke-linecap", "round")
-                    .attr("stroke-opacity", 0.6)
+                    .attr("stroke-opacity", 1.0)
                     .attr("marker-start", "url(#triangle)")
                 }
             }

@@ -4,29 +4,35 @@ import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
   onSelection: (selectedNode: SearchNodeSuggestion | null) => void;
-  initialInputValue: string
-  placeholder: string
+  onDropdownVisibilityChange: (isDropdownVisible: boolean) => void;
+  initialInputValue: string;
+  placeholder: string;
 }
 
-function Search({ roomSearcher, onSelection, initialInputValue, placeholder }: Prop) {
+function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initialInputValue, placeholder }: Prop) {
 
   const [inputValue, setInputValue] = useState(initialInputValue);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, internalSetShowDropdown] = useState(false);
   const [dropdownOptions, setDropdownOptions] = useState<SearchNodeSuggestion[]>([]);
   const searchRef = useRef(null);
   
+  function setShowDropdown(show: boolean) {
+    internalSetShowDropdown(show);
+    onDropdownVisibilityChange(show);
+  }
+
   useEffect(() => {
     setInputValue(initialInputValue);
-  }, [initialInputValue])
+  }, [initialInputValue]);
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setInputValue(inputValue);
-    onSelection(null);
     
     if (inputValue === "") {
       setDropdownOptions([]);
-      setShowDropdown(false); 
+      setShowDropdown(false);
+      onSelection(null);
     } else {
       const sortedSuggestions = roomSearcher(inputValue);
       setDropdownOptions(sortedSuggestions);
@@ -43,15 +49,27 @@ function Search({ roomSearcher, onSelection, initialInputValue, placeholder }: P
   useEffect(() => {
 
     const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
+      if (showDropdown && searchRef.current && !searchRef.current.contains(event.target)) {
         setShowDropdown(false);
+
+        if (inputValue != null) {
+          const suggestions = roomSearcher(inputValue);
+          if (suggestions.length == 1) {
+            const autoSelectedNode = suggestions[0];
+            onSelection(autoSelectedNode);
+            setInputValue(autoSelectedNode.roomName);
+          } else {
+            onSelection(null);
+            setInputValue("");
+          }
+        }
       }
     };
   
     document.addEventListener("click", handleClickOutside);
   
     return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  }, [showDropdown, inputValue]);
   
 
   return (

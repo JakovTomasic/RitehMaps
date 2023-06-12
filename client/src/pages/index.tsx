@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
 
-    <div className="h-screen w-screen bg-white flex justify-center items-center">
+    <div className="fixed h-full w-full bg-white flex justify-center items-center">
       <Navbar />
 
       <div className="flex flex-col justify-center items-center">

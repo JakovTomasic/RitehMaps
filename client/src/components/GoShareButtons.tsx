@@ -11,10 +11,12 @@ type GoButtonProps = {
   destinationText: String;
   handleShare: () => void;
   showShareDiv: boolean;
+  clickable: boolean;
+  defaultStartNodeId: string;
 };
 
 const GoShareButtons: React.FC<GoButtonProps> = (props) => {
-  if (props.destinationNodeId != undefined) {
+  if (props.clickable) {
    
     return (
       <div className="flex w-full items-center justify-center">
@@ -32,7 +34,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
             className="mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 
                       bg-cyan-600 focus:bg-cyan-700 transition duration-300 w-10
                         text-white text-sm font-bold"
-            type="submit"
+            type="button"
           >
             Go
           </button>
@@ -43,7 +45,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
             pathname: "/",
             query: {
               startNodeId: (props.startNodeId as string) != null 
-                          ? (props.startNodeId as string) : "main_entrance",
+                          ? (props.startNodeId as string) : props.defaultStartNodeId,
               endNodeId: props.destinationNodeId as string,
               startText: (props.startText as string) != null 
                           ? (props.startText as string) : "",
@@ -79,7 +81,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
           className="mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 
                        bg-gray-500 cursor-not-allowed
                         text-white text-sm font-bold"
-          type="submit"
+          type="button"
         >
           Go
         </button>

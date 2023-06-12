@@ -7,6 +7,9 @@ import { RoomSearch } from "../logic/interfaces/RoomSearch";
 import GoShareButtons from "./GoShareButtons";
 import { useRouter } from "next/router";
 
+const DEFAULT_START_ID: string = "main_entrance";
+const DEFAULT_START_NAME: string = "entrance";
+
 type Prop = {
   roomSearcher: RoomSearch;
 }
@@ -84,7 +87,7 @@ function SearchForm({ roomSearcher }: Prop) {
                         }}
                         onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
                         initialInputValue={searchInputs.startText ?? ""}
-                        placeholder={"entrance"}
+                        placeholder={DEFAULT_START_NAME}
                       />
                     </label> 
                   </div>
@@ -126,11 +129,21 @@ function SearchForm({ roomSearcher }: Prop) {
                   onClick={() => {
                     if (!searchDropdownVisible) {
                       setSearchInputs((prevInputs: SearchInputs) => {
+                        let nextDestinationId: string;
+                        let nextDestinationText: string;
+                        if (prevInputs.startNodeId === undefined) {
+                          nextDestinationId = DEFAULT_START_ID;
+                          nextDestinationText = DEFAULT_START_NAME;
+                        } else {
+                          nextDestinationId = prevInputs.startNodeId;
+                          nextDestinationText = prevInputs.startText;
+                        }
+
                         return {
                           startNodeId: prevInputs.destinationNodeId,
                           startText: prevInputs.destinationText,
-                          destinationNodeId: prevInputs.startNodeId,
-                          destinationText: prevInputs.startText,
+                          destinationNodeId: nextDestinationId,
+                          destinationText: nextDestinationText,
                         }
                       });
                     }
@@ -151,6 +164,7 @@ function SearchForm({ roomSearcher }: Prop) {
                 handleShare ={handleShare}
                 showShareDiv={showShareDiv}
                 clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
+                defaultStartNodeId={DEFAULT_START_ID}
             />
           </div>
 

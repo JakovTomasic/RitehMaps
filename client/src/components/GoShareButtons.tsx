@@ -12,6 +12,7 @@ type GoButtonProps = {
   handleShare: () => void;
   showShareDiv: boolean;
   clickable: boolean;
+  defaultStartNodeId: string;
 };
 
 const GoShareButtons: React.FC<GoButtonProps> = (props) => {
@@ -44,7 +45,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
             pathname: "/",
             query: {
               startNodeId: (props.startNodeId as string) != null 
-                          ? (props.startNodeId as string) : "main_entrance",
+                          ? (props.startNodeId as string) : props.defaultStartNodeId,
               endNodeId: props.destinationNodeId as string,
               startText: (props.startText as string) != null 
                           ? (props.startText as string) : "",

@@ -81,7 +81,7 @@ function SearchForm({ roomSearcher }: Prop) {
                             }
                           });
                         }}
-                        initialInputValue= {searchInputs.startText != null ? searchInputs.startText : ""}
+                        initialInputValue={searchInputs.startText ?? ""}
                         placeholder={"entrance"}
                       />
                     </label> 
@@ -107,7 +107,7 @@ function SearchForm({ roomSearcher }: Prop) {
                           }
                         });
                       }}
-                      initialInputValue= {searchInputs.destinationText != null ? searchInputs.destinationText : ""}
+                      initialInputValue={searchInputs.destinationText ?? ""}
                       placeholder={"Search"}
                     />
                     </label> 

@@ -28,11 +28,11 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setInputValue(inputValue);
-    onSelection(null);
     
     if (inputValue === "") {
       setDropdownOptions([]);
-      setShowDropdown(false); 
+      setShowDropdown(false);
+      onSelection(null);
     } else {
       const sortedSuggestions = roomSearcher(inputValue);
       setDropdownOptions(sortedSuggestions);
@@ -59,6 +59,7 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
             onSelection(autoSelectedNode);
             setInputValue(autoSelectedNode.roomName);
           } else {
+            onSelection(null);
             setInputValue("");
           }
         }

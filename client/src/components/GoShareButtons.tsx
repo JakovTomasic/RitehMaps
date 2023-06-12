@@ -11,10 +11,11 @@ type GoButtonProps = {
   destinationText: String;
   handleShare: () => void;
   showShareDiv: boolean;
+  clickable: boolean;
 };
 
 const GoShareButtons: React.FC<GoButtonProps> = (props) => {
-  if (props.destinationNodeId != undefined) {
+  if (props.clickable) {
    
     return (
       <div className="flex w-full items-center justify-center">

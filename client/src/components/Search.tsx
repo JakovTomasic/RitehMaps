@@ -4,20 +4,26 @@ import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
   onSelection: (selectedNode: SearchNodeSuggestion | null) => void;
-  initialInputValue: string
-  placeholder: string
+  onDropdownVisibilityChange: (isDropdownVisible) => void;
+  initialInputValue: string;
+  placeholder: string;
 }
 
-function Search({ roomSearcher, onSelection, initialInputValue, placeholder }: Prop) {
+function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initialInputValue, placeholder }: Prop) {
 
   const [inputValue, setInputValue] = useState(initialInputValue);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, internalSetShowDropdown] = useState(false);
   const [dropdownOptions, setDropdownOptions] = useState<SearchNodeSuggestion[]>([]);
   const searchRef = useRef(null);
   
+  function setShowDropdown(show: boolean) {
+    internalSetShowDropdown(show);
+    onDropdownVisibilityChange(show);
+  }
+
   useEffect(() => {
     setInputValue(initialInputValue);
-  }, [initialInputValue])
+  }, [initialInputValue]);
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;

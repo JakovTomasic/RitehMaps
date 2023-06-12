@@ -27,6 +27,7 @@ function SearchForm({ roomSearcher }: Prop) {
     destinationText: "",
   });
   const [showShareDiv, setShowShareDiv] = useState(false);
+  const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
 
   useEffect(() => {
     if(router.isReady){
@@ -81,6 +82,7 @@ function SearchForm({ roomSearcher }: Prop) {
                             }
                           });
                         }}
+                        onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
                         initialInputValue={searchInputs.startText ?? ""}
                         placeholder={"entrance"}
                       />
@@ -107,6 +109,7 @@ function SearchForm({ roomSearcher }: Prop) {
                           }
                         });
                       }}
+                      onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
                       initialInputValue={searchInputs.destinationText ?? ""}
                       placeholder={"Search"}
                     />
@@ -121,14 +124,16 @@ function SearchForm({ roomSearcher }: Prop) {
                 <button
                   type="button"
                   onClick={() => {
-                    setSearchInputs((prevInputs: SearchInputs) => {
-                      return {
-                        startNodeId: prevInputs.destinationNodeId,
-                        startText: prevInputs.destinationText,
-                        destinationNodeId: prevInputs.startNodeId,
-                        destinationText: prevInputs.startText,
-                      }
-                    });
+                    if (!searchDropdownVisible) {
+                      setSearchInputs((prevInputs: SearchInputs) => {
+                        return {
+                          startNodeId: prevInputs.destinationNodeId,
+                          startText: prevInputs.destinationText,
+                          destinationNodeId: prevInputs.startNodeId,
+                          destinationText: prevInputs.startText,
+                        }
+                      });
+                    }
                   }}
                 >
                   <ChangeArrowsIcon/>
@@ -144,7 +149,8 @@ function SearchForm({ roomSearcher }: Prop) {
                 startText={searchInputs.startText} 
                 destinationText={searchInputs.destinationText}
                 handleShare ={handleShare}
-                showShareDiv={showShareDiv} 
+                showShareDiv={showShareDiv}
+                clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
             />
           </div>
 

@@ -4,7 +4,7 @@ import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
   onSelection: (selectedNode: SearchNodeSuggestion | null) => void;
-  onDropdownVisibilityChange: (isDropdownVisible) => void;
+  onDropdownVisibilityChange: (isDropdownVisible: boolean) => void;
   initialInputValue: string;
   placeholder: string;
 }
@@ -69,7 +69,7 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
     document.addEventListener("click", handleClickOutside);
   
     return () => document.removeEventListener("click", handleClickOutside);
-  }, [inputValue]);
+  }, [showDropdown, inputValue]);
   
 
   return (

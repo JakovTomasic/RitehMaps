@@ -42,6 +42,14 @@ export const hallways: Hallway[] = [
         x2: 39,
         y2: 23.99,
     },
+    {
+        id: "h_main_f0_middle_to_i8",
+        submapId: 1,
+        x1: 61.78,
+        y1: 67.14,
+        x2: 61.78,
+        y2: 23.25,
+    },
 
     // Main building, floor 1
     {

@@ -16,6 +16,10 @@ export const edges: Edge[] = [
     },
     {
         nodeId1: "h_main_f0_main",
+        nodeId2: "h_main_f0_middle_to_i8",
+    },
+    {
+        nodeId1: "h_main_f0_main",
         nodeId2: "main_entrance",
     },
     {
@@ -41,6 +45,14 @@ export const edges: Edge[] = [
     {
         nodeId1: "h_main_f0_right",
         nodeId2: "0-17",
+    },
+    {
+        nodeId1: "h_main_f0_right",
+        nodeId2: "0-16",
+    },
+    {
+        nodeId1: "h_main_f0_right",
+        nodeId2: "0-15",
     },
     {
         nodeId1: "h_main_f0_main",
@@ -69,6 +81,102 @@ export const edges: Edge[] = [
     {
         nodeId1: "h_main_f0_middle_to_student_room",
         nodeId2: "student_room",
+    },
+    {
+        nodeId1: "h_main_f0_middle_to_i8",
+        nodeId2: "I8",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-72",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-71",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-70",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-68",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-66",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-64",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "left_corridor_bunch_of_rooms",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-55",
+    },
+    {
+        nodeId1: "0-55",
+        nodeId2: "0-60",
+    },
+    {
+        nodeId1: "0-55",
+        nodeId2: "0-61",
+    },
+    {
+        nodeId1: "0-55",
+        nodeId2: "0-62",
+    },
+    {
+        nodeId1: "0-55",
+        nodeId2: "0-63",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-30",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-07",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-11",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-13",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-21",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-20",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "0-14",
+    },
+    {
+        nodeId1: "h_main_f0_main",
+        nodeId2: "library_midnode_1",
+    },
+    {
+        nodeId1: "library_midnode_1",
+        nodeId2: "library_midnode_2",
+    },
+    {
+        nodeId1: "library_midnode_2",
+        nodeId2: "library_midnode_3",
+    },
+    {
+        nodeId1: "library_midnode_3",
+        nodeId2: "0-27",
     },
 
     // Main building, floor 0 - floor 1

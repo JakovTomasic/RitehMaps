@@ -197,6 +197,18 @@ export const edges: Edge[] = [
     },
     {
         nodeId1: "h_main_f1_left_main",
+        nodeId2: "h_main_f1_left_offices",
+    },
+    {
+        nodeId1: "h_main_f1_left_main",
+        nodeId2: "h_main_f1_left_edulab_1",
+    },
+    {
+        nodeId1: "h_main_f1_left_edulab_1",
+        nodeId2: "h_main_f1_left_edulab_2",
+    },
+    {
+        nodeId1: "h_main_f1_left_main",
         nodeId2: "f1_left_stairs_down",
     },
     {
@@ -218,6 +230,78 @@ export const edges: Edge[] = [
     {
         nodeId1: "h_main_f1_left_main",
         nodeId2: "1-49",
+    },
+    {
+        nodeId1: "h_main_f1_left_offices",
+        nodeId2: "1-48",
+    },
+    {
+        nodeId1: "h_main_f1_left_offices",
+        nodeId2: "1-48b",
+    },
+    {
+        nodeId1: "h_main_f1_left_main",
+        nodeId2: "1-48a",
+    },
+    {
+        nodeId1: "h_main_f1_left_edulab_2",
+        nodeId2: "1-40",
+    },
+    {
+        nodeId1: "h_main_f1_left_edulab_2",
+        nodeId2: "edulab_helpnode_for_1-41",
+    },
+    {
+        nodeId1: "edulab_helpnode_for_1-41",
+        nodeId2: "1-41",
+    },
+    {
+        nodeId1: "h_main_f1_left_edulab_1",
+        nodeId2: "i5",
+    },
+    {
+        nodeId1: "h_main_f1_left_main",
+        nodeId2: "1-51",
+    },
+    {
+        nodeId1: "h_main_f1_left_main",
+        nodeId2: "1-53",
+    },
+    {
+        nodeId1: "h_main_f1_left_main",
+        nodeId2: "1-55",
+    },
+    {
+        nodeId1: "h_main_f1_left_main",
+        nodeId2: "1-57",
+    },
+    {
+        nodeId1: "h_main_f1_left_main",
+        nodeId2: "1-58",
+    },
+    {
+        nodeId1: "h_main_f1_left_other",
+        nodeId2: "1-65",
+    },
+    {
+        nodeId1: "h_main_f1_left_other",
+        nodeId2: "I3",
+    },
+    {
+        nodeId1: "h_main_f1_left_other",
+        nodeId2: "i1_i2_nav_node",
+    },
+    {
+        nodeId1: "i1_i2_nav_node",
+        nodeId2: "I1",
+    },
+    {
+        nodeId1: "i1_i2_nav_node",
+        nodeId2: "I2",
+    },
+    {
+        nodeId1: "h_main_f1_left_other",
+        nodeId2: "1-64a",
     },
 
     // Main building, floor 1 - right
@@ -256,6 +340,54 @@ export const edges: Edge[] = [
     {
         nodeId1: "h_main_f1_right_other",
         nodeId2: "f1_right_women_toilet",
+    },
+    {
+        nodeId1: "h_main_f1_right_other",
+        nodeId2: "U3",
+    },
+    {
+        nodeId1: "h_main_f1_right_main",
+        nodeId2: "1-18",
+    },
+    {
+        nodeId1: "h_main_f1_right_main",
+        nodeId2: "1-19",
+    },
+    {
+        nodeId1: "h_main_f1_right_main",
+        nodeId2: "1-25",
+    },
+    {
+        nodeId1: "1-25",
+        nodeId2: "1-26",
+    },
+    {
+        nodeId1: "1-25",
+        nodeId2: "1-27",
+    },
+    {
+        nodeId1: "1-25",
+        nodeId2: "1-28",
+    },
+    {
+        nodeId1: "1-25",
+        nodeId2: "1-29",
+    },
+    {
+        nodeId1: "h_main_f1_right_main",
+        nodeId2: "1-32",
+    },
+    {
+        nodeId1: "h_main_f1_right_main",
+        nodeId2: "f1_right_labos_midnode",
+    },
+    {
+        nodeId1: "f1_right_labos_midnode",
+        nodeId2: "L3",
+    },
+    {
+        nodeId1: "f1_right_labos_midnode",
+        nodeId2: "L4",
     },
 
 

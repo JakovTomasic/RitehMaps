@@ -526,16 +526,12 @@ export const edges: Edge[] = [
         nodeId1: "main_f2_right_lab_passage",
     },
     {
-        nodeId1: "h_main_f2_right_pathtolab_3",
-        nodeId2: "L13",
-    },
-    {
         nodeId1: "h_main_f2_right_main",
         nodeId2: "main_f2_right_infrontofU7",
     },
     {
-        nodeId2: "main_f2_right_infrontofU7",
-        nodeId1: "U7",
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "main_f2_right_infrontofU5",
     },
     {
         nodeId1: "h_main_f2_right_main",
@@ -545,6 +541,90 @@ export const edges: Edge[] = [
         nodeId1: "h_main_f2_right_pathtolab_1",
         nodeId2: "f2_right_women_toilet",
     },
+    {
+        nodeId1: "h_main_f2_right_pathtolab_3",
+        nodeId2: "2-53",
+    },
+    {
+        nodeId1: "h_main_f2_right_pathtolab_3",
+        nodeId2: "2-54",
+    },
+
+    {
+        nodeId1: "h_main_f2_right_pathtolab_3",
+        nodeId2: "2-55",
+    },
+
+    {
+        nodeId1: "h_main_f2_right_pathtolab_3",
+        nodeId2: "2-56",
+    },
+
+    {
+        nodeId1: "h_main_f2_right_pathtolab_3",
+        nodeId2: "2-57",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "2-06",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "2-08",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "2-10",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "2-11",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "2-13",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "2-14",
+    },
+    {
+        nodeId1: "h_main_f2_right_main",
+        nodeId2: "2-16",
+    },
+    {
+        nodeId1: "2-16",
+        nodeId2: "2-17",
+    },
+    {
+        nodeId1: "2-16",
+        nodeId2: "2-18",
+    },
+    {
+        nodeId1: "2-16",
+        nodeId2: "2-19",
+    },
+    {
+        nodeId1: "h_main_f2_right_pathtolab_3",
+        nodeId2: "L11",
+    },
+    {
+        nodeId1: "h_main_f2_right_pathtolab_3",
+        nodeId2: "L12",
+    },
+    {
+        nodeId1: "h_main_f2_right_pathtolab_1",
+        nodeId2: "L14",
+    },
+    {
+        nodeId2: "main_f2_right_infrontofU7",
+        nodeId1: "U7",
+    },
+    {
+        nodeId2: "main_f2_right_infrontofU5",
+        nodeId1: "U5",
+    },
+
 
 
     // Main building, floor 2 - floor 3

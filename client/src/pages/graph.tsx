@@ -22,21 +22,18 @@ export default function GraphPage(){
                     scaledWidth: submap.width,
                     scaledHeight: submap.height,
                 }
-                if(submap.id == 3)
-                    return (
-                        <div key={submap.id}>
-                            <Map layoutImage={submap.path} 
-                                enableDrawNodes={true}
-                                enableZoom={true}
-                                width={submap.width}
-                                height={submap.height}
-                                navStep={navSteps}
-                                centroidCrop={fullScale}/>
-                            <Separator />
-                        </div>
-                    );
-                else return (<div > </div>);
-                
+                return (
+                    <div key={submap.id}>
+                        <Map layoutImage={submap.path} 
+                            enableDrawNodes={true}
+                            enableZoom={true}
+                            width={submap.width}
+                            height={submap.height}
+                            navStep={navSteps}
+                            centroidCrop={fullScale}/>
+                        <Separator />
+                    </div>
+                );
             })}
         </div>
     );

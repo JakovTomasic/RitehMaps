@@ -130,7 +130,7 @@ export const hallways: Hallway[] = [
         id: "h_main_f2_left_other",
         submapId: 3,
         x1: 34.03,
-        y1: 35.97,
+        y1: 46.71,
         x2: 34.03,
         y2: 93.33,
     },

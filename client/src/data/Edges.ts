@@ -32,7 +32,7 @@ export const edges: Edge[] = [
     },
     {
         nodeId1: "h_main_f0_main",
-        nodeId2: "cantine",
+        nodeId2: "canteen",
     },
     {
         nodeId1: "h_main_f0_main",
@@ -433,15 +433,71 @@ export const edges: Edge[] = [
     },
     {
         nodeId1: "h_main_f2_left_main",
+        nodeId2: "2-31",
+    },
+    {
+        nodeId1: "2-31",
+        nodeId2: "2-32",
+    },
+    {
+        nodeId1: "2-31",
+        nodeId2: "2-33",
+    },
+    {
+        nodeId1: "2-31",
+        nodeId2: "2-34",
+    },
+    {
+        nodeId1: "h_main_f2_left_main",
         nodeId2: "2-35",
+    },
+    {
+        nodeId1: "h_main_f2_left_main",
+        nodeId2: "2-36",
+    },
+    {
+        nodeId1: "h_main_f2_left_main",
+        nodeId2: "2-37",
+    },
+    {
+        nodeId1: "2-37",
+        nodeId2: "2-38",
+    },
+    {
+        nodeId1: "2-37",
+        nodeId2: "2-39",
+    },
+    {
+        nodeId1: "2-37",
+        nodeId2: "2-40",
+    },
+    {
+        nodeId1: "h_main_f2_left_other",
+        nodeId2: "2-46",
+    },
+    {
+        nodeId1: "h_main_f2_left_pathtolab",
+        nodeId2: "U8",
+    },
+    {
+        nodeId1: "h_main_f2_left_other",
+        nodeId2: "U9",
     },
     {
         nodeId1: "h_main_f2_left_other",
         nodeId2: "U10",
     },
     {
+        nodeId1: "h_main_f2_left_other",
+        nodeId2: "U11",
+    },
+    {
+        nodeId1: "h_main_f2_left_other",
+        nodeId2: "I7",
+    },
+    {
         nodeId1: "h_main_f2_left_pathtolab",
-        nodeId2: "U8",
+        nodeId2: "L10",
     },
 
     // Main building, floor 2 - right

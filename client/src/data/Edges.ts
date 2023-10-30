@@ -875,7 +875,43 @@ export const edges: Edge[] = [
     },
     {
         nodeId1: "h_lab_f0_down_main",
+        nodeId2: "h_lab_f0_left_vertical",
+    },
+    {
+        nodeId1: "h_lab_f0_left_vertical",
+        nodeId2: "h_lab_f0_left_horizontal",
+    },
+    {
+        nodeId1: "h_lab_f0_left_vertical",
+        nodeId2: "h_lab_f0_under_stairs",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-112",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-114",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-115",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-116",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
         nodeId2: "1-117a",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-117b",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-117c",
     },
     {
         nodeId1: "h_lab_f0_down_main",
@@ -883,7 +919,31 @@ export const edges: Edge[] = [
     },
     {
         nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-103",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
         nodeId2: "1-104",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-105",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "1-106",
+    },
+    {
+        nodeId1: "h_lab_f0_down_main",
+        nodeId2: "L9",
+    },
+    {
+        nodeId1: "h_lab_f0_under_stairs",
+        nodeId2: "1-127",
+    },
+    {
+        nodeId1: "h_lab_f0_left_horizontal",
+        nodeId2: "1-135",
     },
 
 

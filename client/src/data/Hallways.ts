@@ -261,6 +261,31 @@ export const hallways: Hallway[] = [
         x2: 81.51,
         y2: 74.91,
     },
+    {
+        id: "h_lab_f0_left_horizontal",
+        submapId: 101,
+        x1: 5.66,
+        y1: 69.29,
+        x2: 21.92,
+        y2: 69.29,
+    },
+    {
+        id: "h_lab_f0_left_vertical",
+        submapId: 101,
+        x1: 17.75,
+        y1: 45.26,
+        x2: 17.75,
+        y2: 77.79,
+    },
+    {
+        id: "h_lab_f0_under_stairs",
+        submapId: 101,
+        x1: 16.77,
+        y1: 48.56,
+        x2: 27.3,
+        y2: 48.56,
+    },
+
 
 
 

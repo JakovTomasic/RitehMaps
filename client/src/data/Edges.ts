@@ -683,10 +683,6 @@ export const edges: Edge[] = [
     },
     {
         nodeId1: "h_main_f3_left_main",
-        nodeId2: "U13",
-    },
-    {
-        nodeId1: "h_main_f3_left_main",
         nodeId2: "main_f3_left_men_toilet",
     },
     {
@@ -703,13 +699,53 @@ export const edges: Edge[] = [
     },
     {
         nodeId1: "h_main_f3_left_main",
+        nodeId2: "U13",
+    },
+    {
+        nodeId1: "h_main_f3_left_main",
         nodeId2: "U14",
     },
 
     // Main building, floor 3 - center
     {
         nodeId1: "h_main_f3_center",
+        nodeId2: "3-02",
+    },
+    {
+        nodeId1: "h_main_f3_center",
+        nodeId2: "3-04",
+    },
+    {
+        nodeId1: "h_main_f3_center",
+        nodeId2: "3-06",
+    },
+    {
+        nodeId1: "h_main_f3_center",
+        nodeId2: "3-07",
+    },
+    {
+        nodeId1: "h_main_f3_center",
         nodeId2: "3-08",
+    },
+    {
+        nodeId1: "h_main_f3_center",
+        nodeId2: "3-10",
+    },
+    {
+        nodeId1: "h_main_f3_center",
+        nodeId2: "3-18",
+    },
+    {
+        nodeId1: "h_main_f3_center",
+        nodeId2: "3-21",
+    },
+    {
+        nodeId1: "3-21",
+        nodeId2: "3-22",
+    },
+    {
+        nodeId1: "3-21",
+        nodeId2: "3-23",
     },
     {
         nodeId1: "h_main_f3_center",
@@ -735,7 +771,27 @@ export const edges: Edge[] = [
     },
     {
         nodeId1: "h_main_f3_right_main",
+        nodeId2: "3-24",
+    },
+    {
+        nodeId1: "h_main_f3_right_main",
+        nodeId2: "3-25",
+    },
+    {
+        nodeId1: "h_main_f3_right_main",
+        nodeId2: "3-27",
+    },
+    {
+        nodeId1: "h_main_f3_right_main",
         nodeId2: "3-28",
+    },
+    {
+        nodeId1: "h_main_f3_right_main",
+        nodeId2: "3-30",
+    },
+    {
+        nodeId1: "h_main_f3_right_main",
+        nodeId2: "3-33",
     },
     {
         nodeId1: "h_main_f3_right_main",
@@ -757,7 +813,46 @@ export const edges: Edge[] = [
         nodeId1: "h_main_f3_right_offices_2",
         nodeId2: "3-36",
     },
-
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "U18",
+    },
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "L2",
+    },
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "3-44",
+    },
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "3-44",
+    },
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "3-45",
+    },
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "3-46",
+    },
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "3-47",
+    },
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "3-48",
+    },
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "3-49",
+    },
+    {
+        nodeId1: "h_main_f3_right_pathtolab_3",
+        nodeId2: "3-50",
+    },
 
 
 

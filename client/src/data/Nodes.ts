@@ -760,7 +760,7 @@ export const nodes: Node[] = [
     },
     {
         nodeId: "2-35",
-        names: ["2-35"],
+        names: ["2-35", "2-35a"],
         submapId: 3,
         x: 18.59,
         y: 77.58,
@@ -994,7 +994,7 @@ export const nodes: Node[] = [
     },
     {
         nodeId: "2-08",
-        names: ["2-08"],
+        names: ["2-08", "2-08a"],
         submapId: 3,
         x: 69.24,
         y: 77.63,
@@ -1018,7 +1018,7 @@ export const nodes: Node[] = [
     },
     {
         nodeId: "2-13",
-        names: ["2-13"],
+        names: ["2-13", "2-13a"],
         submapId: 3,
         x: 80.66,
         y: 77.6,
@@ -1368,7 +1368,7 @@ export const nodes: Node[] = [
     },
     {
         nodeId: "3-35",
-        names: ["3-35"],
+        names: ["3-35", "3-35a"],
         submapId: 4,
         x: 90.39,
         y: 84.92,

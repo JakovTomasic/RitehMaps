@@ -4,6 +4,7 @@ import { nodes, Node } from "../../data/Nodes";
 import { professors, ProfessorData } from "../../data/ProfessorData";
 import { MapNodeFilterById } from "../../types/roomsearch/MapNodeFilterById";
 import { NodesContainer } from "../interfaces/NodesContainer";
+import { stringEquals } from "../../utils/Strings";
 
 export class RoomSearchImpl implements RoomSearch {
 
@@ -20,7 +21,7 @@ export class RoomSearchImpl implements RoomSearch {
 
     sortedSuggestionsForStart(searchedText: string): SearchNodeSuggestion[] {
         
-        const unsortedSuggestions: SearchNodeSuggestion[] =  this.mapToList()
+        const unsortedSuggestions: SearchNodeSuggestion[] = this.allNodeSuggestions()
                 .filter(node => this.nodesContainer.contains(node.nodeId));
         const filteredSuggestions: SearchNodeSuggestion[] = unsortedSuggestions.filter((suggestion) =>
             suggestion.roomName.toLowerCase().includes(searchedText.toLowerCase())
@@ -43,24 +44,42 @@ export class RoomSearchImpl implements RoomSearch {
     }
 
     findRoomByNodeId(nodeId: string): SearchNodeSuggestion | undefined {
-        const listOfSuggestions: SearchNodeSuggestion[] =  this.mapToList();
-        const foundSuggestion = listOfSuggestions.find((suggestion) => suggestion.nodeId === nodeId);
+        const listOfSuggestions: SearchNodeSuggestion[] = this.allNodeSuggestions();
+        const foundSuggestion = listOfSuggestions.find((suggestion) => stringEquals(suggestion.nodeId, nodeId));
 
         return foundSuggestion;  
     }
+
+    findNodeId(nodeNameOrId: string): string | undefined {
+        for (const node of nodes) {
+            if (stringEquals(node.nodeId, nodeNameOrId)) {
+                return node.nodeId;
+            }
+            for (const name of node.names) {
+                if (stringEquals(name, nodeNameOrId)) {
+                    return node.nodeId;
+                }
+            }
+        }
+        return undefined;
+    }
     
-    private mapToList (): SearchNodeSuggestion[] {
+    private allNodeSuggestions(): SearchNodeSuggestion[] {
         const nodeSuggestions : SearchNodeSuggestion[] = nodes.flatMap((node: Node) => {
-            const { names } = node;
             const destinationFilter = new MapNodeFilterById(node.nodeId);
-            return names.map((name) => new SearchNodeSuggestion(node.nodeId, name, destinationFilter));
+            return node.names.map((name) => new SearchNodeSuggestion(node.nodeId, name, destinationFilter));
         });
         const professorSuggestions: SearchNodeSuggestion[] = professors.flatMap((professor: ProfessorData) => {
-            const { name, room } = professor;
-            const formattedName = `${name} (${room})`;
-            const destinationFilter = new MapNodeFilterById(room);
-            return new SearchNodeSuggestion(room, formattedName, destinationFilter);
-        });
+            const roomId = this.findNodeId(professor.room);
+            if (roomId != undefined) {
+                const formattedName = `${professor.name} (${professor.room})`;
+                const destinationFilter = new MapNodeFilterById(roomId);
+                return new SearchNodeSuggestion(roomId, formattedName, destinationFilter);
+            } else {
+                console.error(`ERROR: professor office not found: ${professor.room} for ${professor.name}`);
+                return null;
+            }
+        }).filter(item => item != null);
 
         return nodeSuggestions.concat(professorSuggestions);
     }

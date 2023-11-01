@@ -1,6 +1,6 @@
 import { EndNodesGraphMock } from "../src/logic/mock/EndNodesGraphMock";
 import { recreatePath } from "../src/logic/impl/pathfinding/recreatePath";
-import { MapNode } from "../src/types/graph/MapNode";
+import { mockMapNode } from "../src/utils/mockingUtils";
 
 describe('testing recreatePath()', () => {
 
@@ -9,11 +9,11 @@ describe('testing recreatePath()', () => {
   test('should return correct recreated path', () => {
     var destinationNodeId = "5";
     var parents = new Map<string, string>([["2", "1"], ["3", "2"], ["4", "3"], ["5", "4"]]);
-    var expectedPath = [new MapNode("1", 1, 0, 0), 
-                        new MapNode("2", 1, 0, 0),
-                        new MapNode("3", 1, 0, 0), 
-                        new MapNode("4", 1, 0, 0), 
-                        new MapNode("5", 1, 0, 0)];
+    var expectedPath = [mockMapNode("1"), 
+                        mockMapNode("2"),
+                        mockMapNode("3"), 
+                        mockMapNode("4"), 
+                        mockMapNode("5")];
 
     var path = recreatePath(destinationNodeId, parents, endNodesGraph);
     expect(path).toEqual(expectedPath);

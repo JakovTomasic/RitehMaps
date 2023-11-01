@@ -1,33 +1,34 @@
 import { MapNode } from "../../types/graph/MapNode";
 import { NeighbourConnection } from "../../types/graph/NeighbourConnection";
+import { mockMapNode } from "../../utils/mockingUtils";
 import { Graph } from "../interfaces/Graph";
 
 export class EndNodesGraphMock implements Graph {
 
     private graph = new Map<string, NeighbourConnection[]>([
 
-        ["0", [new NeighbourConnection(new MapNode("1", 1, 0, 0), 10),
-             new NeighbourConnection(new MapNode("4", 1, 0, 0), 17),
-             new NeighbourConnection(new MapNode("3", 1, 0, 0), 4)]],
+        ["0", [new NeighbourConnection(mockMapNode("1"), 10),
+             new NeighbourConnection(mockMapNode("4"), 17),
+             new NeighbourConnection(mockMapNode("3"), 4)]],
 
-        ["1", [new NeighbourConnection(new MapNode("0", 1, 0, 0), 10),
-             new NeighbourConnection(new MapNode("4", 1, 0, 0), 7),
-             new NeighbourConnection(new MapNode("2", 1, 0, 0), 3)]],
+        ["1", [new NeighbourConnection(mockMapNode("0"), 10),
+             new NeighbourConnection(mockMapNode("4"), 7),
+             new NeighbourConnection(mockMapNode("2"), 3)]],
 
-        ["2", [new NeighbourConnection(new MapNode("1", 1, 0, 0), 3)]],
+        ["2", [new NeighbourConnection(mockMapNode("1"), 3)]],
 
-        ["3", [new NeighbourConnection(new MapNode("0", 1, 0, 0), 4),
-             new NeighbourConnection(new MapNode("4", 1, 0, 0), 15),
-             new NeighbourConnection(new MapNode("5", 1, 0, 0), 2)]],
+        ["3", [new NeighbourConnection(mockMapNode("0"), 4),
+             new NeighbourConnection(mockMapNode("4"), 15),
+             new NeighbourConnection(mockMapNode("5"), 2)]],
 
-        ["4", [new NeighbourConnection(new MapNode("3", 1, 0, 0), 15),
-             new NeighbourConnection(new MapNode("1", 1, 0, 0), 7)]],
+        ["4", [new NeighbourConnection(mockMapNode("3"), 15),
+             new NeighbourConnection(mockMapNode("1"), 7)]],
 
-        ["5", [new NeighbourConnection(new MapNode("3", 1, 0, 0), 2)]],
+        ["5", [new NeighbourConnection(mockMapNode("3"), 2)]],
     ]);
 
     getNode(nodeId: string): MapNode | undefined {
-        return this.graph.has(nodeId) ? new MapNode(nodeId, 1, 0, 0) : undefined;
+        return this.graph.has(nodeId) ? mockMapNode(nodeId) : undefined;
     }
 
     getNeighbours(nodeId: string): NeighbourConnection[] {

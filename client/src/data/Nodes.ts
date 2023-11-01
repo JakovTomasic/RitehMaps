@@ -421,7 +421,7 @@ export const nodes: Node[] = [
     },
     {
         nodeId: "1-49",
-        names: ["1-49", "1-49a", "1-49b", "1-49c"],
+        names: ["1-49", "1-49a", "1-49b", "1-49c", "1-49d"],
         submapId: 2,
         x: 9.4,
         y: 70.87,

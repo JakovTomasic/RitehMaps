@@ -773,7 +773,7 @@ export const professors: ProfessorData[] = [
     phoneNumber: "+385 51 505664",
     internalPhoneNumber: "5664",
     email: "kristijan.lenac@riteh.hr",
-    room: "2-55",
+    room: "1-49c",
     entity: "ZR",
   },
   {
@@ -917,7 +917,7 @@ export const professors: ProfessorData[] = [
     phoneNumber: "+385 51 505710",
     internalPhoneNumber: "5710",
     email: "goran.mausa@riteh.hr",
-    room: "2-50",
+    room: "1-49d",
     entity: "ZR",
   },
   {

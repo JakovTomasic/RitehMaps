@@ -42,6 +42,14 @@ export const hallways: Hallway[] = [
         x2: 39,
         y2: 23.99,
     },
+    {
+        id: "h_main_f0_middle_to_i8",
+        submapId: 1,
+        x1: 61.78,
+        y1: 67.14,
+        x2: 61.78,
+        y2: 23.25,
+    },
 
     // Main building, floor 1
     {
@@ -59,6 +67,30 @@ export const hallways: Hallway[] = [
         y1: 69.08,
         x2: 34.61,
         y2: 17.04,
+    },
+    {
+        id: "h_main_f1_left_offices",
+        submapId: 2,
+        x1: 8.9,
+        y1: 29.68,
+        x2: 8.9,
+        y2: 67.77,
+    },
+    {
+        id: "h_main_f1_left_edulab_1",
+        submapId: 2,
+        x1: 17.53,
+        y1: 34.84,
+        x2: 17.53,
+        y2: 68.75,
+    },
+    {
+        id: "h_main_f1_left_edulab_2",
+        submapId: 2,
+        x1: 16.4,
+        y1: 36.46,
+        x2: 23.54,
+        y2: 36.46,
     },
     {
         id: "h_main_f1_right_main",
@@ -98,7 +130,7 @@ export const hallways: Hallway[] = [
         id: "h_main_f2_left_other",
         submapId: 3,
         x1: 34.03,
-        y1: 35.97,
+        y1: 46.71,
         x2: 34.03,
         y2: 93.33,
     },
@@ -229,6 +261,31 @@ export const hallways: Hallway[] = [
         x2: 81.51,
         y2: 74.91,
     },
+    {
+        id: "h_lab_f0_left_horizontal",
+        submapId: 101,
+        x1: 5.66,
+        y1: 69.29,
+        x2: 21.92,
+        y2: 69.29,
+    },
+    {
+        id: "h_lab_f0_left_vertical",
+        submapId: 101,
+        x1: 17.75,
+        y1: 45.26,
+        x2: 17.75,
+        y2: 77.79,
+    },
+    {
+        id: "h_lab_f0_under_stairs",
+        submapId: 101,
+        x1: 16.77,
+        y1: 48.56,
+        x2: 27.3,
+        y2: 48.56,
+    },
+
 
 
 

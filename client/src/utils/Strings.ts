@@ -7,3 +7,27 @@ export function normalizeForComparison(s: string) {
 export function stringEquals(s1: string, s2: string) {
     return normalizeForComparison(s1) === normalizeForComparison(s2);
 }
+
+export function replaceSubstring(text: string, replaceSubstring: string, withString: string): string {
+    return text.split(replaceSubstring).join(withString);
+}
+
+export function diacriticToAsciiLetters(text: string): string {
+    const pairsMap = new Map([
+        ["Š", "S"],
+        ["š", "s"],
+        ["Č", "C"],
+        ["č", "c"],
+        ["Ć", "C"],
+        ["ć", "c"],
+        ["Đ", "D"],
+        ["đ", "d"],
+        ["Ž", "Z"],
+        ["ž", "z"],
+    ]);
+    let modifiedText = text;
+    for (const pair of pairsMap) {
+        modifiedText = replaceSubstring(modifiedText, pair[0], pair[1]);
+    }
+    return modifiedText;
+}

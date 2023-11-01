@@ -4,7 +4,7 @@ import { nodes, Node } from "../../data/Nodes";
 import { professors, ProfessorData } from "../../data/ProfessorData";
 import { MapNodeFilterById } from "../../types/roomsearch/MapNodeFilterById";
 import { NodesContainer } from "../interfaces/NodesContainer";
-import { stringEquals } from "../../utils/Strings";
+import { diacriticToAsciiLetters, stringEquals } from "../../utils/Strings";
 
 export class RoomSearchImpl implements RoomSearch {
 
@@ -23,9 +23,11 @@ export class RoomSearchImpl implements RoomSearch {
         
         const unsortedSuggestions: SearchNodeSuggestion[] = this.allNodeSuggestions()
                 .filter(node => this.nodesContainer.contains(node.nodeId));
-        const filteredSuggestions: SearchNodeSuggestion[] = unsortedSuggestions.filter((suggestion) =>
-            suggestion.roomName.toLowerCase().includes(searchedText.toLowerCase())
-        )
+        const filteredSuggestions: SearchNodeSuggestion[] = unsortedSuggestions.filter((suggestion) => {
+            const conformedRoomName = diacriticToAsciiLetters(suggestion.roomName).toLowerCase();
+            const conformedSearchText = diacriticToAsciiLetters(searchedText).toLowerCase();
+            return conformedRoomName.includes(conformedSearchText);
+        });
         const alphabeticallySortedSuggestions: SearchNodeSuggestion[] = filteredSuggestions.sort((a, b) =>
             a.roomName.localeCompare(b.roomName)
         );

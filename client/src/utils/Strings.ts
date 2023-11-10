@@ -31,3 +31,9 @@ export function diacriticToAsciiLetters(text: string): string {
     }
     return modifiedText;
 }
+
+export function stringEqualsIgnoreLocaleAndCase(s1: string, s2: string) {
+    const conformedS1 = diacriticToAsciiLetters(s1).toLowerCase();
+    const conformedS2 = diacriticToAsciiLetters(s2).toLowerCase();
+    return conformedS1 === conformedS2;
+}

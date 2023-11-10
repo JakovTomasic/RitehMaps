@@ -25,7 +25,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
             pathname: "/navigation",
             query: {
               startNodeId: (props.startNodeId as string) != null 
-                          ? (props.startNodeId as string) : "main_entrance",
+                          ? (props.startNodeId as string) : props.defaultStartNodeId,
               endNodeId: props.destinationNodeId as string,
             },
           }}

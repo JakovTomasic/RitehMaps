@@ -2,9 +2,9 @@ import { SearchNodeSuggestion } from "../../types/roomsearch/SearchNodeSuggestio
 import { RoomSearch } from "../interfaces/RoomSearch";
 import { nodes, Node } from "../../data/Nodes";
 import { professors, ProfessorData } from "../../data/ProfessorData";
-import { MapNodeFilterById } from "../../types/roomsearch/MapNodeFilterById";
 import { NodesContainer } from "../interfaces/NodesContainer";
 import { diacriticToAsciiLetters, stringEquals } from "../../utils/Strings";
+import { specialSearchResults } from "../../data/SpecialSearchResults";
 
 export class RoomSearchImpl implements RoomSearch {
 
@@ -23,11 +23,9 @@ export class RoomSearchImpl implements RoomSearch {
         
         const unsortedSuggestions: SearchNodeSuggestion[] = this.allNodeSuggestions()
                 .filter(node => this.nodesContainer.contains(node.nodeId));
-        const filteredSuggestions: SearchNodeSuggestion[] = unsortedSuggestions.filter((suggestion) => {
-            const conformedRoomName = diacriticToAsciiLetters(suggestion.roomName).toLowerCase();
-            const conformedSearchText = diacriticToAsciiLetters(searchedText).toLowerCase();
-            return conformedRoomName.includes(conformedSearchText);
-        });
+        const filteredSuggestions: SearchNodeSuggestion[] = unsortedSuggestions.filter((suggestion) => 
+            this.searchIncludes(searchedText, suggestion.roomName)
+        );
         const alphabeticallySortedSuggestions: SearchNodeSuggestion[] = filteredSuggestions.sort((a, b) =>
             a.roomName.localeCompare(b.roomName)
         );
@@ -37,7 +35,11 @@ export class RoomSearchImpl implements RoomSearch {
 
     sortedSuggestionsForDestination(searchedText: string): SearchNodeSuggestion[] {
 
-        return this.sortedSuggestionsForStart(searchedText);
+        const matchingSpecialSearchResults = specialSearchResults
+            .filter(result => this.searchIncludes(searchedText, result.name))
+            .map(result => new SearchNodeSuggestion(result.id, result.name));
+
+        return this.sortedSuggestionsForStart(searchedText).concat(matchingSpecialSearchResults);
     }
 
     findRoomWithQrCode(qrCodeValue: string): SearchNodeSuggestion | undefined {
@@ -66,17 +68,21 @@ export class RoomSearchImpl implements RoomSearch {
         return undefined;
     }
     
+    private searchIncludes(searchedText: string, nodeName: string): boolean {
+        const conformedNodeName = diacriticToAsciiLetters(nodeName).toLowerCase();
+        const conformedSearchText = diacriticToAsciiLetters(searchedText).toLowerCase();
+        return conformedNodeName.includes(conformedSearchText);
+    }
+
     private allNodeSuggestions(): SearchNodeSuggestion[] {
-        const nodeSuggestions : SearchNodeSuggestion[] = nodes.flatMap((node: Node) => {
-            const destinationFilter = new MapNodeFilterById(node.nodeId);
-            return node.names.map((name) => new SearchNodeSuggestion(node.nodeId, name, destinationFilter));
-        });
+        const nodeSuggestions : SearchNodeSuggestion[] = nodes.flatMap((node: Node) =>
+            node.names.map((name) => new SearchNodeSuggestion(node.nodeId, name))
+        );
         const professorSuggestions: SearchNodeSuggestion[] = professors.flatMap((professor: ProfessorData) => {
             const roomId = this.findNodeId(professor.room);
             if (roomId != undefined) {
                 const formattedName = `${professor.name} (${professor.room})`;
-                const destinationFilter = new MapNodeFilterById(roomId);
-                return new SearchNodeSuggestion(roomId, formattedName, destinationFilter);
+                return new SearchNodeSuggestion(roomId, formattedName);
             } else {
                 console.error(`ERROR: professor office not found: ${professor.room} for ${professor.name}`);
                 return null;

@@ -1,5 +1,5 @@
 
-enum NodeType {
+export enum NodeType {
     CLASSROOM, STUDENT_ROOM, OFFICE,
     DOOR, STAIRS_UP, STAIRS_DOWN, PASSAGE,
     MEN_TOILET, WOMEN_TOILET,

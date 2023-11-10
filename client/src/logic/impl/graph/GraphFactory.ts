@@ -1,7 +1,7 @@
 import assert from "assert";
 import { AllGraphData } from "../../../data/AllGraphData";
 import { Hallway } from "../../../data/Hallways";
-import { Node } from "../../../data/Nodes";
+import { Node, NodeType } from "../../../data/Nodes";
 import { MapNode } from "../../../types/graph/MapNode";
 import { Dot, Line, calculateLinesIntersection, calculateProjection } from "../../../utils/Geometry";
 import { Edge } from "../../../data/Edges";
@@ -32,6 +32,7 @@ function addAllNodesWithoutConnections(graph: Map<string, GraphNode>, nodes: Nod
                 submapId: node.submapId,
                 xCoordinate: node.x,
                 yCoordinate: node.y,
+                nodeType: node.type,
             },
             neighbours: []
         };
@@ -95,6 +96,7 @@ function joinTwoHallways(allHallwayProjections: Map<string, GraphNode[]>, hallwa
             submapId: hallway1.submapId,
             xCoordinate: intersection.x,
             yCoordinate: intersection.y,
+            nodeType: NodeType.NAVIGATION_MIDNODE,
         },
         neighbours: []
     };
@@ -120,6 +122,7 @@ function projectNodeOntoHallway(allHallwayProjections: Map<string, GraphNode[]>,
             submapId: node.node.submapId,
             xCoordinate: projection.x,
             yCoordinate: projection.y,
+            nodeType: NodeType.NAVIGATION_MIDNODE,
         },
         neighbours: [node.node]
     };

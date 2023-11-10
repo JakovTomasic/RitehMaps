@@ -4,7 +4,6 @@ import Map from "../components/Map";
 import MapCaption from "../components/MapCaption";
 import ZoomToggleButton from "../components/ZoomToggleButton";
 import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
-import { MapNodeFilterById } from "../types/roomsearch/MapNodeFilterById";
 import { useRouter } from "next/router";
 import { NavigationDirections } from "../types/navigation/NavigationDirections";
 import { NavigationStep } from "../types/navigation/NavigationStep";
@@ -16,6 +15,7 @@ import { allGraphData } from "../data/AllGraphData";
 import { Submap } from "../types/Submap";
 import { MapCropperImpl } from "../logic/impl/MapCropperImpl";
 import { CentroidScale } from "../types/navigation/CentroidScale";
+import { createMapNodeFilter } from "../logic/impl/MapNodeFilterFactory";
 
 
 
@@ -32,11 +32,16 @@ export default function Navigation(){
             const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl());
             const mapNav = new MapNavigatorImpl(graphImpl);
         
-            const directions: NavigationDirections = mapNav.findShortestPath(
-                data.startNodeId as string,
-                new MapNodeFilterById(data.endNodeId as string)
-            )
-            setNavDirections(directions);
+            const destinationNodeFilter = createMapNodeFilter(data.endNodeId as string);
+            if (destinationNodeFilter != null) {
+                const directions: NavigationDirections = mapNav.findShortestPath(
+                    data.startNodeId as string,
+                    destinationNodeFilter
+                )
+                setNavDirections(directions);
+            } else {
+                throw new Error(`Destination node id not valid: ${data.endNodeId}`);
+            }
         }
     }, [router.isReady]);
 

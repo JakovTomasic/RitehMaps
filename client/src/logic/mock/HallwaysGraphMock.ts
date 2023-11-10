@@ -1,51 +1,52 @@
 import { MapNode } from "../../types/graph/MapNode";
 import { NeighbourConnection } from "../../types/graph/NeighbourConnection";
+import { mockMapNode } from "../../utils/mockingUtils";
 import { Graph } from "../interfaces/Graph";
 
 export class HallwaysGraphMock implements Graph { 
 
     private graph = new Map<string, NeighbourConnection[]>([
 
-        ["0", [new NeighbourConnection(new MapNode("1", 1, 0, 0), 4),
-             new NeighbourConnection(new MapNode("7", 1, 0, 0), 8)]],
+        ["0", [new NeighbourConnection(mockMapNode("1"), 4),
+             new NeighbourConnection(mockMapNode("7"), 8)]],
 
-        ["1", [new NeighbourConnection(new MapNode("0", 1, 0, 0), 4),
-             new NeighbourConnection(new MapNode("2", 1, 0, 0), 8),
-             new NeighbourConnection(new MapNode("7", 1, 0, 0), 11)]],
+        ["1", [new NeighbourConnection(mockMapNode("0"), 4),
+             new NeighbourConnection(mockMapNode("2"), 8),
+             new NeighbourConnection(mockMapNode("7"), 11)]],
 
-        ["2", [new NeighbourConnection(new MapNode("1", 1, 0, 0), 8),
-             new NeighbourConnection(new MapNode("3", 1, 0, 0), 7),
-             new NeighbourConnection(new MapNode("5", 1, 0, 0), 4),
-             new NeighbourConnection(new MapNode("8", 1, 0, 0), 2)]],
+        ["2", [new NeighbourConnection(mockMapNode("1"), 8),
+             new NeighbourConnection(mockMapNode("3"), 7),
+             new NeighbourConnection(mockMapNode("5"), 4),
+             new NeighbourConnection(mockMapNode("8"), 2)]],
 
-        ["3", [new NeighbourConnection(new MapNode("2", 1, 0, 0), 7),
-             new NeighbourConnection(new MapNode("4", 1, 0, 0), 9),
-             new NeighbourConnection(new MapNode("5", 1, 0, 0), 14)]],
+        ["3", [new NeighbourConnection(mockMapNode("2"), 7),
+             new NeighbourConnection(mockMapNode("4"), 9),
+             new NeighbourConnection(mockMapNode("5"), 14)]],
 
-        ["4", [new NeighbourConnection(new MapNode("3", 1, 0, 0), 9),
-             new NeighbourConnection(new MapNode("5", 1, 0, 0), 10)]],
+        ["4", [new NeighbourConnection(mockMapNode("3"), 9),
+             new NeighbourConnection(mockMapNode("5"), 10)]],
 
-        ["5", [new NeighbourConnection(new MapNode("2", 1, 0, 0), 4),
-             new NeighbourConnection(new MapNode("3", 1, 0, 0), 14),
-             new NeighbourConnection(new MapNode("4", 1, 0, 0), 10),
-             new NeighbourConnection(new MapNode("6", 1, 0, 0), 2)]],
+        ["5", [new NeighbourConnection(mockMapNode("2"), 4),
+             new NeighbourConnection(mockMapNode("3"), 14),
+             new NeighbourConnection(mockMapNode("4"), 10),
+             new NeighbourConnection(mockMapNode("6"), 2)]],
 
-        ["6", [new NeighbourConnection(new MapNode("5", 1, 0, 0), 2),
-             new NeighbourConnection(new MapNode("7", 1, 0, 0), 1),
-             new NeighbourConnection(new MapNode("8", 1, 0, 0), 6)]],
+        ["6", [new NeighbourConnection(mockMapNode("5"), 2),
+             new NeighbourConnection(mockMapNode("7"), 1),
+             new NeighbourConnection(mockMapNode("8"), 6)]],
 
-        ["7", [new NeighbourConnection(new MapNode("0", 1, 0, 0), 8),
-             new NeighbourConnection(new MapNode("1", 1, 0, 0), 11),
-             new NeighbourConnection(new MapNode("6", 1, 0, 0), 1),
-             new NeighbourConnection(new MapNode("8", 1, 0, 0), 7)]],
+        ["7", [new NeighbourConnection(mockMapNode("0"), 8),
+             new NeighbourConnection(mockMapNode("1"), 11),
+             new NeighbourConnection(mockMapNode("6"), 1),
+             new NeighbourConnection(mockMapNode("8"), 7)]],
 
-        ["8", [new NeighbourConnection(new MapNode("2", 1, 0, 0), 2),
-             new NeighbourConnection(new MapNode("6", 1, 0, 0), 6),
-             new NeighbourConnection(new MapNode("7", 1, 0, 0), 7)]]
+        ["8", [new NeighbourConnection(mockMapNode("2"), 2),
+             new NeighbourConnection(mockMapNode("6"), 6),
+             new NeighbourConnection(mockMapNode("7"), 7)]]
     ]);
   
     getNode(nodeId: string): MapNode | undefined {
-        return this.graph.has(nodeId) ? new MapNode(nodeId, 1, 0, 0) : undefined;
+        return this.graph.has(nodeId) ? mockMapNode(nodeId) : undefined;
     }
   
     getNeighbours(nodeId: string): NeighbourConnection[] {

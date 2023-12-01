@@ -1,14 +1,5 @@
-
-
-export type Dot = {
-    x: number;
-    y: number;
-};
-
-export type Line = {
-    dot1: Dot;
-    dot2: Dot;
-};
+import { Dot } from "../types/general/Dot";
+import { Line } from "../types/general/Line";
 
 export function calculateProjection(dot: Dot, line: Line): Dot {
     const { dot1, dot2 } = line;

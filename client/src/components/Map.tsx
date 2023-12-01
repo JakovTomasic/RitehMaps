@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import ZoomableSVG from './ZoomableSVG';
-import { NavigationStep } from '../types/navigation/NavigationStep';
 import { round } from '../utils/Math';
 import { CentroidScale } from '../types/navigation/CentroidScale';
+import { MapDrawElement } from '../types/map_draw_elements/MapDrawElement';
 
 type Prop = {
-    layoutImage: string
-    enableDrawNodes?: boolean
-    width: number
-    height: number
-    navStep: NavigationStep
-    centroidCrop: CentroidScale
-    enableZoom?: boolean
+    layoutImage: string;
+    width: number;
+    height: number;
+    centroidCrop: CentroidScale;
+    drawElements: MapDrawElement[];
+    enableZoom?: boolean;
 }
 
 const dotRadiusRelative: String = "0.5%"

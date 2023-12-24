@@ -1,7 +1,8 @@
 import { Hallway } from "../../../data/Hallways";
 import { MapNode } from "../../../types/graph/MapNode";
 import { NavigationNode } from "../../../types/navigation/NavigationNode";
-import { Dot, Line } from "../../../utils/Geometry";
+import { Dot } from "../../../types/general/Dot";
+import { Line } from "../../../types/general/Line";
 
 export function nodeToDot(node: MapNode): Dot {
     return {x: node.xCoordinate, y: node.yCoordinate};

@@ -16,7 +16,11 @@ import { Submap } from "../types/Submap";
 import { MapCropperImpl } from "../logic/impl/MapCropperImpl";
 import { CentroidScale } from "../types/navigation/CentroidScale";
 import { createMapNodeFilter } from "../logic/impl/MapNodeFilterFactory";
-
+import { Dot } from "../types/general/Dot";
+import { Line } from "../types/general/Line";
+import { MapDot } from "../types/map_draw_elements/MapDot";
+import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
+import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
 
 
 export default function Navigation(){
@@ -52,15 +56,29 @@ export default function Navigation(){
     const [currentStepIndex, updateCurrentStepIndex] = useState(0);
     
     let currentStep: NavigationStep | undefined;
+    let mapElements: MapDrawElement[] = [];
     let submapImage: Submap | undefined;
-    let centroidCrop: CentroidScale
+    let centroidCrop: CentroidScale;
     if (navSteps !== undefined && navSteps.length > 0) {
         currentStep = navSteps[currentStepIndex];
+        let prevDot = {} as Dot;
+        currentStep.nodes.forEach((node, index) => {
+            const dot = {x: node.xCoordinate, y: node.yCoordinate} as Dot;
+            const mapDot = new MapDot(dot, "#41C7F7", 0.5, 1);
+            mapElements.push(mapDot);
+            if(index > 0){
+                const line = {dot1: prevDot, dot2: dot} as Line;
+                const mapLine = new MapPathLine(line, "#41C7F7", 0.1);
+                mapElements.push(mapLine);
+            }
+            prevDot = dot;         
+        })
         submapImage = submap.getSubmapImage(currentStep.nodes[0].submapId);
         const mapCropper = new MapCropperImpl()
         centroidCrop = mapCropper.crop(currentStep, submapImage.width, submapImage.height)
     } else {
         currentStep = undefined;
+        mapElements = undefined;
         submapImage = undefined;
         centroidCrop = undefined;
     }
@@ -84,7 +102,7 @@ export default function Navigation(){
                     </div>
                     <div className="w-full border h-2/3">
                         <Map layoutImage={submapImage.path} width={submapImage.width} 
-                        height={submapImage.height} navStep={currentStep} centroidCrop={centroidCrop}
+                        height={submapImage.height} centroidCrop={centroidCrop} drawElements={mapElements}
                         enableZoom={enableZoom}/>                    
                     </div>
                 </>

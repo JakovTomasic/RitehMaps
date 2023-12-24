@@ -3,7 +3,9 @@ import { AllGraphData } from "../../../data/AllGraphData";
 import { Hallway } from "../../../data/Hallways";
 import { Node, NodeType } from "../../../data/Nodes";
 import { MapNode } from "../../../types/graph/MapNode";
-import { Dot, Line, calculateLinesIntersection, calculateProjection } from "../../../utils/Geometry";
+import { calculateLinesIntersection, calculateProjection } from "../../../utils/Geometry";
+import { Dot } from "../../../types/general/Dot";
+import { Line } from "../../../types/general/Line";
 import { Edge } from "../../../data/Edges";
 import { hallwayToLine, nodeToDot, sameCoordinates } from "./Utils";
 

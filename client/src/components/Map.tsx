@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import ZoomableSVG from './ZoomableSVG';
-import { NavigationStep } from '../types/navigation/NavigationStep';
 import { round } from '../utils/Math';
 import { CentroidScale } from '../types/navigation/CentroidScale';
+import { MapDrawElement } from '../types/map_draw_elements/MapDrawElement';
+import { MapDot } from '../types/map_draw_elements/MapDot';
+import { MapPathLine } from '../types/map_draw_elements/MapPathLine';
 
 type Prop = {
-    layoutImage: string
-    enableDrawNodes?: boolean
-    width: number
-    height: number
-    navStep: NavigationStep
-    centroidCrop: CentroidScale
-    enableZoom?: boolean
+    layoutImage: string;
+    width: number;
+    height: number;
+    centroidCrop: CentroidScale;
+    drawElements: MapDrawElement[];
+    enableDrawNodes?: boolean;
+    enableZoom?: boolean;
 }
 
 const dotRadiusRelative: String = "0.5%"
@@ -66,26 +68,26 @@ export default class Map extends Component<Prop>{
         return ((round(x1, 2) != round(x2, 2)) || (round(y1, 2) != round(y2, 2)))
     }
 
-    private connectNodes(){
-
-        var prevNodeX
-        var prevNodeY
+    private drawElements(){
 
         const svg = d3.select(this.mapRef)
-        this.props.navStep?.nodes.forEach((node, index) => {
 
-            svg.append("circle")
-            .attr("cx", `${node.xCoordinate}%`)
-            .attr("cy", `${node.yCoordinate}%`)
-            .attr("r", dotRadiusRelative)
-            .attr("fill","#41C7F7")
-            .attr("stroke-opacity", 1)
-            .attr("stroke-width", 150)
+        this.props.drawElements.forEach((element, index) => {
 
-            if(index > 0){
+            if(element instanceof MapDot){
+                svg.append("circle")
+                .attr("cx", `${element.dot.x}%`)
+                .attr("cy", `${element.dot.y}%`)
+                .attr("r", `${element.radius}%`)
+                .attr("fill", element.color)
+                .attr("stroke-opacity", element.opacity)
+            }
 
-                var checkCoords = this.coordinatesOverlap(prevNodeX, node.xCoordinate, prevNodeY, node.yCoordinate)
+            if(element instanceof MapPathLine){
 
+                var checkCoords = this.coordinatesOverlap(element.line.dot1.x, element.line.dot2.x, 
+                    element.line.dot1.y, element.line.dot2.y)
+                
                 if(checkCoords){
                     svg.append("marker")
                     .attr("id", "triangle")
@@ -97,24 +99,20 @@ export default class Map extends Component<Prop>{
                     .attr("orient", "auto")
                     .append("path")
                     .attr("d", "M 0 0 12 6 0 12 3 6")
-                    .style("fill", "#06B6D4");
+                    .style("fill", "#06B6D4")
 
                     svg.append("line")
-                    .attr("x1", `${prevNodeX}%`)
-                    .attr("y1", `${prevNodeY}%`)
-                    .attr("x2", `${node.xCoordinate}%`)
-                    .attr("y2", `${node.yCoordinate}%`)
-                    .style("stroke", "#41C7F7")
-                    .style("stroke-width", lineStrokeWidthRelative)
-                    .attr("stroke-linecap", "round")
-                    .attr("stroke-opacity", 1.0)
+                    .attr("x1", `${element.line.dot1.x}%`)
+                    .attr("y1", `${element.line.dot1.y}%`)
+                    .attr("x2", `${element.line.dot2.x}%`)
+                    .attr("y2", `${element.line.dot2.y}%`)
+                    .style("stroke", element.color)
+                    .style("stroke-width", `${element.width}%`)
                     .attr("marker-start", "url(#triangle)")
                 }
             }
-
-            prevNodeX = node.xCoordinate
-            prevNodeY = node.yCoordinate
         })
+
     }
 
 
@@ -123,7 +121,7 @@ export default class Map extends Component<Prop>{
         this.drawMap()
         if (this.props.enableDrawNodes == true)
             this.drawNodesOnClick()
-        this.connectNodes()
+        this.drawElements()
     }
 
     componentDidUpdate(prevProps: Readonly<Prop>) {
@@ -136,7 +134,7 @@ export default class Map extends Component<Prop>{
         d3.selectAll("circle").remove().exit()
         d3.selectAll("line").remove().exit()
         d3.selectAll("marker").remove().exit()
-        this.connectNodes()
+        this.drawElements()
     }
 
     render() {

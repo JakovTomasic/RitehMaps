@@ -1,6 +1,7 @@
 import { MapNode } from "../../../types/graph/MapNode";
 import { NeighbourConnection } from "../../../types/graph/NeighbourConnection";
-import { Dot, eucledianDistance } from "../../../utils/Geometry";
+import { eucledianDistance } from "../../../utils/Geometry";
+import { Dot } from "../../../types/general/Dot";
 import { Graph } from "../../interfaces/Graph";
 import { SubmapProvider } from "../../interfaces/SubmapProvider";
 import { GraphNode } from "./GraphFactory";

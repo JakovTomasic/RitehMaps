@@ -9,6 +9,11 @@ import { MapNode } from "../types/graph/MapNode";
 import { CentroidScale } from "../types/navigation/CentroidScale";
 import { NavigationNode } from '../types/navigation/NavigationNode';
 import { NavigationStep } from "../types/navigation/NavigationStep";
+import { Dot } from "../types/general/Dot";
+import { Line } from "../types/general/Line";
+import { MapDot } from "../types/map_draw_elements/MapDot";
+import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
+import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
 
 export default function GraphPage(){
     return(
@@ -22,6 +27,20 @@ export default function GraphPage(){
                     scaledWidth: submap.width,
                     scaledHeight: submap.height,
                 }
+
+                let mapElements: MapDrawElement[] = [];
+                let prevDot = {} as Dot;
+                navSteps.nodes.forEach((node, index) => {
+                    const dot = {x: node.xCoordinate, y: node.yCoordinate} as Dot;
+                    const mapDot = new MapDot(dot, "#41C7F7", 0.5, 1);
+                    mapElements.push(mapDot);
+                    if(index > 0){
+                        const line = {dot1: prevDot, dot2: dot} as Line;
+                        const mapLine = new MapPathLine(line, "#41C7F7", 0.1);
+                        mapElements.push(mapLine);
+                    }
+                    prevDot = dot;        
+                })
                 return (
                     <div key={submap.id}>
                         <Map layoutImage={submap.path} 
@@ -29,7 +48,7 @@ export default function GraphPage(){
                             enableZoom={true}
                             width={submap.width}
                             height={submap.height}
-                            navStep={navSteps}
+                            drawElements={mapElements}
                             centroidCrop={fullScale}/>
                         <Separator />
                     </div>

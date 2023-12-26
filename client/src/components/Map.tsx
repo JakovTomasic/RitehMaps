@@ -12,6 +12,7 @@ type Prop = {
     width: number;
     height: number;
     centroidCrop: CentroidScale;
+    rotateAngle: number;
     drawElements: MapDrawElement[];
     enableDrawNodes?: boolean;
     enableZoom?: boolean;
@@ -141,7 +142,9 @@ export default class Map extends Component<Prop>{
 
         return(
             <ZoomableSVG width={this.props.width} height={this.props.height} 
-                centroidCrop={this.props.centroidCrop} enableZoom={this.props.enableZoom}>
+                centroidCrop={this.props.centroidCrop} rotateAngle={this.props.rotateAngle} 
+                enableZoom={this.props.enableZoom}
+            >
                 <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>
                     
                 </svg>

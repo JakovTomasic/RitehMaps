@@ -102,8 +102,8 @@ export default function Navigation(){
                     </div>
                     <div className="w-full border h-2/3">
                         <Map layoutImage={submapImage.path} width={submapImage.width} 
-                        height={submapImage.height} centroidCrop={centroidCrop} drawElements={mapElements}
-                        enableZoom={enableZoom}/>                    
+                        height={submapImage.height} centroidCrop={centroidCrop} rotateAngle={0} 
+                        drawElements={mapElements} enableZoom={enableZoom}/>                    
                     </div>
                 </>
                     : <div>Loading...</div>

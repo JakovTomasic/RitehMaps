@@ -49,7 +49,8 @@ export default function GraphPage(){
                             width={submap.width}
                             height={submap.height}
                             drawElements={mapElements}
-                            centroidCrop={fullScale}/>
+                            centroidCrop={fullScale}
+                            rotateAngle={0}/>
                         <Separator />
                     </div>
                 );

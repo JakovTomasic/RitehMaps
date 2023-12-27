@@ -7,11 +7,12 @@ type Prop = {
     width: number
     height: number
     centroidCrop: CentroidScale
+    rotateAngle: number
     enableZoom?: boolean
 }
 
 
-export default function ZoomableSVG( { children, width, height, centroidCrop, enableZoom }: Prop ){
+export default function ZoomableSVG( { children, width, height, centroidCrop, rotateAngle, enableZoom }: Prop ){
 
 
     const svgRef = useRef()
@@ -51,7 +52,9 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, en
     
     return (
         <svg height="100%" width="100%" ref={svgRef} viewBox={`0, 0, ${width}, ${height}`}>
-            <g transform={`translate(${x},${y})scale(${scale})`}>{children}</g>
+            <g transform={`rotate(${rotateAngle}, ${width/2}, ${height/2})translate(${x}, ${y})scale(${scale})`}>
+                {children}
+            </g>
         </svg>
     )
 }

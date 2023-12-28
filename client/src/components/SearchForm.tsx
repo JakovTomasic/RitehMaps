@@ -6,6 +6,7 @@ import Search from "./Search";
 import { RoomSearch } from "../logic/interfaces/RoomSearch";
 import GoShareButtons from "./GoShareButtons";
 import { useRouter } from "next/router";
+import HCIGoButtons from "./HCIGoButtons";
 
 const DEFAULT_START_ID: string = "main_entrance";
 const DEFAULT_START_NAME: string = "entrance";
@@ -155,6 +156,17 @@ function SearchForm({ roomSearcher }: Prop) {
 
           </div>
           
+          <div className="flex relative py-3 items-center justify-center z-0">
+            <HCIGoButtons 
+                startNodeId={searchInputs.startNodeId} 
+                destinationNodeId={searchInputs.destinationNodeId}
+                startText={searchInputs.startText} 
+                destinationText={searchInputs.destinationText}
+                clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
+                defaultStartNodeId={DEFAULT_START_ID}
+            />
+          </div>
+
           <div className="flex relative py-3 items-center justify-center z-0">
             <GoShareButtons 
                 startNodeId={searchInputs.startNodeId} 

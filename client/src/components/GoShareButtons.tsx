@@ -36,7 +36,26 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
                         text-white text-sm font-bold"
             type="button"
           >
-            Go
+            Step
+          </button>
+        </Link>
+        <Link
+          href={{
+            pathname: "/submap_navigation",
+            query: {
+              startNodeId: (props.startNodeId as string) != null 
+                          ? (props.startNodeId as string) : props.defaultStartNodeId,
+              endNodeId: props.destinationNodeId as string,
+            },
+          }}
+        >
+          <button
+            className="mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 
+                      bg-cyan-600 focus:bg-cyan-700 transition duration-300 w-10
+                        text-white text-sm font-bold"
+            type="button"
+          >
+            Map
           </button>
         </Link>
 

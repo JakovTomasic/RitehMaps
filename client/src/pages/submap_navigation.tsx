@@ -21,9 +21,9 @@ import { Line } from "../types/general/Line";
 import { MapDot } from "../types/map_draw_elements/MapDot";
 import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
 import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
+import { NavigationNode } from "../types/navigation/NavigationNode";
 
-
-export default function Navigation(){
+export default function SubmapNavigation(){
     
     const router = useRouter();
     const [navDirections, setNavDirections] = useState<NavigationDirections>(undefined);
@@ -49,7 +49,26 @@ export default function Navigation(){
         }
     }, [router.isReady]);
 
-    const navSteps: NavigationStep[] = navDirections?.steps;
+    let navSteps: NavigationStep[] = [];
+    let submapNodes: NavigationNode[] = [];
+    let start_submap = navDirections?.steps[0].nodes[0].submapId;
+    navDirections?.steps.forEach((step, index) => {
+        if(step.nodes[0].submapId != start_submap){
+            start_submap = step.nodes[0].submapId;
+            const navStep = {nodes: submapNodes} as NavigationStep;
+            navSteps.push(navStep);
+            submapNodes = [];
+        }
+
+        step.nodes.forEach((node) => {
+            submapNodes.push(node);
+        })
+
+        if(navDirections?.steps.length == index + 1){
+            const navStep = {nodes: submapNodes} as NavigationStep;
+            navSteps.push(navStep)
+        }
+    })
 
     const submap = new SubmapProviderImpl();
 
@@ -95,17 +114,10 @@ export default function Navigation(){
                 currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
                 <>
                     <MapCaption imageCaption={submapImage.caption} />
-                    {/*
-                    <div className="absolute right-0">
-                        <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
-                            onClick={() => {setZoom(!enableZoom)}} 
-                        />
-                    </div>
-                    */}
                     <div className="w-full border h-2/3">
                         <Map layoutImage={submapImage.path} width={submapImage.width} 
                         height={submapImage.height} centroidCrop={centroidCrop} rotateAngle={0} 
-                        drawElements={mapElements} enableZoom={enableZoom}/>                    
+                        drawElements={mapElements} enableZoom={true}/>                    
                     </div>
                 </>
                     : <div>Loading...</div>

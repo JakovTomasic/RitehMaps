@@ -21,12 +21,14 @@ import { MapDot } from "../types/map_draw_elements/MapDot";
 import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
 import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
 
+const ANGLE_TILT_WARNING_THRESHOLD = 60;
 
 export default function Navigation(){
     
     const router = useRouter();
     const [navDirections, setNavDirections] = useState<NavigationDirections>(undefined);
     const [compassRotation, setCompassRotation] = useState<number>(undefined);
+    const [showDeviceOrientationWarning, setShowDeviceOrientationWarning] = useState<boolean>(undefined);
 
     useEffect(() => {
         if(router.isReady){
@@ -85,7 +87,7 @@ export default function Navigation(){
         centroidCrop = undefined;
         currentSubmapAngleFromNorth = undefined;
     }
-    
+
     useEffect(() => {
 
         function handleOrientation(event) {
@@ -94,7 +96,12 @@ export default function Navigation(){
                 const deviceRotationAngleFromSubmapNorth = deviceRotationAngleFromGeologicalNorth - currentSubmapAngleFromNorth;
                 const angleToRotateMapFor = -deviceRotationAngleFromSubmapNorth;
 
-                setCompassRotation((angleToRotateMapFor + 720) % 360);
+                const angleBetweenZeroAnd360 = (angleToRotateMapFor + 3600) % 360;
+                setCompassRotation(angleBetweenZeroAnd360);
+
+                const betaWarning = Math.abs(event.beta) > ANGLE_TILT_WARNING_THRESHOLD;
+                const gammaWarning = Math.abs(event.gamma) > ANGLE_TILT_WARNING_THRESHOLD;
+                setShowDeviceOrientationWarning(betaWarning || gammaWarning);
             }
         }
 
@@ -115,6 +122,7 @@ export default function Navigation(){
                 {
                 currentStep !== undefined && currentSubmap !== undefined && centroidCrop !== undefined ?
                 <>
+                    { showDeviceOrientationWarning ? <div>Please keep your device parallel to the ground</div> : <></> }
                     <MapCaption imageCaption={currentSubmap.caption} />
                     <div className="w-full border h-2/3">
                         <Map layoutImage={currentSubmap.path} width={currentSubmap.width} 

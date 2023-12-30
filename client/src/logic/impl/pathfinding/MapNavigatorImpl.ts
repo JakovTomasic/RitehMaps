@@ -21,6 +21,12 @@ export class MapNavigatorImpl implements MapNavigator {
         return this.splitNavigationPathIntoSteps(navNodes);
     }
 
+    findShortestPathForCompassMode(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections {
+        const path = this.findPathToNearestNode(startNodeId, endNodeFilter);
+        const navNodes = this.convertPathToNavigationNodes(path);
+        return this.splitNavigationPathIntoStepsOfTwoNodesEach(navNodes);
+    }
+
     private findPathToNearestNode(startNodeId: string, endNodeFilter: MapNodeFilter): MapNode[] {
        return findPathWithDijkstra(startNodeId, endNodeFilter, this.graph);
     }
@@ -59,6 +65,31 @@ export class MapNavigatorImpl implements MapNavigator {
 
         if (currentStepNodes.length > 0) {
             steps.push(new NavigationStep(currentStepNodes))
+        }
+
+        return new NavigationDirections(steps);
+    }
+
+    private splitNavigationPathIntoStepsOfTwoNodesEach(path: NavigationNode[]): NavigationDirections {
+
+        const STEP_MAX_WIDTH = 30;
+        const STEP_MAX_HEIGHT = 30;
+
+        const usablePath = this.makeAllEdgesSmallEnough(path, STEP_MAX_WIDTH, STEP_MAX_HEIGHT);
+
+        if (usablePath.length < 2) {
+            return new NavigationDirections([new NavigationStep(usablePath)])
+        }
+
+        const steps: NavigationStep[] = [];
+
+        let previousNode: NavigationNode = usablePath[0];
+        for (let i = 1; i < usablePath.length; i++) {
+            let currentNode = usablePath[i];
+            if (previousNode.submapId == currentNode.submapId) {
+                steps.push(new NavigationStep([previousNode, currentNode]));
+            }
+            previousNode = currentNode;
         }
 
         return new NavigationDirections(steps);

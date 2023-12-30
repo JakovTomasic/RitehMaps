@@ -2,7 +2,6 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import Map from "../components/Map";
 import MapCaption from "../components/MapCaption";
-import ZoomToggleButton from "../components/ZoomToggleButton";
 import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
 import { useRouter } from "next/router";
 import { NavigationDirections } from "../types/navigation/NavigationDirections";
@@ -27,6 +26,7 @@ export default function Navigation(){
     
     const router = useRouter();
     const [navDirections, setNavDirections] = useState<NavigationDirections>(undefined);
+    const [compassRotation, setCompassRotation] = useState<number>(undefined);
 
     useEffect(() => {
         if(router.isReady){
@@ -38,7 +38,7 @@ export default function Navigation(){
         
             const destinationNodeFilter = createMapNodeFilter(data.endNodeId as string);
             if (destinationNodeFilter != null) {
-                const directions: NavigationDirections = mapNav.findShortestPath(
+                const directions: NavigationDirections = mapNav.findShortestPathForCompassMode(
                     data.startNodeId as string,
                     destinationNodeFilter
                 )
@@ -57,8 +57,9 @@ export default function Navigation(){
     
     let currentStep: NavigationStep | undefined;
     let mapElements: MapDrawElement[] = [];
-    let submapImage: Submap | undefined;
+    let currentSubmap: Submap | undefined;
     let centroidCrop: CentroidScale;
+    let currentSubmapAngleFromNorth: number | undefined;
     if (navSteps !== undefined && navSteps.length > 0) {
         currentStep = navSteps[currentStepIndex];
         let prevDot = {} as Dot;
@@ -73,17 +74,37 @@ export default function Navigation(){
             }
             prevDot = dot;         
         })
-        submapImage = submap.getSubmapImage(currentStep.nodes[0].submapId);
-        const mapCropper = new MapCropperImpl()
-        centroidCrop = mapCropper.crop(currentStep, submapImage.width, submapImage.height)
+        currentSubmap = submap.getSubmapImage(currentStep.nodes[0].submapId);
+        const mapCropper = new MapCropperImpl();
+        centroidCrop = mapCropper.crop(currentStep, currentSubmap.width, currentSubmap.height);
+        currentSubmapAngleFromNorth = currentSubmap.north_angle;
     } else {
         currentStep = undefined;
         mapElements = undefined;
-        submapImage = undefined;
+        currentSubmap = undefined;
         centroidCrop = undefined;
+        currentSubmapAngleFromNorth = undefined;
     }
     
-    const [enableZoom, setZoom] = useState(false);
+    useEffect(() => {
+
+        function handleOrientation(event) {
+            if (currentSubmapAngleFromNorth != undefined) {
+                const deviceRotationAngleFromGeologicalNorth = 360-event.alpha || 0;
+                const deviceRotationAngleFromSubmapNorth = deviceRotationAngleFromGeologicalNorth - currentSubmapAngleFromNorth;
+                const angleToRotateMapFor = -deviceRotationAngleFromSubmapNorth;
+
+                setCompassRotation((angleToRotateMapFor + 720) % 360);
+            }
+        }
+
+        window.addEventListener('deviceorientationabsolute', handleOrientation);
+          
+        return () => {
+            window.removeEventListener('deviceorientationabsolute', handleOrientation);
+        }
+    }, [currentSubmapAngleFromNorth]);
+
 
     return(
         <>
@@ -92,18 +113,13 @@ export default function Navigation(){
                     <Header text='Navigation' backPath='/' />
                 </div>
                 {
-                currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
+                currentStep !== undefined && currentSubmap !== undefined && centroidCrop !== undefined ?
                 <>
-                    <MapCaption imageCaption={submapImage.caption} />
-                    <div className="absolute right-0">
-                        <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
-                            onClick={() => {setZoom(!enableZoom)}} 
-                        />
-                    </div>
+                    <MapCaption imageCaption={currentSubmap.caption} />
                     <div className="w-full border h-2/3">
-                        <Map layoutImage={submapImage.path} width={submapImage.width} 
-                        height={submapImage.height} centroidCrop={centroidCrop} rotateAngle={0} 
-                        drawElements={mapElements} enableZoom={enableZoom}/>                    
+                        <Map layoutImage={currentSubmap.path} width={currentSubmap.width} 
+                        height={currentSubmap.height} centroidCrop={centroidCrop} rotateAngle={compassRotation} 
+                        drawElements={mapElements} enableZoom={false}/>                    
                     </div>
                 </>
                     : <div>Loading...</div>

@@ -188,4 +188,3 @@ function SearchForm({ roomSearcher }: Prop) {
 }
 
 export default SearchForm;
-

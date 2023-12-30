@@ -12,24 +12,24 @@ type HCIGoButtonProps = {
 
 const HCIGoButtons: React.FC<HCIGoButtonProps> = (props) => {
   const buttonConfigs = [
-    { label: "Mod 1", path: "/navigation-mod1" },
-    { label: "Mod 2", path: "/navigation-mod2" },
-    { label: "Mod 3", path: "/navigation-mod3" },
-    { label: "Mod 4", path: "/navigation-mod4" },
+    { label: "Floors", path: "/navigation-floor-by-floor" },
+    { label: "Steps", path: "/navigation-step-by-step" },
+    { label: "Steps Forward", path: "/navigation-step-by-step-forward" },
+    { label: "Compass", path: "/navigation-compass" },
   ];
 
   const enabledButtonStyle: string =
-    "mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 " +
-    " bg-cyan-600 focus:bg-cyan-700 transition duration-300 w-15" +
+    "mx-auto py-2 px-2 rounded-md flex items-center justify-center mx-1" +
+    " bg-cyan-600 focus:bg-cyan-700 transition duration-300 w-100" +
     " text-white text-sm font-bold";
 
   const disabledButtonStyle: string =
-    "mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 " +
-    " bg-gray-500 cursor-not-allowed w-15" +
+    "mx-auto py-2 px-2 rounded-md flex items-center justify-center mx-1" +
+    " bg-gray-500 cursor-not-allowed w-100" +
     " text-white text-sm font-bold";
 
   return (
-    <div className="flex w-full items-center justify-center">
+    <div className="flex w-fit items-center justify-center">
       {buttonConfigs.map((config, index) =>
         props.clickable ? (
           <Link
@@ -44,6 +44,7 @@ const HCIGoButtons: React.FC<HCIGoButtonProps> = (props) => {
                 endNodeId: props.destinationNodeId as string,
               },
             }}
+            style={{display: 'contents'}}
           >
             <button className={enabledButtonStyle} type="button">
               {config.label}

@@ -95,13 +95,11 @@ export default function Navigation(){
                 currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
                 <>
                     <MapCaption imageCaption={submapImage.caption} />
-                    {/*
                     <div className="absolute right-0">
                         <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
                             onClick={() => {setZoom(!enableZoom)}} 
                         />
                     </div>
-                    */}
                     <div className="w-full border h-2/3">
                         <Map layoutImage={submapImage.path} width={submapImage.width} 
                         height={submapImage.height} centroidCrop={centroidCrop} rotateAngle={0} 

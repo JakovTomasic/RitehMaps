@@ -2,7 +2,6 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import Map from "../components/Map";
 import MapCaption from "../components/MapCaption";
-import ZoomToggleButton from "../components/ZoomToggleButton";
 import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
 import { useRouter } from "next/router";
 import { NavigationDirections } from "../types/navigation/NavigationDirections";
@@ -16,11 +15,13 @@ import { Submap } from "../types/Submap";
 import { MapCropperImpl } from "../logic/impl/MapCropperImpl";
 import { CentroidScale } from "../types/navigation/CentroidScale";
 import { createMapNodeFilter } from "../logic/impl/MapNodeFilterFactory";
-import { Dot } from "../types/general/Dot";
+import ORIGIN_POINT, { Dot } from "../types/general/Dot";
 import { Line } from "../types/general/Line";
 import { MapDot } from "../types/map_draw_elements/MapDot";
 import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
 import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
+import { findAngleFromReferenceLine } from "../utils/Geometry";
+import ZoomToggleButton from "../components/ZoomToggleButton";
 
 
 export default function Navigation(){
@@ -59,6 +60,7 @@ export default function Navigation(){
     let mapElements: MapDrawElement[] = [];
     let submapImage: Submap | undefined;
     let centroidCrop: CentroidScale;
+    let rotateAngle = 0;
     if (navSteps !== undefined && navSteps.length > 0) {
         currentStep = navSteps[currentStepIndex];
         let prevDot = {} as Dot;
@@ -70,6 +72,10 @@ export default function Navigation(){
                 const line = {dot1: prevDot, dot2: dot} as Line;
                 const mapLine = new MapPathLine(line, "#41C7F7", 0.1);
                 mapElements.push(mapLine);
+                if(index == 1){
+                    const referenceLine = {dot1: ORIGIN_POINT, dot2: {x: 0, y: -1}} as Line;
+                    rotateAngle = findAngleFromReferenceLine(referenceLine, line)
+                }
             }
             prevDot = dot;         
         })
@@ -99,10 +105,10 @@ export default function Navigation(){
                         <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
                             onClick={() => {setZoom(!enableZoom)}} 
                         />
-                    </div>
+                    </div>                    
                     <div className="w-full border h-2/3">
                         <Map layoutImage={submapImage.path} width={submapImage.width} 
-                        height={submapImage.height} centroidCrop={centroidCrop} rotateAngle={0} 
+                        height={submapImage.height} centroidCrop={centroidCrop} rotateAngle={rotateAngle} 
                         drawElements={mapElements} enableZoom={enableZoom}/>                    
                     </div>
                 </>

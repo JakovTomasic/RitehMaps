@@ -20,7 +20,7 @@ import { Line } from "../types/general/Line";
 import { MapDot } from "../types/map_draw_elements/MapDot";
 import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
 import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
-import { findAngleFromReferenceLine } from "../utils/Geometry";
+import { findAngleFromReferenceLine, relativeToAbsolute } from "../utils/Geometry";
 import ZoomToggleButton from "../components/ZoomToggleButton";
 
 
@@ -64,6 +64,7 @@ export default function Navigation(){
     if (navSteps !== undefined && navSteps.length > 0) {
         currentStep = navSteps[currentStepIndex];
         let prevDot = {} as Dot;
+        submapImage = submap.getSubmapImage(currentStep.nodes[0].submapId);
         currentStep.nodes.forEach((node, index) => {
             const dot = {x: node.xCoordinate, y: node.yCoordinate} as Dot;
             const mapDot = new MapDot(dot, "#41C7F7", 0.5, 1);
@@ -73,15 +74,24 @@ export default function Navigation(){
                 const mapLine = new MapPathLine(line, "#41C7F7", 0.1);
                 mapElements.push(mapLine);
                 if(index == 1){
-                    const referenceLine = {dot1: ORIGIN_POINT, dot2: {x: 0, y: -1}} as Line;
-                    rotateAngle = findAngleFromReferenceLine(referenceLine, line)
+                    console.log("relative line: ", line);
+                    const referenceLine : Line = {dot1: ORIGIN_POINT, dot2: {x: 0, y: -1}};
+
+                    const abs1 = relativeToAbsolute(line.dot1, submapImage.width, submapImage.height);
+                    const abs2 = relativeToAbsolute(line.dot2, submapImage.width, submapImage.height);
+
+                    const theLine : Line = {dot1: {x: abs1.absX, y: abs1.absY}, dot2: {x: abs2.absX, y: abs2.absY}};
+
+                    console.log("the Line: ", theLine);
+                    console.log("reference line: ", referenceLine);
+                    rotateAngle = findAngleFromReferenceLine(referenceLine, theLine)
                 }
             }
-            prevDot = dot;         
+            prevDot = dot;     
+            console.log("čvor:", node, "index:", index);    
         })
-        submapImage = submap.getSubmapImage(currentStep.nodes[0].submapId);
         const mapCropper = new MapCropperImpl()
-        centroidCrop = mapCropper.crop(currentStep, submapImage.width, submapImage.height)
+        centroidCrop = mapCropper.crop(currentStep, submapImage.width, submapImage.height, rotateAngle)
     } else {
         currentStep = undefined;
         mapElements = undefined;

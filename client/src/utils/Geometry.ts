@@ -1,6 +1,6 @@
 import ORIGIN_POINT, { Dot } from "../types/general/Dot";
 import { Line } from "../types/general/Line";
-import { radiansToDegrees } from "./Math";
+import { degreesToRadians, radiansToDegrees } from "./Math";
 
 export function eucledianDistance(dot1: Dot, dot2: Dot): number {
     const dx = dot1.x - dot2.x;
@@ -102,13 +102,62 @@ export function findAngleBetweenTwoVectors(vector1: Dot, vector2: Dot): number {
 }
 
 export function findAngleFromReferenceLine(reference: Line, line: Line): number {
-    const referenceVector = normalizeVector(lineToVector(reference));
-    const lineVector = normalizeVector(lineToVector(line));
+    let referenceVector = lineToVector(reference);
+    let lineVector = lineToVector(line);
+
+    console.log("b.n. lineVector: ", lineVector);
+    console.log("b.n. referenceVector: ", referenceVector);
+
+    referenceVector = normalizeVector(referenceVector);
+    lineVector = normalizeVector(lineVector);
+
+    console.log("lineVector: ", lineVector);
+    console.log("referenceVector: ", referenceVector);
+
 
     const dotProduct = calculateDotProduct(referenceVector, lineVector);    
     const crossProduct = calculateCrossProduct(referenceVector, lineVector);
 
-    let angle = radiansToDegrees(Math.atan2(crossProduct, dotProduct));  
+    let angle = Math.atan2(crossProduct, dotProduct);
+    console.log("angle rad:", angle);
     
-    return (angle > 0) ? (360 - angle) : (-angle);
+    angle = radiansToDegrees(angle);
+
+    let dotAngle = findAngleBetweenTwoVectors(referenceVector, lineVector);
+    console.log("angle deg:", angle, "dotAngle deg:", dotAngle);
+
+    let ret = (angle > 0) ? (360 - angle) : (-angle);
+
+    console.log("final:", ret);
+
+    return ret;
 }
+
+export function rotatePointClockwise(point: Dot, angle: number, referencePoint: Dot = ORIGIN_POINT): Dot {
+    const radAngle = degreesToRadians(angle);
+    const rotatedPoint : Dot = {
+        x:
+            (point.x - referencePoint.x) * Math.cos(-radAngle) -
+            (point.y - referencePoint.y) * Math.sin(-radAngle) +
+            referencePoint.x,
+        y:
+            (point.x - referencePoint.x) * Math.sin(-radAngle) +
+            (point.y - referencePoint.y) * Math.cos(-radAngle) +
+            referencePoint.y,
+    };
+    return rotatedPoint;
+}
+
+//////////////TODO put somewhere
+export function relativeToAbsolute(dot: Dot, width: number, height: number) : { absX: number; absY: number } {
+    const absX = dot.x * width / 100;
+    const absY = dot.y * height / 100;
+    return { absX, absY };
+}
+
+export function absoluteToRelative(dot: Dot, width: number, height: number) : { relX: number; relY: number } {
+    const relX = dot.x / width * 100;
+    const relY = dot.y / height * 100;
+    return { relX, relY };
+}
+

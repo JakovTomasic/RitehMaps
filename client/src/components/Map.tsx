@@ -53,6 +53,8 @@ export default class Map extends Component<Prop>{
             const relativeY = round(clickedY / height * 100, 2);
 
             console.log(`x: ${relativeX},\ny: ${relativeY},`);
+            console.log(`ABSOLUTE x: ${clickedX},\nABSOLUTE y: ${clickedY},`);
+            console.log(`width: ${width},\nheight: ${height},`);
 
             svg.append("circle")
             .attr("cx", clickedX)

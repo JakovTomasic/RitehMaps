@@ -6,8 +6,8 @@ export function round(num: number, decimalPlaces: number = 0): number {
 
 export function radiansToDegrees(radAngle: number): number {
     return radAngle * (180.0 / Math.PI);
-};
+}
 
 export function degreesToRadians(degAngle: number): number {
     return degAngle * (Math.PI / 180);
-};
+}

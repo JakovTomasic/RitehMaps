@@ -92,6 +92,7 @@ export function calculateLinesIntersection(line1: Line, line2: Line): Dot | null
     return intersection;
 }
 
+/** Caution: Always returns an angle smaller (or equal to) 180 degrees */
 export function findAngleBetweenTwoVectors(vector1: Dot, vector2: Dot): number {
     const dotProduct = calculateDotProduct(vector1, vector2);
     const magnitude1 = calculateVectorMagnitude(vector1);
@@ -102,35 +103,15 @@ export function findAngleBetweenTwoVectors(vector1: Dot, vector2: Dot): number {
 }
 
 export function findAngleFromReferenceLine(reference: Line, line: Line): number {
-    let referenceVector = lineToVector(reference);
-    let lineVector = lineToVector(line);
-
-    console.log("b.n. lineVector: ", lineVector);
-    console.log("b.n. referenceVector: ", referenceVector);
-
-    referenceVector = normalizeVector(referenceVector);
-    lineVector = normalizeVector(lineVector);
-
-    console.log("lineVector: ", lineVector);
-    console.log("referenceVector: ", referenceVector);
-
+    let referenceVector = normalizeVector(lineToVector(reference));
+    let lineVector = normalizeVector(lineToVector(line));
 
     const dotProduct = calculateDotProduct(referenceVector, lineVector);    
     const crossProduct = calculateCrossProduct(referenceVector, lineVector);
 
-    let angle = Math.atan2(crossProduct, dotProduct);
-    console.log("angle rad:", angle);
-    
-    angle = radiansToDegrees(angle);
+    let angle = radiansToDegrees(Math.atan2(crossProduct, dotProduct));
 
-    let dotAngle = findAngleBetweenTwoVectors(referenceVector, lineVector);
-    console.log("angle deg:", angle, "dotAngle deg:", dotAngle);
-
-    let ret = (angle > 0) ? (360 - angle) : (-angle);
-
-    console.log("final:", ret);
-
-    return ret;
+    return (angle > 0) ? (360 - angle) : (-angle);
 }
 
 export function rotatePointClockwise(point: Dot, angle: number, referencePoint: Dot = ORIGIN_POINT): Dot {
@@ -147,17 +128,3 @@ export function rotatePointClockwise(point: Dot, angle: number, referencePoint: 
     };
     return rotatedPoint;
 }
-
-//////////////TODO put somewhere
-export function relativeToAbsolute(dot: Dot, width: number, height: number) : { absX: number; absY: number } {
-    const absX = dot.x * width / 100;
-    const absY = dot.y * height / 100;
-    return { absX, absY };
-}
-
-export function absoluteToRelative(dot: Dot, width: number, height: number) : { relX: number; relY: number } {
-    const relX = dot.x / width * 100;
-    const relY = dot.y / height * 100;
-    return { relX, relY };
-}
-

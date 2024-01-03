@@ -20,8 +20,9 @@ import { Line } from "../types/general/Line";
 import { MapDot } from "../types/map_draw_elements/MapDot";
 import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
 import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
-import { findAngleFromReferenceLine, relativeToAbsolute } from "../utils/Geometry";
+import { findAngleFromReferenceLine } from "../utils/Geometry";
 import ZoomToggleButton from "../components/ZoomToggleButton";
+import { relativeToAbsoluteCoordinates } from "../logic/impl/graph/Utils";
 
 
 export default function Navigation(){
@@ -61,37 +62,35 @@ export default function Navigation(){
     let submapImage: Submap | undefined;
     let centroidCrop: CentroidScale;
     let rotateAngle = 0;
+
     if (navSteps !== undefined && navSteps.length > 0) {
         currentStep = navSteps[currentStepIndex];
-        let prevDot = {} as Dot;
         submapImage = submap.getSubmapImage(currentStep.nodes[0].submapId);
+        let prevDot = {} as Dot;
+
         currentStep.nodes.forEach((node, index) => {
             const dot = {x: node.xCoordinate, y: node.yCoordinate} as Dot;
             const mapDot = new MapDot(dot, "#41C7F7", 0.5, 1);
             mapElements.push(mapDot);
+
             if(index > 0){
                 const line = {dot1: prevDot, dot2: dot} as Line;
                 const mapLine = new MapPathLine(line, "#41C7F7", 0.1);
                 mapElements.push(mapLine);
+
                 if(index == 1){
-                    console.log("relative line: ", line);
                     const referenceLine : Line = {dot1: ORIGIN_POINT, dot2: {x: 0, y: -1}};
-
-                    const abs1 = relativeToAbsolute(line.dot1, submapImage.width, submapImage.height);
-                    const abs2 = relativeToAbsolute(line.dot2, submapImage.width, submapImage.height);
-
-                    const theLine : Line = {dot1: {x: abs1.absX, y: abs1.absY}, dot2: {x: abs2.absX, y: abs2.absY}};
-
-                    console.log("the Line: ", theLine);
-                    console.log("reference line: ", referenceLine);
-                    rotateAngle = findAngleFromReferenceLine(referenceLine, theLine)
+                    const absDot1 = relativeToAbsoluteCoordinates(line.dot1, submapImage.width, submapImage.height);
+                    const absDot2 = relativeToAbsoluteCoordinates(line.dot2, submapImage.width, submapImage.height);
+                    const absLine : Line = {dot1: absDot1, dot2: absDot2};
+                    rotateAngle = findAngleFromReferenceLine(referenceLine, absLine)
                 }
             }
-            prevDot = dot;     
-            console.log("čvor:", node, "index:", index);    
+            prevDot = dot;  
         })
         const mapCropper = new MapCropperImpl()
         centroidCrop = mapCropper.crop(currentStep, submapImage.width, submapImage.height, rotateAngle)
+
     } else {
         currentStep = undefined;
         mapElements = undefined;
@@ -110,12 +109,7 @@ export default function Navigation(){
                 {
                 currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
                 <>
-                    <MapCaption imageCaption={submapImage.caption} />
-                    <div className="absolute right-0">
-                        <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
-                            onClick={() => {setZoom(!enableZoom)}} 
-                        />
-                    </div>                    
+                    <MapCaption imageCaption={submapImage.caption} />                 
                     <div className="w-full border h-2/3">
                         <Map layoutImage={submapImage.path} width={submapImage.width} 
                         height={submapImage.height} centroidCrop={centroidCrop} rotateAngle={rotateAngle} 

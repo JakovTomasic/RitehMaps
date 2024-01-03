@@ -66,7 +66,7 @@ export const hallways: Hallway[] = [
         x1: 34.61,
         y1: 69.08,
         x2: 34.61,
-        y2: 18,
+        y2: 17.04,
     },
     {
         id: "h_main_f1_left_offices",

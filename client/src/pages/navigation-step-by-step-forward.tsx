@@ -21,7 +21,6 @@ import { MapDot } from "../types/map_draw_elements/MapDot";
 import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
 import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
 import { findAngleFromReferenceLine } from "../utils/Geometry";
-import ZoomToggleButton from "../components/ZoomToggleButton";
 import { relativeToAbsoluteCoordinates } from "../logic/impl/graph/Utils";
 
 

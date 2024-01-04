@@ -1,8 +1,10 @@
 import { Hallway } from "../../../data/Hallways";
 import { MapNode } from "../../../types/graph/MapNode";
-import { NavigationNode } from "../../../types/navigation/NavigationNode";
 import { Dot } from "../../../types/general/Dot";
 import { Line } from "../../../types/general/Line";
+import { NavigationNode } from "../../../types/navigation/NavigationNode";
+import { NavigationStep } from "../../../types/navigation/NavigationStep";
+import { rotatePointClockwise } from "../../../utils/Geometry";
 
 export function nodeToDot(node: MapNode): Dot {
     return {x: node.xCoordinate, y: node.yCoordinate};
@@ -35,4 +37,57 @@ export function sameCoordinates(node1: MapNode, node2: MapNode): boolean {
     return node1.submapId == node2.submapId &&
         node1.xCoordinate == node2.xCoordinate &&
         node1.yCoordinate == node2.yCoordinate;
+}
+
+export function relativeToAbsoluteCoordinates(dot: Dot, width: number, height: number) : Dot {
+    const absX = dot.x * width / 100;
+    const absY = dot.y * height / 100;
+    return {x: absX, y: absY};
+}
+
+export function absoluteToRelativeCoordinates(dot: Dot, width: number, height: number) : Dot {
+    const relX = dot.x / width * 100;
+    const relY = dot.y / height * 100;
+    return {x: relX, y: relY};
+}
+
+export function rotateRelativePointClockwise(
+    point: Dot,
+    angle: number, 
+    width: number, 
+    height: number,
+    centerOfRotation: Dot = {x: width / 2, y: height / 2}
+) : Dot {
+    const absPoint = relativeToAbsoluteCoordinates({x: point.x, y: point.y}, width, height);
+    const rotPoint = rotatePointClockwise({x: absPoint.x, y: absPoint.y}, angle, centerOfRotation);
+    const relPoint = absoluteToRelativeCoordinates({x: rotPoint.x, y: rotPoint.y}, width, height);
+    return {x: relPoint.x, y: relPoint.y};
+}
+
+export function getStepWithRotatedNodes(
+    navigationStep: NavigationStep, 
+    width: number, 
+    height: number,
+    rotateAngle: number = 0
+): NavigationStep {
+
+    if (rotateAngle == 0) return navigationStep;
+
+    let rotatedNodes: NavigationNode[] = [];
+
+    navigationStep.nodes.forEach((node) => {
+        const rotatedPoint = rotateRelativePointClockwise(
+            {x: node.xCoordinate, y: node.yCoordinate}, 
+            rotateAngle, 
+            width, 
+            height,
+        );
+        rotatedNodes.push({
+            submapId: node.submapId,
+            xCoordinate: rotatedPoint.x,
+            yCoordinate: rotatedPoint.y,
+        });
+    });
+
+    return new NavigationStep(rotatedNodes);
 }

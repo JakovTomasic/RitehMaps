@@ -1,4 +1,4 @@
-import ORIGIN_POINT, { Dot } from "../types/general/Dot";
+import { Dot } from "../types/general/Dot";
 import { Line } from "../types/general/Line";
 import { degreesToRadians, radiansToDegrees } from "./Math";
 
@@ -92,16 +92,6 @@ export function calculateLinesIntersection(line1: Line, line2: Line): Dot | null
     return intersection;
 }
 
-/** Caution: Always returns an angle smaller (or equal to) 180 degrees */
-export function findAngleBetweenTwoVectors(vector1: Dot, vector2: Dot): number {
-    const dotProduct = calculateDotProduct(vector1, vector2);
-    const magnitude1 = calculateVectorMagnitude(vector1);
-    const magnitude2 = calculateVectorMagnitude(vector2);
-    const magnitudeProduct = magnitude1 * magnitude2;
-
-    return radiansToDegrees(Math.acos(dotProduct/magnitudeProduct));
-}
-
 export function findAngleFromReferenceLine(reference: Line, line: Line): number {
     let referenceVector = normalizeVector(lineToVector(reference));
     let lineVector = normalizeVector(lineToVector(line));
@@ -114,7 +104,7 @@ export function findAngleFromReferenceLine(reference: Line, line: Line): number 
     return (angle > 0) ? (360 - angle) : (-angle);
 }
 
-export function rotatePointClockwise(point: Dot, angle: number, referencePoint: Dot = ORIGIN_POINT): Dot {
+export function rotatePointClockwise(point: Dot, angle: number, referencePoint: Dot): Dot {
     const radAngle = degreesToRadians(angle);
     const rotatedPoint : Dot = {
         x:

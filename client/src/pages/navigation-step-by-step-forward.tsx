@@ -15,7 +15,7 @@ import { Submap } from "../types/Submap";
 import { MapCropperImpl } from "../logic/impl/MapCropperImpl";
 import { CentroidScale } from "../types/navigation/CentroidScale";
 import { createMapNodeFilter } from "../logic/impl/MapNodeFilterFactory";
-import ORIGIN_POINT, { Dot } from "../types/general/Dot";
+import { Dot } from "../types/general/Dot";
 import { Line } from "../types/general/Line";
 import { MapDot } from "../types/map_draw_elements/MapDot";
 import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
@@ -78,7 +78,7 @@ export default function Navigation(){
                 mapElements.push(mapLine);
 
                 if(index == 1){
-                    const referenceLine : Line = {dot1: ORIGIN_POINT, dot2: {x: 0, y: -1}};
+                    const referenceLine : Line = {dot1: {x: 0, y: 0}, dot2: {x: 0, y: -1}};
                     const absDot1 = relativeToAbsoluteCoordinates(line.dot1, submapImage.width, submapImage.height);
                     const absDot2 = relativeToAbsoluteCoordinates(line.dot2, submapImage.width, submapImage.height);
                     const absLine : Line = {dot1: absDot1, dot2: absDot2};

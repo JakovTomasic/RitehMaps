@@ -3,4 +3,5 @@ import { NavigationDirections } from "../../types/navigation/NavigationDirection
 
 export interface MapNavigator {
     findShortestPath(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections
+    findShortestPathForCompassMode(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections
 }

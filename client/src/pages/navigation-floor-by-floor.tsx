@@ -16,13 +16,17 @@ export default function SubmapNavigation(){
     const router = useRouter();
     const [navDirections, setNavDirections] = useState<NavigationDirections>(undefined);
 
+    const submapProvider = new SubmapProviderImpl();
+    const mapCropper = new MapCropperImpl();
+    const uiMapConverter = new UiMapConverterImpl(submapProvider, mapCropper);
+
     useEffect(() => {
         if(router.isReady){
             const data = router.query;
 
             const baseGraph = createGraph(allGraphData);
             const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl());
-            const mapNav = new MapNavigatorImpl(graphImpl);
+            const mapNav = new MapNavigatorImpl(graphImpl, submapProvider);
         
             const destinationNodeFilter = createMapNodeFilter(data.endNodeId as string);
             if (destinationNodeFilter != null) {
@@ -36,10 +40,6 @@ export default function SubmapNavigation(){
             }
         }
     }, [router.isReady]);
-
-    const submapProvider = new SubmapProviderImpl();
-    const mapCropper = new MapCropperImpl();
-    const uiMapConverter = new UiMapConverterImpl(submapProvider, mapCropper);
 
     const [currentStepIndex, updateCurrentStepIndex] = useState(0);
     

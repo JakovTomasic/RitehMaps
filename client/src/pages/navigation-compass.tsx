@@ -21,13 +21,18 @@ export default function Navigation(){
     const [compassRotation, setCompassRotation] = useState<number>(undefined);
     const [showDeviceOrientationWarning, setShowDeviceOrientationWarning] = useState<boolean>(undefined);
 
+    const submapProvider = new SubmapProviderImpl();
+    const mapCropper = new MapCropperImpl();
+    const uiMapConverter = new UiMapConverterImpl(submapProvider, mapCropper);
+    const mapRotationCalculator = new MapRotationCalculatorImpl(submapProvider);
+
     useEffect(() => {
         if(router.isReady){
             const data = router.query;
 
             const baseGraph = createGraph(allGraphData);
             const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl());
-            const mapNav = new MapNavigatorImpl(graphImpl);
+            const mapNav = new MapNavigatorImpl(graphImpl, submapProvider);
         
             const destinationNodeFilter = createMapNodeFilter(data.endNodeId as string);
             if (destinationNodeFilter != null) {
@@ -42,10 +47,6 @@ export default function Navigation(){
         }
     }, [router.isReady]);
 
-    const submapProvider = new SubmapProviderImpl();
-    const mapCropper = new MapCropperImpl();
-    const uiMapConverter = new UiMapConverterImpl(submapProvider, mapCropper);
-    const mapRotationCalculator = new MapRotationCalculatorImpl(submapProvider);
 
     const [currentStepIndex, updateCurrentStepIndex] = useState(0);
     

@@ -17,12 +17,9 @@ type Prop = {
     onNextClick: () => void,
 }
 
-export default function NavigationLayout(
-    { mapDrawProps, rotateAngle, showDeviceOrientationWarning,
-        zoomButtonVisible, zoomEnabledByDefault, onBackClick, onUpdateClick, onNextClick } : Prop
-) {
+export default function NavigationLayout(props: Prop) {
     
-    const [enableZoom, setZoom] = useState(zoomEnabledByDefault);
+    const [enableZoom, setZoom] = useState(props.zoomEnabledByDefault);
 
     return(
         <>
@@ -31,11 +28,11 @@ export default function NavigationLayout(
                     <Header text='Navigation' backPath='/' />
                 </div>
                 {
-                mapDrawProps != null ?
+                props.mapDrawProps != null ?
                 <>
-                    { showDeviceOrientationWarning ? <div>Please keep your device parallel to the ground</div> : <></> }
-                    <MapCaption imageCaption={mapDrawProps.submap.caption} />
-                    { zoomButtonVisible ?
+                    { props.showDeviceOrientationWarning ? <div>Please keep your device parallel to the ground</div> : <></> }
+                    <MapCaption imageCaption={props.mapDrawProps.submap.caption} />
+                    { props.zoomButtonVisible ?
                         <div className="absolute right-0">
                             <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
                                 onClick={() => {setZoom(!enableZoom)}} 
@@ -43,17 +40,17 @@ export default function NavigationLayout(
                         </div>
                      : <></> }
                     <div className="w-full border h-2/3">
-                        <Map layoutImage={mapDrawProps.submap.path} width={mapDrawProps.submap.width} 
-                        height={mapDrawProps.submap.height} centroidCrop={mapDrawProps.centroidCrop}
-                        rotateAngle={rotateAngle} drawElements={mapDrawProps.mapElements} enableZoom={enableZoom}/>                    
+                        <Map layoutImage={props.mapDrawProps.submap.path} width={props.mapDrawProps.submap.width} 
+                        height={props.mapDrawProps.submap.height} centroidCrop={props.mapDrawProps.centroidCrop}
+                        rotateAngle={props.rotateAngle} drawElements={props.mapDrawProps.mapElements} enableZoom={enableZoom}/>                    
                     </div>
                 </>
                     : <div>Loading...</div>
                 }
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
-                    <Button text='Back' onClick={onBackClick} />
-                    <Button text='Update' onClick={onUpdateClick}/>
-                    <Button text='Next' onClick={onNextClick} />
+                    <Button text='Back' onClick={props.onBackClick} />
+                    <Button text='Update' onClick={props.onUpdateClick}/>
+                    <Button text='Next' onClick={props.onNextClick} />
                 </div>
             </div>
             

@@ -65,8 +65,8 @@ export default class Map extends Component<Prop>{
         })
     }
 
-    private coordinatesOverlap(x1, x2, y1, y2): boolean{
-        return ((round(x1, 2) != round(x2, 2)) || (round(y1, 2) != round(y2, 2)))
+    private coordinatesOverlap(x1, x2, y1, y2): boolean {
+        return (round(x1, 2) == round(x2, 2) && round(y1, 2) == round(y2, 2));
     }
 
     private drawElements(){
@@ -86,12 +86,12 @@ export default class Map extends Component<Prop>{
 
             if(element instanceof MapPathLine){
 
-                var checkCoords = this.coordinatesOverlap(element.line.dot1.x, element.line.dot2.x, 
+                var checkCoords = !this.coordinatesOverlap(element.line.dot1.x, element.line.dot2.x, 
                     element.line.dot1.y, element.line.dot2.y)
                 
                 if(checkCoords){
                     svg.append("marker")
-                    .attr("id", "triangle")
+                    .attr("id", `triangle-${index}`)
                     .attr("refX", -10)
                     .attr("refY", 6)
                     .attr("markerWidth", 30)
@@ -100,7 +100,7 @@ export default class Map extends Component<Prop>{
                     .attr("orient", "auto")
                     .append("path")
                     .attr("d", "M 0 0 12 6 0 12 3 6")
-                    .style("fill", "#06B6D4")
+                    .style("fill", element.color)
 
                     svg.append("line")
                     .attr("x1", `${element.line.dot1.x}%`)
@@ -109,11 +109,10 @@ export default class Map extends Component<Prop>{
                     .attr("y2", `${element.line.dot2.y}%`)
                     .style("stroke", element.color)
                     .style("stroke-width", `${element.width}%`)
-                    .attr("marker-start", "url(#triangle)")
+                    .attr("marker-start", `url(#triangle-${index})`)
                 }
             }
-        })
-
+        });
     }
 
 

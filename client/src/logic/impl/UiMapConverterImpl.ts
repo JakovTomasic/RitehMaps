@@ -24,24 +24,57 @@ export class UiMapConverterImpl implements UiMapConverter {
     convertNavigationToMapDrawElements(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
         const navSteps: NavigationStep[] = navDirections?.steps;
 
-        if (navSteps !== undefined && navSteps.length > 0) {
-            let mapElements: MapDrawElement[] = [];
-
+        if (navSteps !== undefined && navSteps.length > 0 && currentStepIndex < navSteps.length) {
             const currentStep = navSteps[currentStepIndex];
-            let prevDot = {} as Dot;
-            currentStep.nodes.forEach((node, index) => {
-                const dot = {x: node.xCoordinate, y: node.yCoordinate} as Dot;
-                const mapDot = new MapDot(dot, "#41C7F7", 0.5, 1);
-                mapElements.push(mapDot);
-                if(index > 0){
-                    const line = {dot1: prevDot, dot2: dot} as Line;
-                    const mapLine = new MapPathLine(line, "#41C7F7", 0.1);
-                    mapElements.push(mapLine);
-                }
-                prevDot = dot;
-            });
             const submap = this.submapProvider.getSubmap(currentStep.nodes[0].submapId);
             const centroidCrop = this.mapCropper.crop(currentStep, submap.width, submap.height);
+
+            let mapElements: MapDrawElement[] = [];
+            let currentStepLines: MapDrawElement[] = [];
+            let currentStepNodes: MapDrawElement[] = [];
+
+            navSteps.forEach((step, stepIndex) => {
+
+                const isCurrentStep = stepIndex == currentStepIndex;
+
+                let color: string
+                if (isCurrentStep) {
+                    color = "#41C7F7";
+                } else {
+                    color = "#AA2244";
+                }
+
+                let prevDot: Dot | null = null;
+                step.nodes.forEach((node, index) => {
+
+                    if (node.submapId == submap.id) {
+                        const dot = {x: node.xCoordinate, y: node.yCoordinate} as Dot;
+        
+                        if (isCurrentStep) {
+                            if (index == 0 || index == step.nodes.length - 1)  {
+                                const mapDot = new MapDot(dot, color, 0.5, 1);
+                                currentStepNodes.push(mapDot);
+                            }
+                        }
+        
+                        if(prevDot != null){
+                            const line = {dot1: prevDot, dot2: dot} as Line;
+                            const mapLine = new MapPathLine(line, color, 0.15);
+                            // TODO: two lines edge isn't smooth!!!
+                            if (isCurrentStep) {
+                                currentStepLines.push(mapLine);
+                            } else {
+                                mapElements.push(mapLine);
+                            }
+                        }
+                        prevDot = dot;
+                    }
+                });
+            });
+
+            // Latest element in the list will be drawn on the top
+            mapElements = mapElements.concat(currentStepLines);
+            mapElements = mapElements.concat(currentStepNodes);
 
             return {
                 mapElements: mapElements,

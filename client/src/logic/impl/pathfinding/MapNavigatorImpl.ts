@@ -27,6 +27,12 @@ export class MapNavigatorImpl implements MapNavigator {
         return this.splitNavigationPathIntoStepsOfTwoNodesEach(navNodes);
     }
 
+    findShortestPathForFloorByFloor(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections {
+        const path = this.findPathToNearestNode(startNodeId, endNodeFilter);
+        const navNodes = this.convertPathToNavigationNodes(path);
+        return this.splitNavigationPathIntoStepsWholeFloorOneStep(navNodes);
+    }
+
     private findPathToNearestNode(startNodeId: string, endNodeFilter: MapNodeFilter): MapNode[] {
        return findPathWithDijkstra(startNodeId, endNodeFilter, this.graph);
     }
@@ -90,6 +96,29 @@ export class MapNavigatorImpl implements MapNavigator {
                 steps.push(new NavigationStep([previousNode, currentNode]));
             }
             previousNode = currentNode;
+        }
+
+        return new NavigationDirections(steps);
+    }
+
+    private splitNavigationPathIntoStepsWholeFloorOneStep(path: NavigationNode[]): NavigationDirections {
+
+        const steps: NavigationStep[] = [];
+
+        let previousNode: NavigationNode = path[0];
+        let currentStepNodes: NavigationNode[] = [previousNode];
+        for (let i = 1; i < path.length; i++) {
+            let currentNode = path[i];
+            if (previousNode.submapId != currentNode.submapId) {
+                steps.push(new NavigationStep([...currentStepNodes]));
+                currentStepNodes = [];
+            }
+            currentStepNodes.push(currentNode)
+            previousNode = currentNode;
+        }
+
+        if (currentStepNodes.length > 0) {
+            steps.push(new NavigationStep(currentStepNodes))
         }
 
         return new NavigationDirections(steps);

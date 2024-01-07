@@ -40,7 +40,7 @@ export class GraphImpl implements Graph {
         if (node1.submapId !== node2.submapId) {
             return STAIRS_DISTANCE;
         } else {
-            const submap = this.submapProvider.getSubmapImage(node1.submapId);
+            const submap = this.submapProvider.getSubmap(node1.submapId);
             const submapHeightMeters = submap.height * BUILDING_WIDTH_METERS / submap.width;
             const metersCoordinate1: Dot = {
                 x: node1.xCoordinate * BUILDING_WIDTH_METERS,

@@ -5,7 +5,8 @@ import { getNodeBounds, getStepWithRotatedNodes, rotateRelativePointClockwise } 
 
 export class MapCropperImpl implements MapCropper{
 
-    crop(navigationStep: NavigationStep, width: number, height: number, rotateAngle: number = 0): CentroidScale {
+    crop(navigationStep: NavigationStep, width: number, height: number): CentroidScale {
+        const rotateAngle = 0; // TODO: conform
         const rotatedStep = getStepWithRotatedNodes(navigationStep, width, height, rotateAngle);
         const {minX, minY, maxX, maxY} = getNodeBounds(rotatedStep.nodes);
 

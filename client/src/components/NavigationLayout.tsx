@@ -5,6 +5,9 @@ import Map from "../components/Map";
 import MapCaption from "../components/MapCaption";
 import { MapDrawProps } from "../types/map_draw_elements/MapDrawProps";
 import ZoomToggleButton from "./ZoomToggleButton";
+import { DestinationNode } from "../types/navigation/DestinationNode";
+import FinishFlag from "./FinishFlag";
+import Link from "next/link";
 
 type Prop = {
     mapDrawProps: MapDrawProps,
@@ -12,6 +15,9 @@ type Prop = {
     showDeviceOrientationWarning: boolean,
     zoomButtonVisible: boolean,
     zoomEnabledByDefault: boolean,
+    isFirstStep: boolean,
+    isLastStep: boolean,
+    destination: DestinationNode,
     onBackClick: () => void,
     onUpdateClick: () => void,
     onNextClick: () => void,
@@ -19,9 +25,11 @@ type Prop = {
 
 export default function NavigationLayout(props: Prop) {
     
+    const [navigationFinished, setNavigationFinished] = useState(false);
     const [enableZoom, setZoom] = useState(props.zoomEnabledByDefault);
 
     return(
+        !navigationFinished ?
         <>
             <div className="absolute w-fill h-full mx-auto left-0 right-0 my-0 max-w-3xl">
                 <div className="h-1/8">
@@ -48,12 +56,43 @@ export default function NavigationLayout(props: Prop) {
                     : <div>Loading...</div>
                 }
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
-                    <Button text='Back' onClick={props.onBackClick} />
-                    <Button text='Update' onClick={props.onUpdateClick}/>
-                    <Button text='Next' onClick={props.onNextClick} />
+                    <Button text='Back' enabled={!props.isFirstStep} onClick={props.onBackClick} />
+                    <Button text='Update' enabled={true} onClick={props.onUpdateClick} />
+                    <Button
+                        text={props.isLastStep ? 'Finish' : 'Next'}
+                        enabled={true}
+                        onClick={props.isLastStep ? () => { setNavigationFinished(true) } : props.onNextClick}
+                    />
                 </div>
             </div>
-            
+        </>
+        :
+        <>
+            <div className="absolute w-fill h-full mx-auto left-0 right-0 my-0 max-w-3xl">
+                <div className="h-1/8">
+                    <Header text='Navigation' backPath='/' />
+                </div>
+                <div className="w-full h-2/3 flex flex-col items-center">
+
+                    <div className="flex-[0.1]" />
+                    <div className="text-3xl font-semibold text-center text-gray-800 tracking-tight">
+                        You have reached your destination!
+                    </div>
+                    <div className="flex-[0.1]" />
+                    <div className="text-2xl font-semibold text-center
+                            text-gray-800 tracking-tight p-12 bg-cyan-600 rounded-3xl">
+                        { props.destination.name }
+                    </div>
+                    <div className="flex-[0.3]" />
+                    <FinishFlag />
+                </div>
+                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
+                    <Button text='Back' enabled={!props.isFirstStep} onClick={() => setNavigationFinished(false)} />
+                    <Link href={'/'}>
+                        <Button text='Home' enabled={true} />
+                    </Link>
+                </div>
+            </div>
         </>
     );
 }

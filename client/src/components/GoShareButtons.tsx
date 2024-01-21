@@ -5,10 +5,10 @@ import ShareWindow from "./ShareWindow";
 import ExitXIcon from "./ExitXIcon";
 
 type GoButtonProps = {
-  startNodeId: String;
-  destinationNodeId: String;
-  startText: String;
-  destinationText: String;
+  startNodeId: string;
+  destinationNodeId: string;
+  startText: string;
+  destinationText: string;
   handleShare: () => void;
   showShareDiv: boolean;
   clickable: boolean;
@@ -24,9 +24,10 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
           href={{
             pathname: "/navigation",
             query: {
-              startNodeId: (props.startNodeId as string) != null 
-                          ? (props.startNodeId as string) : props.defaultStartNodeId,
-              endNodeId: props.destinationNodeId as string,
+              startNodeId: props.startNodeId != null 
+                          ? props.startNodeId : props.defaultStartNodeId,
+              endNodeId: props.destinationNodeId,
+              destinationName: props.destinationText,
             },
           }}
         >
@@ -44,12 +45,12 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
           href={{
             pathname: "/",
             query: {
-              startNodeId: (props.startNodeId as string) != null 
-                          ? (props.startNodeId as string) : props.defaultStartNodeId,
-              endNodeId: props.destinationNodeId as string,
-              startText: (props.startText as string) != null 
-                          ? (props.startText as string) : "",
-              destinationText: props.destinationText as string,
+              startNodeId: props.startNodeId != null 
+                          ? props.startNodeId : props.defaultStartNodeId,
+              endNodeId: props.destinationNodeId,
+              startText: props.startText != null 
+                          ? props.startText : "",
+              destinationText: props.destinationText,
             },
           }}
         >

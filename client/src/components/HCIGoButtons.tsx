@@ -2,10 +2,10 @@ import React from "react";
 import Link from "next/link";
 
 type HCIGoButtonProps = {
-  startNodeId: String;
-  destinationNodeId: String;
-  startText: String;
-  destinationText: String;
+  startNodeId: string;
+  destinationNodeId: string;
+  startText: string;
+  destinationText: string;
   clickable: boolean;
   defaultStartNodeId: string;
 };
@@ -38,10 +38,11 @@ const HCIGoButtons: React.FC<HCIGoButtonProps> = (props) => {
               pathname: config.path,
               query: {
                 startNodeId:
-                  (props.startNodeId as string) != null
-                    ? (props.startNodeId as string)
+                  props.startNodeId != null
+                    ? props.startNodeId
                     : props.defaultStartNodeId,
-                endNodeId: props.destinationNodeId as string,
+                endNodeId: props.destinationNodeId,
+                destinationName: props.destinationText,
               },
             }}
             style={{display: 'contents'}}

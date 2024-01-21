@@ -19,6 +19,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-select-search": "^4.1.6",
+    "sass": "^1.70.0",
     "sorted-set": "^0.3.0",
     "ts-node": "^10.9.1"
   },

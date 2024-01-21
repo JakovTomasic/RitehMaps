@@ -10,11 +10,13 @@ import { MapCropperImpl } from "../logic/impl/MapCropperImpl";
 import { createMapNodeFilter } from "../logic/impl/MapNodeFilterFactory";
 import { UiMapConverterImpl } from "../logic/impl/UiMapConverterImpl";
 import NavigationLayout from "../components/NavigationLayout";
+import { DestinationNode } from "../types/navigation/DestinationNode";
 
 export default function SubmapNavigation(){
     
     const router = useRouter();
     const [navDirections, setNavDirections] = useState<NavigationDirections>(undefined);
+    const [destinationNode, setDestinationNode] = useState<DestinationNode>(undefined);
 
     const submapProvider = new SubmapProviderImpl();
     const mapCropper = new MapCropperImpl();
@@ -23,6 +25,8 @@ export default function SubmapNavigation(){
     useEffect(() => {
         if(router.isReady){
             const data = router.query;
+
+            setDestinationNode({ name: data.destinationName as string });
 
             const baseGraph = createGraph(allGraphData);
             const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl());
@@ -53,6 +57,9 @@ export default function SubmapNavigation(){
             showDeviceOrientationWarning={false}
             zoomButtonVisible={false}
             zoomEnabledByDefault={true}
+            isFirstStep={currentStepIndex == 0}
+            isLastStep={navDirections != undefined && currentStepIndex == navDirections.steps.length - 1}
+            destination={destinationNode}
             onBackClick={() => {
                 if(currentStepIndex > 0) {
                     updateCurrentStepIndex(currentStepIndex-1)

@@ -11,6 +11,7 @@ import { createMapNodeFilter } from "../logic/impl/MapNodeFilterFactory";
 import { UiMapConverterImpl } from "../logic/impl/UiMapConverterImpl";
 import { MapRotationCalculatorImpl } from "../logic/impl/MapRotationCalculatorImpl";
 import NavigationLayout from "../components/NavigationLayout";
+import { DestinationNode } from "../types/navigation/DestinationNode";
 
 const ANGLE_TILT_WARNING_THRESHOLD = 60;
 
@@ -18,6 +19,7 @@ export default function Navigation(){
     
     const router = useRouter();
     const [navDirections, setNavDirections] = useState<NavigationDirections>(undefined);
+    const [destinationNode, setDestinationNode] = useState<DestinationNode>(undefined);
     const [compassRotation, setCompassRotation] = useState<number>(undefined);
     const [showDeviceOrientationWarning, setShowDeviceOrientationWarning] = useState<boolean>(undefined);
 
@@ -29,6 +31,8 @@ export default function Navigation(){
     useEffect(() => {
         if(router.isReady){
             const data = router.query;
+
+            setDestinationNode({ name: data.destinationName as string });
 
             const baseGraph = createGraph(allGraphData);
             const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl());
@@ -84,6 +88,9 @@ export default function Navigation(){
             showDeviceOrientationWarning={showDeviceOrientationWarning}
             zoomButtonVisible={false}
             zoomEnabledByDefault={false}
+            isFirstStep={currentStepIndex == 0}
+            isLastStep={navDirections != undefined && currentStepIndex == navDirections.steps.length - 1}
+            destination={destinationNode}
             onBackClick={() => {
                 if(currentStepIndex > 0) {
                     updateCurrentStepIndex(currentStepIndex-1)

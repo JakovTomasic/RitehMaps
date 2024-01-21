@@ -1,0 +1,55 @@
+// Thank you https://codepen.io/udit007/pen/XWJooNQ
+$n: 24;	//slices count
+$width: 8px; //slice width
+$height: $width * $n/2; // 2:1 ratio
+
+
+.FinishFlagWrapper {
+	position: relative;
+	width: $n * $width;
+	height: $height; 
+	transform: rotateY(20deg) skew(5deg);
+	transform-style: preserve-3d;
+	background-image: url("/images/finish_flag.jpg");
+	background-size: 0;// hide image
+	background-position:-200% -200%;// hide image
+
+	// flag stick
+	&::before{
+		content: "";
+		display: block;
+		position: absolute;
+		width: $width*0.9;
+		height: $height * 2.5;
+		background: rgb(80, 67, 0);
+		left:  ($width - 1px)/2
+	}
+}
+
+.FinishFlag-s{
+	position: absolute;
+	transform-style: preserve-3d;
+	left: $width - 1px;// -1px hides vertical lines
+	width: $width;
+	height: 100%;
+	transform-origin: 0 0;  
+	background-repeat: no-repeat;
+	background-size: $n*$width 100%;
+	transform: translateZ(0.0001px) rotateY(#{$n/1.7}deg); 
+	//translateZ triggers GPU accelaration for smooth animations
+	background-image: inherit;
+}
+
+@for $i from 1 through $n {
+	.FinishFlag-s#{$i} {
+		background-position-x: #{-$i*$width};
+		// short w name and 1s better than 1000ms , waver for minimal css code compilation
+		animation: w 1s #{$i * .08}s ease-in-out infinite alternate;
+	}
+}
+
+@keyframes w {
+  to{
+    transform: translateZ(0.0001px) rotateY(#{-$n/1.7}deg);
+  }
+}

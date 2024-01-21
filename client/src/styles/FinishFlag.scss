@@ -1,6 +1,6 @@
 // Thank you https://codepen.io/udit007/pen/XWJooNQ
 $n: 24;	//slices count
-$width: 8px; //slice width
+$width: 6px; //slice width
 $height: $width * $n/2; // 2:1 ratio
 
 
@@ -20,7 +20,7 @@ $height: $width * $n/2; // 2:1 ratio
 		display: block;
 		position: absolute;
 		width: $width*0.9;
-		height: $height * 2.5;
+		height: $height * 2.3;
 		background: rgb(80, 67, 0);
 		left:  ($width - 1px)/2
 	}

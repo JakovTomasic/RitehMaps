@@ -80,11 +80,13 @@ export default function NavigationLayout(props: Prop) {
                     </div>
                     <div className="flex-[0.1]" />
                     <div className="text-2xl font-semibold text-center
-                            text-gray-100 tracking-tight p-12 bg-cyan-600 rounded-3xl">
+                            text-gray-100 tracking-tight p-10 bg-cyan-600 rounded-3xl">
                         { props.destination.name }
                     </div>
                     <div className="flex-[0.3]" />
-                    <FinishFlag />
+                    <div className="w-full flex flex-col items-center pl-10">
+                        <FinishFlag />
+                    </div>
                 </div>
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
                     <Button text='Back' enabled={!props.isFirstStep} onClick={() => setNavigationFinished(false)} />

@@ -19,12 +19,12 @@ const HCIGoButtons: React.FC<HCIGoButtonProps> = (props) => {
   ];
 
   const enabledButtonStyle: string =
-    "mx-1 py-2 px-2 rounded-md flex items-center justify-center mr-1" +
+    "mx-2 p-3 rounded-md flex items-center justify-center mr-1" +
     " bg-cyan-600 focus:bg-cyan-700 transition duration-300 w-100" +
     " text-white text-sm font-bold";
 
   const disabledButtonStyle: string =
-    "mx-1 py-2 px-2 rounded-md flex items-center justify-center mr-1" +
+    "mx-2 p-3 rounded-md flex items-center justify-center mr-1" +
     " bg-gray-500 cursor-not-allowed w-100" +
     " text-white text-sm font-bold";
 

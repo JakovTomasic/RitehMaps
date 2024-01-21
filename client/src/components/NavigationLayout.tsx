@@ -57,7 +57,7 @@ export default function NavigationLayout(props: Prop) {
                 }
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
                     <Button text='Back' enabled={!props.isFirstStep} onClick={props.onBackClick} />
-                    <Button text='Update' enabled={true} onClick={props.onUpdateClick} />
+                    {/* <Button text='Update' enabled={true} onClick={props.onUpdateClick} /> */}
                     <Button
                         text={props.isLastStep ? 'Finish' : 'Next'}
                         enabled={true}

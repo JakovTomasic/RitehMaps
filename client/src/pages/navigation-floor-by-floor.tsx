@@ -57,6 +57,7 @@ export default function SubmapNavigation(){
             showDeviceOrientationWarning={false}
             zoomButtonVisible={false}
             zoomEnabledByDefault={true}
+            middleLineVisible={false}
             isFirstStep={currentStepIndex == 0}
             isLastStep={navDirections != undefined && currentStepIndex == navDirections.steps.length - 1}
             destination={destinationNode}

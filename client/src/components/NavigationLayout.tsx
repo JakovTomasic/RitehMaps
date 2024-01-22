@@ -15,6 +15,7 @@ type Prop = {
     showDeviceOrientationWarning: boolean,
     zoomButtonVisible: boolean,
     zoomEnabledByDefault: boolean,
+    middleLineVisible: boolean,
     isFirstStep: boolean,
     isLastStep: boolean,
     destination: DestinationNode,
@@ -52,6 +53,11 @@ export default function NavigationLayout(props: Prop) {
                         </div>
                      : <></> }
                     <div className="w-full border h-2/3">
+                        { props.middleLineVisible ?
+                            <div className="absolute w-full h-full flex flex-col items-center">
+                                <img className="h-16" src="/images/arrow_up.png"></img>
+                            </div>
+                        : <></> }
                         <Map layoutImage={props.mapDrawProps.submap.path} width={props.mapDrawProps.submap.width} 
                         height={props.mapDrawProps.submap.height} centroidCrop={props.mapDrawProps.centroidCrop}
                         rotateAngle={props.rotateAngle} drawElements={props.mapDrawProps.mapElements} enableZoom={enableZoom}/>                    

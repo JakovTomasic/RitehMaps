@@ -59,6 +59,7 @@ export default function Navigation(){
             showDeviceOrientationWarning={false}
             zoomButtonVisible={true}
             zoomEnabledByDefault={false}
+            middleLineVisible={false}
             isFirstStep={currentStepIndex == 0}
             isLastStep={navDirections != undefined && currentStepIndex == navDirections.steps.length - 1}
             destination={destinationNode}

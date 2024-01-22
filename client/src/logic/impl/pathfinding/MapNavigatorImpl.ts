@@ -69,7 +69,7 @@ export class MapNavigatorImpl implements MapNavigator {
             } else if (previousNode.submapId != node.submapId) {
                 steps.push(new NavigationStep(currentStepNodes))
                 currentStepNodes = [node]
-            } else if (!this.fitsInRectangle(nextStep, STEP_MAX_WIDTH, STEP_MAX_HEIGHT)) {
+            } else if (!this.fitsInRectangle(nextStep, STEP_MAX_WIDTH, STEP_MAX_HEIGHT) && currentStepNodes.length > 1) {
                 steps.push(new NavigationStep(currentStepNodes))
                 currentStepNodes = [previousNode, node]
             } else {

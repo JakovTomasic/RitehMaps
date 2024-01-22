@@ -89,12 +89,12 @@ export class UiMapConverterImpl implements UiMapConverter {
         return this.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
     }
     convertNavigationToMapDrawElements_floorByFloor(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.convertNavigationToMapDrawElements_stepByStep(currentStepIndex, navDirections);
+        return this.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
     }
     convertNavigationToMapDrawElements_compass(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.convertNavigationToMapDrawElements_stepByStep(currentStepIndex, navDirections);
+        return this.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
     }
     convertNavigationToMapDrawElements_stepByStepForward(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.convertNavigationToMapDrawElements_stepByStep(currentStepIndex, navDirections);
+        return this.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
     }
 }

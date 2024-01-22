@@ -23,7 +23,7 @@ export class MapCropperImpl implements MapCropper{
         centroidX = rotatedCentroid.x;
         centroidY = rotatedCentroid.y;
     
-        const stepScale = this.getStepScale(maxX - minX, maxY - minY);
+        const stepScale = Math.min(this.getStepScale(maxX - minX, maxY - minY), 5);
 
         const scaledWidth = width/stepScale;
         const scaledHeight = height/stepScale;

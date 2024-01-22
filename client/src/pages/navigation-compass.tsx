@@ -20,7 +20,7 @@ export default function Navigation(){
     const router = useRouter();
     const [navDirections, setNavDirections] = useState<NavigationDirections>(undefined);
     const [destinationNode, setDestinationNode] = useState<DestinationNode>(undefined);
-    const [compassRotation, setCompassRotation] = useState<number>(undefined);
+    const [compassRotation, setCompassRotation] = useState<number>(0);
     const [showDeviceOrientationWarning, setShowDeviceOrientationWarning] = useState<boolean>(undefined);
 
     const submapProvider = new SubmapProviderImpl();

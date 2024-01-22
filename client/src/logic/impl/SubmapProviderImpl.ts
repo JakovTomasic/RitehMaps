@@ -4,7 +4,7 @@ import { submaps } from "../../data/submaps";
 
 export class SubmapProviderImpl implements SubmapProvider{
 
-    getSubmapImage(submapId: number): Submap {
+    getSubmap(submapId: number): Submap {
 
         var retSubmap: Submap
         submaps.forEach((submap) => {

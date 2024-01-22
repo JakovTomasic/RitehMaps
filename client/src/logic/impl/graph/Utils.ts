@@ -5,8 +5,13 @@ import { Line } from "../../../types/general/Line";
 import { NavigationNode } from "../../../types/navigation/NavigationNode";
 import { NavigationStep } from "../../../types/navigation/NavigationStep";
 import { rotatePointClockwise } from "../../../utils/Geometry";
+import { SubmapProvider } from "../../interfaces/SubmapProvider";
 
 export function nodeToDot(node: MapNode): Dot {
+    return {x: node.xCoordinate, y: node.yCoordinate};
+}
+
+export function navNodeToDot(node: NavigationNode): Dot {
     return {x: node.xCoordinate, y: node.yCoordinate};
 }
 
@@ -49,6 +54,12 @@ export function absoluteToRelativeCoordinates(dot: Dot, width: number, height: n
     const relX = dot.x / width * 100;
     const relY = dot.y / height * 100;
     return {x: relX, y: relY};
+}
+
+export function navNodeToAbsoluteDot(node: NavigationNode, submapProvider: SubmapProvider): Dot {
+    const width = submapProvider.getSubmap(node.submapId).width;
+    const height = submapProvider.getSubmap(node.submapId).height;
+    return relativeToAbsoluteCoordinates(navNodeToDot(node), width, height);
 }
 
 export function rotateRelativePointClockwise(

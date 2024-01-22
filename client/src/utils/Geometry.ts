@@ -118,3 +118,9 @@ export function rotatePointClockwise(point: Dot, angle: number, referencePoint: 
     };
     return rotatedPoint;
 }
+
+export function fixAngleBetweenZeroAnd360(degrees: number): number {
+    const fullCirclesDistance = Math.floor(Math.abs(degrees) / 360);
+    const result = (degrees + fullCirclesDistance * 360);
+    return (result + 3600) % 360;
+}

@@ -50,7 +50,7 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
             setY(centroidCrop.translateY)
             setScale(centroidCrop.stepScale)        
         }
-    }, [centroidCrop])
+    }, [centroidCrop, enableZoom])
     
     return (
         <svg height="100%" width="100%" ref={svgRef} viewBox={`0, 0, ${width}, ${height}`}>

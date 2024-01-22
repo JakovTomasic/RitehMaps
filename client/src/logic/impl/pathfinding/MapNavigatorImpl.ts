@@ -6,25 +6,41 @@ import { MapNavigator } from "../../interfaces/MapNavigator";
 import { Graph } from "../../interfaces/Graph";
 import { findPathWithDijkstra } from "./findPathWithDijkstra";
 import { NavigationStep } from "../../../types/navigation/NavigationStep";
-import { getNodeBounds } from "../graph/Utils";
+import { getNodeBounds, navNodeToAbsoluteDot } from "../graph/Utils";
+import { eucledianDistance } from "../../../utils/Geometry";
+import { SubmapProvider } from "../../interfaces/SubmapProvider";
+
+const ABSOLUTE_THRESHOLD_FOR_COMBINING_NEAR_NODES = 35;
 
 export class MapNavigatorImpl implements MapNavigator {
-    private graph: Graph;
 
-    constructor(graph: Graph) {
+    private graph: Graph;
+    private submapProvider: SubmapProvider;
+
+    constructor(graph: Graph, submapProvider: SubmapProvider) {
         this.graph = graph;
+        this.submapProvider = submapProvider;
     }
 
     findShortestPath(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections {
         const path = this.findPathToNearestNode(startNodeId, endNodeFilter);
         const navNodes = this.convertPathToNavigationNodes(path);
-        return this.splitNavigationPathIntoSteps(navNodes);
+        const standaloneNodes = this.removeNodesThatAreTooNear(navNodes);
+        return this.splitNavigationPathIntoSteps(standaloneNodes);
     }
 
     findShortestPathForCompassMode(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections {
         const path = this.findPathToNearestNode(startNodeId, endNodeFilter);
         const navNodes = this.convertPathToNavigationNodes(path);
-        return this.splitNavigationPathIntoStepsOfTwoNodesEach(navNodes);
+        const standaloneNodes = this.removeNodesThatAreTooNear(navNodes);
+        return this.splitNavigationPathIntoStepsOfTwoNodesEach(standaloneNodes);
+    }
+
+    findShortestPathForFloorByFloor(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections {
+        const path = this.findPathToNearestNode(startNodeId, endNodeFilter);
+        const navNodes = this.convertPathToNavigationNodes(path);
+        const standaloneNodes = this.removeNodesThatAreTooNear(navNodes);
+        return this.splitNavigationPathIntoStepsWholeFloorOneStep(standaloneNodes);
     }
 
     private findPathToNearestNode(startNodeId: string, endNodeFilter: MapNodeFilter): MapNode[] {
@@ -53,7 +69,7 @@ export class MapNavigatorImpl implements MapNavigator {
             } else if (previousNode.submapId != node.submapId) {
                 steps.push(new NavigationStep(currentStepNodes))
                 currentStepNodes = [node]
-            } else if (!this.fitsInRectangle(nextStep, STEP_MAX_WIDTH, STEP_MAX_HEIGHT)) {
+            } else if (!this.fitsInRectangle(nextStep, STEP_MAX_WIDTH, STEP_MAX_HEIGHT) && currentStepNodes.length > 1) {
                 steps.push(new NavigationStep(currentStepNodes))
                 currentStepNodes = [previousNode, node]
             } else {
@@ -90,6 +106,29 @@ export class MapNavigatorImpl implements MapNavigator {
                 steps.push(new NavigationStep([previousNode, currentNode]));
             }
             previousNode = currentNode;
+        }
+
+        return new NavigationDirections(steps);
+    }
+
+    private splitNavigationPathIntoStepsWholeFloorOneStep(path: NavigationNode[]): NavigationDirections {
+
+        const steps: NavigationStep[] = [];
+
+        let previousNode: NavigationNode = path[0];
+        let currentStepNodes: NavigationNode[] = [previousNode];
+        for (let i = 1; i < path.length; i++) {
+            let currentNode = path[i];
+            if (previousNode.submapId != currentNode.submapId) {
+                steps.push(new NavigationStep([...currentStepNodes]));
+                currentStepNodes = [];
+            }
+            currentStepNodes.push(currentNode)
+            previousNode = currentNode;
+        }
+
+        if (currentStepNodes.length > 0) {
+            steps.push(new NavigationStep(currentStepNodes))
         }
 
         return new NavigationDirections(steps);
@@ -149,4 +188,60 @@ export class MapNavigatorImpl implements MapNavigator {
         return result;
     }
 
+    private removeNodesThatAreTooNear(path: NavigationNode[]): NavigationNode[] {
+
+        if (path.length < 2) {
+            return path;
+        }
+
+        let resultPath: NavigationNode[] = [];
+
+        let index = 1;
+        let allNodesAdded = false;
+
+        while (index < path.length) {
+
+            let firstNode: NavigationNode = path[index - 1];
+
+            let xSumRelative = firstNode.xCoordinate;
+            let ySumRelative = firstNode.yCoordinate;
+            let nearNodesCount = 1;
+
+            let previousNode: NavigationNode = firstNode;
+            let currentNode: NavigationNode = path[index];
+            let absDotPrevious = navNodeToAbsoluteDot(previousNode, this.submapProvider);
+            let absDotCurrent = navNodeToAbsoluteDot(currentNode, this.submapProvider);
+
+            while(previousNode.submapId == currentNode.submapId
+                    && eucledianDistance(absDotPrevious, absDotCurrent) < ABSOLUTE_THRESHOLD_FOR_COMBINING_NEAR_NODES) {
+                    
+                xSumRelative += currentNode.xCoordinate;
+                ySumRelative += currentNode.yCoordinate;
+                nearNodesCount++;
+                index++;
+                
+                if (index == path.length) {
+                    allNodesAdded = true;
+                    break;
+                }
+
+                previousNode = path[index - 1];
+                currentNode = path[index];
+                absDotPrevious = navNodeToAbsoluteDot(previousNode, this.submapProvider);
+                absDotCurrent = navNodeToAbsoluteDot(currentNode, this.submapProvider);
+            }
+
+            const x = (xSumRelative) / nearNodesCount;
+            const y = (ySumRelative) / nearNodesCount;
+            resultPath.push(new NavigationNode(firstNode.submapId, x, y));
+
+            index++;
+        }
+
+        if (!allNodesAdded) {
+            resultPath.push(path[path.length - 1]);
+        }
+
+        return resultPath;
+    }
 }

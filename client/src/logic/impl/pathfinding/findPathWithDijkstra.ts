@@ -4,6 +4,8 @@ import { MapNodeFilter } from "../../../types/roomsearch/MapNodeFilter";
 import { Graph } from "../../interfaces/Graph";
 import { recreatePath } from "./recreatePath";
 
+const COST_OF_ADDING_NEW_NODE_TO_THE_PATH = 1;
+
 export function findPathWithDijkstra(startNodeId: string, endNodeFilter: MapNodeFilter, graph: Graph): MapNode[] {
 
     if (typeof graph.getNode(startNodeId) === "undefined") 
@@ -42,7 +44,7 @@ export function findPathWithDijkstra(startNodeId: string, endNodeFilter: MapNode
         for (let element of neighbours) {
 
             let neighbourId = element.neighbour.id;
-            let neighbourDistance = element.distance;
+            let neighbourDistance = element.distance + COST_OF_ADDING_NEW_NODE_TO_THE_PATH;
 
             if (!bestDistances.has(neighbourId) ||
                 currentDistance + neighbourDistance < bestDistances.get(neighbourId)) {

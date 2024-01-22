@@ -55,14 +55,15 @@ export default function Navigation(){
     const [currentStepIndex, updateCurrentStepIndex] = useState(0);
     
     const mapDrawProps = uiMapConverter.convertNavigationToMapDrawElements_compass(currentStepIndex, navDirections);
+    const submapNorthAngle: number | null = mapDrawProps == null ? null : mapDrawProps.submap.north_angle;
     
     useEffect(() => {
 
         function handleOrientation(event) {
-            if (mapDrawProps != null) {
+            if (submapNorthAngle != null) {
                 const deviceRotationAngleFromGeologicalNorth = 360-event.alpha || 0;
                 const angle = mapRotationCalculator.rotationForCompass(
-                    mapDrawProps.submap.north_angle,
+                    submapNorthAngle,
                     deviceRotationAngleFromGeologicalNorth
                 );
                 setCompassRotation(angle);
@@ -78,7 +79,7 @@ export default function Navigation(){
         return () => {
             window.removeEventListener('deviceorientationabsolute', handleOrientation);
         };
-    }, [mapDrawProps]);
+    }, [submapNorthAngle]);
 
 
     return (

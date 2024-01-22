@@ -2,7 +2,7 @@ import { Dot } from "../../types/general/Dot";
 import { Line } from "../../types/general/Line";
 import { NavigationDirections } from "../../types/navigation/NavigationDirections";
 import { NavigationStep } from "../../types/navigation/NavigationStep";
-import { findAngleFromReferenceLine } from "../../utils/Geometry";
+import { findAngleFromReferenceLine, fixAngleBetweenZeroAnd360 } from "../../utils/Geometry";
 import { MapRotationCalculator } from "../interfaces/MapRotationCalculator";
 import { SubmapProvider } from "../interfaces/SubmapProvider";
 import { relativeToAbsoluteCoordinates } from "./graph/Utils";
@@ -48,9 +48,7 @@ export class MapRotationCalculatorImpl implements MapRotationCalculator {
     rotationForCompass(submapNorthAngle: number, deviceRotationAngleFromGeologicalNorth: number): number | null {
         const deviceRotationAngleFromSubmapNorth = deviceRotationAngleFromGeologicalNorth - submapNorthAngle;
         const angleToRotateMapFor = -deviceRotationAngleFromSubmapNorth;
-
-        const angleBetweenZeroAnd360 = (angleToRotateMapFor + 3600) % 360;
-        return angleBetweenZeroAnd360;
+        return fixAngleBetweenZeroAnd360(angleToRotateMapFor);
     }
     
 }

@@ -38,7 +38,11 @@ export default function NavigationLayout(props: Prop) {
                 {
                 props.mapDrawProps != null ?
                 <>
-                    { props.showDeviceOrientationWarning ? <div>Please keep your device parallel to the ground</div> : <></> }
+                    { props.showDeviceOrientationWarning ?
+                        <div className="text-3xl text-red-700 font-semibold text-center tracking-tight">
+                            Please keep your device parallel to the ground
+                        </div> : <></>
+                    }
                     <MapCaption imageCaption={props.mapDrawProps.submap.caption} />
                     { props.zoomButtonVisible ?
                         <div className="absolute right-0">

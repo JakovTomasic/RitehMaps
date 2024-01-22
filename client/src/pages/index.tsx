@@ -36,7 +36,7 @@ const practice = [
     path: "/navigation-compass",
     start: "0-30",
     destination: "main_entrance",
-    destinationText: "Ulaz",
+    destinationText: "Glavni ulaz",
   },
 ];
 

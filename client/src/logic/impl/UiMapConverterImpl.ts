@@ -22,12 +22,28 @@ export class UiMapConverterImpl implements UiMapConverter {
     }
 
     convertNavigationToMapDrawElements(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
+        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, 0);
+    }
+    convertNavigationToMapDrawElements_stepByStep(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
+        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, 0);
+    }
+    convertNavigationToMapDrawElements_floorByFloor(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
+        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, 0);
+    }
+    convertNavigationToMapDrawElements_compass(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
+        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, 0);
+    }
+    convertNavigationToMapDrawElements_stepByStepForward(currentStepIndex: number, navDirections: NavigationDirections, rotateAngle: number): MapDrawProps | null {
+        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, rotateAngle);
+    }
+
+    private commonConvertNavigationToMapDrawElements(currentStepIndex: number, navDirections: NavigationDirections, rotateAngle: number): MapDrawProps | null {
         const navSteps: NavigationStep[] = navDirections?.steps;
 
         if (navSteps !== undefined && navSteps.length > 0 && currentStepIndex < navSteps.length) {
             const currentStep = navSteps[currentStepIndex];
             const submap = this.submapProvider.getSubmap(currentStep.nodes[0].submapId);
-            const centroidCrop = this.mapCropper.crop(currentStep, submap.width, submap.height);
+            const centroidCrop = this.mapCropper.crop(currentStep, submap.width, submap.height, rotateAngle);
 
             let mapElements: MapDrawElement[] = [];
             let currentStepLines: MapDrawElement[] = [];
@@ -84,17 +100,5 @@ export class UiMapConverterImpl implements UiMapConverter {
         } else {
             return null;
         }
-    }
-    convertNavigationToMapDrawElements_stepByStep(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
-    }
-    convertNavigationToMapDrawElements_floorByFloor(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
-    }
-    convertNavigationToMapDrawElements_compass(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
-    }
-    convertNavigationToMapDrawElements_stepByStepForward(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
     }
 }

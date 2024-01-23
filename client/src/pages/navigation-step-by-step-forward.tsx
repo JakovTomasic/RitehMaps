@@ -50,7 +50,7 @@ export default function Navigation(){
     const [currentStepIndex, updateCurrentStepIndex] = useState(0);
     
     const rotateAngle = mapRotationCalculator.rotationForStepByStepForward(currentStepIndex, navDirections);
-    const mapDrawProps = uiMapConverter.convertNavigationToMapDrawElements_stepByStepForward(currentStepIndex, navDirections);
+    const mapDrawProps = uiMapConverter.convertNavigationToMapDrawElements_stepByStepForward(currentStepIndex, navDirections, rotateAngle);
     
     return (
         <NavigationLayout

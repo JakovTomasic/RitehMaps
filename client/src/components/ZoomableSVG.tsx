@@ -20,12 +20,13 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
     const [scale, setScale] = useState(1)
     const [x, setX] = useState(0)
     const [y, setY] = useState(0)
+    const originalWidth = width;
+    const originalHeight = height;
 
-    if(!enableZoom){
-        d3.select(svgRef.current).on(".zoom", null)
-        width = centroidCrop.scaledWidth
-        height = centroidCrop.scaledHeight
-    }
+    if(!enableZoom) d3.select(svgRef.current).on(".zoom", null)
+
+    width = centroidCrop.scaledWidth
+    height = centroidCrop.scaledHeight
 
     useEffect(() => {
         setScale(1)
@@ -34,16 +35,24 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
     }, [enableZoom])
 
     useEffect(() => {
-        if(enableZoom){          
+        setScale(centroidCrop.stepScale)
+        setX(centroidCrop.translateX)
+        setY(centroidCrop.translateY)
+    }, [centroidCrop])
+
+    useEffect(() => {
+        if(enableZoom){  
+            width = originalWidth;
+            height = originalHeight;           
             const zoom = d3.zoom().on("zoom", (event) => {
-                const { x, y, k } = event.transform
+                let { x, y, k } = event.transform
                 const rotatedPoint = rotatePointClockwise({x: x, y: y}, rotateAngle, {x: width/2, y: height/2})
                 setScale(k)
                 setX(rotatedPoint.x)
                 setY(rotatedPoint.y)
             })
 
-            d3.select(svgRef.current).call(zoom)           
+            d3.select(svgRef.current).call(zoom)       
         }
         else{
             setX(centroidCrop.translateX)

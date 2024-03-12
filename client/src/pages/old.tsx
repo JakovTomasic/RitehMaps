@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import SearchForm from "../components/SearchForm";
+// import SearchForm from "../components/SearchForm";
 import { allGraphData } from "../data/AllGraphData";
 import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
@@ -16,7 +16,7 @@ export default function Old() {
       <Navbar />
 
       <div className="flex flex-col justify-center items-center">
-        <SearchForm roomSearcher={roomSearch} />
+        {/* <SearchForm roomSearcher={roomSearch} /> */}
       </div>
 
     </div>

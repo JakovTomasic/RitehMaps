@@ -1,0 +1,15 @@
+{
+  "dependencies": {},
+  "devDependencies": {
+    "turbo": "^1.12.5"
+  },
+  "private": true,
+  "workspaces": [
+    "client", "api"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "node api/dist/main"
+  }
+}

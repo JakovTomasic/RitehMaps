@@ -1,4 +1,3 @@
-import Image from "next/image";
 import logo from "/public/images/logo.png";
 import PrettyButton from "./PrettyButton";
 
@@ -18,7 +17,7 @@ const Navbar = () => {
 
           <div className="flex items-center justify-center">
             <a href="/" className="flex items-center font-bold text-l  text-white hover:text-gray-200">
-                <Image src={logo} alt="logo" width={50} className="mr-1" />
+                <img src={logo} alt="logo" width={50} className="mr-1" />
                 Riteh maps
             </a>
           </div>

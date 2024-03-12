@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 
 type Prop = {

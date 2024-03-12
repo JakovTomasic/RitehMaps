@@ -1,7 +1,7 @@
 // Thank you https://codepen.io/udit007/pen/XWJooNQ
 $n: 24;	//slices count
 $width: 6px; //slice width
-$height: $width * $n/2; // 2:1 ratio
+$height: calc($width * $n/2); // 2:1 ratio
 
 
 .FinishFlagWrapper {
@@ -22,7 +22,7 @@ $height: $width * $n/2; // 2:1 ratio
 		width: $width*0.9;
 		height: $height * 2.3;
 		background: rgb(80, 67, 0);
-		left:  ($width - 1px)/2
+		left: calc(($width - 1px)/2)
 	}
 }
 
@@ -35,7 +35,7 @@ $height: $width * $n/2; // 2:1 ratio
 	transform-origin: 0 0;  
 	background-repeat: no-repeat;
 	background-size: $n*$width 100%;
-	transform: translateZ(0.0001px) rotateY(#{$n/1.7}deg); 
+	transform: translateZ(0.0001px) rotateY(#{calc($n/1.7)}deg); 
 	//translateZ triggers GPU accelaration for smooth animations
 	background-image: inherit;
 }
@@ -50,6 +50,6 @@ $height: $width * $n/2; // 2:1 ratio
 
 @keyframes w {
   to{
-    transform: translateZ(0.0001px) rotateY(#{-$n/1.7}deg);
+    transform: translateZ(0.0001px) rotateY(#{calc(-1 * ($n / 1.7))}deg);
   }
 }

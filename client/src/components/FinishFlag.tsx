@@ -1,4 +1,3 @@
-import React from "react";
 
 function nestedDivs(index: number = 0) {
     return (

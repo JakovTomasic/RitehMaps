@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 type HCIGoButtonProps = {
   startNodeId: string;
@@ -31,31 +30,31 @@ const HCIGoButtons: React.FC<HCIGoButtonProps> = (props) => {
   return (
     <div className="flex w-fit items-center justify-center">
       {buttonConfigs.map((config, index) =>
-        props.clickable ? (
-          <Link
-            key={index}
-            href={{
-              pathname: config.path,
-              query: {
-                startNodeId:
-                  props.startNodeId != null
-                    ? props.startNodeId
-                    : props.defaultStartNodeId,
-                endNodeId: props.destinationNodeId,
-                destinationName: props.destinationText,
-              },
-            }}
-            style={{display: 'contents'}}
-          >
-            <button className={enabledButtonStyle} type="button">
-              {config.label}
-            </button>
-          </Link>
-        ) : (
+        // props.clickable ? (
+        //   <Link
+        //     key={index}
+        //     href={{
+        //       pathname: config.path,
+        //       query: {
+        //         startNodeId:
+        //           props.startNodeId != null
+        //             ? props.startNodeId
+        //             : props.defaultStartNodeId,
+        //         endNodeId: props.destinationNodeId,
+        //         destinationName: props.destinationText,
+        //       },
+        //     }}
+        //     style={{display: 'contents'}}
+        //   >
+        //     <button className={enabledButtonStyle} type="button">
+        //       {config.label}
+        //     </button>
+        //   </Link>
+        // ) : (
           <button key={index} className={disabledButtonStyle} type="button" disabled>
             {config.label}
           </button>
-        )
+        // )
       )}
     </div>
   );

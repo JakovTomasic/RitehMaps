@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import rotatingButton from "/public/images/rotatingButton.png";
-import Image from "next/image";
 
 export default function PrettyButton() {
 
@@ -21,7 +20,7 @@ export default function PrettyButton() {
       bg-cyan-600 hover:bg-cyan-700 transition-all duration-300 transform ${isHovering ? 'rotate-45' : ''}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
-        <Image
+        <img
           src={rotatingButton}
           alt="Button image"
           className="w-full h-full object-cover"

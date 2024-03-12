@@ -1,13 +1,12 @@
 import { useState } from "react";
-import Button from "../components/Button";
-import Header from "../components/Header";
-import Map from "../components/Map";
-import MapCaption from "../components/MapCaption";
+import Button from "./Button";
+import Header from "./Header";
+import Map from "./Map";
+import MapCaption from "./MapCaption";
 import { MapDrawProps } from "../types/map_draw_elements/MapDrawProps";
 import ZoomToggleButton from "./ZoomToggleButton";
 import { DestinationNode } from "../types/navigation/DestinationNode";
 import FinishFlag from "./FinishFlag";
-import Link from "next/link";
 
 type Prop = {
     mapDrawProps: MapDrawProps,
@@ -102,9 +101,9 @@ export default function NavigationLayout(props: Prop) {
                 </div>
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
                     <Button text='Back' enabled={!props.isFirstStep} onClick={() => setNavigationFinished(false)} />
-                    <Link href={'/'}>
+                    {/* <Link href={'/'}>
                         <Button text='Home' enabled={true} />
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </>

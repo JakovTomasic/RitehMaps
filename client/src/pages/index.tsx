@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 import { allGraphData } from "../data/AllGraphData";
 import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
-import Link from "next/link";
 
 
 // TODO: remove this file after HCI testing
@@ -108,13 +107,13 @@ export default function Home() {
 
   return (
 
-    <div className="fixed h-full w-full bg-white flex justify-center items-center">
+    <div className="fixed h-full w-full bg-red flex justify-center items-center">
       <Navbar />
 
       <div className="flex flex-col justify-center items-center">
 
         <div className="flex w-fit items-center justify-center mb-24">
-          {practice.map((prac, index) =>
+          {/* {practice.map((prac, index) =>
             <Link
             key={index}
             href={{
@@ -131,7 +130,7 @@ export default function Home() {
               { `Practice ${prac.label}` }
             </button>
             </Link>
-          )}
+          )} */}
         </div>
         <div className="flex w-fit items-center justify-center mb-5">
           {destinations.slice(0, 4).map((dest, index) =>

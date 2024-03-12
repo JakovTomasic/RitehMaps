@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import * as d3 from 'd3';
 import { CentroidScale } from '../types/navigation/CentroidScale';
 import { rotatePointClockwise } from '../utils/Geometry';
@@ -44,7 +44,7 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
         if(enableZoom){  
             width = originalWidth;
             height = originalHeight;           
-            const zoom = d3.zoom().on("zoom", (event) => {
+            const zoom = d3.zoom().on("zoom", (event: { transform: { x: number; y: number; k: number; }; }) => {
                 let { x, y, k } = event.transform
                 const rotatedPoint = rotatePointClockwise({x: x, y: y}, rotateAngle, {x: width/2, y: height/2})
                 setScale(k)

@@ -1,4 +1,3 @@
-import React from "react";
 
 function PinIcon(props) {
   const color = props.color === "start" ? "text-gray-500" : "text-cyan-600";

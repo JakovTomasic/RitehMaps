@@ -1,5 +1,4 @@
-import { type } from "os";
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type Prop = {
   // This function will be called on initialization

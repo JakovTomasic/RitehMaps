@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import ShareIcon from "./ShareIcon";
 import ShareWindow from "./ShareWindow";
 import ExitXIcon from "./ExitXIcon";
@@ -20,7 +19,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
    
     return (
       <div className="flex w-full items-center justify-center">
-        <Link
+        {/* <Link
           href={{
             pathname: "/navigation",
             query: {
@@ -63,7 +62,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
           >
             <ShareIcon />
           </button>
-        </Link>
+        </Link> */}
 
         {props.showShareDiv && 
           <div className="absolute flex flex-col items-center justify-center inset-0 z-20">

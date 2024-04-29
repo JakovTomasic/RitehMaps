@@ -3,6 +3,7 @@ import { NeighbourConnection } from "../../../types/graph/NeighbourConnection";
 import { MapNodeFilter } from "../../../types/roomsearch/MapNodeFilter";
 import { Graph } from "../../interfaces/Graph";
 import { recreatePath } from "./recreatePath";
+import SortedSet from "sorted-set"
 
 const COST_OF_ADDING_NEW_NODE_TO_THE_PATH = 1;
 
@@ -19,7 +20,6 @@ export function findPathWithDijkstra(startNodeId: string, endNodeFilter: MapNode
     let parents = new Map<string, string>();        //childId, parentId
     let bestDistances = new Map<string, number>();  //nodeId, distance
     
-    let SortedSet = require('sorted-set');
     let unvisitedNodes = new SortedSet({
         hash(item: any) { return item.nodeId },
         compare(a: any, b: any) { return a.distance - b.distance; }

@@ -1,4 +1,3 @@
-import assert from "assert";
 import { AllGraphData } from "../../../data/AllGraphData";
 import { Hallway } from "../../../data/Hallways";
 import { Node, NodeType } from "../../../data/Nodes";
@@ -166,3 +165,10 @@ function joinAllHallwayProjections(allHallwayProjections: Map<string, GraphNode[
         }
     });
 }
+
+function assert(arg0: boolean) {
+    if (!arg0) {
+        throw new Error("Assertion failed! See GraphFactory.ts");
+    }
+}
+

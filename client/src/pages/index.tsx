@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import { allGraphData } from "../data/AllGraphData";
 import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
+import { Link } from "wouter";
+import { createNavigationLink } from "./navigation";
 
 
 // TODO: remove this file after HCI testing
@@ -131,6 +133,11 @@ export default function Home() {
             </button>
             </Link>
           )} */}
+          <Link href={createNavigationLink("main_entrance", "1-19", "fin 1-19")}>
+            <button className={enabledButtonStyle} type="button">
+              { `Practice` }
+            </button>
+          </Link>
         </div>
         <div className="flex w-fit items-center justify-center mb-5">
           {destinations.slice(0, 4).map((dest, index) =>

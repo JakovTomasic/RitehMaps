@@ -14,7 +14,8 @@
     "react-dom": "^18.2.0",
     "react-share": "^5.1.0",
     "sass": "^1.71.1",
-    "sorted-set": "^0.3.0"
+    "sorted-set": "^0.3.0",
+    "wouter": "^3.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",

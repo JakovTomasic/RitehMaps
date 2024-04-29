@@ -7,6 +7,8 @@ import { MapDrawProps } from "../types/map_draw_elements/MapDrawProps";
 import ZoomToggleButton from "./ZoomToggleButton";
 import { DestinationNode } from "../types/navigation/DestinationNode";
 import FinishFlag from "./FinishFlag";
+import { createHomeUrl } from "../pages";
+import { Link } from "wouter";
 
 type Prop = {
     mapDrawProps: MapDrawProps,
@@ -66,7 +68,7 @@ export default function NavigationLayout(props: Prop) {
                 }
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
                     <Button text='Back' enabled={!props.isFirstStep} onClick={props.onBackClick} />
-                    {/* <Button text='Update' enabled={true} onClick={props.onUpdateClick} /> */}
+                    <Button text='Update' enabled={true} onClick={props.onUpdateClick} />
                     <Button
                         text={props.isLastStep ? 'Finish' : 'Next'}
                         enabled={true}
@@ -101,9 +103,9 @@ export default function NavigationLayout(props: Prop) {
                 </div>
                 <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
                     <Button text='Back' enabled={!props.isFirstStep} onClick={() => setNavigationFinished(false)} />
-                    {/* <Link href={'/'}>
+                    <Link href={createHomeUrl()}>
                         <Button text='Home' enabled={true} />
-                    </Link> */}
+                    </Link>
                 </div>
             </div>
         </>

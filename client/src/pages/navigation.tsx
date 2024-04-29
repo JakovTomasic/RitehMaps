@@ -18,7 +18,7 @@ const START_NODE_ID_PARAM_KEY = "startId";
 const DESTINATION_NODE_ID_PARAM_KEY = "endId";
 const DESTINATION_NAME_PARAM_KEY = "endName";
 
-export function createNavigationLink(startNodeId: string, destinationId: string, destinationName: string): string {
+export function createNavigationUrl(startNodeId: string, destinationId: string, destinationName: string): string {
     let object = {};
     object[START_NODE_ID_PARAM_KEY] = startNodeId;
     object[DESTINATION_NODE_ID_PARAM_KEY] = destinationId;

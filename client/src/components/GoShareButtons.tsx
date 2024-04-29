@@ -2,6 +2,9 @@ import React from "react";
 import ShareIcon from "./ShareIcon";
 import ShareWindow from "./ShareWindow";
 import ExitXIcon from "./ExitXIcon";
+import { Link } from "wouter";
+import { createNavigationUrl } from "../pages/navigation";
+import { createHomeUrl } from "../pages";
 
 type GoButtonProps = {
   startNodeId: string;
@@ -16,19 +19,14 @@ type GoButtonProps = {
 
 const GoShareButtons: React.FC<GoButtonProps> = (props) => {
   if (props.clickable) {
+
+    const startNodeId = props.startNodeId != null ? props.startNodeId : props.defaultStartNodeId;
+    const startText = props.startText != null ? props.startText : null;
    
     return (
       <div className="flex w-full items-center justify-center">
-        {/* <Link
-          href={{
-            pathname: "/navigation",
-            query: {
-              startNodeId: props.startNodeId != null 
-                          ? props.startNodeId : props.defaultStartNodeId,
-              endNodeId: props.destinationNodeId,
-              destinationName: props.destinationText,
-            },
-          }}
+        <Link
+          href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText)}
         >
           <button
             className="mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 
@@ -41,17 +39,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
         </Link>
 
         <Link
-          href={{
-            pathname: "/",
-            query: {
-              startNodeId: props.startNodeId != null 
-                          ? props.startNodeId : props.defaultStartNodeId,
-              endNodeId: props.destinationNodeId,
-              startText: props.startText != null 
-                          ? props.startText : "",
-              destinationText: props.destinationText,
-            },
-          }}
+          href={createHomeUrl(startNodeId, startText, props.destinationNodeId, props.destinationText)}
         >
           <button
             className="mx-auto py-2 px-2 rounded-md flex items-center justify-center ml-1 mr-0
@@ -62,7 +50,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
           >
             <ShareIcon />
           </button>
-        </Link> */}
+        </Link>
 
         {props.showShareDiv && 
           <div className="absolute flex flex-col items-center justify-center inset-0 z-20">

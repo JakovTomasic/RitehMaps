@@ -1,7 +1,7 @@
 import { Route, Switch } from 'wouter'
-import Home from './pages'
 import Navigation, { NAVIGATION_PATH } from './pages/navigation'
 import GraphPage from './pages/graph'
+import Home from './pages'
 
 function App() {
   return (

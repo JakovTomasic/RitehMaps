@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import SearchForm, { SearchInputs } from "../components/SearchForm";
 import { allGraphData } from "../data/AllGraphData";
+import { ProfessorData } from "../data/ProfessorData";
 import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
 import { useSearchParams } from "../utils/React";
@@ -12,7 +13,7 @@ const END_NODE_ID_PARAM_KEY = "endId";
 const END_NODE_TEXT_PARAM_KEY = "endText";
 
 export function createHomeUrl(startId?: string, startText?: string, endId?: string, endText?: string): string {
-    let object = {};
+    let object: Record<string, string> = {};
     if (startId != undefined && startId.length > 0) {
       object[START_NODE_ID_PARAM_KEY] = startId;
     }
@@ -29,9 +30,13 @@ export function createHomeUrl(startId?: string, startText?: string, endId?: stri
     return `${SEARCH_PATH}?${params}`;
 }
 
-export default function Home() {
+type Props = {
+  professors: ProfessorData[],
+}
+
+export default function Home(props: Props) {
   const nodesContainer = new NodesContainerImpl(allGraphData.nodes);
-  const roomSearch = new RoomSearchImpl(nodesContainer);
+  const roomSearch = new RoomSearchImpl(nodesContainer, props.professors);
 
   const searchParams = useSearchParams();
   const params = parseParams(searchParams);
@@ -52,9 +57,9 @@ export default function Home() {
 
 function parseParams(searchParams: URLSearchParams): SearchInputs {
     return {
-      startNodeId: searchParams.get(START_NODE_ID_PARAM_KEY),
-      startText: searchParams.get(START_NODE_TEXT_PARAM_KEY),
-      destinationNodeId: searchParams.get(END_NODE_ID_PARAM_KEY),
-      destinationText: searchParams.get(END_NODE_TEXT_PARAM_KEY),
+      startNodeId: searchParams.get(START_NODE_ID_PARAM_KEY)!!,
+      startText: searchParams.get(START_NODE_TEXT_PARAM_KEY)!!,
+      destinationNodeId: searchParams.get(END_NODE_ID_PARAM_KEY)!!,
+      destinationText: searchParams.get(END_NODE_TEXT_PARAM_KEY)!!,
     };
 }

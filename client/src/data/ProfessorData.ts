@@ -7,6 +7,7 @@ export type ProfessorData = {
   entity: string;
 };
 
+// TODO: remove this and use server data
 export const professors: ProfessorData[] = [
   {
     name: "asist. Marta Alvir",

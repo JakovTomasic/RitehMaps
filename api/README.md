@@ -45,6 +45,19 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
+To start database use `sudo systemctl start mysql` and to check status use `sudo systemctl status mysql`
+
+When changing DB options do `sudo service mysql restart`
+Useful setup tutorials:
+- https://likegeeks.com/mysql-on-linux-beginners-tutorial/#Grant_all_privileges
+- https://stackoverflow.com/questions/28068155/access-denied-for-user-rootlocalhost-using-password-yes-after-new-instal
+
+open mysql interface: `sudo mysql -u root -p`. Helpful:
+- `SHOW DATABASES;`
+- `USE MySolfeggioDb;` (create it if it doesn't exist)
+- `show tables;`
+
+
 ## Test
 
 ```bash

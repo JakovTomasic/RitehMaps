@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import SearchForm, { SearchInputs } from "../components/SearchForm";
 import { allGraphData } from "../data/AllGraphData";
-import { ProfessorData } from "../data/ProfessorData";
+import { AllMapsData } from "../data/ServerData";
 import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
 import { useSearchParams } from "../utils/React";
@@ -31,12 +31,12 @@ export function createHomeUrl(startId?: string, startText?: string, endId?: stri
 }
 
 type Props = {
-  professors: ProfessorData[],
+  allMapData: AllMapsData,
 }
 
 export default function Home(props: Props) {
   const nodesContainer = new NodesContainerImpl(allGraphData.nodes);
-  const roomSearch = new RoomSearchImpl(nodesContainer, props.professors);
+  const roomSearch = new RoomSearchImpl(nodesContainer, props.allMapData.professors, props.allMapData.nodes);
 
   const searchParams = useSearchParams();
   const params = parseParams(searchParams);

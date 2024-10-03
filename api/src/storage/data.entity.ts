@@ -8,5 +8,5 @@ export class AllData {
   id: number;
 
   @Column()
-  professors: string;
+  allData: string;
 }

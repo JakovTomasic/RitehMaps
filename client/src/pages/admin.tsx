@@ -1,14 +1,14 @@
-import { ProfessorData } from "../data/ProfessorData";
 import { useState } from "react";
 import { z } from "zod";
-import { API_URL, ProfessorDataSchema, SaveAllData } from "../server";
+import { API_URL } from "../server";
+import { AllMapsData, AllMapsDataSchema } from "../data/ServerData";
 
 type Props = {
-    professors: ProfessorData[],
+    allMapData: AllMapsData,
 }
 
 type State = {
-    professorData: ProfessorData[],
+    temporaryAllMapData: AllMapsData,
     dataTextInput: string,
     saveResultMessage: string,
 }
@@ -24,32 +24,27 @@ const safeParseJson = (any: string): any | null => {
 export default function AdminPage(props: Props){
 
     const [state, setState] = useState<State>({
-        professorData: props.professors,
-        dataTextInput: JSON.stringify(props.professors),
+        temporaryAllMapData: props.allMapData,
+        dataTextInput: JSON.stringify(props.allMapData, null, 4),
         saveResultMessage: "",
     });
 
 
     // TODO: test when server is down
     const save = async () => {
-        // TODO: other data, too
-
-        const professorData = z.array(ProfessorDataSchema).safeParse(safeParseJson(state.dataTextInput));
-        if (!professorData.success) {
-            setState(s => ({ ...s, saveResultMessage: "Invalid professors data" }));
+        const allMapData = AllMapsDataSchema.safeParse(safeParseJson(state.dataTextInput));
+        if (!allMapData.success) {
+            setState(s => ({ ...s, saveResultMessage: "Invalid data" }));
             return;
         }
-        const request: SaveAllData = {
-            arr: professorData.data,
-        }
-        console.log("REQUEST", JSON.stringify(request));
+        // console.log("to SAVE: ", JSON.stringify(allMapData.data));
         fetch(`${API_URL}/save`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(request),
+            body: JSON.stringify(allMapData.data),
         })
             .then((res) => res.json())
             .then((result) => {

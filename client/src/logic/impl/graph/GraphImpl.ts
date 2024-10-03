@@ -23,7 +23,8 @@ export class GraphImpl implements Graph {
     }
 
     getNeighbours(nodeId: string): NeighbourConnection[] {
-        const node: GraphNode = this.graph.get(nodeId);
+        const node: GraphNode | undefined = this.graph.get(nodeId);
+        if (node === undefined) return [];
         return node.neighbours.map(neighbour => {
             const connection: NeighbourConnection = {
                 neighbour: neighbour,

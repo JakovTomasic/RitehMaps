@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Request } from 'express';
-import { AllMapsData } from './data/Data';
+import { AllMapsData, ChangeDataRequest } from './data/Data';
 
 
 @Controller("api")
@@ -21,7 +21,8 @@ export class AppController {
 
   // Test with: curl -X POST http://localhost:3000/api/save -d '[{ ... mock data here }]' -H "Content-Type: application/json"
   @Post("save")
-  async save(@Req() req: Request, @Body() dataToSave: AllMapsData) {
-    this.appService.save(dataToSave);
+  async save(@Req() req: Request, @Body() dataToSave: ChangeDataRequest): Promise<boolean> {
+    // TODO: change password
+    return this.appService.save(dataToSave);
   }
 }

@@ -54,3 +54,13 @@ export type AllMapsData = {
     professors: ProfessorData[],
     submaps: SubMap[],
 }
+
+
+export type ChangeDataRequest = {
+    password: string,
+    data: AllMapsData,
+};
+
+
+
+

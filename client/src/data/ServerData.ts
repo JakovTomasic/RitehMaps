@@ -74,3 +74,10 @@ export const AllMapsDataSchema = z.object({
 });
 export type AllMapsData = z.infer<typeof AllMapsDataSchema>;
 
+
+export const ServerChangeDataRequestSchema = z.object({
+    password: z.string(),
+    data: AllMapsDataSchema,
+});
+export type ServerChangeDataRequest = z.infer<typeof ServerChangeDataRequestSchema>;
+

@@ -1,4 +1,3 @@
-import { Hallway } from "../../../data/Hallways";
 import { MapNode } from "../../../types/graph/MapNode";
 import { Dot } from "../../../types/general/Dot";
 import { Line } from "../../../types/general/Line";
@@ -6,6 +5,7 @@ import { NavigationNode } from "../../../types/navigation/NavigationNode";
 import { NavigationStep } from "../../../types/navigation/NavigationStep";
 import { rotatePointClockwise } from "../../../utils/Geometry";
 import { SubmapProvider } from "../../interfaces/SubmapProvider";
+import { Hallway } from "../../../data/ServerData";
 
 export function nodeToDot(node: MapNode): Dot {
     return {x: node.xCoordinate, y: node.yCoordinate};

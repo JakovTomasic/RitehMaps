@@ -1,6 +1,6 @@
 import { MapNodeFilterByType } from "../types/roomsearch/MapNodeFilterByType";
 import { SpecialSearchResult } from "../types/roomsearch/SpecialSearchResult";
-import { NodeType } from "./Nodes";
+import { NodeType } from "./ServerData";
 
 
 export const specialSearchResults: SpecialSearchResult[] = [

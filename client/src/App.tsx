@@ -66,7 +66,15 @@ function App() {
           </>
         } />
         {/* <Route path="/graph" component={GraphPage} /> */}
-        <Route path={NAVIGATION_PATH} component={Navigation} />
+        <Route path={NAVIGATION_PATH} component={() =>
+          <>
+          { state.allMapData === null ?
+            <>loading...</>
+            :
+            <Navigation allMapsData={state.allMapData} />
+          }
+          </>
+        } />
         <Route path="/admin" component={() =>
           <>
           { state.allMapData === null ?

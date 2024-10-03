@@ -14,7 +14,7 @@ export function findPathWithDijkstra(startNodeId: string, endNodeFilter: MapNode
 
     let currentDistance: number;
     let currentNodeId: string;
-    let destinationNode: MapNode;
+    let destinationNode: MapNode | undefined;
 
     let neighbours: NeighbourConnection[];
     let parents = new Map<string, string>();        //childId, parentId
@@ -33,8 +33,9 @@ export function findPathWithDijkstra(startNodeId: string, endNodeFilter: MapNode
         currentNodeId = unvisitedNodes.head().nodeId;
         currentDistance = unvisitedNodes.head().distance;
 
-        if (endNodeFilter.satisfiedBy(graph.getNode(currentNodeId))) {
-            destinationNode = graph.getNode(currentNodeId);
+        let currentNode = graph.getNode(currentNodeId)
+        if (currentNode !== undefined && endNodeFilter.satisfiedBy(currentNode)) {
+            destinationNode = currentNode
             break;
         }
 
@@ -46,8 +47,9 @@ export function findPathWithDijkstra(startNodeId: string, endNodeFilter: MapNode
             let neighbourId = element.neighbour.id;
             let neighbourDistance = element.distance + COST_OF_ADDING_NEW_NODE_TO_THE_PATH;
 
-            if (!bestDistances.has(neighbourId) ||
-                currentDistance + neighbourDistance < bestDistances.get(neighbourId)) {
+            let bestDistance = bestDistances.get(neighbourId)
+
+            if (bestDistance === undefined || currentDistance + neighbourDistance < bestDistance) {
 
                 bestDistances.set(neighbourId, currentDistance + neighbourDistance);
                 unvisitedNodes.add({ nodeId: neighbourId, distance: bestDistances.get(neighbourId) })
@@ -56,7 +58,7 @@ export function findPathWithDijkstra(startNodeId: string, endNodeFilter: MapNode
         }
     }
 
-    if (endNodeFilter.satisfiedBy(destinationNode))
+    if (destinationNode !== undefined && endNodeFilter.satisfiedBy(destinationNode))
         return recreatePath(destinationNode.id, parents, graph);   
     else
         throw new Error("Destination cannot be reached.");

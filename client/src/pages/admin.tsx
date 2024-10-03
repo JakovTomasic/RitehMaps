@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { z } from "zod";
 import { API_URL } from "../server";
-import { AllMapsData, AllMapsDataSchema } from "../data/ServerData";
+import { AllMapsData, AllMapsDataSchema, ServerChangeDataRequest } from "../data/ServerData";
+import AdminTextEdit from "../components/admin/AdminTextEdit";
+import Button from "../components/Button";
+import AdminFancyEdit from "../components/admin/AdminFancyEdit";
 
 type Props = {
     allMapData: AllMapsData,
@@ -9,8 +12,9 @@ type Props = {
 
 type State = {
     temporaryAllMapData: AllMapsData,
-    dataTextInput: string,
     saveResultMessage: string,
+    textMode: boolean,
+    password: string,
 }
 
 const safeParseJson = (any: string): any | null => {
@@ -25,26 +29,35 @@ export default function AdminPage(props: Props){
 
     const [state, setState] = useState<State>({
         temporaryAllMapData: props.allMapData,
-        dataTextInput: JSON.stringify(props.allMapData, null, 4),
         saveResultMessage: "",
+        textMode: true,
+        password: "",
     });
 
 
-    // TODO: test when server is down
-    const save = async () => {
-        const allMapData = AllMapsDataSchema.safeParse(safeParseJson(state.dataTextInput));
+    const saveText = async (dataJson: string) => {
+        const allMapData = AllMapsDataSchema.safeParse(safeParseJson(dataJson));
         if (!allMapData.success) {
             setState(s => ({ ...s, saveResultMessage: "Invalid data" }));
             return;
         }
+        save(allMapData.data);
+    };
+
+    // TODO: test when server is down
+    const save = async (allMapData: AllMapsData) => {
         // console.log("to SAVE: ", JSON.stringify(allMapData.data));
+        const request: ServerChangeDataRequest = {
+            password: state.password,
+            data: allMapData,
+        }
         fetch(`${API_URL}/save`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(allMapData.data),
+            body: JSON.stringify(request),
         })
             .then((res) => res.json())
             .then((result) => {
@@ -65,14 +78,37 @@ export default function AdminPage(props: Props){
     };
 
     return(
-        <div className="relative w-fill mx-auto my-0 flex flex-col">
-            <textarea
-                onChange={(newText) => setState(s => ({ ...s, dataTextInput: newText.target.value }))}
-                value={state.dataTextInput} />
-            <button onClick={save}>Save</button>
+        <div className="relative w-full mx-auto my-0 flex flex-col pt-4">
+            password:
+            <input type="password" 
+                className="mb-11 bg-slate-300 w-32"
+                value={state.password}
+                onChange={ newValue =>
+                setState(s => ({ ...s, password: newValue.target.value }))
+            }/>
 
-            <div className="text-xl font-bold">{state.saveResultMessage}</div>
-        
+            <div className="mb-11 flex flex-row">
+                <Button
+                    enabled={true}    
+                    text="Text"
+                    onClick={() => setState(s => ({ ...s, textMode: true }))} />
+                <Button
+                    enabled={true}    
+                    text="Fancy"
+                    onClick={() => setState(s => ({ ...s, textMode: false }))} />
+            </div>
+
+            { state.textMode ?
+                <>
+                    <AdminTextEdit temporaryMapData={state.temporaryAllMapData} save={saveText} />
+                    <div className="text-xl font-bold">{state.saveResultMessage}</div>
+                </>
+                :
+                <>
+                    <AdminFancyEdit temporaryMapData={state.temporaryAllMapData} save={save} />
+                    <div className="text-xl font-bold">{state.saveResultMessage}</div>
+                </>
+            }
         </div>
     );
 }

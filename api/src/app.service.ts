@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { AllMapsData } from './data/Data';
+import { AllMapsData, ChangeDataRequest } from './data/Data';
 
 @Injectable()
 export class AppService {
@@ -21,8 +21,13 @@ export class AppService {
     return this.allData;
   }
 
-  async save(data: AllMapsData) {
-    this.allData = data;
+  async save(data: ChangeDataRequest): Promise<boolean> {
+    if (data.password === "jasamadminjasamsuper") {
+      this.allData = data.data;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getHello(): string {

@@ -1,11 +1,11 @@
-import { allGraphData } from "../../data/AllGraphData";
+import { AllMapsData } from "../../data/ServerData";
 import { specialSearchResults } from "../../data/SpecialSearchResults";
 import { MapNodeFilter } from "../../types/roomsearch/MapNodeFilter";
 import { MapNodeFilterById } from "../../types/roomsearch/MapNodeFilterById";
 import { stringEqualsIgnoreLocaleAndCase } from "../../utils/Strings";
 import { createGraph } from "./graph/GraphFactory";
 
-export function createMapNodeFilter(id: string): MapNodeFilter | null {
+export function createMapNodeFilter(id: string, allGraphData: AllMapsData): MapNodeFilter | null {
     let constructedGraph = createGraph(allGraphData);
     for (const entry of constructedGraph) {
         if (stringEqualsIgnoreLocaleAndCase(entry[1].node.id, id)) {

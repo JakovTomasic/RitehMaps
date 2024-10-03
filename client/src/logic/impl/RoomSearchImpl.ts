@@ -1,10 +1,9 @@
 import { SearchNodeSuggestion } from "../../types/roomsearch/SearchNodeSuggestion";
 import { RoomSearch } from "../interfaces/RoomSearch";
-import { Node } from "../../data/Nodes";
-import { ProfessorData } from "../../data/ProfessorData";
 import { NodesContainer } from "../interfaces/NodesContainer";
 import { diacriticToAsciiLetters, stringEquals } from "../../utils/Strings";
 import { specialSearchResults } from "../../data/SpecialSearchResults";
+import { Node, ProfessorData } from "../../data/ServerData";
 
 export class RoomSearchImpl implements RoomSearch {
 

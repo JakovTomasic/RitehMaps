@@ -1,4 +1,4 @@
-import { NodeType } from "../../data/Nodes";
+import { NodeType } from "../../data/ServerData";
 
 export class MapNode {
     id: string;

@@ -1,4 +1,4 @@
-import { Node } from "../../data/Nodes";
+import { Node } from "../../data/ServerData";
 import { NodesContainer } from "../interfaces/NodesContainer";
 
 export class NodesContainerImpl implements NodesContainer {

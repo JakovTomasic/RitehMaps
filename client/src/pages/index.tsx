@@ -1,6 +1,5 @@
 import Navbar from "../components/Navbar";
 import SearchForm, { SearchInputs } from "../components/SearchForm";
-import { allGraphData } from "../data/AllGraphData";
 import { AllMapsData } from "../data/ServerData";
 import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
@@ -35,7 +34,7 @@ type Props = {
 }
 
 export default function Home(props: Props) {
-  const nodesContainer = new NodesContainerImpl(allGraphData.nodes);
+  const nodesContainer = new NodesContainerImpl(props.allMapData.nodes);
   const roomSearch = new RoomSearchImpl(nodesContainer, props.allMapData.professors, props.allMapData.nodes);
 
   const searchParams = useSearchParams();

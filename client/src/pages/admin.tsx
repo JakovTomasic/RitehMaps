@@ -63,16 +63,29 @@ export default function AdminPage(props: Props){
             .then((result) => {
                 const data = z.boolean().safeParse(result);
                 if (data.success && data.data === true) {
-                    setState(s => ({ ...s, saveResultMessage: "saved" }));
+                    setState(s => ({
+                        ...s,
+                        saveResultMessage: "saved",
+                        temporaryAllMapData: allMapData,
+                    }));
                     setTimeout(() => {
                         setState(s => ({ ...s, saveResultMessage: "" }));
                     }, 3000);
                 } else {
-                    setState(s => ({ ...s, saveResultMessage: "Server error" }));
+                    setState(s => ({
+                        ...s,
+                        saveResultMessage: "Server error",
+                        temporaryAllMapData: allMapData,
+                    }));
                 }
             })
             .catch(error => {
                 console.error(error);
+                setState(s => ({
+                    ...s,
+                    saveResultMessage: "Server error",
+                    temporaryAllMapData: allMapData,
+                }));
                 return null;
             });
     };

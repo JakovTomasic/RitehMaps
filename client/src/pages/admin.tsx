@@ -5,6 +5,7 @@ import { AllMapsData, AllMapsDataSchema, ServerChangeDataRequest } from "../data
 import AdminTextEdit from "../components/admin/AdminTextEdit";
 import Button from "../components/Button";
 import AdminFancyEdit from "../components/admin/AdminFancyEdit";
+import AdminMapPopup from "../components/admin/AdminMapPopup";
 
 type Props = {
     allMapData: AllMapsData,
@@ -15,6 +16,11 @@ type State = {
     saveResultMessage: string,
     textMode: boolean,
     password: string,
+    adminMapPopup: AdminMapPopupState | null,
+}
+
+type AdminMapPopupState = {
+    submapId: number,
 }
 
 const safeParseJson = (any: string): any | null => {
@@ -32,8 +38,18 @@ export default function AdminPage(props: Props){
         saveResultMessage: "",
         textMode: true,
         password: "",
+        adminMapPopup: null,
     });
 
+
+    const showSubmap = (submapId: number) => {
+        setState(s => ({
+            ...s,
+            adminMapPopup: {
+                submapId: submapId,
+            },
+        }));
+    }
 
     const saveText = async (dataJson: string) => {
         const allMapData = AllMapsDataSchema.safeParse(safeParseJson(dataJson));
@@ -118,9 +134,21 @@ export default function AdminPage(props: Props){
                 </>
                 :
                 <>
-                    <AdminFancyEdit temporaryMapData={state.temporaryAllMapData} save={save} />
+                    <AdminFancyEdit 
+                        temporaryMapData={state.temporaryAllMapData}
+                        save={save}
+                        showSubmap={showSubmap}
+                    />
                     <div className="text-xl font-bold">{state.saveResultMessage}</div>
                 </>
+            }
+
+            { state.adminMapPopup === null ? <></> :
+                <AdminMapPopup
+                    submapId={state.adminMapPopup.submapId}
+                    mapData={state.temporaryAllMapData}
+                    close={() => setState(s => ({ ...s, adminMapPopup: null }))}
+                />
             }
         </div>
     );

@@ -4,6 +4,7 @@ import { AllMapsData, Edge, Hallway, Node, NodeType, ProfessorData, SubMap } fro
 type Props = {
     temporaryMapData: AllMapsData,
     save: (newData: AllMapsData) => void,
+    showSubmap: (submapId: number) => void,
 };
 
 type State = {
@@ -382,6 +383,7 @@ export default function AdminFancyEdit(props: Props) {
                                 })))
                             }/>
                             <br/>
+                            <button onClick={() => props.showSubmap(submap.id)}>Show</button>
                         </div>
                     )) }
                 </div>

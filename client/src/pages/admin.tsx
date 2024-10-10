@@ -174,7 +174,7 @@ export default function AdminPage(props: Props){
 
     return(
         <div className="relative w-full mx-auto my-0 flex flex-col pt-4">
-            password:
+            Password:
             <input type="password" 
                 className="mb-11 bg-slate-300 w-32"
                 value={state.password}

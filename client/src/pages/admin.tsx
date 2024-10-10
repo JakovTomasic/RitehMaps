@@ -21,6 +21,9 @@ type State = {
 
 type AdminMapPopupState = {
     submapId: number,
+    nodeToShowId: string | null,
+    edgeToShow: { nodeOrHallwayId1: string, nodeOrHallwayId2: string } | null,
+    hallwayToShowId: string | null,
 }
 
 const safeParseJson = (any: string): any | null => {
@@ -47,9 +50,49 @@ export default function AdminPage(props: Props){
             ...s,
             adminMapPopup: {
                 submapId: submapId,
+                nodeToShowId: null,
+                edgeToShow: null,
+                hallwayToShowId: null,
             },
         }));
-    }
+    };
+    const showNode = (nodeId: string) => {
+        const node = state.temporaryAllMapData.nodes.find(n => n.nodeId === nodeId)!;
+        setState(s => ({
+            ...s,
+            adminMapPopup: {
+                submapId: node.submapId,
+                nodeToShowId: node.nodeId,
+                edgeToShow: null,
+                hallwayToShowId: null,
+            },
+        }));
+    };
+    const showEdge = (nodeOrHallwayId1: string, nodeOrHallwayId2: string) => {
+        const node = state.temporaryAllMapData.nodes.find(n => n.nodeId === nodeOrHallwayId1);
+        const hallway = state.temporaryAllMapData.hallways.find(h => h.id === nodeOrHallwayId1);
+        setState(s => ({
+            ...s,
+            adminMapPopup: {
+                submapId: node ? node.submapId : hallway!.submapId,
+                nodeToShowId: null,
+                edgeToShow: { nodeOrHallwayId1, nodeOrHallwayId2 },
+                hallwayToShowId: null,
+            },
+        }));
+    };
+    const showHallway = (hallwayId: string) => {
+        const hallway = state.temporaryAllMapData.hallways.find(h => h.id === hallwayId)!;
+        setState(s => ({
+            ...s,
+            adminMapPopup: {
+                submapId: hallway.submapId,
+                nodeToShowId: null,
+                edgeToShow: null,
+                hallwayToShowId: hallway.id,
+            },
+        }));
+    };
 
     const saveText = async (dataJson: string) => {
         const allMapData = AllMapsDataSchema.safeParse(safeParseJson(dataJson));
@@ -138,6 +181,9 @@ export default function AdminPage(props: Props){
                         temporaryMapData={state.temporaryAllMapData}
                         save={save}
                         showSubmap={showSubmap}
+                        showNode={showNode}
+                        showEdge={showEdge}
+                        showHallway={showHallway}
                     />
                     <div className="text-xl font-bold">{state.saveResultMessage}</div>
                 </>
@@ -147,6 +193,9 @@ export default function AdminPage(props: Props){
                 <AdminMapPopup
                     submapId={state.adminMapPopup.submapId}
                     mapData={state.temporaryAllMapData}
+                    nodeToShowId={state.adminMapPopup.nodeToShowId}
+                    edgeToShow={state.adminMapPopup.edgeToShow}
+                    hallwayToShowId={state.adminMapPopup.hallwayToShowId}
                     close={() => setState(s => ({ ...s, adminMapPopup: null }))}
                 />
             }

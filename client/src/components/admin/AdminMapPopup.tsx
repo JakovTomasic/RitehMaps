@@ -6,30 +6,31 @@ import { MapDot } from "../../types/map_draw_elements/MapDot";
 import { MapDrawElement } from "../../types/map_draw_elements/MapDrawElement";
 import { MapPathLine } from "../../types/map_draw_elements/MapPathLine";
 import { AllMapsData } from "../../data/ServerData";
-import Map from "../Map";
-import { SubmapProviderImpl } from "../../logic/impl/SubmapProviderImpl";
-import { createGraph } from "../../logic/impl/graph/GraphFactory";
-import { GraphImpl } from "../../logic/impl/graph/GraphImpl";
-import { Graph } from "../../logic/interfaces/Graph";
-import { MapNode } from "../../types/graph/MapNode";
-import { NavigationNode } from "../../types/navigation/NavigationNode";
+import { GraphNode, createGraph } from "../../logic/impl/graph/GraphFactory";
 import { navNodeToDot } from "../../logic/impl/graph/Utils";
+import MyMap from "../Map";
 
 type Props = {
     submapId: number,
     mapData: AllMapsData,
+    nodeToShowId: string | null,
+    edgeToShow: { nodeOrHallwayId1: string, nodeOrHallwayId2: string } | null,
+    hallwayToShowId: string | null,
     close: () => void,
 };
 
 type MapEdge = {
-    navNode1: NavigationNode,
-    navNode2: NavigationNode,
+    navNode1: GraphNode,
+    navNode2: GraphNode,
 }
 
 type StuffToDrawOnMap = {
-    nodes: NavigationNode[],
+    nodes: GraphNode[],
     edges: MapEdge[],
 }
+
+const basicColor = "#41C7F7";
+const accentColor = "#F7A7A7";
 
 export default function AdminMapPopup(props: Props) {
 
@@ -50,23 +51,47 @@ export default function AdminMapPopup(props: Props) {
     const mapElements: MapDrawElement[] = [];
     mapElements.push(
         ...navSteps.nodes.map(node => {
-            const dot: Dot = {x: node.xCoordinate, y: node.yCoordinate};
-            return new MapDot(dot, "#41C7F7", 0.5, 1);
+            const dot: Dot = {x: node.node.xCoordinate, y: node.node.yCoordinate};
+            const showThisNode = node.node.id === props.nodeToShowId;
+            const e = props.edgeToShow;
+            const edgeNodes = [e?.nodeOrHallwayId1, e?.nodeOrHallwayId2];
+            const showThisEdge = e !== null &&
+                    (edgeNodes.find(n => n === node.originalNodeOrHallwayId1) !== undefined && 
+                    edgeNodes.find(n => n === node.originalNodeOrHallwayId2) !== undefined);
+            const color = (showThisNode || showThisEdge) ? accentColor : basicColor;
+            return new MapDot(dot, color, 0.5, 1);
         })
     );
     mapElements.push(
         ...navSteps.edges.map(edge => {
-            const line: Line = {dot1: navNodeToDot(edge.navNode1), dot2: navNodeToDot(edge.navNode2)};
-            return new MapPathLine(line, "#41C7F7", 0.1);
+            const line: Line = {dot1: navNodeToDot(edge.navNode1.node), dot2: navNodeToDot(edge.navNode2.node)};
+            const node1Ids = [edge.navNode1.originalNodeOrHallwayId1, edge.navNode1.originalNodeOrHallwayId2];
+            const node2Ids = [edge.navNode2.originalNodeOrHallwayId1, edge.navNode2.originalNodeOrHallwayId2];
+            let thisIsEdgeToShow: boolean
+            if (props.edgeToShow !== null) {
+                const e = props.edgeToShow;
+                thisIsEdgeToShow = node1Ids.find(n => n === e.nodeOrHallwayId1) !== undefined &&
+                                    node2Ids.find(n => n === e.nodeOrHallwayId2) !== undefined;
+                thisIsEdgeToShow = thisIsEdgeToShow ||
+                                (node1Ids.find(n => n === e.nodeOrHallwayId2) !== undefined &&
+                                    node2Ids.find(n => n === e.nodeOrHallwayId1) !== undefined);
+            } else if (props.hallwayToShowId !== null) {
+                const h = props.hallwayToShowId;
+                thisIsEdgeToShow = node1Ids.find(n => n === h) !== undefined &&
+                                    node2Ids.find(n => n === h) !== undefined;
+            } else {
+                thisIsEdgeToShow = false;
+            }
+            const color = thisIsEdgeToShow ? accentColor : basicColor;
+            return new MapPathLine(line, color, 0.1);
         })
     );
 
-    console.log("yay");
     return(
         <div className="absolute w-full flex-1 mx-auto my-0 bg-white flex flex-col">
             { submapName }
             <br/>
-            <Map layoutImage={submap.path} 
+            <MyMap layoutImage={submap.path} 
                 enableDrawNodes={true}
                 enableZoom={true}
                 width={submap.width}
@@ -85,14 +110,13 @@ function navigationStepWithAllNodesFromTheSubmap(submapId: number, allMapData: A
     let startNode = allMapData.nodes[0].nodeId;
 
     let constructedGraph = createGraph(allMapData);
-    let graph = new GraphImpl(constructedGraph, new SubmapProviderImpl(allMapData.submaps));
 
     let visited = new Set<string>();
     visited.add(startNode);
 
-    let resultNodes: NavigationNode[] = [];
+    let resultNodes: GraphNode[] = [];
     let resultEdges: MapEdge[] = [];
-    makeFlatDfsTree(startNode, submapId, graph, visited, resultNodes, resultEdges);
+    makeFlatDfsTree(startNode, submapId, constructedGraph, visited, resultNodes, resultEdges);
 
     return { nodes: resultNodes, edges: resultEdges };
 }
@@ -100,28 +124,28 @@ function navigationStepWithAllNodesFromTheSubmap(submapId: number, allMapData: A
 function makeFlatDfsTree(
     currentNodeId: string,
     submapId: number,
-    graph: Graph,
+    graph: Map<string, GraphNode>,
     visited: Set<string>,
-    resultNodes: NavigationNode[],
+    resultNodes: GraphNode[],
     resultEdges: MapEdge[],
 ) {
-    let currentNode: MapNode = graph.getNode(currentNodeId)!;
-    const currentNavNode = new NavigationNode(submapId, currentNode.xCoordinate, currentNode.yCoordinate)
+    let currentNode: GraphNode = graph.get(currentNodeId)!;
 
-    if (currentNode.submapId == submapId) {
-        resultNodes.push(currentNavNode);
+    if (currentNode.node.submapId == submapId) {
+        resultNodes.push(currentNode);
     }
 
-    graph.getNeighbours(currentNodeId).forEach(element => {
-        if (!visited.has(element.neighbour.id)) {
-            visited.add(element.neighbour.id);
+    currentNode.neighbours.forEach(element => {
+        const neighbour = graph.get(element.id)!;
+        if (!visited.has(element.id)) {
+            visited.add(element.id);
 
-            makeFlatDfsTree(element.neighbour.id, submapId, graph, visited, resultNodes, resultEdges);
+            makeFlatDfsTree(element.id, submapId, graph, visited, resultNodes, resultEdges);
         
-            if (currentNode.submapId === submapId && element.neighbour.submapId === submapId) {
+            if (currentNode.node.submapId === submapId && element.submapId === submapId) {
                 resultEdges.push({
                     navNode1: currentNode,
-                    navNode2: element.neighbour,
+                    navNode2: neighbour,
                 });
             }
         }

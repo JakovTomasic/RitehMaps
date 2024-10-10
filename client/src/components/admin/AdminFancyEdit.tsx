@@ -5,6 +5,9 @@ type Props = {
     temporaryMapData: AllMapsData,
     save: (newData: AllMapsData) => void,
     showSubmap: (submapId: number) => void,
+    showNode: (nodeId: string) => void,
+    showEdge: (nodeOrHallwayId1: string, nodeOrHallwayId2: string) => void,
+    showHallway: (hallwayId: string) => void,
 };
 
 type State = {
@@ -190,6 +193,8 @@ export default function AdminFancyEdit(props: Props) {
                                     <option key={t} value={t}>{t}</option>
                                 )}
                             </select>
+                            <br/>
+                            <button onClick={() => props.showNode(node.nodeId)}>Show</button>
                         </div>
                     )) }
                 </div>
@@ -221,6 +226,7 @@ export default function AdminFancyEdit(props: Props) {
                                 })))
                             }/>
                             <br/>
+                            <button onClick={() => props.showEdge(edge.nodeId1, edge.nodeId2)}>Show</button>
                         </div>
                     )) }
                 </div>
@@ -296,6 +302,8 @@ export default function AdminFancyEdit(props: Props) {
                                 }/>
                                 <br/>
                             </div>
+                            <br/>
+                            <button onClick={() => props.showHallway(hallway.id)}>Show</button>
                         </div>
                     )) }
                 </div>

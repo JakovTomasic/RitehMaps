@@ -22,7 +22,7 @@ const dotRadiusRelative: String = "0.5%"
 const lineStrokeWidthRelative: String = "0.1%"
 
 
-export default class Map extends Component<Prop>{
+export default class MyMap extends Component<Prop>{
 
     mapRef!: SVGSVGElement
 

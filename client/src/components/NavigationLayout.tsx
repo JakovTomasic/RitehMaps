@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 import Header from "./Header";
-import Map from "./Map";
+import MyMap from "./Map";
 import MapCaption from "./MapCaption";
 import { MapDrawProps } from "../types/map_draw_elements/MapDrawProps";
 import ZoomToggleButton from "./ZoomToggleButton";
@@ -59,7 +59,7 @@ export default function NavigationLayout(props: Prop) {
                                 <img className="h-16" src="/images/arrow_up.png"></img>
                             </div>
                         : <></> }
-                        <Map layoutImage={props.mapDrawProps.submap.path} width={props.mapDrawProps.submap.width} 
+                        <MyMap layoutImage={props.mapDrawProps.submap.path} width={props.mapDrawProps.submap.width} 
                         height={props.mapDrawProps.submap.height} centroidCrop={props.mapDrawProps.centroidCrop}
                         rotateAngle={props.rotateAngle} drawElements={props.mapDrawProps.mapElements} enableZoom={enableZoom}/>                    
                     </div>

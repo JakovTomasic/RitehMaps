@@ -8,6 +8,8 @@ import { AllMapsData, Edge, Hallway, Node, NodeType } from "../../../data/Server
 export type GraphNode = {
     node: MapNode;
     neighbours: MapNode[];
+    originalNodeOrHallwayId1: string;
+    originalNodeOrHallwayId2: string;
 }
 
 export function createGraph(graphData: AllMapsData): Map<string, GraphNode> {
@@ -32,7 +34,9 @@ function addAllNodesWithoutConnections(graph: Map<string, GraphNode>, nodes: Nod
                 yCoordinate: node.y,
                 nodeType: node.type,
             },
-            neighbours: []
+            neighbours: [],
+            originalNodeOrHallwayId1: node.nodeId,
+            originalNodeOrHallwayId2: node.nodeId,
         };
         graph.set(node.nodeId, graphNode);
     });
@@ -102,7 +106,9 @@ function joinTwoHallways(allHallwayProjections: Map<string, GraphNode[]>, hallwa
             yCoordinate: intersection.y,
             nodeType: NodeType.NAVIGATION_MIDNODE,
         },
-        neighbours: []
+        neighbours: [],
+        originalNodeOrHallwayId1: hallway1.id,
+        originalNodeOrHallwayId2: hallway2.id,
     };
 
     addHallwayProjection(allHallwayProjections, hallway1.id, graphNode);
@@ -129,7 +135,9 @@ function projectNodeOntoHallway(allHallwayProjections: Map<string, GraphNode[]>,
             yCoordinate: projection.y,
             nodeType: NodeType.NAVIGATION_MIDNODE,
         },
-        neighbours: [node.node]
+        neighbours: [node.node],
+        originalNodeOrHallwayId1: hallway.id,
+        originalNodeOrHallwayId2: node.node.id,
     };
 
     if (!sameCoordinates(node.node, graphNode.node)) {

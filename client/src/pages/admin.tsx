@@ -6,6 +6,7 @@ import AdminTextEdit from "../components/admin/AdminTextEdit";
 import Button from "../components/Button";
 import AdminFancyEdit, { AdminFancyEditState } from "../components/admin/AdminFancyEdit";
 import AdminMapPopup from "../components/admin/AdminMapPopup";
+import { submaps } from "../data/submaps";
 
 type Props = {
     allMapData: AllMapsData,
@@ -36,9 +37,15 @@ const safeParseJson = (any: string): any | null => {
 
 export default function AdminPage(props: Props){
 
+    const mockSubmaps = submaps.map(s => ({ id: s.id, caption: s.path }));
+    const localSubmaps = props.allMapData.submaps.length === 0 ? mockSubmaps : props.allMapData.submaps;
+
     const [state, setState] = useState<State>({
         mapDateState: {
-            temporaryMapData: props.allMapData,
+            temporaryMapData: {
+                ...props.allMapData,
+                submaps: localSubmaps,
+            },
             expandNodes: false,
             expandEdges: false,
             expandHallways: false,
@@ -165,7 +172,7 @@ export default function AdminPage(props: Props){
                 console.error(error);
                 setState(s => ({
                     ...s,
-                    saveResultMessage: "Server error",
+                    saveResultMessage: "Server error: " + error,
                     temporaryAllMapData: allMapData,
                 }));
                 return null;

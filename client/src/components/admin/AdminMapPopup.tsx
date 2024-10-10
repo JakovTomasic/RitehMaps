@@ -107,16 +107,17 @@ export default function AdminMapPopup(props: Props) {
 
 function navigationStepWithAllNodesFromTheSubmap(submapId: number, allMapData: AllMapsData): StuffToDrawOnMap {
 
-    let startNode = allMapData.nodes[0].nodeId;
-
     let constructedGraph = createGraph(allMapData);
 
     let visited = new Set<string>();
-    visited.add(startNode);
-
     let resultNodes: GraphNode[] = [];
     let resultEdges: MapEdge[] = [];
-    makeFlatDfsTree(startNode, submapId, constructedGraph, visited, resultNodes, resultEdges);
+    for (const startNode of allMapData.nodes) {
+        if (visited.has(startNode.nodeId)) continue;
+        visited.add(startNode.nodeId);
+
+        makeFlatDfsTree(startNode.nodeId, submapId, constructedGraph, visited, resultNodes, resultEdges);
+    }
 
     return { nodes: resultNodes, edges: resultEdges };
 }

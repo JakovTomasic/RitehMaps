@@ -83,12 +83,12 @@ function createNodeProjectionsOntoHallways(
 }
 
 function joinTwoHallways(allHallwayProjections: Map<string, GraphNode[]>, hallwayParam1: Hallway | undefined, hallwayParam2: Hallway | undefined) {
-    assert(hallwayParam1 !== undefined);
+    if (hallwayParam1 === undefined) return;
     const hallway1 = hallwayParam1!;
-    assert(hallwayParam2 !== undefined);
+    if (hallwayParam2 === undefined) return;
     const hallway2 = hallwayParam2!;
 
-    assert(hallway1.submapId === hallway2.submapId);
+    if (hallway1.submapId !== hallway2.submapId) return;
 
     const line1 = hallwayToLine(hallway1);
     const line2 = hallwayToLine(hallway2);
@@ -116,9 +116,9 @@ function joinTwoHallways(allHallwayProjections: Map<string, GraphNode[]>, hallwa
 }
 
 function projectNodeOntoHallway(allHallwayProjections: Map<string, GraphNode[]>, hallwayParam: Hallway | undefined, node: GraphNode) {
-    assert(hallwayParam !== undefined);
+    if (hallwayParam === undefined) return;
     const hallway = hallwayParam!;
-    assert(node.node.submapId === hallway.submapId);
+    if (node.node.submapId !== hallway.submapId) return;
 
     const dot: Dot = nodeToDot(node.node);
     const line: Line = hallwayToLine(hallway);
@@ -177,10 +177,3 @@ function joinAllHallwayProjections(allHallwayProjections: Map<string, GraphNode[
         }
     });
 }
-
-function assert(arg0: boolean) {
-    if (!arg0) {
-        throw new Error("Assertion failed! See GraphFactory.ts");
-    }
-}
-

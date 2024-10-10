@@ -112,11 +112,11 @@ function navigationStepWithAllNodesFromTheSubmap(submapId: number, allMapData: A
     let visited = new Set<string>();
     let resultNodes: GraphNode[] = [];
     let resultEdges: MapEdge[] = [];
-    for (const startNode of allMapData.nodes) {
-        if (visited.has(startNode.nodeId)) continue;
-        visited.add(startNode.nodeId);
+    for (const startNode of constructedGraph.values()) {
+        if (visited.has(startNode.node.id)) continue;
+        visited.add(startNode.node.id);
 
-        makeFlatDfsTree(startNode.nodeId, submapId, constructedGraph, visited, resultNodes, resultEdges);
+        makeFlatDfsTree(startNode.node.id, submapId, constructedGraph, visited, resultNodes, resultEdges);
     }
 
     return { nodes: resultNodes, edges: resultEdges };

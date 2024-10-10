@@ -124,7 +124,82 @@ export default function AdminFancyEdit(props: Props) {
     return(
         <div className="flex flex-col w-full">
 
-            <div className="text-3xl text-red-500">Not yet implemented</div>
+            <div className="flex flex-row w-full pl-4 pr-4 mb-4">
+                <button
+                    className="bg-slate-600 p-2 mr-4"
+                    onClick={() => setState(s => ({
+                        ...s,
+                        temporaryMapData: {
+                            ...s.temporaryMapData,
+                            nodes: [
+                                {
+                                    nodeId: "",
+                                    names: [],
+                                    submapId: s.temporaryMapData.submaps[0]!.id,
+                                    x: 0,
+                                    y: 0,
+                                    type: NodeType.CLASSROOM,
+                                },
+                                ...s.temporaryMapData.nodes,
+                            ]
+                        },
+                        expandNodes: true,
+                        expandEdges: false,
+                        expandHallways: false,
+                        expandProfessors: false,
+                        expandSubmaps: false,
+                    }))}>
+                    Dodaj čvor
+                </button>
+                <button
+                    className="bg-slate-600 p-2 mr-4"
+                    onClick={() => setState(s => ({
+                        ...s,
+                        temporaryMapData: {
+                            ...s.temporaryMapData,
+                            edges: [
+                                {
+                                    nodeId1: "",
+                                    nodeId2: "",
+                                },
+                                ...s.temporaryMapData.edges,
+                            ]
+                        },
+                        expandNodes: false,
+                        expandEdges: true,
+                        expandHallways: false,
+                        expandProfessors: false,
+                        expandSubmaps: false,
+                    }))}>
+                    Dodaj spoj
+                </button>
+                <button
+                    className="bg-slate-600 p-2 mr-4"
+                    onClick={() => setState(s => ({
+                        ...s,
+                        temporaryMapData: {
+                            ...s.temporaryMapData,
+                            hallways: [
+                                {
+                                    id: "",
+                                    submapId: s.temporaryMapData.submaps[0]!.id,
+                                    x1: 0,
+                                    y1: 0,
+                                    x2: 0,
+                                    y2: 0,
+                                },
+                                ...s.temporaryMapData.hallways,
+                            ]
+                        },
+                        expandNodes: false,
+                        expandEdges: false,
+                        expandHallways: true,
+                        expandProfessors: false,
+                        expandSubmaps: false,
+                    }))}>
+                    Dodaj hodnik
+                </button>
+            </div>
 
             <button
                 className="w-full bg-slate-600 p-4 mb-4"

@@ -109,7 +109,6 @@ function updateSubmaps(index: number, transform: (oldSubmap: SubMap) => SubMap):
     })
 }
 
-// TODO: implement "add new"
 export default function AdminFancyEdit(props: Props) {
 
     const state = props.state;
@@ -451,7 +450,6 @@ export default function AdminFancyEdit(props: Props) {
             </button>
             { !state.expandSubmaps ? <></> :
                 <div>
-                    {/* TODO: view button */}
                     { state.temporaryMapData.submaps.map((submap, index) => (
                         <div className="m-4 p-4 bg-slate-400" key={submap.id}>
                             id = {submap.id}

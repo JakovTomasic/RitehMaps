@@ -128,9 +128,7 @@ export default function AdminPage(props: Props){
         save(allMapData.data);
     };
 
-    // TODO: test when server is down
     const save = async (allMapData: AllMapsData) => {
-        // console.log("to SAVE: ", JSON.stringify(allMapData.data));
         const request: ServerChangeDataRequest = {
             password: state.password,
             data: allMapData,
@@ -202,7 +200,7 @@ export default function AdminPage(props: Props){
                 </>
                 :
                 <>
-                    <AdminFancyEdit 
+                    <AdminFancyEdit
                         state={state.mapDateState}
                         updateState={s => setState(oldS => ({ ...oldS, mapDateState: s }))}
                         save={save}

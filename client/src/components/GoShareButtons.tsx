@@ -21,7 +21,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
   if (props.clickable) {
 
     const startNodeId = props.startNodeId != null ? props.startNodeId : props.defaultStartNodeId;
-    const startText = props.startText != null ? props.startText : null;
+    const startText = props.startText != null ? props.startText : undefined;
    
     return (
       <div className="flex w-full items-center justify-center">

@@ -88,7 +88,7 @@ export default function AdminMapPopup(props: Props) {
     );
 
     return(
-        <div className="absolute w-full flex-1 mx-auto my-0 bg-white flex flex-col">
+        <div className="fixed top-0 left-0 w-full bg-white flex flex-col">
             { submapName }
             <br/>
             <MyMap layoutImage={submap.path} 

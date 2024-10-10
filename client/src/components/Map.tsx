@@ -18,13 +18,22 @@ type Prop = {
     enableZoom?: boolean;
 }
 
+type State = {
+    clickedCoordinates: string,
+}
+
 const dotRadiusRelative: String = "0.5%"
 const lineStrokeWidthRelative: String = "0.1%"
 
 
-export default class MyMap extends Component<Prop>{
+export default class MyMap extends Component<Prop, State>{
 
     mapRef!: SVGSVGElement
+
+    constructor(props: Prop) {
+        super(props);
+        this.state = { clickedCoordinates: "" };
+    }
 
     private drawMap(){
         
@@ -44,15 +53,13 @@ export default class MyMap extends Component<Prop>{
         const height = this.props.height;
 
         const svg = d3.select(this.mapRef)
-        svg.on("click", function(event) {
+        svg.on("click", (event: any) => {
 
             const clickedX = d3.pointer(event)[0];
             const clickedY = d3.pointer(event)[1];
 
             const relativeX = round(clickedX / width * 100, 2);
             const relativeY = round(clickedY / height * 100, 2);
-
-            console.log(`x: ${relativeX},\ny: ${relativeY},`);
 
             svg.append("circle")
             .attr("cx", clickedX)
@@ -62,10 +69,12 @@ export default class MyMap extends Component<Prop>{
             .attr("stroke-opacity", 1)
             .attr("stroke-width", 1.5)
 
+            this.setState({ clickedCoordinates: `x: ${relativeX}\ny: ${relativeY}` });
+
         })
     }
 
-    private coordinatesOverlap(x1, x2, y1, y2): boolean {
+    private coordinatesOverlap(x1: number, x2: number, y1: number, y2: number): boolean {
         return (round(x1, 2) == round(x2, 2) && round(y1, 2) == round(y2, 2));
     }
 
@@ -140,14 +149,17 @@ export default class MyMap extends Component<Prop>{
     render() {
 
         return(
-            <ZoomableSVG width={this.props.width} height={this.props.height} 
-                centroidCrop={this.props.centroidCrop} rotateAngle={this.props.rotateAngle} 
-                enableZoom={this.props.enableZoom}
-            >
-                <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>
-                    
-                </svg>
-            </ZoomableSVG>
+            <>
+                <ZoomableSVG width={this.props.width} height={this.props.height} 
+                    centroidCrop={this.props.centroidCrop} rotateAngle={this.props.rotateAngle} 
+                    enableZoom={this.props.enableZoom}
+                >
+                    <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>
+                        
+                    </svg>
+                </ZoomableSVG>
+                { this.state.clickedCoordinates }
+            </>
         )
     }
 

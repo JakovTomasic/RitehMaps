@@ -4,7 +4,7 @@ import { API_URL } from "../server";
 import { AllMapsData, AllMapsDataSchema, ServerChangeDataRequest } from "../data/ServerData";
 import AdminTextEdit from "../components/admin/AdminTextEdit";
 import Button from "../components/Button";
-import AdminFancyEdit from "../components/admin/AdminFancyEdit";
+import AdminFancyEdit, { AdminFancyEditState } from "../components/admin/AdminFancyEdit";
 import AdminMapPopup from "../components/admin/AdminMapPopup";
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 }
 
 type State = {
-    temporaryAllMapData: AllMapsData,
+    mapDateState: AdminFancyEditState,
     saveResultMessage: string,
     textMode: boolean,
     password: string,
@@ -37,7 +37,14 @@ const safeParseJson = (any: string): any | null => {
 export default function AdminPage(props: Props){
 
     const [state, setState] = useState<State>({
-        temporaryAllMapData: props.allMapData,
+        mapDateState: {
+            temporaryMapData: props.allMapData,
+            expandNodes: false,
+            expandEdges: false,
+            expandHallways: false,
+            expandProfessors: false,
+            expandSubmaps: false,
+        },
         saveResultMessage: "",
         textMode: true,
         password: "",
@@ -57,7 +64,11 @@ export default function AdminPage(props: Props){
         }));
     };
     const showNode = (nodeId: string) => {
-        const node = state.temporaryAllMapData.nodes.find(n => n.nodeId === nodeId)!;
+        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.nodeId === nodeId);
+        if (!node) {
+            alert("Invalid data!");
+            return;
+        }
         setState(s => ({
             ...s,
             adminMapPopup: {
@@ -69,8 +80,18 @@ export default function AdminPage(props: Props){
         }));
     };
     const showEdge = (nodeOrHallwayId1: string, nodeOrHallwayId2: string) => {
-        const node = state.temporaryAllMapData.nodes.find(n => n.nodeId === nodeOrHallwayId1);
-        const hallway = state.temporaryAllMapData.hallways.find(h => h.id === nodeOrHallwayId1);
+        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.nodeId === nodeOrHallwayId1);
+        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.id === nodeOrHallwayId1);
+        if (!node && !hallway) {
+            alert(`Invalid data! Cannot find node or hallway with id ${nodeOrHallwayId1}`);
+            return;
+        }
+        const node2 = state.mapDateState.temporaryMapData.nodes.find(n => n.nodeId === nodeOrHallwayId2);
+        const hallway2 = state.mapDateState.temporaryMapData.hallways.find(h => h.id === nodeOrHallwayId2);
+        if (!node2 && !hallway2) {
+            alert(`Invalid data! Cannot find node or hallway with id ${nodeOrHallwayId2}`);
+            return;
+        }
         setState(s => ({
             ...s,
             adminMapPopup: {
@@ -82,7 +103,11 @@ export default function AdminPage(props: Props){
         }));
     };
     const showHallway = (hallwayId: string) => {
-        const hallway = state.temporaryAllMapData.hallways.find(h => h.id === hallwayId)!;
+        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.id === hallwayId);
+        if (!hallway) {
+            alert(`Invalid data! Cannot find hallway with id ${hallwayId}`);
+            return;
+        }
         setState(s => ({
             ...s,
             adminMapPopup: {
@@ -172,13 +197,14 @@ export default function AdminPage(props: Props){
 
             { state.textMode ?
                 <>
-                    <AdminTextEdit temporaryMapData={state.temporaryAllMapData} save={saveText} />
+                    <AdminTextEdit temporaryMapData={state.mapDateState.temporaryMapData} save={saveText} />
                     <div className="text-xl font-bold">{state.saveResultMessage}</div>
                 </>
                 :
                 <>
                     <AdminFancyEdit 
-                        temporaryMapData={state.temporaryAllMapData}
+                        state={state.mapDateState}
+                        updateState={s => setState(oldS => ({ ...oldS, mapDateState: s }))}
                         save={save}
                         showSubmap={showSubmap}
                         showNode={showNode}
@@ -192,7 +218,7 @@ export default function AdminPage(props: Props){
             { state.adminMapPopup === null ? <></> :
                 <AdminMapPopup
                     submapId={state.adminMapPopup.submapId}
-                    mapData={state.temporaryAllMapData}
+                    mapData={state.mapDateState.temporaryMapData}
                     nodeToShowId={state.adminMapPopup.nodeToShowId}
                     edgeToShow={state.adminMapPopup.edgeToShow}
                     hallwayToShowId={state.adminMapPopup.hallwayToShowId}

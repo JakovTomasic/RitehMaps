@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { AllMapsData, Edge, Hallway, Node, NodeType, ProfessorData, SubMap } from "../../data/ServerData";
 
 type Props = {
-    temporaryMapData: AllMapsData,
+    state: AdminFancyEditState,
+    updateState: (s: AdminFancyEditState) => void,
     save: (newData: AllMapsData) => void,
     showSubmap: (submapId: number) => void,
     showNode: (nodeId: string) => void,
@@ -10,7 +10,7 @@ type Props = {
     showHallway: (hallwayId: string) => void,
 };
 
-type State = {
+export type AdminFancyEditState = {
     temporaryMapData: AllMapsData,
     expandNodes: boolean,
     expandEdges: boolean,
@@ -18,6 +18,8 @@ type State = {
     expandProfessors: boolean,
     expandSubmaps: boolean,
 };
+
+type State = AdminFancyEditState;
 
 function joinString(arr: string[]): string {
     return arr.reduce((acc, name, i) => acc + ( i > 0 ? ", " : "") + name, "");
@@ -110,14 +112,10 @@ function updateSubmaps(index: number, transform: (oldSubmap: SubMap) => SubMap):
 // TODO: implement "add new"
 export default function AdminFancyEdit(props: Props) {
 
-    const [state, setState] = useState<State>({
-        temporaryMapData: props.temporaryMapData,
-        expandNodes: false,
-        expandEdges: false,
-        expandHallways: false,
-        expandProfessors: false,
-        expandSubmaps: false,
-    });
+    const state = props.state;
+    const setState = (update: (s: State) => State) => {
+        props.updateState(update(state));
+    };
 
     const save = () => {
         props.save(state.temporaryMapData);

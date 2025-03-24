@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import AdminFancyEdit, { AdminFancyEditState } from "../components/admin/AdminFancyEdit";
 import AdminMapPopup from "../components/admin/AdminMapPopup";
 import { submaps } from "../data/submaps";
+import { addUuids, AllMapsDataWithUuids, removeUuids } from "../data/AdminObjects";
 
 type Props = {
     allMapData: AllMapsData,
@@ -43,7 +44,7 @@ export default function AdminPage(props: Props){
     const [state, setState] = useState<State>({
         mapDateState: {
             temporaryMapData: {
-                ...props.allMapData,
+                ...addUuids(props.allMapData),
                 submaps: localSubmaps,
             },
             expandNodes: false,
@@ -71,7 +72,7 @@ export default function AdminPage(props: Props){
         }));
     };
     const showNode = (nodeId: string) => {
-        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.nodeId === nodeId);
+        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeId);
         if (!node) {
             alert("Invalid data!");
             return;
@@ -79,22 +80,22 @@ export default function AdminPage(props: Props){
         setState(s => ({
             ...s,
             adminMapPopup: {
-                submapId: node.submapId,
-                nodeToShowId: node.nodeId,
+                submapId: node.v.submapId,
+                nodeToShowId: node.v.nodeId,
                 edgeToShow: null,
                 hallwayToShowId: null,
             },
         }));
     };
     const showEdge = (nodeOrHallwayId1: string, nodeOrHallwayId2: string) => {
-        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.nodeId === nodeOrHallwayId1);
-        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.id === nodeOrHallwayId1);
+        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId1);
+        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId1);
         if (!node && !hallway) {
             alert(`Invalid data! Cannot find node or hallway with id ${nodeOrHallwayId1}`);
             return;
         }
-        const node2 = state.mapDateState.temporaryMapData.nodes.find(n => n.nodeId === nodeOrHallwayId2);
-        const hallway2 = state.mapDateState.temporaryMapData.hallways.find(h => h.id === nodeOrHallwayId2);
+        const node2 = state.mapDateState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId2);
+        const hallway2 = state.mapDateState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId2);
         if (!node2 && !hallway2) {
             alert(`Invalid data! Cannot find node or hallway with id ${nodeOrHallwayId2}`);
             return;
@@ -102,7 +103,7 @@ export default function AdminPage(props: Props){
         setState(s => ({
             ...s,
             adminMapPopup: {
-                submapId: node ? node.submapId : hallway!.submapId,
+                submapId: node ? node.v.submapId : hallway!.v.submapId,
                 nodeToShowId: null,
                 edgeToShow: { nodeOrHallwayId1, nodeOrHallwayId2 },
                 hallwayToShowId: null,
@@ -110,7 +111,7 @@ export default function AdminPage(props: Props){
         }));
     };
     const showHallway = (hallwayId: string) => {
-        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.id === hallwayId);
+        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.v.id === hallwayId);
         if (!hallway) {
             alert(`Invalid data! Cannot find hallway with id ${hallwayId}`);
             return;
@@ -118,10 +119,10 @@ export default function AdminPage(props: Props){
         setState(s => ({
             ...s,
             adminMapPopup: {
-                submapId: hallway.submapId,
+                submapId: hallway.v.submapId,
                 nodeToShowId: null,
                 edgeToShow: null,
-                hallwayToShowId: hallway.id,
+                hallwayToShowId: hallway.v.id,
             },
         }));
     };
@@ -134,6 +135,10 @@ export default function AdminPage(props: Props){
         }
         save(allMapData.data);
     };
+
+    const saveWithUuids = async (allMapData: AllMapsDataWithUuids) => {
+        return await save(removeUuids(allMapData))
+    }
 
     const save = async (allMapData: AllMapsData) => {
         const request: ServerChangeDataRequest = {
@@ -202,7 +207,7 @@ export default function AdminPage(props: Props){
 
             { state.textMode ?
                 <>
-                    <AdminTextEdit temporaryMapData={state.mapDateState.temporaryMapData} save={saveText} />
+                    <AdminTextEdit temporaryMapData={removeUuids(state.mapDateState.temporaryMapData)} save={saveText} />
                     <div className="text-xl font-bold">{state.saveResultMessage}</div>
                 </>
                 :
@@ -210,7 +215,7 @@ export default function AdminPage(props: Props){
                     <AdminFancyEdit
                         state={state.mapDateState}
                         updateState={s => setState(oldS => ({ ...oldS, mapDateState: s }))}
-                        save={save}
+                        save={saveWithUuids}
                         showSubmap={showSubmap}
                         showNode={showNode}
                         showEdge={showEdge}
@@ -223,7 +228,7 @@ export default function AdminPage(props: Props){
             { state.adminMapPopup === null ? <></> :
                 <AdminMapPopup
                     submapId={state.adminMapPopup.submapId}
-                    mapData={state.mapDateState.temporaryMapData}
+                    mapData={removeUuids(state.mapDateState.temporaryMapData)}
                     nodeToShowId={state.adminMapPopup.nodeToShowId}
                     edgeToShow={state.adminMapPopup.edgeToShow}
                     hallwayToShowId={state.adminMapPopup.hallwayToShowId}

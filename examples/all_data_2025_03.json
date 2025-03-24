@@ -1,0 +1,6498 @@
+{
+    "nodes": [
+        {
+            "nodeId": "2-159",
+            "names": [
+                "lab za cjelovitost konstrukcija",
+                "2-159"
+            ],
+            "submapId": 102,
+            "x": 5.51,
+            "y": 30.8,
+            "type": 2
+        },
+        {
+            "nodeId": "2-160",
+            "names": [
+                "L18",
+                "2-160",
+                "lab za mehanička ispitivanja materijala"
+            ],
+            "submapId": 102,
+            "x": 4.47,
+            "y": 34.31,
+            "type": 0
+        },
+        {
+            "nodeId": "2-163",
+            "names": [
+                "2-163"
+            ],
+            "submapId": 102,
+            "x": 3.97,
+            "y": 50.6,
+            "type": 0
+        },
+        {
+            "nodeId": "2-164",
+            "names": [
+                "2-164"
+            ],
+            "submapId": 102,
+            "x": 3.97,
+            "y": 63.53,
+            "type": 2
+        },
+        {
+            "nodeId": "2-158",
+            "names": [
+                "L18",
+                "2-158",
+                "lab za toplinsku obradu i inženjerstvo površina."
+            ],
+            "submapId": 102,
+            "x": 6.39,
+            "y": 59.51,
+            "type": 0
+        },
+        {
+            "nodeId": "2-156",
+            "names": [
+                "L18",
+                "2-156",
+                "lab za metalografsko ispitivanje",
+                "spektrometrija"
+            ],
+            "submapId": 102,
+            "x": 10.72,
+            "y": 75.03,
+            "type": 0
+        },
+        {
+            "nodeId": "2-155",
+            "names": [
+                "2-155"
+            ],
+            "submapId": 102,
+            "x": 15.79,
+            "y": 75.03,
+            "type": 2
+        },
+        {
+            "nodeId": "2-150",
+            "names": [
+                "2-150"
+            ],
+            "submapId": 102,
+            "x": 18.35,
+            "y": 75.03,
+            "type": 2
+        },
+        {
+            "nodeId": "2-167",
+            "names": [
+                "L20",
+                "2-167",
+                "lab za zaštitu materijala - priprema uzoraka"
+            ],
+            "submapId": 102,
+            "x": 5.49,
+            "y": 84.43,
+            "type": 0
+        },
+        {
+            "nodeId": "2-168",
+            "names": [
+                "L20",
+                "2-168",
+                "lab za zaštitu materijala"
+            ],
+            "submapId": 102,
+            "x": 10.3,
+            "y": 84.43,
+            "type": 0
+        },
+        {
+            "nodeId": "2-170",
+            "names": [
+                "2-170"
+            ],
+            "submapId": 102,
+            "x": 12.35,
+            "y": 84.43,
+            "type": 2
+        },
+        {
+            "nodeId": "2-172",
+            "names": [
+                "2-172"
+            ],
+            "submapId": 102,
+            "x": 15.58,
+            "y": 84.43,
+            "type": 2
+        },
+        {
+            "nodeId": "2-174",
+            "names": [
+                "2-174"
+            ],
+            "submapId": 102,
+            "x": 17.79,
+            "y": 84.43,
+            "type": 2
+        },
+        {
+            "nodeId": "2-175",
+            "names": [
+                "2-175"
+            ],
+            "submapId": 102,
+            "x": 22.11,
+            "y": 84.43,
+            "type": 2
+        },
+        {
+            "nodeId": "2-177",
+            "names": [
+                "2-177"
+            ],
+            "submapId": 102,
+            "x": 24.76,
+            "y": 84.43,
+            "type": 2
+        },
+        {
+            "nodeId": "2-179",
+            "names": [
+                "2-179"
+            ],
+            "submapId": 102,
+            "x": 26.21,
+            "y": 88.05,
+            "type": 2
+        },
+        {
+            "nodeId": "2-179_midnode",
+            "names": [],
+            "submapId": 102,
+            "x": 26.21,
+            "y": 77.86,
+            "type": 9
+        },
+        {
+            "nodeId": "2-180",
+            "names": [
+                "2-180"
+            ],
+            "submapId": 102,
+            "x": 27.64,
+            "y": 81.16,
+            "type": 2
+        },
+        {
+            "nodeId": "2-181",
+            "names": [
+                "2-181"
+            ],
+            "submapId": 102,
+            "x": 26.62,
+            "y": 74.09,
+            "type": 2
+        },
+        {
+            "nodeId": "2-148",
+            "names": [
+                "2-148"
+            ],
+            "submapId": 102,
+            "x": 24.72,
+            "y": 60.7,
+            "type": 9
+        },
+        {
+            "nodeId": "2-143",
+            "names": [
+                "L16",
+                "2-143",
+                "lab za ispitivanje črvstoće konstrukcija",
+                "lab za dinamičku izdržljivost konstrukcija",
+                "lab za numeričku analizu konstrukcija"
+            ],
+            "submapId": 102,
+            "x": 12.95,
+            "y": 28.67,
+            "type": 0
+        },
+        {
+            "nodeId": "2-145",
+            "names": [
+                "lab za vibracije i buku",
+                "2-145"
+            ],
+            "submapId": 102,
+            "x": 13.94,
+            "y": 32.45,
+            "type": 0
+        },
+        {
+            "nodeId": "2-141",
+            "names": [
+                "2-141"
+            ],
+            "submapId": 102,
+            "x": 15.14,
+            "y": 23.86,
+            "type": 2
+        },
+        {
+            "nodeId": "2-140",
+            "names": [
+                "2-140"
+            ],
+            "submapId": 102,
+            "x": 18.4,
+            "y": 23.86,
+            "type": 2
+        },
+        {
+            "nodeId": "2-139",
+            "names": [
+                "2-139"
+            ],
+            "submapId": 102,
+            "x": 22.06,
+            "y": 23.86,
+            "type": 2
+        },
+        {
+            "nodeId": "2-138",
+            "names": [
+                "2-138"
+            ],
+            "submapId": 102,
+            "x": 24.72,
+            "y": 20.98,
+            "type": 2
+        },
+        {
+            "nodeId": "2-137",
+            "names": [
+                "2-137"
+            ],
+            "submapId": 102,
+            "x": 25.8,
+            "y": 23.65,
+            "type": 2
+        },
+        {
+            "nodeId": "2-136",
+            "names": [
+                "2-136"
+            ],
+            "submapId": 102,
+            "x": 25.69,
+            "y": 30.61,
+            "type": 2
+        },
+        {
+            "nodeId": "2-135",
+            "names": [
+                "2-135"
+            ],
+            "submapId": 102,
+            "x": 25.69,
+            "y": 33.88,
+            "type": 8
+        },
+        {
+            "nodeId": "2-134",
+            "names": [
+                "2-134"
+            ],
+            "submapId": 102,
+            "x": 25.69,
+            "y": 45.44,
+            "type": 7
+        },
+        {
+            "nodeId": "2-146",
+            "names": [
+                "L17",
+                "2-146"
+            ],
+            "submapId": 102,
+            "x": 23.5,
+            "y": 43.52,
+            "type": 0
+        },
+        {
+            "nodeId": "2-132a",
+            "names": [
+                "2-132a"
+            ],
+            "submapId": 102,
+            "x": 23.48,
+            "y": 54.1,
+            "type": 3
+        },
+        {
+            "nodeId": "2-132",
+            "names": [
+                "2-132"
+            ],
+            "submapId": 102,
+            "x": 34.21,
+            "y": 54.1,
+            "type": 3
+        },
+        {
+            "nodeId": "lab_f0_stairs_up_left",
+            "names": [],
+            "submapId": 101,
+            "x": 17.74,
+            "y": 34.78,
+            "type": 4
+        },
+        {
+            "nodeId": "lab_f1_stairs_down_left",
+            "names": [],
+            "submapId": 102,
+            "x": 37.75,
+            "y": 36.46,
+            "type": 5
+        },
+        {
+            "nodeId": "2-128",
+            "names": [
+                "2-128"
+            ],
+            "submapId": 102,
+            "x": 37.53,
+            "y": 59.17,
+            "type": 9
+        },
+        {
+            "nodeId": "2-129",
+            "names": [
+                "2-129"
+            ],
+            "submapId": 102,
+            "x": 36.08,
+            "y": 68.83,
+            "type": 7
+        },
+        {
+            "nodeId": "2-130",
+            "names": [
+                "2-130"
+            ],
+            "submapId": 102,
+            "x": 36.08,
+            "y": 80.57,
+            "type": 8
+        },
+        {
+            "nodeId": "2-131",
+            "names": [
+                "2-131"
+            ],
+            "submapId": 102,
+            "x": 36.08,
+            "y": 84.75,
+            "type": 2
+        },
+        {
+            "nodeId": "2-121",
+            "names": [
+                "L15",
+                "2-121",
+                "lab za industrijsku energetiku i zaštitu okoliša",
+                "lab za toplinska mjerenja",
+                "lab za grijanje ventilaciju i klimatizaciju",
+                "lab za tehniku hlađenja"
+            ],
+            "submapId": 102,
+            "x": 42.71,
+            "y": 56.68,
+            "type": 3
+        },
+        {
+            "nodeId": "2-125",
+            "names": [
+                "2-125"
+            ],
+            "submapId": 102,
+            "x": 41.94,
+            "y": 50.34,
+            "type": 3
+        },
+        {
+            "nodeId": "2-127",
+            "names": [
+                "2-127"
+            ],
+            "submapId": 102,
+            "x": 39.58,
+            "y": 53.11,
+            "type": 3
+        },
+        {
+            "nodeId": "lab_f1_arhiva_midnode",
+            "names": [],
+            "submapId": 102,
+            "x": 41.45,
+            "y": 57.6,
+            "type": 9
+        },
+        {
+            "nodeId": "2-51",
+            "names": [
+                "2-51",
+                "lab za statističku analizu i obradu signala"
+            ],
+            "submapId": 102,
+            "x": 90.7,
+            "y": 85.92,
+            "type": 0
+        },
+        {
+            "nodeId": "2-52",
+            "names": [
+                "2-52",
+                "spremište 2-52"
+            ],
+            "submapId": 102,
+            "x": 87.29,
+            "y": 81.42,
+            "type": 3
+        },
+        {
+            "nodeId": "2-118",
+            "names": [
+                "2-118"
+            ],
+            "submapId": 102,
+            "x": 76.5,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-117",
+            "names": [
+                "2-117"
+            ],
+            "submapId": 102,
+            "x": 73.3,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-116",
+            "names": [
+                "2-116"
+            ],
+            "submapId": 102,
+            "x": 72.28,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-115",
+            "names": [
+                "2-115"
+            ],
+            "submapId": 102,
+            "x": 69.02,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-114",
+            "names": [
+                "2-114"
+            ],
+            "submapId": 102,
+            "x": 68,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-113",
+            "names": [
+                "2-113"
+            ],
+            "submapId": 102,
+            "x": 62.79,
+            "y": 82.96,
+            "type": 7
+        },
+        {
+            "nodeId": "2-112",
+            "names": [
+                "2-112"
+            ],
+            "submapId": 102,
+            "x": 61.43,
+            "y": 82.96,
+            "type": 8
+        },
+        {
+            "nodeId": "2-111",
+            "names": [
+                "2-111"
+            ],
+            "submapId": 102,
+            "x": 60.66,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-110",
+            "names": [
+                "2-110"
+            ],
+            "submapId": 102,
+            "x": 56.17,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-108",
+            "names": [
+                "2-108"
+            ],
+            "submapId": 102,
+            "x": 55.16,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-106",
+            "names": [
+                "2-106"
+            ],
+            "submapId": 102,
+            "x": 49.82,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-102",
+            "names": [
+                "2-102"
+            ],
+            "submapId": 102,
+            "x": 41.09,
+            "y": 82.08,
+            "type": 2
+        },
+        {
+            "nodeId": "2-101",
+            "names": [
+                "2-101"
+            ],
+            "submapId": 102,
+            "x": 39.69,
+            "y": 82.08,
+            "type": 2
+        },
+        {
+            "nodeId": "1-122",
+            "names": [
+                "1-122"
+            ],
+            "submapId": 101,
+            "x": 55.95,
+            "y": 71.58,
+            "type": 0
+        },
+        {
+            "nodeId": "1-109",
+            "names": [
+                "1-109"
+            ],
+            "submapId": 101,
+            "x": 46.13,
+            "y": 78,
+            "type": 2
+        },
+        {
+            "nodeId": "1-110",
+            "names": [
+                "1-110"
+            ],
+            "submapId": 101,
+            "x": 52.73,
+            "y": 78.74,
+            "type": 8
+        },
+        {
+            "nodeId": "1-108",
+            "names": [
+                "1-108"
+            ],
+            "submapId": 101,
+            "x": 42.63,
+            "y": 78.74,
+            "type": 7
+        },
+        {
+            "nodeId": "1-107",
+            "names": [
+                "1-107"
+            ],
+            "submapId": 101,
+            "x": 38.78,
+            "y": 78.74,
+            "type": 2
+        },
+        {
+            "nodeId": "1-130a",
+            "names": [
+                "1-130a"
+            ],
+            "submapId": 101,
+            "x": 27.5,
+            "y": 61.67,
+            "type": 2
+        },
+        {
+            "nodeId": "1-130b",
+            "names": [
+                "1-130b"
+            ],
+            "submapId": 101,
+            "x": 27.5,
+            "y": 67.7,
+            "type": 2
+        },
+        {
+            "nodeId": "lab_floor_0_center_exit",
+            "names": [
+                "1-111"
+            ],
+            "submapId": 101,
+            "x": 54.07,
+            "y": 89.2,
+            "type": 3
+        },
+        {
+            "nodeId": "lab_floor_0_left_exit",
+            "names": [
+                "1-131"
+            ],
+            "submapId": 101,
+            "x": 13.71,
+            "y": 45.25,
+            "type": 3
+        },
+        {
+            "nodeId": "3-12",
+            "names": [
+                "tavan L",
+                "3-12"
+            ],
+            "submapId": 4,
+            "x": 29.12,
+            "y": 71.56,
+            "type": 3
+        },
+        {
+            "nodeId": "tavan_l_nav_node",
+            "names": [],
+            "submapId": 4,
+            "x": 30.96,
+            "y": 71.56,
+            "type": 9
+        },
+        {
+            "nodeId": "3-11",
+            "names": [
+                "spremačice kat 3",
+                "3-11"
+            ],
+            "submapId": 4,
+            "x": 33.88,
+            "y": 71.88,
+            "type": 2
+        },
+        {
+            "nodeId": "3-17b",
+            "names": [
+                "lab za tehnička mjerenja",
+                "3-17b"
+            ],
+            "submapId": 4,
+            "x": 36.17,
+            "y": 81.68,
+            "type": 0
+        },
+        {
+            "nodeId": "tavan_d_nav_node",
+            "names": [],
+            "submapId": 4,
+            "x": 67.71,
+            "y": 72.13,
+            "type": 9
+        },
+        {
+            "nodeId": "3-41",
+            "names": [
+                "tavan D",
+                "3-41"
+            ],
+            "submapId": 4,
+            "x": 69,
+            "y": 71.99,
+            "type": 3
+        },
+        {
+            "nodeId": "2-24",
+            "names": [
+                "2-24",
+                "lab za računarsko inženjerstvo u brodogradnji."
+            ],
+            "submapId": 3,
+            "x": 90.23,
+            "y": 69.15,
+            "type": 0
+        },
+        {
+            "nodeId": "2-05",
+            "names": [
+                "U6",
+                "2-05",
+                "lab za brodsku hidromehaniku"
+            ],
+            "submapId": 3,
+            "x": 60.98,
+            "y": 82.18,
+            "type": 0
+        },
+        {
+            "nodeId": "2-03",
+            "names": [
+                "arhiva",
+                "2-03"
+            ],
+            "submapId": 3,
+            "x": 61.34,
+            "y": 71.4,
+            "type": 3
+        },
+        {
+            "nodeId": "2-50",
+            "names": [
+                "L13",
+                "2-50"
+            ],
+            "submapId": 3,
+            "x": 70.42,
+            "y": 6.49,
+            "type": 0
+        },
+        {
+            "nodeId": "1-12",
+            "names": [
+                "1-12",
+                "1-11",
+                "1-10",
+                "1-09"
+            ],
+            "submapId": 2,
+            "x": 64.32,
+            "y": 86.76,
+            "type": 2
+        },
+        {
+            "nodeId": "1-07",
+            "names": [
+                "BMW",
+                "1-07",
+                "HPC server room"
+            ],
+            "submapId": 2,
+            "x": 62.16,
+            "y": 60.65,
+            "type": 2
+        },
+        {
+            "nodeId": "1-13",
+            "names": [
+                "1-13"
+            ],
+            "submapId": 2,
+            "x": 68.06,
+            "y": 70.51,
+            "type": 2
+        },
+        {
+            "nodeId": "1-15",
+            "names": [
+                "1-15",
+                "1-15a",
+                "1-15b"
+            ],
+            "submapId": 2,
+            "x": 71.71,
+            "y": 70.51,
+            "type": 2
+        },
+        {
+            "nodeId": "1-17",
+            "names": [
+                "1-17"
+            ],
+            "submapId": 2,
+            "x": 74.26,
+            "y": 70.76,
+            "type": 2
+        },
+        {
+            "nodeId": "L4",
+            "names": [
+                "L4",
+                "1-35",
+                "lab za analognu elektroniku i automatiziranu instrumentaciju."
+            ],
+            "submapId": 2,
+            "x": 82.4,
+            "y": 46.07,
+            "type": 0
+        },
+        {
+            "nodeId": "1-02",
+            "names": [
+                "L2",
+                "1-02",
+                "lab za primjenu energetske elektronike"
+            ],
+            "submapId": 2,
+            "x": 66.95,
+            "y": 19.45,
+            "type": 0
+        },
+        {
+            "nodeId": "1-45",
+            "names": [
+                "1-45"
+            ],
+            "submapId": 2,
+            "x": 12.34,
+            "y": 60.27,
+            "type": 2
+        },
+        {
+            "nodeId": "1-42",
+            "names": [
+                "smart apps lab",
+                "1-42"
+            ],
+            "submapId": 2,
+            "x": 18.35,
+            "y": 33.06,
+            "type": 0
+        },
+        {
+            "nodeId": "1-48",
+            "names": [
+                "1-48"
+            ],
+            "submapId": 2,
+            "x": 8.9,
+            "y": 45.45,
+            "type": 2
+        },
+        {
+            "nodeId": "1-47a",
+            "names": [
+                "1-47a"
+            ],
+            "submapId": 2,
+            "x": 7.2,
+            "y": 54.5,
+            "type": 2
+        },
+        {
+            "nodeId": "0-11a",
+            "names": [
+                "0-11a"
+            ],
+            "submapId": 1,
+            "x": 84.95,
+            "y": 78.56,
+            "type": 2
+        },
+        {
+            "nodeId": "0-12",
+            "names": [
+                "U1",
+                "0-12"
+            ],
+            "submapId": 1,
+            "x": 83.14,
+            "y": 73.35,
+            "type": 0
+        },
+        {
+            "nodeId": "0-25",
+            "names": [
+                "0-25"
+            ],
+            "submapId": 1,
+            "x": 89.27,
+            "y": 48.33,
+            "type": 2
+        },
+        {
+            "nodeId": "0-05",
+            "names": [
+                "sala za sastanke",
+                "0-05"
+            ],
+            "submapId": 1,
+            "x": 52.45,
+            "y": 72.75,
+            "type": 2
+        },
+        {
+            "nodeId": "p1_2",
+            "names": [
+                "p1 ulaz 2",
+                "0-33"
+            ],
+            "submapId": 1,
+            "x": 60.8,
+            "y": 46.22,
+            "type": 0
+        },
+        {
+            "nodeId": "p2_2",
+            "names": [
+                "p2 ulaz 2",
+                "0-38"
+            ],
+            "submapId": 1,
+            "x": 40.39,
+            "y": 46.12,
+            "type": 0
+        },
+        {
+            "nodeId": "0-42",
+            "names": [
+                "marendarij",
+                "0-42"
+            ],
+            "submapId": 1,
+            "x": 37.08,
+            "y": 26.06,
+            "type": 3
+        },
+        {
+            "nodeId": "0-50",
+            "names": [
+                "0-50"
+            ],
+            "submapId": 1,
+            "x": 14.81,
+            "y": 55.89,
+            "type": 3
+        },
+        {
+            "nodeId": "0-58",
+            "names": [
+                "0-58"
+            ],
+            "submapId": 1,
+            "x": 7.89,
+            "y": 58.36,
+            "type": 2
+        },
+        {
+            "nodeId": "floor_0_left_exit",
+            "names": [
+                "vanjska vrata menza",
+                "ulaz",
+                "izlaz"
+            ],
+            "submapId": 1,
+            "x": 1.02,
+            "y": 50.16,
+            "type": 3
+        },
+        {
+            "nodeId": "porta_nav_node",
+            "names": [],
+            "submapId": 1,
+            "x": 45.76,
+            "y": 76.99,
+            "type": 9
+        },
+        {
+            "nodeId": "porta",
+            "names": [
+                "porta"
+            ],
+            "submapId": 1,
+            "x": 43.65,
+            "y": 76.99,
+            "type": 2
+        },
+        {
+            "nodeId": "main_entrance",
+            "names": [
+                "entrance",
+                "ulaz",
+                "izlaz"
+            ],
+            "submapId": 1,
+            "x": 45.76,
+            "y": 91.17,
+            "type": 3
+        },
+        {
+            "nodeId": "p2",
+            "names": [
+                "p2",
+                "0-37"
+            ],
+            "submapId": 1,
+            "x": 42.19,
+            "y": 50.73,
+            "type": 0
+        },
+        {
+            "nodeId": "p1",
+            "names": [
+                "p1",
+                "0-35"
+            ],
+            "submapId": 1,
+            "x": 55.35,
+            "y": 50.67,
+            "type": 0
+        },
+        {
+            "nodeId": "student_room",
+            "names": [
+                "Student room",
+                "1-101"
+            ],
+            "submapId": 101,
+            "x": 10.92,
+            "y": 74.68,
+            "type": 1
+        },
+        {
+            "nodeId": "0-72",
+            "names": [
+                "opća i kadrovska služba",
+                "0-72"
+            ],
+            "submapId": 1,
+            "x": 39.76,
+            "y": 72.85,
+            "type": 2
+        },
+        {
+            "nodeId": "I8",
+            "names": [
+                "I8",
+                "0-32"
+            ],
+            "submapId": 1,
+            "x": 63.21,
+            "y": 26.05,
+            "type": 0
+        },
+        {
+            "nodeId": "0-71",
+            "names": [
+                "pisarnica pošta",
+                "0-71"
+            ],
+            "submapId": 1,
+            "x": 35.15,
+            "y": 69,
+            "type": 2
+        },
+        {
+            "nodeId": "0-70",
+            "names": [
+                "služba studentske evidencije",
+                "0-70"
+            ],
+            "submapId": 1,
+            "x": 31.38,
+            "y": 69.03,
+            "type": 2
+        },
+        {
+            "nodeId": "0-68",
+            "names": [
+                "0-68"
+            ],
+            "submapId": 1,
+            "x": 27.21,
+            "y": 68.93,
+            "type": 2
+        },
+        {
+            "nodeId": "0-66",
+            "names": [
+                "0-66"
+            ],
+            "submapId": 1,
+            "x": 23.69,
+            "y": 69.12,
+            "type": 2
+        },
+        {
+            "nodeId": "0-64",
+            "names": [
+                "0-64"
+            ],
+            "submapId": 1,
+            "x": 19.71,
+            "y": 68.98,
+            "type": 2
+        },
+        {
+            "nodeId": "0-55",
+            "names": [
+                "financijska služba",
+                "0-59",
+                "0-55"
+            ],
+            "submapId": 1,
+            "x": 10.1,
+            "y": 68.82,
+            "type": 9
+        },
+        {
+            "nodeId": "0-60",
+            "names": [
+                "0-60"
+            ],
+            "submapId": 1,
+            "x": 4.42,
+            "y": 70.16,
+            "type": 2
+        },
+        {
+            "nodeId": "0-61",
+            "names": [
+                "0-61"
+            ],
+            "submapId": 1,
+            "x": 6.39,
+            "y": 73.38,
+            "type": 2
+        },
+        {
+            "nodeId": "0-62",
+            "names": [
+                "0-62"
+            ],
+            "submapId": 1,
+            "x": 9.98,
+            "y": 73.38,
+            "type": 2
+        },
+        {
+            "nodeId": "0-63",
+            "names": [
+                "dostava paketa",
+                "služba komercijale",
+                "0-63"
+            ],
+            "submapId": 1,
+            "x": 11.71,
+            "y": 70.23,
+            "type": 2
+        },
+        {
+            "nodeId": "left_corridor_bunch_of_rooms",
+            "names": [
+                "0-58",
+                "0-56",
+                "0-51",
+                "0-52",
+                "0-53",
+                "0-54",
+                "0-55"
+            ],
+            "submapId": 1,
+            "x": 10.01,
+            "y": 53.38,
+            "type": 9
+        },
+        {
+            "nodeId": "canteen",
+            "names": [
+                "canteen",
+                "menza",
+                "0-49"
+            ],
+            "submapId": 1,
+            "x": 18.15,
+            "y": 55.49,
+            "type": 1
+        },
+        {
+            "nodeId": "library_left_foor",
+            "names": [
+                "knjižnica",
+                "library",
+                "0-23"
+            ],
+            "submapId": 1,
+            "x": 79.22,
+            "y": 55.63,
+            "type": 1
+        },
+        {
+            "nodeId": "library_right_foor",
+            "names": [
+                "računalna čitaonica",
+                "computer library",
+                "0-22"
+            ],
+            "submapId": 1,
+            "x": 82.59,
+            "y": 55.59,
+            "type": 1
+        },
+        {
+            "nodeId": "0-30",
+            "names": [
+                "0-30"
+            ],
+            "submapId": 1,
+            "x": 64.81,
+            "y": 56.06,
+            "type": 2
+        },
+        {
+            "nodeId": "0-07",
+            "names": [
+                "dekanat",
+                "0-07"
+            ],
+            "submapId": 1,
+            "x": 65.65,
+            "y": 66.81,
+            "type": 2
+        },
+        {
+            "nodeId": "0-11",
+            "names": [
+                "0-11"
+            ],
+            "submapId": 1,
+            "x": 84.92,
+            "y": 66.99,
+            "type": 2
+        },
+        {
+            "nodeId": "0-13",
+            "names": [
+                "vijećnica",
+                "0-13"
+            ],
+            "submapId": 1,
+            "x": 87.82,
+            "y": 66.65,
+            "type": 2
+        },
+        {
+            "nodeId": "0-21",
+            "names": [
+                "0-21"
+            ],
+            "submapId": 1,
+            "x": 85.98,
+            "y": 56.09,
+            "type": 2
+        },
+        {
+            "nodeId": "0-14",
+            "names": [
+                "0-14"
+            ],
+            "submapId": 1,
+            "x": 97.56,
+            "y": 66.91,
+            "type": 2
+        },
+        {
+            "nodeId": "0-17",
+            "names": [
+                "tehnička služba",
+                "0-17"
+            ],
+            "submapId": 1,
+            "x": 95.4,
+            "y": 28.88,
+            "type": 2
+        },
+        {
+            "nodeId": "0-16",
+            "names": [
+                "ured za projekte i transfer tehnologije.",
+                "0-16"
+            ],
+            "submapId": 1,
+            "x": 95.42,
+            "y": 39.24,
+            "type": 2
+        },
+        {
+            "nodeId": "0-15",
+            "names": [
+                "centar za digitalne servise",
+                "0-15"
+            ],
+            "submapId": 1,
+            "x": 95.52,
+            "y": 50.83,
+            "type": 2
+        },
+        {
+            "nodeId": "library_midnode_1",
+            "names": [],
+            "submapId": 1,
+            "x": 79.22,
+            "y": 24.11,
+            "type": 9
+        },
+        {
+            "nodeId": "library_midnode_2",
+            "names": [],
+            "submapId": 1,
+            "x": 86.87,
+            "y": 24.11,
+            "type": 9
+        },
+        {
+            "nodeId": "library_midnode_3",
+            "names": [],
+            "submapId": 1,
+            "x": 86.87,
+            "y": 31.54,
+            "type": 9
+        },
+        {
+            "nodeId": "0-27",
+            "names": [
+                "0-27"
+            ],
+            "submapId": 1,
+            "x": 89.37,
+            "y": 31.54,
+            "type": 2
+        },
+        {
+            "nodeId": "f0_left_stairs_up",
+            "names": [],
+            "submapId": 1,
+            "x": 29.86,
+            "y": 38.32,
+            "type": 4
+        },
+        {
+            "nodeId": "f0_right_stairs_up",
+            "names": [],
+            "submapId": 1,
+            "x": 70.9,
+            "y": 38.33,
+            "type": 4
+        },
+        {
+            "nodeId": "f0_left_men_toilet",
+            "names": [
+                "0-47"
+            ],
+            "submapId": 1,
+            "x": 25.96,
+            "y": 55.3,
+            "type": 7
+        },
+        {
+            "nodeId": "f0_left_women_toilet",
+            "names": [
+                "0-44",
+                "0-45"
+            ],
+            "submapId": 1,
+            "x": 35.94,
+            "y": 55.27,
+            "type": 8
+        },
+        {
+            "nodeId": "f0_right_men_toilet",
+            "names": [
+                "0-29"
+            ],
+            "submapId": 1,
+            "x": 74.78,
+            "y": 55.3,
+            "type": 7
+        },
+        {
+            "nodeId": "f1_left_stairs_up",
+            "names": [],
+            "submapId": 2,
+            "x": 29.36,
+            "y": 42.59,
+            "type": 4
+        },
+        {
+            "nodeId": "f1_left_stairs_down",
+            "names": [],
+            "submapId": 2,
+            "x": 31.66,
+            "y": 42.57,
+            "type": 5
+        },
+        {
+            "nodeId": "edulab",
+            "names": [
+                "edulab",
+                "1-39"
+            ],
+            "submapId": 2,
+            "x": 17.53,
+            "y": 59.71,
+            "type": 1
+        },
+        {
+            "nodeId": "1-41",
+            "names": [
+                "APASlab",
+                "1-41"
+            ],
+            "submapId": 2,
+            "x": 20.38,
+            "y": 32.84,
+            "type": 2
+        },
+        {
+            "nodeId": "edulab_helpnode_for_1-40",
+            "names": [],
+            "submapId": 2,
+            "x": 23.18,
+            "y": 36.46,
+            "type": 9
+        },
+        {
+            "nodeId": "1-40",
+            "names": [
+                "1-40"
+            ],
+            "submapId": 2,
+            "x": 24.3,
+            "y": 30.77,
+            "type": 2
+        },
+        {
+            "nodeId": "i5",
+            "names": [
+                "i5"
+            ],
+            "submapId": 2,
+            "x": 15.82,
+            "y": 45.05,
+            "type": 0
+        },
+        {
+            "nodeId": "main_f1_left_men_toilet",
+            "names": [
+                "0-38"
+            ],
+            "submapId": 2,
+            "x": 25.41,
+            "y": 60.62,
+            "type": 7
+        },
+        {
+            "nodeId": "main_f1_left_women_toilet",
+            "names": [
+                "1-63"
+            ],
+            "submapId": 2,
+            "x": 36.73,
+            "y": 43.6,
+            "type": 8
+        },
+        {
+            "nodeId": "1-49",
+            "names": [
+                "1-49",
+                "1-49a",
+                "1-49b",
+                "1-49c",
+                "1-49d",
+                "1-49e",
+                "lab za visokofrekvencijske aplikacije"
+            ],
+            "submapId": 2,
+            "x": 9.4,
+            "y": 70.87,
+            "type": 2
+        },
+        {
+            "nodeId": "1-47b",
+            "names": [
+                "1-47b"
+            ],
+            "submapId": 2,
+            "x": 7.09,
+            "y": 65.62,
+            "type": 2
+        },
+        {
+            "nodeId": "1-48a",
+            "names": [
+                "1-48a"
+            ],
+            "submapId": 2,
+            "x": 8.9,
+            "y": 27.16,
+            "type": 2
+        },
+        {
+            "nodeId": "1-48b",
+            "names": [
+                "1-48b"
+            ],
+            "submapId": 2,
+            "x": 7.22,
+            "y": 41.24,
+            "type": 2
+        },
+        {
+            "nodeId": "1-51",
+            "names": [
+                "1-51"
+            ],
+            "submapId": 2,
+            "x": 15.64,
+            "y": 70.89,
+            "type": 2
+        },
+        {
+            "nodeId": "1-53",
+            "names": [
+                "lab za obradu informacija",
+                "1-53"
+            ],
+            "submapId": 2,
+            "x": 19.06,
+            "y": 70.89,
+            "type": 2
+        },
+        {
+            "nodeId": "1-55",
+            "names": [
+                "1-55"
+            ],
+            "submapId": 2,
+            "x": 23.17,
+            "y": 70.82,
+            "type": 2
+        },
+        {
+            "nodeId": "1-57",
+            "names": [
+                "I4",
+                "1-57"
+            ],
+            "submapId": 2,
+            "x": 26.61,
+            "y": 70.86,
+            "type": 2
+        },
+        {
+            "nodeId": "1-58",
+            "names": [
+                "1-58"
+            ],
+            "submapId": 2,
+            "x": 34.66,
+            "y": 70.85,
+            "type": 2
+        },
+        {
+            "nodeId": "1-65",
+            "names": [
+                "1-65"
+            ],
+            "submapId": 2,
+            "x": 33.08,
+            "y": 26.1,
+            "type": 2
+        },
+        {
+            "nodeId": "1-64a",
+            "names": [
+                "1-64a"
+            ],
+            "submapId": 2,
+            "x": 34.61,
+            "y": 28.75,
+            "type": 2
+        },
+        {
+            "nodeId": "I3",
+            "names": [
+                "I3",
+                "1-62"
+            ],
+            "submapId": 2,
+            "x": 37.19,
+            "y": 30.6,
+            "type": 0
+        },
+        {
+            "nodeId": "i1_i2_nav_node",
+            "names": [
+                ""
+            ],
+            "submapId": 2,
+            "x": 36.64,
+            "y": 65.92,
+            "type": 9
+        },
+        {
+            "nodeId": "I2",
+            "names": [
+                "I2",
+                "1-60"
+            ],
+            "submapId": 2,
+            "x": 37.86,
+            "y": 62.05,
+            "type": 0
+        },
+        {
+            "nodeId": "I1",
+            "names": [
+                "I1",
+                "1-59"
+            ],
+            "submapId": 2,
+            "x": 37.74,
+            "y": 72.62,
+            "type": 0
+        },
+        {
+            "nodeId": "f1_right_stairs_up",
+            "names": [],
+            "submapId": 2,
+            "x": 70.65,
+            "y": 42.59,
+            "type": 4
+        },
+        {
+            "nodeId": "f1_right_stairs_down",
+            "names": [],
+            "submapId": 2,
+            "x": 68.35,
+            "y": 42.59,
+            "type": 5
+        },
+        {
+            "nodeId": "U2",
+            "names": [
+                "U2",
+                "1-04"
+            ],
+            "submapId": 2,
+            "x": 62.96,
+            "y": 30.57,
+            "type": 0
+        },
+        {
+            "nodeId": "main_f1_right_infrontofU4",
+            "names": [],
+            "submapId": 2,
+            "x": 91.13,
+            "y": 65.62,
+            "type": 9
+        },
+        {
+            "nodeId": "U4",
+            "names": [
+                "U4",
+                "1-30"
+            ],
+            "submapId": 2,
+            "x": 92.94,
+            "y": 64.57,
+            "type": 0
+        },
+        {
+            "nodeId": "U3",
+            "names": [
+                "1-08",
+                "U3"
+            ],
+            "submapId": 2,
+            "x": 61.96,
+            "y": 65.9,
+            "type": 0
+        },
+        {
+            "nodeId": "1-23",
+            "names": [
+                "1-23"
+            ],
+            "submapId": 2,
+            "x": 84.77,
+            "y": 70.78,
+            "type": 2
+        },
+        {
+            "nodeId": "1-18",
+            "names": [
+                "1-18"
+            ],
+            "submapId": 2,
+            "x": 76.66,
+            "y": 70.69,
+            "type": 2
+        },
+        {
+            "nodeId": "1-19",
+            "names": [
+                "1-19",
+                "1-20",
+                "1-21",
+                "1-22",
+                "1-23"
+            ],
+            "submapId": 2,
+            "x": 81.69,
+            "y": 70.64,
+            "type": 2
+        },
+        {
+            "nodeId": "1-25",
+            "names": [
+                "1-25"
+            ],
+            "submapId": 2,
+            "x": 91.36,
+            "y": 72.52,
+            "type": 9
+        },
+        {
+            "nodeId": "1-26",
+            "names": [
+                "1-26"
+            ],
+            "submapId": 2,
+            "x": 89.18,
+            "y": 75.41,
+            "type": 2
+        },
+        {
+            "nodeId": "1-27",
+            "names": [
+                "1-27"
+            ],
+            "submapId": 2,
+            "x": 92.17,
+            "y": 79.12,
+            "type": 2
+        },
+        {
+            "nodeId": "1-28",
+            "names": [
+                "1-28"
+            ],
+            "submapId": 2,
+            "x": 94.62,
+            "y": 79.18,
+            "type": 2
+        },
+        {
+            "nodeId": "1-29",
+            "names": [
+                "1-29"
+            ],
+            "submapId": 2,
+            "x": 96.52,
+            "y": 76.31,
+            "type": 2
+        },
+        {
+            "nodeId": "1-32",
+            "names": [
+                "1-32",
+                "lab za napredne elektromagnetske mreže"
+            ],
+            "submapId": 2,
+            "x": 91.11,
+            "y": 60.47,
+            "type": 2
+        },
+        {
+            "nodeId": "f1_right_labos_midnode",
+            "names": [],
+            "submapId": 2,
+            "x": 82.42,
+            "y": 49.4,
+            "type": 9
+        },
+        {
+            "nodeId": "L5",
+            "names": [
+                "L5",
+                "1-36",
+                "lab za električna postrojenja i sekundarne sustave"
+            ],
+            "submapId": 2,
+            "x": 80.22,
+            "y": 46.48,
+            "type": 0
+        },
+        {
+            "nodeId": "L3",
+            "names": [
+                "L3",
+                "1-34",
+                "lab za automatiku"
+            ],
+            "submapId": 2,
+            "x": 84.74,
+            "y": 46.42,
+            "type": 0
+        },
+        {
+            "nodeId": "f1_right_men_toilet",
+            "names": [
+                "1-37"
+            ],
+            "submapId": 2,
+            "x": 74.59,
+            "y": 59.35,
+            "type": 7
+        },
+        {
+            "nodeId": "f1_right_women_toilet",
+            "names": [
+                "1-05"
+            ],
+            "submapId": 2,
+            "x": 63.15,
+            "y": 43.68,
+            "type": 8
+        },
+        {
+            "nodeId": "f2_left_stairs_up",
+            "names": [],
+            "submapId": 3,
+            "x": 28.75,
+            "y": 55.98,
+            "type": 4
+        },
+        {
+            "nodeId": "f2_left_stairs_down",
+            "names": [],
+            "submapId": 3,
+            "x": 31.05,
+            "y": 55.99,
+            "type": 5
+        },
+        {
+            "nodeId": "2-31",
+            "names": [
+                "2-31"
+            ],
+            "submapId": 3,
+            "x": 9.35,
+            "y": 79.95,
+            "type": 9
+        },
+        {
+            "nodeId": "2-32",
+            "names": [
+                "2-32"
+            ],
+            "submapId": 3,
+            "x": 7.44,
+            "y": 79.95,
+            "type": 2
+        },
+        {
+            "nodeId": "2-33",
+            "names": [
+                "2-33"
+            ],
+            "submapId": 3,
+            "x": 9.35,
+            "y": 82.53,
+            "type": 2
+        },
+        {
+            "nodeId": "2-34",
+            "names": [
+                "2-34"
+            ],
+            "submapId": 3,
+            "x": 10.66,
+            "y": 79.95,
+            "type": 2
+        },
+        {
+            "nodeId": "2-35",
+            "names": [
+                "2-35",
+                "2-35a",
+                "2-35b"
+            ],
+            "submapId": 3,
+            "x": 18.59,
+            "y": 77.58,
+            "type": 2
+        },
+        {
+            "nodeId": "2-36",
+            "names": [
+                "2-36"
+            ],
+            "submapId": 3,
+            "x": 22.55,
+            "y": 77.55,
+            "type": 2
+        },
+        {
+            "nodeId": "2-37",
+            "names": [
+                "2-37"
+            ],
+            "submapId": 3,
+            "x": 29.45,
+            "y": 79.87,
+            "type": 9
+        },
+        {
+            "nodeId": "2-38",
+            "names": [
+                "2-38"
+            ],
+            "submapId": 3,
+            "x": 27.21,
+            "y": 79.87,
+            "type": 2
+        },
+        {
+            "nodeId": "2-39",
+            "names": [
+                "2-39"
+            ],
+            "submapId": 3,
+            "x": 29.45,
+            "y": 82.55,
+            "type": 2
+        },
+        {
+            "nodeId": "2-40",
+            "names": [
+                "2-40"
+            ],
+            "submapId": 3,
+            "x": 30.67,
+            "y": 79.87,
+            "type": 2
+        },
+        {
+            "nodeId": "2-46",
+            "names": [
+                "2-46"
+            ],
+            "submapId": 3,
+            "x": 34.03,
+            "y": 43,
+            "type": 2
+        },
+        {
+            "nodeId": "main_f2_left_men_toilet",
+            "names": [
+                "2-27"
+            ],
+            "submapId": 3,
+            "x": 24.82,
+            "y": 68.81,
+            "type": 7
+        },
+        {
+            "nodeId": "main_f2_left_women_toilet",
+            "names": [
+                "2-44"
+            ],
+            "submapId": 3,
+            "x": 36.1,
+            "y": 56.82,
+            "type": 8
+        },
+        {
+            "nodeId": "2-29",
+            "names": [
+                "L6",
+                "2-29"
+            ],
+            "submapId": 3,
+            "x": 7.12,
+            "y": 47.85,
+            "type": 0
+        },
+        {
+            "nodeId": "U9",
+            "names": [
+                "U9",
+                "2-47"
+            ],
+            "submapId": 3,
+            "x": 32.4,
+            "y": 46.73,
+            "type": 0
+        },
+        {
+            "nodeId": "U10",
+            "names": [
+                "U10",
+                "2-43"
+            ],
+            "submapId": 3,
+            "x": 35.84,
+            "y": 90.68,
+            "type": 0
+        },
+        {
+            "nodeId": "I7",
+            "names": [
+                "I7",
+                "2-48"
+            ],
+            "submapId": 3,
+            "x": 35.89,
+            "y": 46.73,
+            "type": 0
+        },
+        {
+            "nodeId": "2-42",
+            "names": [
+                "I6",
+                "2-42",
+                "3d experience STEM lab"
+            ],
+            "submapId": 3,
+            "x": 35.84,
+            "y": 72.08,
+            "type": 0
+        },
+        {
+            "nodeId": "L10",
+            "names": [
+                "L10",
+                "2-30"
+            ],
+            "submapId": 3,
+            "x": 7.07,
+            "y": 73.47,
+            "type": 0
+        },
+        {
+            "nodeId": "main_f2_left_lab_passage",
+            "names": [],
+            "submapId": 3,
+            "x": 8.87,
+            "y": 3.7,
+            "type": 6
+        },
+        {
+            "nodeId": "f2_right_stairs_up",
+            "names": [],
+            "submapId": 3,
+            "x": 69.82,
+            "y": 55.99,
+            "type": 4
+        },
+        {
+            "nodeId": "f2_right_stairs_down",
+            "names": [],
+            "submapId": 3,
+            "x": 67.54,
+            "y": 55.99,
+            "type": 5
+        },
+        {
+            "nodeId": "main_f2_right_infrontofU5",
+            "names": [],
+            "submapId": 3,
+            "x": 61.42,
+            "y": 73.64,
+            "type": 9
+        },
+        {
+            "nodeId": "main_f2_right_infrontofU7",
+            "names": [],
+            "submapId": 3,
+            "x": 90.35,
+            "y": 73.64,
+            "type": 9
+        },
+        {
+            "nodeId": "main_f2_right_lab_passage",
+            "names": [],
+            "submapId": 3,
+            "x": 68.14,
+            "y": 2.64,
+            "type": 6
+        },
+        {
+            "nodeId": "f2_right_men_toilet",
+            "names": [
+                "2-26"
+            ],
+            "submapId": 3,
+            "x": 73.75,
+            "y": 68.83,
+            "type": 7
+        },
+        {
+            "nodeId": "f2_right_women_toilet",
+            "names": [
+                "2-32"
+            ],
+            "submapId": 3,
+            "x": 62.33,
+            "y": 56.84,
+            "type": 8
+        },
+        {
+            "nodeId": "2-53",
+            "names": [
+                "2-53"
+            ],
+            "submapId": 3,
+            "x": 65.98,
+            "y": 11.1,
+            "type": 2
+        },
+        {
+            "nodeId": "2-54",
+            "names": [
+                "2-54"
+            ],
+            "submapId": 3,
+            "x": 65.98,
+            "y": 14.08,
+            "type": 2
+        },
+        {
+            "nodeId": "2-55",
+            "names": [
+                "2-55"
+            ],
+            "submapId": 3,
+            "x": 65.98,
+            "y": 23.36,
+            "type": 2
+        },
+        {
+            "nodeId": "2-56",
+            "names": [
+                "2-56"
+            ],
+            "submapId": 3,
+            "x": 65.98,
+            "y": 26.38,
+            "type": 2
+        },
+        {
+            "nodeId": "2-57",
+            "names": [
+                "2-57"
+            ],
+            "submapId": 3,
+            "x": 65.98,
+            "y": 32.51,
+            "type": 2
+        },
+        {
+            "nodeId": "2-06",
+            "names": [
+                "2-06"
+            ],
+            "submapId": 3,
+            "x": 64.46,
+            "y": 77.5,
+            "type": 2
+        },
+        {
+            "nodeId": "2-08",
+            "names": [
+                "2-08",
+                "2-08a",
+                "2-08b"
+            ],
+            "submapId": 3,
+            "x": 69.24,
+            "y": 77.63,
+            "type": 2
+        },
+        {
+            "nodeId": "2-10",
+            "names": [
+                "2-10"
+            ],
+            "submapId": 3,
+            "x": 72.48,
+            "y": 77.51,
+            "type": 2
+        },
+        {
+            "nodeId": "2-11",
+            "names": [
+                "2-11"
+            ],
+            "submapId": 3,
+            "x": 75.76,
+            "y": 77.6,
+            "type": 2
+        },
+        {
+            "nodeId": "2-13",
+            "names": [
+                "2-13",
+                "2-13a",
+                "2-13b"
+            ],
+            "submapId": 3,
+            "x": 80.66,
+            "y": 77.6,
+            "type": 2
+        },
+        {
+            "nodeId": "2-14",
+            "names": [
+                "2-14"
+            ],
+            "submapId": 3,
+            "x": 83.84,
+            "y": 77.56,
+            "type": 2
+        },
+        {
+            "nodeId": "2-16",
+            "names": [
+                "2-16"
+            ],
+            "submapId": 3,
+            "x": 90.41,
+            "y": 78.5,
+            "type": 9
+        },
+        {
+            "nodeId": "2-17",
+            "names": [
+                "2-17"
+            ],
+            "submapId": 3,
+            "x": 87.83,
+            "y": 81.99,
+            "type": 2
+        },
+        {
+            "nodeId": "2-18",
+            "names": [
+                "2-18"
+            ],
+            "submapId": 3,
+            "x": 91.2,
+            "y": 83.79,
+            "type": 2
+        },
+        {
+            "nodeId": "2-19",
+            "names": [
+                "2-19"
+            ],
+            "submapId": 3,
+            "x": 93.69,
+            "y": 84.41,
+            "type": 2
+        },
+        {
+            "nodeId": "2-20",
+            "names": [
+                "2-20"
+            ],
+            "submapId": 3,
+            "x": 96.26,
+            "y": 82.03,
+            "type": 2
+        },
+        {
+            "nodeId": "L11",
+            "names": [
+                "L11",
+                "2-48"
+            ],
+            "submapId": 3,
+            "x": 69.35,
+            "y": 46.2,
+            "type": 0
+        },
+        {
+            "nodeId": "L12",
+            "names": [
+                "L12",
+                "2-49",
+                "lab za elektroniku"
+            ],
+            "submapId": 3,
+            "x": 69.36,
+            "y": 18.55,
+            "type": 0
+        },
+        {
+            "nodeId": "L14",
+            "names": [
+                "L14",
+                "2-58",
+                "lab za opću elektrotehniku"
+            ],
+            "submapId": 3,
+            "x": 62.16,
+            "y": 46.6,
+            "type": 0
+        },
+        {
+            "nodeId": "U5",
+            "names": [
+                "U5",
+                "2-04"
+            ],
+            "submapId": 3,
+            "x": 59.72,
+            "y": 74.94,
+            "type": 0
+        },
+        {
+            "nodeId": "U7",
+            "names": [
+                "U7",
+                "2-22"
+            ],
+            "submapId": 3,
+            "x": 92,
+            "y": 72.84,
+            "type": 0
+        },
+        {
+            "nodeId": "f3_left_stairs_down",
+            "names": [],
+            "submapId": 4,
+            "x": 31.02,
+            "y": 61.18,
+            "type": 5
+        },
+        {
+            "nodeId": "main_f3_left_men_toilet",
+            "names": [
+                "3-13"
+            ],
+            "submapId": 4,
+            "x": 25.06,
+            "y": 71.4,
+            "type": 7
+        },
+        {
+            "nodeId": "main_f3_left_infrontofP3",
+            "names": [],
+            "submapId": 4,
+            "x": 12.64,
+            "y": 76.2,
+            "type": 9
+        },
+        {
+            "nodeId": "P3",
+            "names": [
+                "P3",
+                "3-14"
+            ],
+            "submapId": 4,
+            "x": 10.96,
+            "y": 76.67,
+            "type": 0
+        },
+        {
+            "nodeId": "U12",
+            "names": [
+                "U12",
+                "3-15"
+            ],
+            "submapId": 4,
+            "x": 12.64,
+            "y": 79.47,
+            "type": 0
+        },
+        {
+            "nodeId": "U13",
+            "names": [
+                "U13",
+                "3-16"
+            ],
+            "submapId": 4,
+            "x": 22.58,
+            "y": 79.5,
+            "type": 0
+        },
+        {
+            "nodeId": "U14",
+            "names": [
+                "U14",
+                "3-17a"
+            ],
+            "submapId": 4,
+            "x": 26.1,
+            "y": 79.48,
+            "type": 0
+        },
+        {
+            "nodeId": "3-02",
+            "names": [
+                "3-02"
+            ],
+            "submapId": 4,
+            "x": 57.63,
+            "y": 78.92,
+            "type": 2
+        },
+        {
+            "nodeId": "3-04",
+            "names": [
+                "3-04"
+            ],
+            "submapId": 4,
+            "x": 54.41,
+            "y": 78.92,
+            "type": 2
+        },
+        {
+            "nodeId": "3-06",
+            "names": [
+                "3-06"
+            ],
+            "submapId": 4,
+            "x": 51.14,
+            "y": 78.92,
+            "type": 2
+        },
+        {
+            "nodeId": "3-07",
+            "names": [
+                "3-07"
+            ],
+            "submapId": 4,
+            "x": 47.45,
+            "y": 78.92,
+            "type": 2
+        },
+        {
+            "nodeId": "3-08",
+            "names": [
+                "3-08"
+            ],
+            "submapId": 4,
+            "x": 44.24,
+            "y": 78.92,
+            "type": 2
+        },
+        {
+            "nodeId": "3-10",
+            "names": [
+                "3-10"
+            ],
+            "submapId": 4,
+            "x": 41.11,
+            "y": 78.92,
+            "type": 2
+        },
+        {
+            "nodeId": "3-18",
+            "names": [
+                "L7",
+                "3-18",
+                "CIM lab"
+            ],
+            "submapId": 4,
+            "x": 41.3,
+            "y": 83.49,
+            "type": 0
+        },
+        {
+            "nodeId": "3-21",
+            "names": [
+                "3-21"
+            ],
+            "submapId": 4,
+            "x": 60.93,
+            "y": 84.4,
+            "type": 2
+        },
+        {
+            "nodeId": "3-22",
+            "names": [
+                "3-22"
+            ],
+            "submapId": 4,
+            "x": 58.44,
+            "y": 86.81,
+            "type": 2
+        },
+        {
+            "nodeId": "3-23",
+            "names": [
+                "3-23"
+            ],
+            "submapId": 4,
+            "x": 60.87,
+            "y": 88.75,
+            "type": 2
+        },
+        {
+            "nodeId": "U16",
+            "names": [
+                "U16",
+                "3-13"
+            ],
+            "submapId": 4,
+            "x": 47.47,
+            "y": 83.49,
+            "type": 0
+        },
+        {
+            "nodeId": "U17",
+            "names": [
+                "U17",
+                "3-20"
+            ],
+            "submapId": 4,
+            "x": 51.14,
+            "y": 83.52,
+            "type": 0
+        },
+        {
+            "nodeId": "f3_right_stairs_down",
+            "names": [],
+            "submapId": 4,
+            "x": 67.72,
+            "y": 61.18,
+            "type": 5
+        },
+        {
+            "nodeId": "f3_right_stairs_down_to_lab",
+            "names": [],
+            "submapId": 4,
+            "x": 72.8,
+            "y": 4.7,
+            "type": 5
+        },
+        {
+            "nodeId": "main_f3_right_men_toilet",
+            "names": [
+                "3-40"
+            ],
+            "submapId": 4,
+            "x": 73.87,
+            "y": 72.52,
+            "type": 7
+        },
+        {
+            "nodeId": "3-24",
+            "names": [
+                "3-24"
+            ],
+            "submapId": 4,
+            "x": 64.35,
+            "y": 79.48,
+            "type": 2
+        },
+        {
+            "nodeId": "3-25",
+            "names": [
+                "3-25",
+                "3-26"
+            ],
+            "submapId": 4,
+            "x": 69.35,
+            "y": 79.48,
+            "type": 2
+        },
+        {
+            "nodeId": "3-27",
+            "names": [
+                "3-27"
+            ],
+            "submapId": 4,
+            "x": 72.62,
+            "y": 79.48,
+            "type": 2
+        },
+        {
+            "nodeId": "3-28",
+            "names": [
+                "3-28"
+            ],
+            "submapId": 4,
+            "x": 75.9,
+            "y": 79.48,
+            "type": 2
+        },
+        {
+            "nodeId": "3-30",
+            "names": [
+                "3-30",
+                "3-31",
+                "3-31a",
+                "3-33"
+            ],
+            "submapId": 4,
+            "x": 80.85,
+            "y": 79.48,
+            "type": 2
+        },
+        {
+            "nodeId": "3-33",
+            "names": [
+                "3-33"
+            ],
+            "submapId": 4,
+            "x": 84.02,
+            "y": 79.48,
+            "type": 2
+        },
+        {
+            "nodeId": "main_f3_right_infrontofP4",
+            "names": [],
+            "submapId": 4,
+            "x": 86.94,
+            "y": 76.75,
+            "type": 9
+        },
+        {
+            "nodeId": "P4",
+            "names": [
+                "P4",
+                "3-38"
+            ],
+            "submapId": 4,
+            "x": 88.18,
+            "y": 76.01,
+            "type": 0
+        },
+        {
+            "nodeId": "3-34",
+            "names": [
+                "3-34"
+            ],
+            "submapId": 4,
+            "x": 88.44,
+            "y": 84.92,
+            "type": 2
+        },
+        {
+            "nodeId": "3-35",
+            "names": [
+                "3-35"
+            ],
+            "submapId": 4,
+            "x": 90.39,
+            "y": 84.92,
+            "type": 2
+        },
+        {
+            "nodeId": "3-35a",
+            "names": [
+                "3-35a"
+            ],
+            "submapId": 4,
+            "x": 92.76,
+            "y": 84.92,
+            "type": 2
+        },
+        {
+            "nodeId": "3-36",
+            "names": [
+                "3-36"
+            ],
+            "submapId": 4,
+            "x": 96.28,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "U18",
+            "names": [
+                "U18",
+                "3-42"
+            ],
+            "submapId": 4,
+            "x": 69.24,
+            "y": 52.49,
+            "type": 0
+        },
+        {
+            "nodeId": "L2",
+            "names": [
+                "L2",
+                "3-43",
+                "lab za fiziku"
+            ],
+            "submapId": 4,
+            "x": 69.24,
+            "y": 17.41,
+            "type": 0
+        },
+        {
+            "nodeId": "3-44",
+            "names": [
+                "3-44"
+            ],
+            "submapId": 4,
+            "x": 70.2,
+            "y": 8.35,
+            "type": 2
+        },
+        {
+            "nodeId": "3-45",
+            "names": [
+                "3-45"
+            ],
+            "submapId": 4,
+            "x": 66.13,
+            "y": 5.69,
+            "type": 2
+        },
+        {
+            "nodeId": "3-46",
+            "names": [
+                "3-46"
+            ],
+            "submapId": 4,
+            "x": 66.13,
+            "y": 8.04,
+            "type": 2
+        },
+        {
+            "nodeId": "3-47",
+            "names": [
+                "3-47"
+            ],
+            "submapId": 4,
+            "x": 66.13,
+            "y": 22.43,
+            "type": 2
+        },
+        {
+            "nodeId": "3-48",
+            "names": [
+                "3-48"
+            ],
+            "submapId": 4,
+            "x": 66.13,
+            "y": 25.05,
+            "type": 2
+        },
+        {
+            "nodeId": "3-49",
+            "names": [
+                "3-49"
+            ],
+            "submapId": 4,
+            "x": 66.13,
+            "y": 40.14,
+            "type": 2
+        },
+        {
+            "nodeId": "3-50",
+            "names": [
+                "3-50"
+            ],
+            "submapId": 4,
+            "x": 66.13,
+            "y": 42.72,
+            "type": 2
+        },
+        {
+            "nodeId": "lab_f0_down_stairs_up",
+            "names": [],
+            "submapId": 101,
+            "x": 56.55,
+            "y": 85.7,
+            "type": 4
+        },
+        {
+            "nodeId": "1-112",
+            "names": [
+                "1-112"
+            ],
+            "submapId": 101,
+            "x": 59.41,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "1-114",
+            "names": [
+                "1-114"
+            ],
+            "submapId": 101,
+            "x": 60.69,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "1-115",
+            "names": [
+                "1-115"
+            ],
+            "submapId": 101,
+            "x": 64.72,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "1-116",
+            "names": [
+                "1-116"
+            ],
+            "submapId": 101,
+            "x": 68.82,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "1-117a",
+            "names": [
+                "1-117a"
+            ],
+            "submapId": 101,
+            "x": 72.18,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "1-117b",
+            "names": [
+                "1-117b"
+            ],
+            "submapId": 101,
+            "x": 76.23,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "1-117c",
+            "names": [
+                "1-117c"
+            ],
+            "submapId": 101,
+            "x": 79.48,
+            "y": 74.91,
+            "type": 2
+        },
+        {
+            "nodeId": "1-102",
+            "names": [
+                "1-102"
+            ],
+            "submapId": 101,
+            "x": 18.61,
+            "y": 78.74,
+            "type": 2
+        },
+        {
+            "nodeId": "1-103",
+            "names": [
+                "1-103"
+            ],
+            "submapId": 101,
+            "x": 25.55,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "1-104",
+            "names": [
+                "1-104"
+            ],
+            "submapId": 101,
+            "x": 26.79,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "1-105",
+            "names": [
+                "1-105"
+            ],
+            "submapId": 101,
+            "x": 33.64,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "1-106",
+            "names": [
+                "1-106"
+            ],
+            "submapId": 101,
+            "x": 34.9,
+            "y": 78.73,
+            "type": 2
+        },
+        {
+            "nodeId": "L9",
+            "names": [
+                "L9",
+                "1-123",
+                "lab za povratno inženjerstvo",
+                "lab za konstruiranje i analizu proizvoda",
+                "lab za akustiku i ispitivanje rada strojeva",
+                "lab za modeliranje koknstrukcija iz naprednih materijala",
+                "lab za precizno inženjerstvo",
+                "lab za hidrauliku i pneumatiku",
+                "lab za strojne elemente i konstrukcije"
+            ],
+            "submapId": 101,
+            "x": 39.73,
+            "y": 71.49,
+            "type": 0
+        },
+        {
+            "nodeId": "1-127",
+            "names": [
+                "1-127"
+            ],
+            "submapId": 101,
+            "x": 26.26,
+            "y": 44.77,
+            "type": 2
+        },
+        {
+            "nodeId": "1-129",
+            "names": [
+                "1-129"
+            ],
+            "submapId": 101,
+            "x": 26.9,
+            "y": 52.6,
+            "type": 2
+        },
+        {
+            "nodeId": "1-128",
+            "names": [
+                "1-128"
+            ],
+            "submapId": 101,
+            "x": 22.07,
+            "y": 48.56,
+            "type": 2
+        },
+        {
+            "nodeId": "1-135",
+            "names": [
+                "RRT1",
+                "RiTeh Racing Team",
+                "1-135"
+            ],
+            "submapId": 101,
+            "x": 5.63,
+            "y": 69.29,
+            "type": 0
+        },
+        {
+            "nodeId": "lab_f1_left_pathtomainbuilding",
+            "names": [],
+            "submapId": 102,
+            "x": 37.53,
+            "y": 93.48,
+            "type": 6
+        },
+        {
+            "nodeId": "lab_f1_right_navnode_1",
+            "names": [],
+            "submapId": 102,
+            "x": 83.74,
+            "y": 78.73,
+            "type": 9
+        },
+        {
+            "nodeId": "lab_f1_right_navnode_2",
+            "names": [],
+            "submapId": 102,
+            "x": 85.95,
+            "y": 77.93,
+            "type": 9
+        },
+        {
+            "nodeId": "lab_f1_right_passage_to_main_building",
+            "names": [],
+            "submapId": 102,
+            "x": 88.82,
+            "y": 94.06,
+            "type": 6
+        },
+        {
+            "nodeId": "lab_f1_right_stairs_up",
+            "names": [],
+            "submapId": 102,
+            "x": 92.51,
+            "y": 77.45,
+            "type": 4
+        },
+        {
+            "nodeId": "lab_f1_right_middle_stairs_down",
+            "names": [],
+            "submapId": 102,
+            "x": 63.8,
+            "y": 90.15,
+            "type": 5
+        },
+        {
+            "nodeId": "2-103",
+            "names": [
+                "2-103"
+            ],
+            "submapId": 102,
+            "x": 44.48,
+            "y": 82.88,
+            "type": 2
+        },
+        {
+            "nodeId": "2-104",
+            "names": [
+                "2-104"
+            ],
+            "submapId": 102,
+            "x": 48.75,
+            "y": 82.96,
+            "type": 2
+        },
+        {
+            "nodeId": "2-119",
+            "names": [
+                "2-119",
+                "rač. kabinet (2-119)"
+            ],
+            "submapId": 102,
+            "x": 79.08,
+            "y": 82.78,
+            "type": 2
+        }
+    ],
+    "edges": [
+        {
+            "nodeId1": "2-159",
+            "nodeId2": "h_lab_f1_left_vertical_2"
+        },
+        {
+            "nodeId1": "2-160",
+            "nodeId2": "h_lab_f1_left_vertical_2"
+        },
+        {
+            "nodeId1": "2-163",
+            "nodeId2": "h_lab_f1_left_vertical_2"
+        },
+        {
+            "nodeId1": "2-164",
+            "nodeId2": "h_lab_f1_left_vertical_2"
+        },
+        {
+            "nodeId1": "2-158",
+            "nodeId2": "h_lab_f1_left_vertical_2"
+        },
+        {
+            "nodeId1": "2-150",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "2-155",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "2-156",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "2-167",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "2-168",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "2-170",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "2-172",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "2-174",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "2-175",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "2-177",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "h_lab_f1_left_vertical_1",
+            "nodeId2": "h_lab_f1_left_horizontal_down"
+        },
+        {
+            "nodeId1": "h_lab_f1_left_horizontal_down",
+            "nodeId2": "h_lab_f1_left_vertical_2"
+        },
+        {
+            "nodeId1": "2-181",
+            "nodeId2": "h_lab_f1_left_vertical_1"
+        },
+        {
+            "nodeId1": "2-180",
+            "nodeId2": "h_lab_f1_left_vertical_1"
+        },
+        {
+            "nodeId1": "2-179_midnode",
+            "nodeId2": "h_lab_f1_left_vertical_1"
+        },
+        {
+            "nodeId1": "2-179",
+            "nodeId2": "2-179_midnode"
+        },
+        {
+            "nodeId1": "2-148",
+            "nodeId2": "h_lab_f1_left_vertical_1"
+        },
+        {
+            "nodeId1": "2-143",
+            "nodeId2": "h_lab_f1_left_horizontal_up"
+        },
+        {
+            "nodeId1": "2-145",
+            "nodeId2": "h_lab_f1_left_horizontal_up"
+        },
+        {
+            "nodeId1": "2-141",
+            "nodeId2": "h_lab_f1_left_horizontal_up"
+        },
+        {
+            "nodeId1": "2-140",
+            "nodeId2": "h_lab_f1_left_horizontal_up"
+        },
+        {
+            "nodeId1": "2-139",
+            "nodeId2": "h_lab_f1_left_horizontal_up"
+        },
+        {
+            "nodeId1": "2-138",
+            "nodeId2": "h_lab_f1_left_horizontal_up"
+        },
+        {
+            "nodeId1": "2-137",
+            "nodeId2": "h_lab_f1_left_vertical_1"
+        },
+        {
+            "nodeId1": "2-136",
+            "nodeId2": "h_lab_f1_left_vertical_1"
+        },
+        {
+            "nodeId1": "2-135",
+            "nodeId2": "h_lab_f1_left_vertical_1"
+        },
+        {
+            "nodeId1": "2-134",
+            "nodeId2": "h_lab_f1_left_vertical_1"
+        },
+        {
+            "nodeId1": "2-146",
+            "nodeId2": "h_lab_f1_left_vertical_1"
+        },
+        {
+            "nodeId1": "h_lab_f1_left_vertical_1",
+            "nodeId2": "h_lab_f1_left_horizontal_up"
+        },
+        {
+            "nodeId1": "h_lab_f1_left_vertical_1",
+            "nodeId2": "h_lab_f1_left_2_132"
+        },
+        {
+            "nodeId1": "2-132a",
+            "nodeId2": "h_lab_f1_left_2_132"
+        },
+        {
+            "nodeId1": "2-132",
+            "nodeId2": "h_lab_f1_left_2_132"
+        },
+        {
+            "nodeId1": "h_lab_f1_left_2_132",
+            "nodeId2": "h_lab_f1_left_next_to_mainpath"
+        },
+        {
+            "nodeId1": "2-128",
+            "nodeId2": "h_lab_f1_left_next_to_mainpath"
+        },
+        {
+            "nodeId1": "2-129",
+            "nodeId2": "h_lab_f1_left_next_to_mainpath"
+        },
+        {
+            "nodeId1": "2-130",
+            "nodeId2": "h_lab_f1_left_next_to_mainpath"
+        },
+        {
+            "nodeId1": "2-131",
+            "nodeId2": "h_lab_f1_left_next_to_mainpath"
+        },
+        {
+            "nodeId1": "lab_f0_stairs_up_left",
+            "nodeId2": "h_lab_f0_under_stairs"
+        },
+        {
+            "nodeId1": "lab_f0_stairs_up_left",
+            "nodeId2": "lab_f1_stairs_down_left"
+        },
+        {
+            "nodeId1": "lab_f1_stairs_down_left",
+            "nodeId2": "2-128"
+        },
+        {
+            "nodeId1": "lab_f1_arhiva_midnode",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-121",
+            "nodeId2": "lab_f1_arhiva_midnode"
+        },
+        {
+            "nodeId1": "2-125",
+            "nodeId2": "lab_f1_arhiva_midnode"
+        },
+        {
+            "nodeId1": "2-127",
+            "nodeId2": "lab_f1_arhiva_midnode"
+        },
+        {
+            "nodeId1": "2-51",
+            "nodeId2": "h_lab_f1_right_passage_2"
+        },
+        {
+            "nodeId1": "2-52",
+            "nodeId2": "h_lab_f1_right_passage_1"
+        },
+        {
+            "nodeId1": "2-118",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-117",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-116",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-115",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-114",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-113",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-112",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-111",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-110",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-108",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-106",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-103",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "2-101",
+            "nodeId2": "h_lab_f1_right_main"
+        },
+        {
+            "nodeId1": "1-122",
+            "nodeId2": "h_lab_f0_down_main"
+        },
+        {
+            "nodeId1": "1-107",
+            "nodeId2": "h_lab_f0_down_main"
+        },
+        {
+            "nodeId1": "1-110",
+            "nodeId2": "h_lab_f0_down_main"
+        },
+        {
+            "nodeId1": "1-109",
+            "nodeId2": "h_lab_f0_down_main"
+        },
+        {
+            "nodeId1": "1-108",
+            "nodeId2": "h_lab_f0_down_main"
+        },
+        {
+            "nodeId1": "1-130b",
+            "nodeId2": "h_lab_f0_left_vertical"
+        },
+        {
+            "nodeId1": "1-130a",
+            "nodeId2": "h_lab_f0_left_vertical"
+        },
+        {
+            "nodeId1": "lab_floor_0_left_exit",
+            "nodeId2": "h_lab_f0_under_stairs"
+        },
+        {
+            "nodeId1": "lab_floor_0_center_exit",
+            "nodeId2": "h_lab_f0_down_main"
+        },
+        {
+            "nodeId1": "tavan_l_nav_node",
+            "nodeId2": "h_main_f3_left_main"
+        },
+        {
+            "nodeId1": "3-12",
+            "nodeId2": "tavan_l_nav_node"
+        },
+        {
+            "nodeId1": "3-11",
+            "nodeId2": "h_main_f3_left_main"
+        },
+        {
+            "nodeId1": "3-17b",
+            "nodeId2": "h_main_f3_left_main_to_center"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "tavan_d_nav_node"
+        },
+        {
+            "nodeId1": "3-41",
+            "nodeId2": "tavan_d_nav_node"
+        },
+        {
+            "nodeId1": "2-24",
+            "nodeId2": "h_main_f2_right_main"
+        },
+        {
+            "nodeId1": "2-05",
+            "nodeId2": "h_main_f2_right_main"
+        },
+        {
+            "nodeId1": "2-03",
+            "nodeId2": "h_main_f2_right_main"
+        },
+        {
+            "nodeId1": "2-50",
+            "nodeId2": "h_main_f2_right_pathtolab_3"
+        },
+        {
+            "nodeId1": "1-12",
+            "nodeId2": "h_main_f1_right_main"
+        },
+        {
+            "nodeId1": "1-07",
+            "nodeId2": "h_main_f1_right_main"
+        },
+        {
+            "nodeId1": "1-13",
+            "nodeId2": "h_main_f1_right_main"
+        },
+        {
+            "nodeId1": "1-15",
+            "nodeId2": "h_main_f1_right_main"
+        },
+        {
+            "nodeId1": "1-17",
+            "nodeId2": "h_main_f1_right_main"
+        },
+        {
+            "nodeId1": "L5",
+            "nodeId2": "f1_right_labos_midnode"
+        },
+        {
+            "nodeId1": "1-02",
+            "nodeId2": "h_main_f1_right_other"
+        },
+        {
+            "nodeId1": "1-45",
+            "nodeId2": "h_main_f1_left_main"
+        },
+        {
+            "nodeId1": "1-42",
+            "nodeId2": "h_main_f1_left_edulab_2"
+        },
+        {
+            "nodeId1": "1-48",
+            "nodeId2": "h_main_f1_left_offices"
+        },
+        {
+            "nodeId1": "1-47a",
+            "nodeId2": "h_main_f1_left_offices"
+        },
+        {
+            "nodeId1": "0-11",
+            "nodeId2": "0-11a"
+        },
+        {
+            "nodeId1": "0-12",
+            "nodeId2": "0-11"
+        },
+        {
+            "nodeId1": "0-25",
+            "nodeId2": "library_right_foor"
+        },
+        {
+            "nodeId1": "0-05",
+            "nodeId2": "h_main_f0_main"
+        },
+        {
+            "nodeId1": "p1_2",
+            "nodeId2": "h_main_f0_middle_to_i8"
+        },
+        {
+            "nodeId1": "p2_2",
+            "nodeId2": "h_main_f0_middle_to_marendarij"
+        },
+        {
+            "nodeId1": "0-42",
+            "nodeId2": "h_main_f0_middle_to_marendarij"
+        },
+        {
+            "nodeId1": "0-50",
+            "nodeId2": "h_main_f0_main"
+        },
+        {
+            "nodeId1": "h_main_f0_left_left_end",
+            "nodeId2": "h_main_f0_left"
+        },
+        {
+            "nodeId1": "h_main_f0_left",
+            "nodeId2": "0-58"
+        },
+        {
+            "nodeId1": "left_corridor_bunch_of_rooms",
+            "nodeId2": "floor_0_left_exit"
+        },
+        {
+            "nodeId1": "porta_nav_node",
+            "nodeId2": "porta"
+        },
+        {
+            "nodeId1": "porta_nav_node",
+            "nodeId2": "h_main_f0_main"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "h_main_f0_left"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "h_main_f0_right"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "h_main_f0_middle_to_i8"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "main_entrance"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "p1"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "p2"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "canteen"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "library_left_foor"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "library_right_foor"
+        },
+        {
+            "nodeId1": "h_main_f0_right",
+            "nodeId2": "0-17"
+        },
+        {
+            "nodeId1": "h_main_f0_right",
+            "nodeId2": "0-16"
+        },
+        {
+            "nodeId1": "h_main_f0_right",
+            "nodeId2": "0-15"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "f0_left_stairs_up"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "f0_right_stairs_up"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "f0_left_men_toilet"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "f0_left_women_toilet"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "f0_right_men_toilet"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "h_main_f0_middle_to_marendarij"
+        },
+        {
+            "nodeId1": "h_lab_f0_left_vertical",
+            "nodeId2": "student_room"
+        },
+        {
+            "nodeId1": "h_main_f0_middle_to_i8",
+            "nodeId2": "I8"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-72"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-71"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-70"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-68"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-66"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-64"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "left_corridor_bunch_of_rooms"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-55"
+        },
+        {
+            "nodeId1": "0-55",
+            "nodeId2": "0-60"
+        },
+        {
+            "nodeId1": "0-55",
+            "nodeId2": "0-61"
+        },
+        {
+            "nodeId1": "0-55",
+            "nodeId2": "0-62"
+        },
+        {
+            "nodeId1": "0-55",
+            "nodeId2": "0-63"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-30"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-07"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-11"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-13"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-21"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-20"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "0-14"
+        },
+        {
+            "nodeId1": "h_main_f0_main",
+            "nodeId2": "library_midnode_1"
+        },
+        {
+            "nodeId1": "library_midnode_1",
+            "nodeId2": "library_midnode_2"
+        },
+        {
+            "nodeId1": "library_midnode_2",
+            "nodeId2": "library_midnode_3"
+        },
+        {
+            "nodeId1": "library_midnode_3",
+            "nodeId2": "0-27"
+        },
+        {
+            "nodeId1": "f0_left_stairs_up",
+            "nodeId2": "f1_left_stairs_down"
+        },
+        {
+            "nodeId1": "f0_right_stairs_up",
+            "nodeId2": "f1_right_stairs_down"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "h_main_f1_left_other"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "h_main_f1_left_offices"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "h_main_f1_left_edulab_1"
+        },
+        {
+            "nodeId1": "h_main_f1_left_edulab_1",
+            "nodeId2": "h_main_f1_left_edulab_2"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "f1_left_stairs_down"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "f1_left_stairs_up"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "edulab"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "main_f1_left_men_toilet"
+        },
+        {
+            "nodeId1": "h_main_f1_left_other",
+            "nodeId2": "main_f1_left_women_toilet"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "1-49"
+        },
+        {
+            "nodeId1": "h_main_f1_left_offices",
+            "nodeId2": "1-47b"
+        },
+        {
+            "nodeId1": "h_main_f1_left_offices",
+            "nodeId2": "1-48b"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "1-48a"
+        },
+        {
+            "nodeId1": "h_main_f1_left_edulab_2",
+            "nodeId2": "1-41"
+        },
+        {
+            "nodeId1": "h_main_f1_left_edulab_2",
+            "nodeId2": "edulab_helpnode_for_1-40"
+        },
+        {
+            "nodeId1": "edulab_helpnode_for_1-40",
+            "nodeId2": "1-40"
+        },
+        {
+            "nodeId1": "h_main_f1_left_edulab_1",
+            "nodeId2": "i5"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "1-51"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "1-53"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "1-55"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "1-57"
+        },
+        {
+            "nodeId1": "h_main_f1_left_main",
+            "nodeId2": "1-58"
+        },
+        {
+            "nodeId1": "h_main_f1_left_other",
+            "nodeId2": "1-65"
+        },
+        {
+            "nodeId1": "h_main_f1_left_other",
+            "nodeId2": "I3"
+        },
+        {
+            "nodeId1": "h_main_f1_left_other",
+            "nodeId2": "i1_i2_nav_node"
+        },
+        {
+            "nodeId1": "i1_i2_nav_node",
+            "nodeId2": "I1"
+        },
+        {
+            "nodeId1": "i1_i2_nav_node",
+            "nodeId2": "I2"
+        },
+        {
+            "nodeId1": "h_main_f1_left_other",
+            "nodeId2": "1-64a"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "h_main_f1_right_other"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "f1_right_stairs_down"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "f1_right_stairs_up"
+        },
+        {
+            "nodeId1": "h_main_f1_right_other",
+            "nodeId2": "U2"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "main_f1_right_infrontofU4"
+        },
+        {
+            "nodeId1": "main_f1_right_infrontofU4",
+            "nodeId2": "U4"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "1-23"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "f1_right_men_toilet"
+        },
+        {
+            "nodeId1": "h_main_f1_right_other",
+            "nodeId2": "f1_right_women_toilet"
+        },
+        {
+            "nodeId1": "h_main_f1_right_other",
+            "nodeId2": "U3"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "1-18"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "1-19"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "1-25"
+        },
+        {
+            "nodeId1": "1-25",
+            "nodeId2": "1-26"
+        },
+        {
+            "nodeId1": "1-25",
+            "nodeId2": "1-27"
+        },
+        {
+            "nodeId1": "1-25",
+            "nodeId2": "1-28"
+        },
+        {
+            "nodeId1": "1-25",
+            "nodeId2": "1-29"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "1-32"
+        },
+        {
+            "nodeId1": "h_main_f1_right_main",
+            "nodeId2": "f1_right_labos_midnode"
+        },
+        {
+            "nodeId1": "f1_right_labos_midnode",
+            "nodeId2": "L3"
+        },
+        {
+            "nodeId1": "f1_right_labos_midnode",
+            "nodeId2": "L4"
+        },
+        {
+            "nodeId1": "f1_left_stairs_up",
+            "nodeId2": "f2_left_stairs_down"
+        },
+        {
+            "nodeId1": "f1_right_stairs_up",
+            "nodeId2": "f2_right_stairs_down"
+        },
+        {
+            "nodeId1": "h_main_f2_left_main",
+            "nodeId2": "h_main_f2_left_pathtolab"
+        },
+        {
+            "nodeId1": "h_main_f2_left_main",
+            "nodeId2": "h_main_f2_left_other"
+        },
+        {
+            "nodeId1": "h_main_f2_left_main",
+            "nodeId2": "f2_left_stairs_down"
+        },
+        {
+            "nodeId1": "h_main_f2_left_main",
+            "nodeId2": "f2_left_stairs_up"
+        },
+        {
+            "nodeId1": "h_main_f2_left_pathtolab",
+            "nodeId2": "main_f2_left_lab_passage"
+        },
+        {
+            "nodeId1": "h_main_f2_left_main",
+            "nodeId2": "main_f2_left_men_toilet"
+        },
+        {
+            "nodeId1": "h_main_f2_left_other",
+            "nodeId2": "main_f2_left_women_toilet"
+        },
+        {
+            "nodeId1": "h_main_f2_left_main",
+            "nodeId2": "2-31"
+        },
+        {
+            "nodeId1": "2-31",
+            "nodeId2": "2-32"
+        },
+        {
+            "nodeId1": "2-31",
+            "nodeId2": "2-33"
+        },
+        {
+            "nodeId1": "2-31",
+            "nodeId2": "2-34"
+        },
+        {
+            "nodeId1": "h_main_f2_left_main",
+            "nodeId2": "2-35"
+        },
+        {
+            "nodeId1": "h_main_f2_left_main",
+            "nodeId2": "2-36"
+        },
+        {
+            "nodeId1": "h_main_f2_left_main",
+            "nodeId2": "2-37"
+        },
+        {
+            "nodeId1": "2-37",
+            "nodeId2": "2-38"
+        },
+        {
+            "nodeId1": "2-37",
+            "nodeId2": "2-39"
+        },
+        {
+            "nodeId1": "2-37",
+            "nodeId2": "2-40"
+        },
+        {
+            "nodeId1": "h_main_f2_left_other",
+            "nodeId2": "2-46"
+        },
+        {
+            "nodeId1": "h_main_f2_left_pathtolab",
+            "nodeId2": "2-29"
+        },
+        {
+            "nodeId1": "h_main_f2_left_other",
+            "nodeId2": "U9"
+        },
+        {
+            "nodeId1": "h_main_f2_left_other",
+            "nodeId2": "U10"
+        },
+        {
+            "nodeId1": "h_main_f2_left_other",
+            "nodeId2": "I7"
+        },
+        {
+            "nodeId1": "h_main_f2_left_other",
+            "nodeId2": "2-42"
+        },
+        {
+            "nodeId1": "h_main_f2_left_pathtolab",
+            "nodeId2": "L10"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "h_main_f2_right_pathtolab_1"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_1",
+            "nodeId2": "h_main_f2_right_pathtolab_2"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_2",
+            "nodeId2": "h_main_f2_right_pathtolab_3"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "f2_right_stairs_down"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "f2_right_stairs_up"
+        },
+        {
+            "nodeId1": "main_f2_right_lab_passage",
+            "nodeId2": "h_main_f2_right_pathtolab_3"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "main_f2_right_infrontofU7"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "main_f2_right_infrontofU5"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "f2_right_men_toilet"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_1",
+            "nodeId2": "f2_right_women_toilet"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_3",
+            "nodeId2": "2-53"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_3",
+            "nodeId2": "2-54"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_3",
+            "nodeId2": "2-55"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_3",
+            "nodeId2": "2-56"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_3",
+            "nodeId2": "2-57"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "2-06"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "2-08"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "2-10"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "2-11"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "2-13"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "2-14"
+        },
+        {
+            "nodeId1": "h_main_f2_right_main",
+            "nodeId2": "2-16"
+        },
+        {
+            "nodeId1": "2-16",
+            "nodeId2": "2-17"
+        },
+        {
+            "nodeId1": "2-16",
+            "nodeId2": "2-18"
+        },
+        {
+            "nodeId1": "2-16",
+            "nodeId2": "2-19"
+        },
+        {
+            "nodeId1": "2-16",
+            "nodeId2": "2-20"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_3",
+            "nodeId2": "L11"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_3",
+            "nodeId2": "L12"
+        },
+        {
+            "nodeId1": "h_main_f2_right_pathtolab_1",
+            "nodeId2": "L14"
+        },
+        {
+            "nodeId1": "U7",
+            "nodeId2": "main_f2_right_infrontofU7"
+        },
+        {
+            "nodeId1": "U5",
+            "nodeId2": "main_f2_right_infrontofU5"
+        },
+        {
+            "nodeId1": "f2_left_stairs_up",
+            "nodeId2": "f3_left_stairs_down"
+        },
+        {
+            "nodeId1": "f2_right_stairs_up",
+            "nodeId2": "f3_right_stairs_down"
+        },
+        {
+            "nodeId1": "h_main_f3_left_main",
+            "nodeId2": "h_main_f3_left_main_to_center"
+        },
+        {
+            "nodeId1": "h_main_f3_left_main_to_center",
+            "nodeId2": "h_main_f3_center"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "h_main_f3_right_main_to_center"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main_to_center",
+            "nodeId2": "h_main_f3_right_main"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "h_main_f3_right_pathtolab_1"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_1",
+            "nodeId2": "h_main_f3_right_pathtolab_2"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_2",
+            "nodeId2": "h_main_f3_right_pathtolab_3"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "h_main_f3_right_offices_1"
+        },
+        {
+            "nodeId1": "h_main_f3_right_offices_1",
+            "nodeId2": "h_main_f3_right_offices_2"
+        },
+        {
+            "nodeId1": "h_main_f3_left_main",
+            "nodeId2": "f3_left_stairs_down"
+        },
+        {
+            "nodeId1": "h_main_f3_left_main",
+            "nodeId2": "main_f3_left_men_toilet"
+        },
+        {
+            "nodeId1": "h_main_f3_left_main",
+            "nodeId2": "main_f3_left_infrontofP3"
+        },
+        {
+            "nodeId1": "main_f3_left_infrontofP3",
+            "nodeId2": "P3"
+        },
+        {
+            "nodeId1": "h_main_f3_left_main",
+            "nodeId2": "U12"
+        },
+        {
+            "nodeId1": "h_main_f3_left_main",
+            "nodeId2": "U13"
+        },
+        {
+            "nodeId1": "h_main_f3_left_main",
+            "nodeId2": "U14"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "3-02"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "3-04"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "3-06"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "3-07"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "3-08"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "3-10"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "3-18"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "3-21"
+        },
+        {
+            "nodeId1": "3-21",
+            "nodeId2": "3-22"
+        },
+        {
+            "nodeId1": "3-21",
+            "nodeId2": "3-23"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "U16"
+        },
+        {
+            "nodeId1": "h_main_f3_center",
+            "nodeId2": "U17"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "f3_right_stairs_down"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "f3_right_stairs_down_to_lab"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "main_f3_right_men_toilet"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "3-24"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "3-25"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "3-27"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "3-28"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "3-30"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "3-33"
+        },
+        {
+            "nodeId1": "h_main_f3_right_main",
+            "nodeId2": "main_f3_right_infrontofP4"
+        },
+        {
+            "nodeId1": "main_f3_right_infrontofP4",
+            "nodeId2": "P4"
+        },
+        {
+            "nodeId1": "h_main_f3_right_offices_2",
+            "nodeId2": "3-34"
+        },
+        {
+            "nodeId1": "h_main_f3_right_offices_2",
+            "nodeId2": "3-35"
+        },
+        {
+            "nodeId1": "h_main_f3_right_offices_2",
+            "nodeId2": "3-35a"
+        },
+        {
+            "nodeId1": "h_main_f3_right_offices_2",
+            "nodeId2": "3-36"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "U18"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "L2"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "3-44"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "3-44"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "3-45"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "3-46"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "3-47"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "3-48"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "3-49"
+        },
+        {
+            "nodeId1": "h_main_f3_right_pathtolab_3",
+            "nodeId2": "3-50"
+        },
+        {
+            "nodeId1": "lab_f0_down_stairs_up",
+            "nodeId2": "lab_f1_right_middle_stairs_down"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "lab_f0_down_stairs_up"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "h_lab_f0_left_vertical"
+        },
+        {
+            "nodeId1": "h_lab_f0_left_vertical",
+            "nodeId2": "h_lab_f0_left_horizontal"
+        },
+        {
+            "nodeId1": "h_lab_f0_left_vertical",
+            "nodeId2": "h_lab_f0_under_stairs"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-112"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-114"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-115"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-116"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-117a"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-117b"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-117c"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-102"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-103"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-104"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-105"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "1-106"
+        },
+        {
+            "nodeId1": "h_lab_f0_down_main",
+            "nodeId2": "L9"
+        },
+        {
+            "nodeId1": "h_lab_f0_under_stairs",
+            "nodeId2": "1-127"
+        },
+        {
+            "nodeId1": "h_lab_f0_under_stairs",
+            "nodeId2": "1-128"
+        },
+        {
+            "nodeId1": "h_lab_f0_under_stairs",
+            "nodeId2": "1-129"
+        },
+        {
+            "nodeId1": "h_lab_f0_left_horizontal",
+            "nodeId2": "1-135"
+        },
+        {
+            "nodeId1": "lab_f1_left_pathtomainbuilding",
+            "nodeId2": "main_f2_left_lab_passage"
+        },
+        {
+            "nodeId1": "lab_f1_right_passage_to_main_building",
+            "nodeId2": "main_f2_right_lab_passage"
+        },
+        {
+            "nodeId1": "f3_right_stairs_down_to_lab",
+            "nodeId2": "lab_f1_right_stairs_up"
+        },
+        {
+            "nodeId1": "lab_f1_left_pathtomainbuilding",
+            "nodeId2": "h_lab_f1_left_next_to_mainpath"
+        },
+        {
+            "nodeId1": "h_lab_f1_right_main",
+            "nodeId2": "h_lab_f1_left_next_to_mainpath"
+        },
+        {
+            "nodeId1": "h_lab_f1_right_main",
+            "nodeId2": "lab_f1_right_navnode_1"
+        },
+        {
+            "nodeId1": "lab_f1_right_navnode_1",
+            "nodeId2": "lab_f1_right_navnode_2"
+        },
+        {
+            "nodeId1": "lab_f1_right_navnode_2",
+            "nodeId2": "h_lab_f1_right_passage_1"
+        },
+        {
+            "nodeId1": "h_lab_f1_right_passage_1",
+            "nodeId2": "h_lab_f1_right_passage_2"
+        },
+        {
+            "nodeId1": "h_lab_f1_right_passage_2",
+            "nodeId2": "lab_f1_right_passage_to_main_building"
+        },
+        {
+            "nodeId1": "h_lab_f1_right_passage_2",
+            "nodeId2": "lab_f1_right_stairs_up"
+        },
+        {
+            "nodeId1": "lab_f1_right_stairs_up",
+            "nodeId2": "lab_f1_right_navnode_2"
+        },
+        {
+            "nodeId1": "h_lab_f1_right_main",
+            "nodeId2": "lab_f1_right_middle_stairs_down"
+        },
+        {
+            "nodeId1": "h_lab_f1_right_main",
+            "nodeId2": "2-102"
+        },
+        {
+            "nodeId1": "h_lab_f1_right_main",
+            "nodeId2": "2-104"
+        },
+        {
+            "nodeId1": "h_lab_f1_right_main",
+            "nodeId2": "2-119"
+        }
+    ],
+    "hallways": [
+        {
+            "id": "h_lab_f1_left_vertical_2",
+            "submapId": 102,
+            "x1": 5.51,
+            "y1": 7.62,
+            "x2": 5.51,
+            "y2": 86.33
+        },
+        {
+            "id": "h_lab_f1_left_horizontal_down",
+            "submapId": 102,
+            "x1": 4.16,
+            "y1": 79.58,
+            "x2": 27.02,
+            "y2": 79.58
+        },
+        {
+            "id": "h_lab_f1_left_horizontal_up",
+            "submapId": 102,
+            "x1": 12.91,
+            "y1": 28.67,
+            "x2": 25.92,
+            "y2": 28.67
+        },
+        {
+            "id": "h_lab_f1_left_vertical_1",
+            "submapId": 102,
+            "x1": 24.72,
+            "y1": 20.09,
+            "x2": 24.72,
+            "y2": 85.26
+        },
+        {
+            "id": "h_lab_f1_left_2_132",
+            "submapId": 102,
+            "x1": 21.6,
+            "y1": 54.1,
+            "x2": 38.47,
+            "y2": 54.1
+        },
+        {
+            "id": "h_main_f0_main",
+            "submapId": 1,
+            "x1": 9.64,
+            "y1": 61.6,
+            "x2": 98.76,
+            "y2": 61.6
+        },
+        {
+            "id": "h_main_f0_left",
+            "submapId": 1,
+            "x1": 9.62,
+            "y1": 17.95,
+            "x2": 9.62,
+            "y2": 65.1
+        },
+        {
+            "id": "h_main_f0_right",
+            "submapId": 1,
+            "x1": 94.12,
+            "y1": 24,
+            "x2": 94.12,
+            "y2": 65.47
+        },
+        {
+            "id": "h_main_f0_middle_to_marendarij",
+            "submapId": 1,
+            "x1": 39,
+            "y1": 71.43,
+            "x2": 39,
+            "y2": 23.99
+        },
+        {
+            "id": "h_main_f0_middle_to_i8",
+            "submapId": 1,
+            "x1": 61.78,
+            "y1": 67.14,
+            "x2": 61.78,
+            "y2": 23.25
+        },
+        {
+            "id": "h_main_f1_left_main",
+            "submapId": 2,
+            "x1": 7.75,
+            "y1": 65.62,
+            "x2": 35.98,
+            "y2": 65.62
+        },
+        {
+            "id": "h_main_f1_left_other",
+            "submapId": 2,
+            "x1": 34.61,
+            "y1": 69.08,
+            "x2": 34.61,
+            "y2": 17.04
+        },
+        {
+            "id": "h_main_f1_left_offices",
+            "submapId": 2,
+            "x1": 8.9,
+            "y1": 29.68,
+            "x2": 8.9,
+            "y2": 67.77
+        },
+        {
+            "id": "h_main_f1_left_edulab_1",
+            "submapId": 2,
+            "x1": 17.53,
+            "y1": 34.84,
+            "x2": 17.53,
+            "y2": 68.75
+        },
+        {
+            "id": "h_main_f1_left_edulab_2",
+            "submapId": 2,
+            "x1": 16.4,
+            "y1": 36.46,
+            "x2": 23.54,
+            "y2": 36.46
+        },
+        {
+            "id": "h_main_f1_right_main",
+            "submapId": 2,
+            "x1": 64.24,
+            "y1": 65.62,
+            "x2": 92.49,
+            "y2": 65.62
+        },
+        {
+            "id": "h_main_f1_right_other",
+            "submapId": 2,
+            "x1": 65.16,
+            "y1": 91.4,
+            "x2": 65.16,
+            "y2": 16.62
+        },
+        {
+            "id": "h_main_f2_left_main",
+            "submapId": 3,
+            "x1": 7.66,
+            "y1": 73.64,
+            "x2": 35.36,
+            "y2": 73.64
+        },
+        {
+            "id": "h_main_f2_left_pathtolab",
+            "submapId": 3,
+            "x1": 8.87,
+            "y1": 4.1,
+            "x2": 8.87,
+            "y2": 75.83
+        },
+        {
+            "id": "h_main_f2_left_other",
+            "submapId": 3,
+            "x1": 34.03,
+            "y1": 46.71,
+            "x2": 34.03,
+            "y2": 93.33
+        },
+        {
+            "id": "h_main_f2_right_main",
+            "submapId": 3,
+            "x1": 63.19,
+            "y1": 73.64,
+            "x2": 91.54,
+            "y2": 73.64
+        },
+        {
+            "id": "h_main_f2_right_pathtolab_1",
+            "submapId": 3,
+            "x1": 64.46,
+            "y1": 76.53,
+            "x2": 64.46,
+            "y2": 40.85
+        },
+        {
+            "id": "h_main_f2_right_pathtolab_2",
+            "submapId": 3,
+            "x1": 62.69,
+            "y1": 44.1,
+            "x2": 69.21,
+            "y2": 44.1
+        },
+        {
+            "id": "h_main_f2_right_pathtolab_3",
+            "submapId": 3,
+            "x1": 68.14,
+            "y1": 2.08,
+            "x2": 68.14,
+            "y2": 48.58
+        },
+        {
+            "id": "h_main_f3_left_main",
+            "submapId": 4,
+            "x1": 10.99,
+            "y1": 76.2,
+            "x2": 39.41,
+            "y2": 76.2
+        },
+        {
+            "id": "h_main_f3_left_main_to_center",
+            "submapId": 4,
+            "x1": 38.12,
+            "y1": 70.32,
+            "x2": 38.12,
+            "y2": 83.25
+        },
+        {
+            "id": "h_main_f3_center",
+            "submapId": 4,
+            "x1": 36.33,
+            "y1": 81.78,
+            "x2": 62.39,
+            "y2": 81.78
+        },
+        {
+            "id": "h_main_f3_right_main_to_center",
+            "submapId": 4,
+            "x1": 60.94,
+            "y1": 70.32,
+            "x2": 60.94,
+            "y2": 83.17
+        },
+        {
+            "id": "h_main_f3_right_main",
+            "submapId": 4,
+            "x1": 59.4,
+            "y1": 76.75,
+            "x2": 88.05,
+            "y2": 76.75
+        },
+        {
+            "id": "h_main_f3_right_offices_1",
+            "submapId": 4,
+            "x1": 86.94,
+            "y1": 74.2,
+            "x2": 86.94,
+            "y2": 83.88
+        },
+        {
+            "id": "h_main_f3_right_offices_2",
+            "submapId": 4,
+            "x1": 86.08,
+            "y1": 82.96,
+            "x2": 98.38,
+            "y2": 82.96
+        },
+        {
+            "id": "h_main_f3_right_pathtolab_1",
+            "submapId": 4,
+            "x1": 64.69,
+            "y1": 50.25,
+            "x2": 64.69,
+            "y2": 79.04
+        },
+        {
+            "id": "h_main_f3_right_pathtolab_2",
+            "submapId": 4,
+            "x1": 62.86,
+            "y1": 52.49,
+            "x2": 69.48,
+            "y2": 52.49
+        },
+        {
+            "id": "h_main_f3_right_pathtolab_3",
+            "submapId": 4,
+            "x1": 68.18,
+            "y1": 0.92,
+            "x2": 68.18,
+            "y2": 55.01
+        },
+        {
+            "id": "h_lab_f0_down_main",
+            "submapId": 101,
+            "x1": 16.4,
+            "y1": 74.91,
+            "x2": 81.51,
+            "y2": 74.91
+        },
+        {
+            "id": "h_lab_f0_left_horizontal",
+            "submapId": 101,
+            "x1": 5.66,
+            "y1": 69.29,
+            "x2": 21.92,
+            "y2": 69.29
+        },
+        {
+            "id": "h_lab_f0_left_vertical",
+            "submapId": 101,
+            "x1": 17.75,
+            "y1": 45.26,
+            "x2": 17.75,
+            "y2": 77.79
+        },
+        {
+            "id": "h_lab_f0_under_stairs",
+            "submapId": 101,
+            "x1": 16.77,
+            "y1": 48.56,
+            "x2": 27.3,
+            "y2": 48.56
+        },
+        {
+            "id": "h_lab_f1_left_next_to_mainpath",
+            "submapId": 102,
+            "x1": 37.53,
+            "y1": 93.48,
+            "x2": 37.53,
+            "y2": 46.2
+        },
+        {
+            "id": "h_lab_f1_right_main",
+            "submapId": 102,
+            "x1": 36.67,
+            "y1": 78.73,
+            "x2": 85.02,
+            "y2": 78.73
+        },
+        {
+            "id": "h_lab_f1_right_passage_1",
+            "submapId": 102,
+            "x1": 85.95,
+            "y1": 77.93,
+            "x2": 90.12,
+            "y2": 77.93
+        },
+        {
+            "id": "h_lab_f1_right_passage_2",
+            "submapId": 102,
+            "x1": 88.82,
+            "y1": 76.05,
+            "x2": 88.82,
+            "y2": 94.06
+        }
+    ],
+    "professors": [
+        {
+            "name": "asist. Marta Alvir",
+            "phoneNumber": "+385 51 651442",
+            "internalPhoneNumber": "2442",
+            "email": "malvir@riteh.hr",
+            "room": "2-46",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "v. asist. dr. sc. Nikola Anđelić",
+            "phoneNumber": "+385 51 505714",
+            "internalPhoneNumber": "5714",
+            "email": "nandelic@riteh.hr",
+            "room": "2-57",
+            "entity": "ZAE"
+        },
+        {
+            "name": "Bernardo Badurina, bacc. ing.",
+            "phoneNumber": "+385 51 651542",
+            "internalPhoneNumber": "2542",
+            "email": "bernardo.badurina@riteh.hr",
+            "room": "1-135",
+            "entity": "TS"
+        },
+        {
+            "name": "Anita Badurina Filipin, pred.",
+            "phoneNumber": "+385 51 651 487",
+            "internalPhoneNumber": "2487",
+            "email": "abadurina@riteh.hr",
+            "room": "2-38",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "asist. Marijana Balas",
+            "phoneNumber": "+385 51 651453",
+            "internalPhoneNumber": "2453",
+            "email": "mbalas@riteh.hr",
+            "room": "2-11",
+            "entity": "ZBIMT"
+        },
+        {
+            "name": "v. asist. dr. sc. Damjan Banić",
+            "phoneNumber": "+385 51 505721",
+            "internalPhoneNumber": "5721",
+            "email": "damjan.banic@riteh.hr",
+            "room": "2-139",
+            "entity": "ZTM"
+        },
+        {
+            "name": "asist. Marina Banov",
+            "phoneNumber": "+385 51 505 726",
+            "internalPhoneNumber": "5726",
+            "email": "mbanov@riteh.hr",
+            "room": "1-64a",
+            "entity": "ZR"
+        },
+        {
+            "name": "asist. Sandi Baressi Šegota",
+            "phoneNumber": "+385 51 505715",
+            "internalPhoneNumber": "5715",
+            "email": "sbaressisegota@riteh.hr",
+            "room": "None",
+            "entity": "EU Projekti"
+        },
+        {
+            "name": "prof. dr. sc. Robert Basan",
+            "phoneNumber": "+385 51 651530",
+            "internalPhoneNumber": "2530",
+            "email": "robert.basan@riteh.hr",
+            "room": "1-105",
+            "entity": "ZKS"
+        },
+        {
+            "name": "doc. dr. sc. Angela Bašić-Šiško",
+            "phoneNumber": "+385 51 651483",
+            "internalPhoneNumber": "2483",
+            "email": "abasicsisko@riteh.hr",
+            "room": "3-36",
+            "entity": "Laboratorij za fiziku"
+        },
+        {
+            "name": "v. asist. dr. sc. Josip Batista",
+            "phoneNumber": "+385 51 505663",
+            "internalPhoneNumber": "5663",
+            "email": "jbatista@riteh.hr",
+            "room": "2125",
+            "entity": "ZTE"
+        },
+        {
+            "name": "v. asist. dr. sc. Luka Batistić",
+            "phoneNumber": "+385 51 505727",
+            "internalPhoneNumber": "5727",
+            "email": "lbatistic@riteh.hr",
+            "room": "1-58",
+            "entity": "ZR"
+        },
+        {
+            "name": "asist. Tomislav Bazina",
+            "phoneNumber": "+385 51 651537",
+            "internalPhoneNumber": "2537",
+            "email": "tbazina@riteh.hr",
+            "room": "1-103",
+            "entity": "ZKS"
+        },
+        {
+            "name": "izv. prof. dr. sc. Paolo Blecich",
+            "phoneNumber": "+385 51 651543",
+            "internalPhoneNumber": "2543",
+            "email": "paolo.blecich@riteh.hr",
+            "room": "2-102",
+            "entity": "ZTE"
+        },
+        {
+            "name": "asist. Davor Bolf",
+            "phoneNumber": "+385 051 651455",
+            "internalPhoneNumber": "2455",
+            "email": "dbolf@riteh.hr",
+            "room": "2-19",
+            "entity": "Laboratorij za računarsko inženjerstvo u brodogradnji"
+        },
+        {
+            "name": "izv. prof. dr. sc. Igor Bonefačić",
+            "phoneNumber": "+385 51 651561",
+            "internalPhoneNumber": "2561",
+            "email": "igor.bonefacic@riteh.hr",
+            "room": "2-106",
+            "entity": "ZTE"
+        },
+        {
+            "name": "dr. sc. Andrej Borić, pred.",
+            "phoneNumber": "+385 51 410909",
+            "internalPhoneNumber": "2909",
+            "email": "aboric@riteh.hr",
+            "room": "1-130b",
+            "entity": "ZKS"
+        },
+        {
+            "name": "prof. dr. sc. Sanjin Braut",
+            "phoneNumber": "+385 51 651502",
+            "internalPhoneNumber": "2502",
+            "email": "sanjin.braut@riteh.hr",
+            "room": "2-180",
+            "entity": "ZTM"
+        },
+        {
+            "name": "izv. prof. dr. sc. Marino Brčić",
+            "phoneNumber": "+385 51 651479",
+            "internalPhoneNumber": "2479",
+            "email": "marino.brcic@riteh.hr",
+            "room": "2-174",
+            "entity": "ZTM"
+        },
+        {
+            "name": "prof. dr. sc. Josip Brnić, professor emeritus",
+            "phoneNumber": "+385 51 651491",
+            "internalPhoneNumber": "2491",
+            "email": "josip.brnic@riteh.hr",
+            "room": "2-185",
+            "entity": "ZTM"
+        },
+        {
+            "name": "Goran Brodarac, mag.oec.",
+            "phoneNumber": "+385 51 651412",
+            "internalPhoneNumber": "2412",
+            "email": "gbrodarac@riteh.hr",
+            "room": "0-61",
+            "entity": "FS"
+        },
+        {
+            "name": "doc. dr. sc. Ozren Bukovac",
+            "phoneNumber": "+385 51 651565",
+            "internalPhoneNumber": "2565",
+            "email": "ozren.bukovac@riteh.hr",
+            "room": "2-102",
+            "entity": "ZTE"
+        },
+        {
+            "name": "prof. dr. sc. Neven Bulić",
+            "phoneNumber": "+385 51 651413",
+            "internalPhoneNumber": "2413",
+            "email": "neven.bulic@riteh.hr",
+            "room": "2-57",
+            "entity": "ZAE"
+        },
+        {
+            "name": "Žarko Burić, mag. ing.",
+            "phoneNumber": "+385 51 651410",
+            "internalPhoneNumber": "2410",
+            "email": "zarko.buric@riteh.hr",
+            "room": "0-66",
+            "entity": "SSE"
+        },
+        {
+            "name": "Valnea Burić Marohnić, mag.cult.",
+            "phoneNumber": "+385 51 651505",
+            "internalPhoneNumber": "2505",
+            "email": "vburicmarohnic@riteh.hr",
+            "room": "2-144",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "Marijana Burić Redžović, dipl. iur.",
+            "phoneNumber": "+385 51 651406",
+            "internalPhoneNumber": "2406",
+            "email": "mburicredzovic@riteh.hr",
+            "room": "0-72",
+            "entity": "SOKP"
+        },
+        {
+            "name": "Ivan Buterin",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "ibuterin@riteh.hr",
+            "room": "None",
+            "entity": "Studentski zbor"
+        },
+        {
+            "name": "prof. dr. sc. Zlatan Car",
+            "phoneNumber": "+385 51 651478",
+            "internalPhoneNumber": "2478",
+            "email": "zlatan.car@riteh.hr",
+            "room": "1-09",
+            "entity": "ZAE"
+        },
+        {
+            "name": "v. asist. dr. sc. Dominik Cikač",
+            "phoneNumber": "+385 51 505520",
+            "internalPhoneNumber": "5520",
+            "email": "dominik.cikac@riteh.hr",
+            "room": "0-15",
+            "entity": "ZAE"
+        },
+        {
+            "name": "Domagoj Crljenko, dipl. ing. v. struč. sur.",
+            "phoneNumber": "+385 51 651544",
+            "internalPhoneNumber": "2544",
+            "email": "domagoj.crljenko@riteh.hr",
+            "room": "1-53",
+            "entity": "RC"
+        },
+        {
+            "name": "prof. dr. sc. Goran Cukor",
+            "phoneNumber": "+385 51 651476",
+            "internalPhoneNumber": "2476",
+            "email": "goran.cukor@riteh.hr",
+            "room": "3-23",
+            "entity": "ZIIM"
+        },
+        {
+            "name": "asist. Ivana Čabrijan",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "icabrijan@riteh.hr",
+            "room": "None",
+            "entity": "ZIIM"
+        },
+        {
+            "name": "prof. dr. sc. Marko Čanađija",
+            "phoneNumber": "+385 51 651496",
+            "internalPhoneNumber": "2496",
+            "email": "marko.canadija@riteh.hr",
+            "room": "2-189",
+            "entity": "ZTM"
+        },
+        {
+            "name": "prof. dr. sc. Zoran Čarija",
+            "phoneNumber": "+385 51 651500",
+            "internalPhoneNumber": "2500",
+            "email": "zoran.carija@riteh.hr",
+            "room": "2-36",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "Helena Čipak",
+            "phoneNumber": "+385 51 651444",
+            "internalPhoneNumber": "2444",
+            "email": "hcipak@riteh.hr",
+            "room": "3-11",
+            "entity": "SOKP"
+        },
+        {
+            "name": "Vanja Čotić Poturić, v. pred.",
+            "phoneNumber": "+385 51 651480",
+            "internalPhoneNumber": "2480",
+            "email": "vcotic@riteh.hr",
+            "room": "3-33",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "prof. dr. sc. Nelida Črnjarić",
+            "phoneNumber": "+385 51 651481",
+            "internalPhoneNumber": "2481",
+            "email": "nelida@riteh.hr",
+            "room": "3-34",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "Antonela Ćaleta",
+            "phoneNumber": "+385 51 651415",
+            "internalPhoneNumber": "2415",
+            "email": "antonela.caleta@riteh.hr",
+            "room": "0-70",
+            "entity": "SSE"
+        },
+        {
+            "name": "Irina Ćosić, dipl. ing.",
+            "phoneNumber": "+385 51 651576",
+            "internalPhoneNumber": "2576",
+            "email": "icosic@riteh.hr",
+            "room": "0-71",
+            "entity": "SSE"
+        },
+        {
+            "name": "prof. dr. sc. Roko Dejhalla",
+            "phoneNumber": "+385 51 651451",
+            "internalPhoneNumber": "2451",
+            "email": "roko.dejhalla@riteh.hr",
+            "room": "2-06",
+            "entity": "ZBIMT"
+        },
+        {
+            "name": "doc. dr. sc. Boris Delač",
+            "phoneNumber": "+385 51 651511",
+            "internalPhoneNumber": "2511",
+            "email": "boris.delac@riteh.hr",
+            "room": "2-117",
+            "entity": "ZTE"
+        },
+        {
+            "name": "Marina Djaković",
+            "phoneNumber": "+385 51 651444",
+            "internalPhoneNumber": "2444",
+            "email": "mdjakovic@riteh.hr",
+            "room": "3-11",
+            "entity": "SOKP"
+        },
+        {
+            "name": "izv. prof. dr. sc. Sandro Doboviček",
+            "phoneNumber": "+385 51 651484",
+            "internalPhoneNumber": "2484",
+            "email": "sandro.dobovicek@riteh.hr",
+            "room": "3-22",
+            "entity": "ZIIM"
+        },
+        {
+            "name": "mr. sc. Branka Dobraš, v. pred.",
+            "phoneNumber": "+385 51 651438",
+            "internalPhoneNumber": "2438",
+            "email": "branka.dobras@riteh.hr",
+            "room": "1-27",
+            "entity": "ZEE"
+        },
+        {
+            "name": "prof. dr. sc. Julijan Dobrinić, professor emeritus",
+            "phoneNumber": "+385 51 505724",
+            "internalPhoneNumber": "5724",
+            "email": "cinirbod@gmail.com",
+            "room": "2-39",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "doc. dr. sc. Viktor Dragičević",
+            "phoneNumber": "+385 51 651521",
+            "internalPhoneNumber": "2521",
+            "email": "viktor.dragicevic@riteh.hr",
+            "room": "3-46",
+            "entity": "ZTE"
+        },
+        {
+            "name": "izv. prof. dr. sc. Ivan Dražić",
+            "phoneNumber": "+385 51 651482",
+            "internalPhoneNumber": "2482",
+            "email": "ivan.drazic@riteh.hr",
+            "room": "3-35a",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "prof. dr. sc. Siniša Družeta",
+            "phoneNumber": "+385 51 651497",
+            "internalPhoneNumber": "2497",
+            "email": "sinisa.druzeta@riteh.hr",
+            "room": "2-32",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "Stella Dumenčić, univ. mag. ing. comp.",
+            "phoneNumber": "+385 51 651418",
+            "internalPhoneNumber": "2418",
+            "email": "sdumencic@riteh.hr",
+            "room": "2-33",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "asist. Maja Dundović",
+            "phoneNumber": "+385 51 651539",
+            "internalPhoneNumber": "2539",
+            "email": "maja.dundovic@riteh.hr",
+            "room": "1-117c",
+            "entity": "ZKS"
+        },
+        {
+            "name": "Damir Filipović, dipl.ing.strojarstva",
+            "phoneNumber": "+385 51 651564",
+            "internalPhoneNumber": "2564",
+            "email": "dfilipovic@riteh.hr",
+            "room": "0-17",
+            "entity": "TS"
+        },
+        {
+            "name": "doc. dr. sc. Matej Fonović",
+            "phoneNumber": "+385 51 554854",
+            "internalPhoneNumber": "2854",
+            "email": "mfonovic@riteh.hr",
+            "room": "2-164",
+            "entity": "Laboratorij za ispitivanje materijala"
+        },
+        {
+            "name": "Natalija Forgić",
+            "phoneNumber": "+385 51 651434",
+            "internalPhoneNumber": "2434",
+            "email": "natalija.forgic@riteh.hr",
+            "room": "2-181",
+            "entity": "SOKP"
+        },
+        {
+            "name": "doc. dr. sc. Vladimir Franki",
+            "phoneNumber": "+385 51 651437",
+            "internalPhoneNumber": "2437",
+            "email": "vfranki@riteh.hr",
+            "room": "1-26",
+            "entity": "ZEE"
+        },
+        {
+            "name": "prof. dr. sc. Dubravko Franković",
+            "phoneNumber": "+385 51 651439",
+            "internalPhoneNumber": "2439",
+            "email": "dubravko.frankovic@riteh.hr",
+            "room": "1-29",
+            "entity": "ZEE"
+        },
+        {
+            "name": "prof. dr. sc. Marina Franulović",
+            "phoneNumber": "+385 51 651533",
+            "internalPhoneNumber": "2533",
+            "email": "marina.franulovic@riteh.hr",
+            "room": "1-115",
+            "entity": "ZKS"
+        },
+        {
+            "name": "asist. Boris Gašparović",
+            "phoneNumber": "+385 51 651411",
+            "internalPhoneNumber": "2411",
+            "email": "bgasparovic@riteh.hr",
+            "room": "2_150",
+            "entity": "ZR"
+        },
+        {
+            "name": "izv. prof. dr. sc. Vladimir Glažar",
+            "phoneNumber": "+385 51 651522",
+            "internalPhoneNumber": "2522",
+            "email": "vladimir.glazar@riteh.hr",
+            "room": "3-49",
+            "entity": "ZTE"
+        },
+        {
+            "name": "v. asist. dr. sc. Matej Gljušćić",
+            "phoneNumber": "+385 51 651526",
+            "internalPhoneNumber": "2526",
+            "email": "matej.gljuscic@riteh.hr",
+            "room": "1-103",
+            "entity": "ZKS"
+        },
+        {
+            "name": "v. asist. dr. sc. Petar Gljušćić",
+            "phoneNumber": "+385 51 651536",
+            "internalPhoneNumber": "2536",
+            "email": "pgljuscic@riteh.hr",
+            "room": "1-116",
+            "entity": "ZKS"
+        },
+        {
+            "name": "Marica Gnjatović",
+            "phoneNumber": "+385 51 651444",
+            "internalPhoneNumber": "2444",
+            "email": "marica.gnjatovic@riteh.hr",
+            "room": "3-11",
+            "entity": "SOKP"
+        },
+        {
+            "name": "prof. dr. sc. Vera Gradišnik",
+            "phoneNumber": "+385 51 651557",
+            "internalPhoneNumber": "2557",
+            "email": "vera.gradisnik@riteh.hr",
+            "room": "2-54",
+            "entity": "ZAE"
+        },
+        {
+            "name": "v. asist. dr. sc. Luka Grbčić",
+            "phoneNumber": "+385 51 651418",
+            "internalPhoneNumber": "2418",
+            "email": "luka.grbcic@riteh.hr",
+            "room": "2-33",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "izv. prof. dr. sc. Goran Gregov",
+            "phoneNumber": "+385 51 651528",
+            "internalPhoneNumber": "2528",
+            "email": "gregovg@riteh.hr",
+            "room": "1-112",
+            "entity": "ZKS"
+        },
+        {
+            "name": "dipl. oec. Ariana Gregur",
+            "phoneNumber": "+385 51 651584",
+            "internalPhoneNumber": "2584",
+            "email": "agregur@riteh.hr",
+            "room": "0-60",
+            "entity": "FS"
+        },
+        {
+            "name": "Željka Gulić, mag.oec.",
+            "phoneNumber": "+385 51 651470",
+            "internalPhoneNumber": "2470",
+            "email": "zdujic@riteh.hr",
+            "room": "0-16",
+            "entity": "DEK"
+        },
+        {
+            "name": "prof. dr. sc. Marko Hadjina",
+            "phoneNumber": "+385 51 651449",
+            "internalPhoneNumber": "2449",
+            "email": "marko.hadjina@riteh.hr",
+            "room": "2-11",
+            "entity": "ZBIMT"
+        },
+        {
+            "name": "v. asist. dr. sc. Franko Hržić",
+            "phoneNumber": "+385 51 505725",
+            "internalPhoneNumber": "5725",
+            "email": "fhrzic@riteh.hr",
+            "room": "1-65",
+            "entity": "ZR"
+        },
+        {
+            "name": "izv. prof. dr. sc. Dario Iljkić",
+            "phoneNumber": "+385 51 651474",
+            "internalPhoneNumber": "2474",
+            "email": "dario.iljkic@riteh.hr",
+            "room": "2-172",
+            "entity": "ZM"
+        },
+        {
+            "name": "prof. dr. sc. Ivo Ipšić",
+            "phoneNumber": "+385 51 651421",
+            "internalPhoneNumber": "2421",
+            "email": "ivo.ipsic@riteh.hr",
+            "room": "1-13",
+            "entity": "ZR"
+        },
+        {
+            "name": "doc. dr. sc. David Ištoković",
+            "phoneNumber": "+385 51 651467",
+            "internalPhoneNumber": "2467",
+            "email": "distokovic@riteh.hr",
+            "room": "3-08",
+            "entity": "Laboratorij za inteligentne strojeve i obradne sustave"
+        },
+        {
+            "name": "izv. prof. dr. sc. Stefan Ivić",
+            "phoneNumber": "+385 51 651497",
+            "internalPhoneNumber": "2497",
+            "email": "stefan.ivic@riteh.hr",
+            "room": "2-32",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "asist. Karlo Jakac",
+            "phoneNumber": "+385 51 651493",
+            "internalPhoneNumber": "2493",
+            "email": "kjakac@riteh.hr",
+            "room": "None",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "asist. Alen Jakoplić",
+            "phoneNumber": "+385 51 651430",
+            "internalPhoneNumber": "2430",
+            "email": "alen.jakoplic@riteh.hr",
+            "room": "2-58A",
+            "entity": "ZEE"
+        },
+        {
+            "name": "prof. dr. sc. Miroslav Joler",
+            "phoneNumber": "+385 51 651462",
+            "internalPhoneNumber": "2462",
+            "email": "mjoler@riteh.hr",
+            "room": "1-48b",
+            "entity": "ZR"
+        },
+        {
+            "name": "Josip Jurasić",
+            "phoneNumber": "+385 51 651542",
+            "internalPhoneNumber": "2542",
+            "email": "jjurasic@riteh.hr",
+            "room": "1-135",
+            "entity": "TS"
+        },
+        {
+            "name": "asist. dr. sc. Vedran Jurdana",
+            "phoneNumber": "+385 51 505660",
+            "internalPhoneNumber": "5660",
+            "email": "vedran.jurdana@riteh.hr",
+            "room": "2-57",
+            "entity": "ZAE"
+        },
+        {
+            "name": "prof. dr. sc. Zoran Jurković",
+            "phoneNumber": "+385 51 651466",
+            "internalPhoneNumber": "2466",
+            "email": "zoran.jurkovic@riteh.hr",
+            "room": "3-24",
+            "entity": "DEK"
+        },
+        {
+            "name": "Valentina Kajfeš",
+            "phoneNumber": "+385 51 651444",
+            "internalPhoneNumber": "2444",
+            "email": "vkajfes@riteh.hr",
+            "room": "None",
+            "entity": "SOKP"
+        },
+        {
+            "name": "doc. dr. sc. Ervin Kamenar",
+            "phoneNumber": "+385 51 651585",
+            "internalPhoneNumber": "2585",
+            "email": "ekamenar@riteh.hr",
+            "room": "1-112",
+            "entity": "Katedra za konstruiranje i precizno inženjerstvo"
+        },
+        {
+            "name": "Ana Kasipović",
+            "phoneNumber": "+385 51 651444",
+            "internalPhoneNumber": "2444",
+            "email": "akasipovic@riteh.hr",
+            "room": "3-11",
+            "entity": "SOKP"
+        },
+        {
+            "name": "Tina Kažić Tadić, mag.oec.",
+            "phoneNumber": "+385 51 651465",
+            "internalPhoneNumber": "2465",
+            "email": "tkazic@riteh.hr",
+            "room": "3-07",
+            "entity": "SOKP"
+        },
+        {
+            "name": "v. asist. dr. sc. Mateo Kirinčić",
+            "phoneNumber": "+385 51 651517",
+            "internalPhoneNumber": "2517",
+            "email": "mateo.kirincic@riteh.hr",
+            "room": "2-131",
+            "entity": "ZTE"
+        },
+        {
+            "name": "izv. prof. dr. sc. Vedran Kirinčić",
+            "phoneNumber": "+385 51 505717",
+            "internalPhoneNumber": "5717",
+            "email": "vedran.kirincic@riteh.hr",
+            "room": "1-18",
+            "entity": "ZEE"
+        },
+        {
+            "name": "asist. Deni Klen",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "dklen@riteh.hr",
+            "room": "1-53",
+            "entity": "ZR"
+        },
+        {
+            "name": "Damir Koščić, dipl. ing. str. surad.",
+            "phoneNumber": "+385 51 651545",
+            "internalPhoneNumber": "2545",
+            "email": "dkoscic@riteh.hr",
+            "room": "1-53",
+            "entity": "RC"
+        },
+        {
+            "name": "prof. dr. sc. Lado Kranjčević",
+            "phoneNumber": "+385 51 651401+385 51 651554(Ured)",
+            "internalPhoneNumber": "2401          2554",
+            "email": "lado.kranjcevic@riteh.hr",
+            "room": "0-08",
+            "entity": "DEK"
+        },
+        {
+            "name": "prof. dr. sc. Božidar Križan, professor emeritus",
+            "phoneNumber": "+385 51 505724",
+            "internalPhoneNumber": "5724",
+            "email": "bozidar.krizan@riteh.hr",
+            "room": "2-39",
+            "entity": "ZKS"
+        },
+        {
+            "name": "izv. prof. dr. sc. Sanjin Kršćanski",
+            "phoneNumber": "+385 51 651560",
+            "internalPhoneNumber": "2560",
+            "email": "sanjin.krscanski@riteh.hr",
+            "room": "2-137",
+            "entity": "ZTM"
+        },
+        {
+            "name": "asist. Elvis Krulčić",
+            "phoneNumber": "+385 51 651471",
+            "internalPhoneNumber": "2471",
+            "email": "ekrulcic@riteh.hr",
+            "room": "3-06",
+            "entity": "ZIIM"
+        },
+        {
+            "name": "prof. dr. sc. Elso Kuljanić, professor emeritus",
+            "phoneNumber": "+385 51 651562",
+            "internalPhoneNumber": "2562",
+            "email": "elsokul@gmail.com",
+            "room": "3-27",
+            "entity": "ZIIM"
+        },
+        {
+            "name": "asist. dr. sc. Sandra Kvaternik Simonetti",
+            "phoneNumber": "+385 51 505723",
+            "internalPhoneNumber": "5723",
+            "email": "sandra.kvaternik@riteh.hr",
+            "room": "2-139",
+            "entity": "ZTM"
+        },
+        {
+            "name": "asist. Dario Kvrgić",
+            "phoneNumber": "+385 51 651473",
+            "internalPhoneNumber": "2473",
+            "email": "dkvrgic@riteh.hr",
+            "room": "2-155",
+            "entity": "ZM"
+        },
+        {
+            "name": "prof. dr. sc. Domagoj Lanc",
+            "phoneNumber": "+385 51 651495",
+            "internalPhoneNumber": "2495",
+            "email": "domagoj.lanc@riteh.hr",
+            "room": "2-138",
+            "entity": "ZTM"
+        },
+        {
+            "name": "asist. Luka Lanča",
+            "phoneNumber": "+385 51 651493",
+            "internalPhoneNumber": "2493",
+            "email": "llanca@riteh.hr",
+            "room": "None",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "prof. dr. sc. Kristijan Lenac",
+            "phoneNumber": "+385 51 505664",
+            "internalPhoneNumber": "5664",
+            "email": "kristijan.lenac@riteh.hr",
+            "room": "1-49c",
+            "entity": "ZR"
+        },
+        {
+            "name": "prof. dr. sc. Kristian Lenić",
+            "phoneNumber": "+385 51 651518",
+            "internalPhoneNumber": "2518",
+            "email": "kristian.lenic@riteh.hr",
+            "room": "2-104",
+            "entity": "ZTE"
+        },
+        {
+            "name": "izv. prof. dr. sc. Jonatan Lerga",
+            "phoneNumber": "+385 51 651583",
+            "internalPhoneNumber": "2583",
+            "email": "jlerga@riteh.hr",
+            "room": "1-51",
+            "entity": "DEK"
+        },
+        {
+            "name": "asist. David Liović",
+            "phoneNumber": "+385 51 505700",
+            "internalPhoneNumber": "5700",
+            "email": "dliovic@riteh.hr",
+            "room": "1-103",
+            "entity": "ZKS"
+        },
+        {
+            "name": "asist. Lovro Liverić",
+            "phoneNumber": "+385 51 651464",
+            "internalPhoneNumber": "2464",
+            "email": "lliveric@riteh.hr",
+            "room": "2-74",
+            "entity": "ZM"
+        },
+        {
+            "name": "prof. dr. sc. Neven Lovrin",
+            "phoneNumber": "+385 51 651527",
+            "internalPhoneNumber": "2527",
+            "email": "neven.lovrin@riteh.hr",
+            "room": "1-104",
+            "entity": "ZKS"
+        },
+        {
+            "name": "v. asist. dr. sc. Ivana Lučin",
+            "phoneNumber": "+385 51 651442",
+            "internalPhoneNumber": "2442",
+            "email": "ihreljac@riteh.hr",
+            "room": "2-46",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "Igor Lulić, pred.",
+            "phoneNumber": "+385 51 651563",
+            "internalPhoneNumber": "2563",
+            "email": "ilulic@riteh.hr",
+            "room": "3-31",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "izv. prof. dr. sc. Sandi Ljubić",
+            "phoneNumber": "+385 51 651436",
+            "internalPhoneNumber": "2436",
+            "email": "sandi.ljubic@riteh.hr",
+            "room": "1-49a",
+            "entity": "ZR"
+        },
+        {
+            "name": "prof. dr. sc. Senka Maćešić",
+            "phoneNumber": "+385 51 651494",
+            "internalPhoneNumber": "2494",
+            "email": "senka.macesic@riteh.hr",
+            "room": "0-05",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "Lovorka Malinić",
+            "phoneNumber": "+385 51 651411",
+            "internalPhoneNumber": "2411",
+            "email": "lovorka@riteh.hr",
+            "room": "2-35a",
+            "entity": "ZR"
+        },
+        {
+            "name": "asist. Ela Marković",
+            "phoneNumber": "+385 51 554530",
+            "internalPhoneNumber": "5530",
+            "email": "emarkovic@riteh.hr",
+            "room": "1-130a",
+            "entity": "ZKS"
+        },
+        {
+            "name": "izv. prof. dr. sc. Kristina Marković",
+            "phoneNumber": "+385 051 651535",
+            "internalPhoneNumber": "2535",
+            "email": "kristina.markovic@riteh.hr",
+            "room": "1-117B",
+            "entity": "ZKS"
+        },
+        {
+            "name": "asist. Valentino Marković",
+            "phoneNumber": "+385 51 651483",
+            "internalPhoneNumber": "2483",
+            "email": "vmarkovic@riteh.hr",
+            "room": "3-36",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "v. asist. dr. sc. Ivan Markovinović",
+            "phoneNumber": "+385 51 505720",
+            "internalPhoneNumber": "2598",
+            "email": "imarkovinovic@riteh.hr",
+            "room": "L13-250",
+            "entity": "Laboratorij za električna mjerenja i instrumentaciju"
+        },
+        {
+            "name": "doc. dr. sc. Tea Marohnić",
+            "phoneNumber": "+385 51 651531",
+            "internalPhoneNumber": "2531",
+            "email": "tea.marohnic@riteh.hr",
+            "room": "1-116",
+            "entity": "ZKS"
+        },
+        {
+            "name": "dipl. oec. Bruna Martinović",
+            "phoneNumber": "+385 51 651407",
+            "internalPhoneNumber": "2407",
+            "email": "bruna.martinovic@riteh.hr",
+            "room": "0-60",
+            "entity": "SKN"
+        },
+        {
+            "name": "prof. dr. sc. Tin Matulja",
+            "phoneNumber": "+385 51 651454",
+            "internalPhoneNumber": "2454",
+            "email": "tin.matulja@riteh.hr",
+            "room": "2-11",
+            "entity": "ZBIMT"
+        },
+        {
+            "name": "doc. dr. sc. Goran Mauša",
+            "phoneNumber": "+385 51 505710",
+            "internalPhoneNumber": "5710",
+            "email": "goran.mausa@riteh.hr",
+            "room": "1-49d",
+            "entity": "ZR"
+        },
+        {
+            "name": "v. asist. dr. sc. Vedran Medica-Viola",
+            "phoneNumber": "+385 51 651523",
+            "internalPhoneNumber": "2523",
+            "email": "vmedica@riteh.hr",
+            "room": "2-118",
+            "entity": "ZTE"
+        },
+        {
+            "name": "asist. Anna Maria Mihel",
+            "phoneNumber": "+385 51 505726",
+            "internalPhoneNumber": "5726",
+            "email": "amihel@riteh.hr",
+            "room": "1-64a",
+            "entity": "ZR"
+        },
+        {
+            "name": "Snježana Mikuličić",
+            "phoneNumber": "+385 51 651406",
+            "internalPhoneNumber": "2406",
+            "email": "snjezana.mikulicic@riteh.hr",
+            "room": "0-72",
+            "entity": "SOKP"
+        },
+        {
+            "name": "asist. Petra Miletić",
+            "phoneNumber": "+385 51 651489",
+            "internalPhoneNumber": "2489",
+            "email": "pkokotovic@riteh.hr",
+            "room": "2-58a",
+            "entity": "ZEE"
+        },
+        {
+            "name": "Lana Miličević",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "lmilicevic1@riteh.hr",
+            "room": "None",
+            "entity": "Studentski zbor"
+        },
+        {
+            "name": "prof. dr. sc. Špiro Milošević, professor emeritus",
+            "phoneNumber": "+385 51 651513",
+            "internalPhoneNumber": "2513",
+            "email": "spiro.milosevic@riteh.hr",
+            "room": "2-115",
+            "entity": "ZTE"
+        },
+        {
+            "name": "Andrej Miljuš",
+            "phoneNumber": "+385 51 651542",
+            "internalPhoneNumber": "2542",
+            "email": "amiljus@riteh.hr",
+            "room": "1-135",
+            "entity": "TS"
+        },
+        {
+            "name": "Ana Mirković Pavlović, mag.oec.",
+            "phoneNumber": "+385 51 651423",
+            "internalPhoneNumber": "2423",
+            "email": "ana@riteh.hr",
+            "room": "0-62",
+            "entity": "FS"
+        },
+        {
+            "name": "Tina Mlinarić",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "tmlinaric@riteh.hr",
+            "room": "None",
+            "entity": "Studentski zbor"
+        },
+        {
+            "name": "dipl. oec. Robert Mohorić",
+            "phoneNumber": "+385 51 651417",
+            "internalPhoneNumber": "2417",
+            "email": "robert.mohoric@riteh.hr",
+            "room": "0-62",
+            "entity": "SKN"
+        },
+        {
+            "name": "prof. dr. sc. Tomislav Mrakovčić",
+            "phoneNumber": "+385 51 651520",
+            "internalPhoneNumber": "2520",
+            "email": "tomislav.mrakovcic@riteh.hr",
+            "room": "3-48",
+            "entity": "ZTE"
+        },
+        {
+            "name": "izv. prof. dr. sc. Vedran Mrzljak",
+            "phoneNumber": "+385 51 651551",
+            "internalPhoneNumber": "2551",
+            "email": "vedran.mrzljak@riteh.hr",
+            "room": "2-116",
+            "entity": "ZTE"
+        },
+        {
+            "name": "Adriana Muždeka Prodanović, univ. spec. oecc.",
+            "phoneNumber": "+385 51 651588",
+            "internalPhoneNumber": "2588",
+            "email": "adriana.muzdeka@riteh.hr",
+            "room": "0-70",
+            "entity": "SSE"
+        },
+        {
+            "name": "asist. Mateja Napravnik",
+            "phoneNumber": "+385 51 505728",
+            "internalPhoneNumber": "5728",
+            "email": "mnapravnik@riteh.hr",
+            "room": "1-58",
+            "entity": "ZR"
+        },
+        {
+            "name": "Julijana Nenadović",
+            "phoneNumber": "+385 51 651444",
+            "internalPhoneNumber": "2444",
+            "email": "jnenadovic@riteh.hr",
+            "room": "None",
+            "entity": "SOKP"
+        },
+        {
+            "name": "asist. Marko Njirjak",
+            "phoneNumber": "+385 51 505707",
+            "internalPhoneNumber": "5707",
+            "email": "mnjirjak@riteh.hr",
+            "room": "1-40",
+            "entity": "ZR"
+        },
+        {
+            "name": "Sanja Orešković, dipl. knjižničar",
+            "phoneNumber": "+385 51 651422",
+            "internalPhoneNumber": "2422",
+            "email": "soreskovic@riteh.hr",
+            "room": "0-25",
+            "entity": "KNJ"
+        },
+        {
+            "name": "dipl. oec. Mladen Ostrogović",
+            "phoneNumber": "+385 51 651450",
+            "internalPhoneNumber": "2450",
+            "email": "mladen.ostrogovic@riteh.hr",
+            "room": "0-63",
+            "entity": "SKN"
+        },
+        {
+            "name": "asist. Erik Otović",
+            "phoneNumber": "+385 51 505707",
+            "internalPhoneNumber": "5707",
+            "email": "eotovic@riteh.hr",
+            "room": "1-40",
+            "entity": "ZR"
+        },
+        {
+            "name": "Katarina Pavičić-Ivelja, mag.educ.philol.angl.et phil.",
+            "phoneNumber": "+385 51 651470",
+            "internalPhoneNumber": "2470",
+            "email": "kpavicici@riteh.hr",
+            "room": "0-16",
+            "entity": "DEK"
+        },
+        {
+            "name": "prof. dr. sc. Duško Pavletić",
+            "phoneNumber": "+385 51 651463",
+            "internalPhoneNumber": "2463",
+            "email": "dusko.pavletic@riteh.hr",
+            "room": "3-27",
+            "entity": "ZIIM"
+        },
+        {
+            "name": "v. asist. dr. sc. Marko Perčić",
+            "phoneNumber": "+385 51 651539",
+            "internalPhoneNumber": "2539",
+            "email": "marko.percic@riteh.hr",
+            "room": "2-119",
+            "entity": "ZKS"
+        },
+        {
+            "name": "prof. dr. sc. Mladen Perinić",
+            "phoneNumber": "+385 51 651488",
+            "internalPhoneNumber": "2488",
+            "email": "mladen.perinic@riteh.hr",
+            "room": "3-28",
+            "entity": "ZIIM"
+        },
+        {
+            "name": "Ivana Petrović",
+            "phoneNumber": "+385 51 651400",
+            "internalPhoneNumber": "2400",
+            "email": "ipetrovi1@riteh.hr",
+            "room": "0-04",
+            "entity": "SOKP"
+        },
+        {
+            "name": "dr. sc. Domagoj Pinčić, str. surad.",
+            "phoneNumber": "+385 51 505718",
+            "internalPhoneNumber": "5718",
+            "email": "dpincic@riteh.hr",
+            "room": "1-48a",
+            "entity": "ZR"
+        },
+        {
+            "name": "Frane Polegubić, mag. ing. sec.",
+            "phoneNumber": "+385 51 651540",
+            "internalPhoneNumber": "2540",
+            "email": "fpolegubic@riteh.hr",
+            "room": "0-17",
+            "entity": "TS"
+        },
+        {
+            "name": "izv. prof. dr. sc. Rene Prenc",
+            "phoneNumber": "+385 51 651595",
+            "internalPhoneNumber": "2595",
+            "email": "rprenc@riteh.hr",
+            "room": "1.15 b",
+            "entity": "ZEE"
+        },
+        {
+            "name": "Božica Prpić",
+            "phoneNumber": "+385 51 651444",
+            "internalPhoneNumber": "2444",
+            "email": "bprpic@riteh.hr",
+            "room": "None",
+            "entity": "SOKP"
+        },
+        {
+            "name": "dipl. oec. Sanja Prpić",
+            "phoneNumber": "+385 51 651403",
+            "internalPhoneNumber": "2403",
+            "email": "sanja.prpic@riteh.hr",
+            "room": "0-07",
+            "entity": "DEK"
+        },
+        {
+            "name": "prof. dr. sc. Jasna Prpić-Oršić",
+            "phoneNumber": "+385 51 651452",
+            "internalPhoneNumber": "2452",
+            "email": "jasna.prpic-orsic@riteh.hr",
+            "room": "2-10",
+            "entity": "ZBIMT"
+        },
+        {
+            "name": "Miljenko Pujić",
+            "phoneNumber": "+385 51 651444",
+            "internalPhoneNumber": "2444",
+            "email": "mpujic@riteh.hr",
+            "room": "0-03",
+            "entity": "TS"
+        },
+        {
+            "name": "asist. Andro Rak",
+            "phoneNumber": "+385 51 651442",
+            "internalPhoneNumber": "2442",
+            "email": "arak@riteh.hr",
+            "room": "2-34",
+            "entity": "ZMFRI"
+        },
+        {
+            "name": "asist. dr. sc. Michele Rojnić",
+            "phoneNumber": "+385 51 651443",
+            "internalPhoneNumber": "2443",
+            "email": "mrojnic@riteh.hr",
+            "room": "1-20",
+            "entity": "ZEE"
+        },
+        {
+            "name": "asist. Alen Salkanović",
+            "phoneNumber": "+385 51 505719",
+            "internalPhoneNumber": "5719",
+            "email": "asalkanovic@riteh.hr",
+            "room": "1-65",
+            "entity": "ZR"
+        },
+        {
+            "name": "prof. dr. sc. Tomislav Senčić",
+            "phoneNumber": "+385 51 651515",
+            "internalPhoneNumber": "2515",
+            "email": "tomislav.sencic@riteh.hr",
+            "room": "2-116",
+            "entity": "ZTE"
+        },
+        {
+            "name": "izv. prof. dr. sc. Loredana Simčić",
+            "phoneNumber": "+385 51 651486",
+            "internalPhoneNumber": "2486",
+            "email": "loredana.simcic@riteh.hr",
+            "room": "3-32",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "izv. prof. dr. sc. Ante Skoblar",
+            "phoneNumber": "+385 51 651498",
+            "internalPhoneNumber": "2498",
+            "email": "ante.skoblar@riteh.hr",
+            "room": "2-140",
+            "entity": "ZTM"
+        },
+        {
+            "name": "asist. Arian Skoki",
+            "phoneNumber": "+385 51 505707",
+            "internalPhoneNumber": "5707",
+            "email": "askoki@riteh.hr",
+            "room": "1-40",
+            "entity": "ZR"
+        },
+        {
+            "name": "prof. dr. sc. Saša Sladić",
+            "phoneNumber": "+385 51 651582(Laboratorij)+385 51 651446(Ured)",
+            "internalPhoneNumber": "2582          2446",
+            "email": "sasa.sladic@riteh.hr",
+            "room": "1-17",
+            "entity": "ZEE"
+        },
+        {
+            "name": "izv. prof. dr. sc. Sunčana Smokvina Hanza",
+            "phoneNumber": "+385 51 651475",
+            "internalPhoneNumber": "2475",
+            "email": "suncana@riteh.hr",
+            "room": "2-170",
+            "entity": "ZM"
+        },
+        {
+            "name": "Erik Smoljan",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "esmoljan@riteh.hr",
+            "room": "None",
+            "entity": "Studentski zbor"
+        },
+        {
+            "name": "doc. dr. sc. Jelena Srnec Novak",
+            "phoneNumber": "+385 51 554521",
+            "internalPhoneNumber": "5521",
+            "email": "jsrnecnovak@riteh.hr",
+            "room": "1-127",
+            "entity": "ZKS"
+        },
+        {
+            "name": "prof. dr. sc. Nino Stojković",
+            "phoneNumber": "+385 51 651445",
+            "internalPhoneNumber": "2445",
+            "email": "nino.stojkovic@riteh.hr",
+            "room": "1-23",
+            "entity": "ZEE"
+        },
+        {
+            "name": "prof. dr. sc. Viktor Sučić",
+            "phoneNumber": "+385 51 651558",
+            "internalPhoneNumber": "2558",
+            "email": "vsucic@riteh.hr",
+            "room": "1-15a",
+            "entity": "ZAE"
+        },
+        {
+            "name": "asist. Ivan Sulovsky",
+            "phoneNumber": "+385 51 651453",
+            "internalPhoneNumber": "2453",
+            "email": "isulovsky@riteh.hr",
+            "room": "2-11",
+            "entity": "Laboratorij za brodsku hidromehaniku"
+        },
+        {
+            "name": "v. asist. dr. sc. Diego Sušanj",
+            "phoneNumber": "+385 51 505718",
+            "internalPhoneNumber": "5718",
+            "email": "dsusanj@riteh.hr",
+            "room": "1-48a",
+            "entity": "Sveučilišni prijediplomski studij računarstva"
+        },
+        {
+            "name": "Boris Šegota",
+            "phoneNumber": "+385 51 651444",
+            "internalPhoneNumber": "2444",
+            "email": "boris.segota@riteh.hr",
+            "room": "0-03",
+            "entity": "TS"
+        },
+        {
+            "name": "prof. dr. sc. Jerko Škifić",
+            "phoneNumber": "+385 51 651497",
+            "internalPhoneNumber": "2497",
+            "email": "jerko.skific@riteh.hr",
+            "room": "2-32",
+            "entity": "Katedra za računarsko inženjerstvo"
+        },
+        {
+            "name": "mr. sc. Mario Šlosar-Brnelić, dipl. knjižničar",
+            "phoneNumber": "+385 51 651409",
+            "internalPhoneNumber": "2409",
+            "email": "mario.slosar@riteh.hr",
+            "room": "0-25",
+            "entity": "KNJ"
+        },
+        {
+            "name": "prof. dr. sc. Ivan Štajduhar",
+            "phoneNumber": "+385 51 651448",
+            "internalPhoneNumber": "2448",
+            "email": "ivan.stajduhar@riteh.hr",
+            "room": "1-49b",
+            "entity": "ZR"
+        },
+        {
+            "name": "mr. sc. Melita Štefan Trubić, v. pred.",
+            "phoneNumber": "+385 51 651480",
+            "internalPhoneNumber": "2480",
+            "email": "mstefan@riteh.hr",
+            "room": "3-33",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "doc. dr. sc. Graciela Šterpin Valić",
+            "phoneNumber": "+385 51 651519",
+            "internalPhoneNumber": "2519",
+            "email": "graciela.sterpin@riteh.hr",
+            "room": "3-26",
+            "entity": "ZIIM"
+        },
+        {
+            "name": "Daniel Štifanić, str. surad.",
+            "phoneNumber": "+385 51 501680",
+            "internalPhoneNumber": "2680",
+            "email": "dstifanic@riteh.hr",
+            "room": "2-53",
+            "entity": "ZAE"
+        },
+        {
+            "name": "Jelena Štifanić, str. surad.",
+            "phoneNumber": "+385 51 501680",
+            "internalPhoneNumber": "2680",
+            "email": "jmusulin@riteh.hr",
+            "room": "2-53",
+            "entity": "ZAE"
+        },
+        {
+            "name": "izv. prof. dr. sc. Goranka Štimac Rončević",
+            "phoneNumber": "+385 51 651477",
+            "internalPhoneNumber": "2477",
+            "email": "gstimac@riteh.hr",
+            "room": "2-140",
+            "entity": "Laboratorij za dinamiku strojeva"
+        },
+        {
+            "name": "Ana Šutalo, struč.spec.eoc.",
+            "phoneNumber": "+385 51 651424",
+            "internalPhoneNumber": "2424",
+            "email": "ana.sutalo@riteh.hr",
+            "room": "0-60",
+            "entity": "FS"
+        },
+        {
+            "name": "asist. Zoran Šverko",
+            "phoneNumber": "+385 51 505720",
+            "internalPhoneNumber": "5720",
+            "email": "zsverko@riteh.hr",
+            "room": "L13/250",
+            "entity": "ZAE"
+        },
+        {
+            "name": "prof. dr. sc. Mladen Tomić",
+            "phoneNumber": "+385 51 505712",
+            "internalPhoneNumber": "5712",
+            "email": "mladen.tomic@riteh.hr",
+            "room": "1-47b",
+            "entity": "ZR"
+        },
+        {
+            "name": "v. asist. dr. sc. Fran Torbarina",
+            "phoneNumber": "+385 51 651506",
+            "internalPhoneNumber": "2506",
+            "email": "ftorbarina@riteh.hr",
+            "room": "2-101",
+            "entity": "ZTE"
+        },
+        {
+            "name": "izv. prof. dr. sc. Sanjin Troha",
+            "phoneNumber": "+385 51 651536",
+            "internalPhoneNumber": "2536",
+            "email": "sanjin.troha@riteh.hr",
+            "room": "1-117a",
+            "entity": "ZKS"
+        },
+        {
+            "name": "prof. dr. sc. Anica Trp",
+            "phoneNumber": "+385 51 651514",
+            "internalPhoneNumber": "2514",
+            "email": "anica.trp@riteh.hr",
+            "room": "2-110",
+            "entity": "ZTE"
+        },
+        {
+            "name": "izv. prof. dr. sc. Anton Turk",
+            "phoneNumber": "+385 51 505709",
+            "internalPhoneNumber": "5709",
+            "email": "anton.turk@riteh.hr",
+            "room": "2-08a",
+            "entity": "ZBIMT"
+        },
+        {
+            "name": "v. asist. dr. sc. Nikola Turk",
+            "phoneNumber": "+385 51 651559",
+            "internalPhoneNumber": "2559",
+            "email": "nturk@riteh.hr",
+            "room": "2-54",
+            "entity": "ZAE"
+        },
+        {
+            "name": "prof. dr. sc. Goran Turkalj",
+            "phoneNumber": "+385 51 651499",
+            "internalPhoneNumber": "2499",
+            "email": "goran.turkalj@riteh.hr",
+            "room": "2-141",
+            "entity": "ZTM"
+        },
+        {
+            "name": "asist. Matija Varga",
+            "phoneNumber": "+385 51 505702",
+            "internalPhoneNumber": "5702",
+            "email": "mvarga@riteh.hr",
+            "room": "2-58",
+            "entity": "ZAE"
+        },
+        {
+            "name": "mr. sc. Elisa Velčić Janjetić, v. pred.",
+            "phoneNumber": "+385 51 651485",
+            "internalPhoneNumber": "2485",
+            "email": "elisa.velcic@riteh.hr",
+            "room": "2-40",
+            "entity": "ZMFSJ"
+        },
+        {
+            "name": "Tanja Veljčić",
+            "phoneNumber": "+385 51 651593",
+            "internalPhoneNumber": "2593",
+            "email": "tanja.veljcic@riteh.hr",
+            "room": "0-70",
+            "entity": "SSE"
+        },
+        {
+            "name": "asist. Nardi Verbanac",
+            "phoneNumber": "+385 51 651591",
+            "internalPhoneNumber": "2591",
+            "email": "nverbanac@riteh.hr",
+            "room": "0-15",
+            "entity": "ZAE"
+        },
+        {
+            "name": "Tomo Vergić, dipl. iur.",
+            "phoneNumber": "+385 51 651402",
+            "internalPhoneNumber": "2402",
+            "email": "tomo.vergic@riteh.hr",
+            "room": "0-09",
+            "entity": "DEK"
+        },
+        {
+            "name": "prof. dr. sc. Alfredo Višković",
+            "phoneNumber": "+385 51 651437",
+            "internalPhoneNumber": "2437",
+            "email": "alfredo.viskovic@riteh.hr",
+            "room": "1-15 b",
+            "entity": "Katedra za kompleksne energijske sustave"
+        },
+        {
+            "name": "prof. dr. sc. Saša Vlahinić",
+            "phoneNumber": "+385 51 651447",
+            "internalPhoneNumber": "2447",
+            "email": "sasa.vlahinic@riteh.hr",
+            "room": "1-11",
+            "entity": "Katedra za mjerne sustave"
+        },
+        {
+            "name": "v. asist. dr. sc. Maja Vlatković",
+            "phoneNumber": "+385 51 651472",
+            "internalPhoneNumber": "2472",
+            "email": "mmarkovic2@riteh.hr",
+            "room": "3-26",
+            "entity": "Laboratorij za tehnička mjerenja"
+        },
+        {
+            "name": "doc. dr. sc. Ivan Volarić",
+            "phoneNumber": "+385 51 505704",
+            "internalPhoneNumber": "5704",
+            "email": "ivolaric@riteh.hr",
+            "room": "2-55",
+            "entity": "Laboratorij za statističku analizu i obradu signala"
+        },
+        {
+            "name": "dipl. oec. Sara Volarić",
+            "phoneNumber": "+385 51 651 431",
+            "internalPhoneNumber": "2431",
+            "email": "svolaric@riteh.hr",
+            "room": "0-63",
+            "entity": "SKN"
+        },
+        {
+            "name": "prof. dr. sc. Miroslav Vrankić",
+            "phoneNumber": "+385 51 651441",
+            "internalPhoneNumber": "2441",
+            "email": "miroslav.vrankic@riteh.hr",
+            "room": "1-10",
+            "entity": "ZAE"
+        },
+        {
+            "name": "asist. Ana Vranković Lacković",
+            "phoneNumber": "+385 51 505718",
+            "internalPhoneNumber": "5718",
+            "email": "avrankovic@riteh.hr",
+            "room": "1-48a",
+            "entity": "ZR"
+        },
+        {
+            "name": "izv. prof. dr. sc. Željko Vrcan",
+            "phoneNumber": "+385 51 651525",
+            "internalPhoneNumber": "2525",
+            "email": "zeljko.vrcan@riteh.hr",
+            "room": "1-102",
+            "entity": "ZKS"
+        },
+        {
+            "name": "asist. Domagoj Vrtovšnik",
+            "phoneNumber": "+385 51 505722",
+            "internalPhoneNumber": "5722",
+            "email": "dvrtovsnik@riteh.hr",
+            "room": "2-13a",
+            "entity": "Laboratorij za gradnju i opremanje plovnih objekata"
+        },
+        {
+            "name": "Patricija Vukić",
+            "phoneNumber": "+385 51 651435",
+            "internalPhoneNumber": "2435",
+            "email": "pvukic@riteh.hr",
+            "room": "1-21",
+            "entity": "ZEE"
+        },
+        {
+            "name": "asist. Hana Vukotić",
+            "phoneNumber": "+385 51 410893",
+            "internalPhoneNumber": "5893",
+            "email": "hvukotic@riteh.hr",
+            "room": "3-04",
+            "entity": "ZIIM"
+        },
+        {
+            "name": "Siniša Vukotić",
+            "phoneNumber": "+385 51 651427",
+            "internalPhoneNumber": "2427",
+            "email": "sinisa.vukotic@riteh.hr",
+            "room": "1-48",
+            "entity": "RC"
+        },
+        {
+            "name": "prof. dr. sc. Igor Wolf",
+            "phoneNumber": "+385 51 651510",
+            "internalPhoneNumber": "2510",
+            "email": "igor.wolf@riteh.hr",
+            "room": "2-108",
+            "entity": "ZTE"
+        },
+        {
+            "name": "prof. dr. sc. Albert Zamarin",
+            "phoneNumber": "+385 51 651457",
+            "internalPhoneNumber": "2457",
+            "email": "albert.zamarin@riteh.hr",
+            "room": "2-14",
+            "entity": "ZBIMT"
+        },
+        {
+            "name": "prof. dr. sc. Saša Zelenika",
+            "phoneNumber": "+385 51 651538",
+            "internalPhoneNumber": "2538",
+            "email": "sasa.zelenika@riteh.hr",
+            "room": "1-106",
+            "entity": "ZKS"
+        },
+        {
+            "name": "asist. Martin Zlatić",
+            "phoneNumber": "+385 51 651503",
+            "internalPhoneNumber": "2503",
+            "email": "mzlatic@riteh.hr",
+            "room": "2-139",
+            "entity": "ZTM"
+        },
+        {
+            "name": "izv. prof. dr. sc. Samir Žic",
+            "phoneNumber": "+385 51 651553",
+            "internalPhoneNumber": "2553",
+            "email": "samir.zic@riteh.hr",
+            "room": "3-02",
+            "entity": "CIM laboratorij"
+        },
+        {
+            "name": "prof. dr. sc. Roberto Žigulić",
+            "phoneNumber": "+385 51 651492",
+            "internalPhoneNumber": "2492",
+            "email": "roberto.zigulic@riteh.hr",
+            "room": "2-177",
+            "entity": "ZTM"
+        },
+        {
+            "name": "mr. sc. Marijana Živić Đurović, v. pred.",
+            "phoneNumber": "+385 51 651578",
+            "internalPhoneNumber": "2578",
+            "email": "marijana.zivic@riteh.hr",
+            "room": "1-29",
+            "entity": "ZEE"
+        },
+        {
+            "name": "asist. Lucija Žužić",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "lzuzic@riteh.hr",
+            "room": "1-53",
+            "entity": "ZR"
+        }
+    ],
+    "submaps": [
+        {
+            "id": 1,
+            "caption": "Main Building, floor 0"
+        },
+        {
+            "id": 2,
+            "caption": "Main Building, floor 1"
+        },
+        {
+            "id": 3,
+            "caption": "Main Building, floor 2"
+        },
+        {
+            "id": 4,
+            "caption": "Main Building, floor 3"
+        },
+        {
+            "id": 101,
+            "caption": "Lab Building, floor 0"
+        },
+        {
+            "id": 102,
+            "caption": "Lab Building, floor 1"
+        }
+    ]
+}

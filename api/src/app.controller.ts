@@ -1,7 +1,8 @@
 import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Request } from 'express';
-import { AllMapsData, ChangeDataRequest } from './data/Data';
+import { ChangeDataRequest } from './data/Data';
+import { AllMapsData } from './data/ServerData';
 
 
 @Controller("api")

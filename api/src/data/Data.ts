@@ -1,3 +1,4 @@
+import { AllMapsData } from "./ServerData";
 
 export enum NodeType {
     CLASSROOM, STUDENT_ROOM, OFFICE,
@@ -46,15 +47,6 @@ export type ProfessorData = {
   room: string;
   entity: string;
 };
-
-export type AllMapsData = {
-    nodes: Node[],
-    edges: Edge[],
-    hallways: Hallway[],
-    professors: ProfessorData[],
-    submaps: SubMap[],
-}
-
 
 export type ChangeDataRequest = {
     password: string,

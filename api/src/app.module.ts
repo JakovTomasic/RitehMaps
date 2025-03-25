@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { JsonStorageService } from './storage/json-storage.service';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AppService } from './app.service';
     // TypeOrmModule.forFeature([AllData]),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [JsonStorageService, AppService],
+  exports: [JsonStorageService],
 })
 export class AppModule {}

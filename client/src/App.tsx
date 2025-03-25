@@ -32,9 +32,9 @@ function App() {
     })
         .then((res) => res.json())
         .then((result) => {
-            console.log("initial get", JSON.stringify(result));
+            // console.log("initial get", JSON.stringify(result));
             const data = AllMapsDataSchema.safeParse(result);
-            console.log("initial get parsed", JSON.stringify(data));
+            // console.log("initial get parsed", JSON.stringify(data));
             if (data.success) {
                 const value: AllMapsData = data.data;
                 setState(s => ({ ...s, allMapData: value, loadingError: "" }));

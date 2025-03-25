@@ -18,6 +18,9 @@
 // (esbenp.prettier-vscode). Right-click somewhere in the ProfessorData.ts file and choose 
 // "Format Document With..." -> "Prettier - Code formatter".
 // Or just vscode right-click on the json code - format Document.
+// 
+// After scraping the data, check it. Checks what professors rooms couldn't be found.
+// The website will log.error all those rooms.
 // */
 
 // // See the number of pages at the bottom of https://riteh.uniri.hr/kontakti/

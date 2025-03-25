@@ -4845,1628 +4845,1676 @@
     ],
     "professors": [
         {
-            "name": "asist. Marta Alvir",
-            "phoneNumber": "+385 51 651442",
+            "name": "v. asist. dr. sc. Marta Alvir",
+            "phoneNumber": "+385 51 651 442",
             "internalPhoneNumber": "2442",
-            "email": "malvir@riteh.hr",
+            "email": "marta.alvir@riteh.uniri.hr",
             "room": "2-46",
-            "entity": "ZMFRI"
+            "entity": ""
         },
         {
-            "name": "v. asist. dr. sc. Nikola Anđelić",
-            "phoneNumber": "+385 51 505714",
+            "name": "doc. dr. sc. Ivica Ančić",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "ivica.ancic@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
+        },
+        {
+            "name": "doc. dr. sc. Nikola Anđelić",
+            "phoneNumber": "+385 51 505 714",
             "internalPhoneNumber": "5714",
-            "email": "nandelic@riteh.hr",
+            "email": "nikola.andjelic@riteh.uniri.hr",
             "room": "2-57",
-            "entity": "ZAE"
+            "entity": ""
         },
         {
-            "name": "Bernardo Badurina, bacc. ing.",
-            "phoneNumber": "+385 51 651542",
+            "name": "Bernardo Badurina bacc. ing.",
+            "phoneNumber": "+385 51 651 542",
             "internalPhoneNumber": "2542",
-            "email": "bernardo.badurina@riteh.hr",
+            "email": "bernardo.badurina@riteh.uniri.hr",
             "room": "1-135",
-            "entity": "TS"
-        },
-        {
-            "name": "Anita Badurina Filipin, pred.",
-            "phoneNumber": "+385 51 651 487",
-            "internalPhoneNumber": "2487",
-            "email": "abadurina@riteh.hr",
-            "room": "2-38",
-            "entity": "ZMFSJ"
+            "entity": ""
         },
         {
             "name": "asist. Marijana Balas",
-            "phoneNumber": "+385 51 651453",
+            "phoneNumber": "+385 51 651 453",
             "internalPhoneNumber": "2453",
-            "email": "mbalas@riteh.hr",
+            "email": "marijana.balas@riteh.uniri.hr",
             "room": "2-11",
-            "entity": "ZBIMT"
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Damjan Banić",
-            "phoneNumber": "+385 51 505721",
+            "phoneNumber": "+385 51 505 721",
             "internalPhoneNumber": "5721",
-            "email": "damjan.banic@riteh.hr",
+            "email": "dbanic@riteh.uniri.hr",
             "room": "2-139",
-            "entity": "ZTM"
+            "entity": ""
         },
         {
             "name": "asist. Marina Banov",
             "phoneNumber": "+385 51 505 726",
             "internalPhoneNumber": "5726",
-            "email": "mbanov@riteh.hr",
+            "email": "marina.banov@riteh.uniri.hr",
             "room": "1-64a",
-            "entity": "ZR"
+            "entity": ""
         },
         {
             "name": "asist. Sandi Baressi Šegota",
-            "phoneNumber": "+385 51 505715",
+            "phoneNumber": "+385 51 505 715",
             "internalPhoneNumber": "5715",
-            "email": "sbaressisegota@riteh.hr",
-            "room": "None",
-            "entity": "EU Projekti"
+            "email": "sandi.segota@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Robert Basan",
-            "phoneNumber": "+385 51 651530",
+            "phoneNumber": "+385 51 651 530",
             "internalPhoneNumber": "2530",
-            "email": "robert.basan@riteh.hr",
+            "email": "robert.basan@riteh.uniri.hr",
             "room": "1-105",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
             "name": "doc. dr. sc. Angela Bašić-Šiško",
-            "phoneNumber": "+385 51 651483",
-            "internalPhoneNumber": "2483",
-            "email": "abasicsisko@riteh.hr",
-            "room": "3-36",
-            "entity": "Laboratorij za fiziku"
+            "phoneNumber": "+385 51 651 563",
+            "internalPhoneNumber": "2563",
+            "email": "anbasic@riteh.uniri.hr",
+            "room": "3-31a",
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Josip Batista",
-            "phoneNumber": "+385 51 505663",
+            "phoneNumber": "+385 51 505 663",
             "internalPhoneNumber": "5663",
-            "email": "jbatista@riteh.hr",
-            "room": "2125",
-            "entity": "ZTE"
+            "email": "josip.batista@riteh.uniri.hr",
+            "room": "2-101",
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Luka Batistić",
-            "phoneNumber": "+385 51 505727",
+            "phoneNumber": "+385 51 505 727",
             "internalPhoneNumber": "5727",
-            "email": "lbatistic@riteh.hr",
-            "room": "1-58",
-            "entity": "ZR"
+            "email": "luka.batistic@riteh.uniri.hr",
+            "room": "1-49a",
+            "entity": ""
         },
         {
             "name": "asist. Tomislav Bazina",
-            "phoneNumber": "+385 51 651537",
+            "phoneNumber": "+385 51 651 537",
             "internalPhoneNumber": "2537",
-            "email": "tbazina@riteh.hr",
+            "email": "tomislav.bazina@riteh.uniri.hr",
             "room": "1-103",
-            "entity": "ZKS"
+            "entity": ""
+        },
+        {
+            "name": "Silvana Belavić",
+            "phoneNumber": "+385 51 651 444",
+            "internalPhoneNumber": "2444",
+            "email": "silvana.belavic@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Paolo Blecich",
-            "phoneNumber": "+385 51 651543",
+            "phoneNumber": "+385 51 651 543",
             "internalPhoneNumber": "2543",
-            "email": "paolo.blecich@riteh.hr",
+            "email": "paolo.blecich@riteh.uniri.hr",
             "room": "2-102",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
-            "name": "asist. Davor Bolf",
-            "phoneNumber": "+385 051 651455",
+            "name": "v. asist. dr. sc. Davor Bolf",
+            "phoneNumber": "+385 51 651 455",
             "internalPhoneNumber": "2455",
-            "email": "dbolf@riteh.hr",
+            "email": "dbolf@riteh.uniri.hr",
             "room": "2-19",
-            "entity": "Laboratorij za računarsko inženjerstvo u brodogradnji"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Igor Bonefačić",
-            "phoneNumber": "+385 51 651561",
+            "phoneNumber": "+385 51 651 561",
             "internalPhoneNumber": "2561",
-            "email": "igor.bonefacic@riteh.hr",
+            "email": "igor.bonefacic@riteh.uniri.hr",
             "room": "2-106",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
-            "name": "dr. sc. Andrej Borić, pred.",
-            "phoneNumber": "+385 51 410909",
+            "name": "dr. sc. Andrej Borić pred.",
+            "phoneNumber": "+385 51 410 909",
             "internalPhoneNumber": "2909",
-            "email": "aboric@riteh.hr",
+            "email": "andrej.boric@riteh.uniri.hr",
             "room": "1-130b",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Sanjin Braut",
-            "phoneNumber": "+385 51 651502",
+            "phoneNumber": "+385 51 651 502",
             "internalPhoneNumber": "2502",
-            "email": "sanjin.braut@riteh.hr",
+            "email": "sanjin.braut@riteh.uniri.hr",
             "room": "2-180",
-            "entity": "ZTM"
+            "entity": ""
         },
         {
-            "name": "izv. prof. dr. sc. Marino Brčić",
-            "phoneNumber": "+385 51 651479",
+            "name": "prof. dr. sc. Marino Brčić",
+            "phoneNumber": "+385 51 651 479",
             "internalPhoneNumber": "2479",
-            "email": "marino.brcic@riteh.hr",
+            "email": "marino.brcic@riteh.uniri.hr",
             "room": "2-174",
-            "entity": "ZTM"
+            "entity": ""
         },
         {
-            "name": "prof. dr. sc. Josip Brnić, professor emeritus",
-            "phoneNumber": "+385 51 651491",
-            "internalPhoneNumber": "2491",
-            "email": "josip.brnic@riteh.hr",
-            "room": "2-185",
-            "entity": "ZTM"
+            "name": "Julijana Briševac",
+            "phoneNumber": "+385 51 651 444",
+            "internalPhoneNumber": "2444",
+            "email": "julijana.brisevac@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
-            "name": "Goran Brodarac, mag.oec.",
-            "phoneNumber": "+385 51 651412",
+            "name": "prof. dr. sc. Josip Brnić professor emeritus",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "josip.brnic@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
+        },
+        {
+            "name": "Goran Brodarac mag.oec.",
+            "phoneNumber": "+385 51 651 412",
             "internalPhoneNumber": "2412",
-            "email": "gbrodarac@riteh.hr",
+            "email": "goran.brodarac@riteh.uniri.hr",
             "room": "0-61",
-            "entity": "FS"
+            "entity": ""
         },
         {
             "name": "doc. dr. sc. Ozren Bukovac",
-            "phoneNumber": "+385 51 651565",
+            "phoneNumber": "+385 51 651 565",
             "internalPhoneNumber": "2565",
-            "email": "ozren.bukovac@riteh.hr",
+            "email": "ozren.bukovac@riteh.uniri.hr",
             "room": "2-102",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Neven Bulić",
-            "phoneNumber": "+385 51 651413",
+            "phoneNumber": "+385 51 651 413",
             "internalPhoneNumber": "2413",
-            "email": "neven.bulic@riteh.hr",
+            "email": "neven.bulic@riteh.uniri.hr",
             "room": "2-57",
-            "entity": "ZAE"
+            "entity": ""
         },
         {
-            "name": "Žarko Burić, mag. ing.",
-            "phoneNumber": "+385 51 651410",
-            "internalPhoneNumber": "2410",
-            "email": "zarko.buric@riteh.hr",
-            "room": "0-66",
-            "entity": "SSE"
-        },
-        {
-            "name": "Valnea Burić Marohnić, mag.cult.",
-            "phoneNumber": "+385 51 651505",
+            "name": "Valnea Burić Marohnić mag.cult.",
+            "phoneNumber": "+385 51 651 505",
             "internalPhoneNumber": "2505",
-            "email": "vburicmarohnic@riteh.hr",
+            "email": "valnea.buricmarohnic@riteh.uniri.hr",
             "room": "2-144",
-            "entity": "ZMFSJ"
+            "entity": ""
         },
         {
-            "name": "Marijana Burić Redžović, dipl. iur.",
-            "phoneNumber": "+385 51 651406",
+            "name": "Marijana Burić Redžović dipl. iur.",
+            "phoneNumber": "+385 51 651 406",
             "internalPhoneNumber": "2406",
-            "email": "mburicredzovic@riteh.hr",
+            "email": "marijana.buric@riteh.uniri.hr",
             "room": "0-72",
-            "entity": "SOKP"
+            "entity": ""
         },
         {
-            "name": "Ivan Buterin",
-            "phoneNumber": "",
-            "internalPhoneNumber": "",
-            "email": "ibuterin@riteh.hr",
-            "room": "None",
-            "entity": "Studentski zbor"
+            "name": "Ivana Čabrijan mag. ing. mech.",
+            "phoneNumber": "+385 51 651 400",
+            "internalPhoneNumber": "2400",
+            "email": "ivana.cabrijan@riteh.uniri.hr",
+            "room": "0-71",
+            "entity": ""
         },
         {
-            "name": "prof. dr. sc. Zlatan Car",
-            "phoneNumber": "+385 51 651478",
-            "internalPhoneNumber": "2478",
-            "email": "zlatan.car@riteh.hr",
-            "room": "1-09",
-            "entity": "ZAE"
-        },
-        {
-            "name": "v. asist. dr. sc. Dominik Cikač",
-            "phoneNumber": "+385 51 505520",
-            "internalPhoneNumber": "5520",
-            "email": "dominik.cikac@riteh.hr",
-            "room": "0-15",
-            "entity": "ZAE"
-        },
-        {
-            "name": "Domagoj Crljenko, dipl. ing. v. struč. sur.",
-            "phoneNumber": "+385 51 651544",
-            "internalPhoneNumber": "2544",
-            "email": "domagoj.crljenko@riteh.hr",
-            "room": "1-53",
-            "entity": "RC"
-        },
-        {
-            "name": "prof. dr. sc. Goran Cukor",
-            "phoneNumber": "+385 51 651476",
-            "internalPhoneNumber": "2476",
-            "email": "goran.cukor@riteh.hr",
-            "room": "3-23",
-            "entity": "ZIIM"
-        },
-        {
-            "name": "asist. Ivana Čabrijan",
-            "phoneNumber": "",
-            "internalPhoneNumber": "",
-            "email": "icabrijan@riteh.hr",
-            "room": "None",
-            "entity": "ZIIM"
+            "name": "asist. Luka Calcich",
+            "phoneNumber": "+385 51 651 446",
+            "internalPhoneNumber": "2446",
+            "email": "luka.calcich@riteh.uniri.hr",
+            "room": "1-17",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Marko Čanađija",
-            "phoneNumber": "+385 51 651496",
+            "phoneNumber": "+385 51 651 496",
             "internalPhoneNumber": "2496",
-            "email": "marko.canadija@riteh.hr",
-            "room": "2-189",
-            "entity": "ZTM"
+            "email": "marko.canadija@riteh.uniri.hr",
+            "room": "2-179",
+            "entity": ""
+        },
+        {
+            "name": "prof. dr. sc. Zlatan Car",
+            "phoneNumber": "+385 51 651 478",
+            "internalPhoneNumber": "2478",
+            "email": "zlatan.car@riteh.uniri.hr",
+            "room": "01-09",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Zoran Čarija",
-            "phoneNumber": "+385 51 651500",
+            "phoneNumber": "+385 51 651 500",
             "internalPhoneNumber": "2500",
-            "email": "zoran.carija@riteh.hr",
+            "email": "zoran.carija@riteh.uniri.hr",
             "room": "2-36",
-            "entity": "ZMFRI"
+            "entity": ""
+        },
+        {
+            "name": "v. asist. dr. sc. Dominik Cikač",
+            "phoneNumber": "+385 51 505 520",
+            "internalPhoneNumber": "5520",
+            "email": "dominik.cikac@riteh.uniri.hr",
+            "room": "0-15",
+            "entity": ""
         },
         {
             "name": "Helena Čipak",
-            "phoneNumber": "+385 51 651444",
+            "phoneNumber": "+385 51 651 444",
             "internalPhoneNumber": "2444",
-            "email": "hcipak@riteh.hr",
+            "email": "helena.cipak@riteh.uniri.hr",
             "room": "3-11",
-            "entity": "SOKP"
+            "entity": ""
         },
         {
-            "name": "Vanja Čotić Poturić, v. pred.",
-            "phoneNumber": "+385 51 651480",
+            "name": "Irina Ćosić dipl. ing.",
+            "phoneNumber": "+385 51 651 576",
+            "internalPhoneNumber": "2576",
+            "email": "irina.cosic@riteh.uniri.hr",
+            "room": "0-68",
+            "entity": ""
+        },
+        {
+            "name": "Vanja Čotić Poturić v. pred.",
+            "phoneNumber": "+385 51 651 480",
             "internalPhoneNumber": "2480",
-            "email": "vcotic@riteh.hr",
+            "email": "vcotic@riteh.uniri.hr",
             "room": "3-33",
-            "entity": "ZMFSJ"
+            "entity": ""
+        },
+        {
+            "name": "Domagoj Crljenko dipl. ing.",
+            "phoneNumber": "+385 51 651 544",
+            "internalPhoneNumber": "2544",
+            "email": "crljenko@riteh.uniri.hr",
+            "room": "1-53",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Nelida Črnjarić",
-            "phoneNumber": "+385 51 651481",
+            "phoneNumber": "+385 51 651 481",
             "internalPhoneNumber": "2481",
-            "email": "nelida@riteh.hr",
+            "email": "nelida.crnjaric@riteh.uniri.hr",
             "room": "3-34",
-            "entity": "ZMFSJ"
+            "entity": ""
         },
         {
-            "name": "Antonela Ćaleta",
-            "phoneNumber": "+385 51 651415",
-            "internalPhoneNumber": "2415",
-            "email": "antonela.caleta@riteh.hr",
-            "room": "0-70",
-            "entity": "SSE"
+            "name": "prof. dr. sc. Goran Cukor",
+            "phoneNumber": "+385 51 651 476",
+            "internalPhoneNumber": "2476",
+            "email": "goran.cukor@riteh.uniri.hr",
+            "room": "3-23",
+            "entity": ""
         },
         {
-            "name": "Irina Ćosić, dipl. ing.",
-            "phoneNumber": "+385 51 651576",
-            "internalPhoneNumber": "2576",
-            "email": "icosic@riteh.hr",
-            "room": "0-71",
-            "entity": "SSE"
-        },
-        {
-            "name": "prof. dr. sc. Roko Dejhalla",
-            "phoneNumber": "+385 51 651451",
-            "internalPhoneNumber": "2451",
-            "email": "roko.dejhalla@riteh.hr",
-            "room": "2-06",
-            "entity": "ZBIMT"
-        },
-        {
-            "name": "doc. dr. sc. Boris Delač",
-            "phoneNumber": "+385 51 651511",
+            "name": "izv. prof. dr. sc. Boris Delač",
+            "phoneNumber": "+385 51 651 511",
             "internalPhoneNumber": "2511",
-            "email": "boris.delac@riteh.hr",
+            "email": "boris.delac@riteh.uniri.hr",
             "room": "2-117",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
             "name": "Marina Djaković",
-            "phoneNumber": "+385 51 651444",
+            "phoneNumber": "+385 51 651 444",
             "internalPhoneNumber": "2444",
-            "email": "mdjakovic@riteh.hr",
+            "email": "marina.djakovic@riteh.uniri.hr",
             "room": "3-11",
-            "entity": "SOKP"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Sandro Doboviček",
-            "phoneNumber": "+385 51 651484",
+            "phoneNumber": "+385 51 651 484",
             "internalPhoneNumber": "2484",
-            "email": "sandro.dobovicek@riteh.hr",
+            "email": "sandro.dobovicek@riteh.uniri.hr",
             "room": "3-22",
-            "entity": "ZIIM"
+            "entity": ""
         },
         {
-            "name": "mr. sc. Branka Dobraš, v. pred.",
-            "phoneNumber": "+385 51 651438",
+            "name": "mr. sc. Branka Dobraš v. pred.",
+            "phoneNumber": "+385 51 651 438",
             "internalPhoneNumber": "2438",
-            "email": "branka.dobras@riteh.hr",
+            "email": "branka.dobras@riteh.uniri.hr",
             "room": "1-27",
-            "entity": "ZEE"
+            "entity": ""
         },
         {
-            "name": "prof. dr. sc. Julijan Dobrinić, professor emeritus",
-            "phoneNumber": "+385 51 505724",
-            "internalPhoneNumber": "5724",
+            "name": "prof. dr. sc. Julijan Dobrinić professor emeritus",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
             "email": "cinirbod@gmail.com",
-            "room": "2-39",
-            "entity": "ZMFSJ"
+            "room": "0-58",
+            "entity": ""
         },
         {
             "name": "doc. dr. sc. Viktor Dragičević",
-            "phoneNumber": "+385 51 651521",
+            "phoneNumber": "+385 51 651 521",
             "internalPhoneNumber": "2521",
-            "email": "viktor.dragicevic@riteh.hr",
+            "email": "viktor.dragicevic@riteh.uniri.hr",
             "room": "3-46",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Ivan Dražić",
-            "phoneNumber": "+385 51 651482",
+            "phoneNumber": "+385 51 651 482",
             "internalPhoneNumber": "2482",
-            "email": "ivan.drazic@riteh.hr",
+            "email": "ivan.drazic@riteh.uniri.hr",
             "room": "3-35a",
-            "entity": "ZMFSJ"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Siniša Družeta",
-            "phoneNumber": "+385 51 651497",
+            "phoneNumber": "+385 51 651 497",
             "internalPhoneNumber": "2497",
-            "email": "sinisa.druzeta@riteh.hr",
+            "email": "sinisa.druzeta@riteh.uniri.hr",
             "room": "2-32",
-            "entity": "ZMFRI"
+            "entity": ""
         },
         {
-            "name": "Stella Dumenčić, univ. mag. ing. comp.",
-            "phoneNumber": "+385 51 651418",
+            "name": "asist. Stella Dumenčić",
+            "phoneNumber": "+385 51 651 418",
             "internalPhoneNumber": "2418",
-            "email": "sdumencic@riteh.hr",
+            "email": "stella.dumencic@riteh.uniri.hr",
             "room": "2-33",
-            "entity": "ZMFRI"
+            "entity": ""
         },
         {
             "name": "asist. Maja Dundović",
-            "phoneNumber": "+385 51 651539",
+            "phoneNumber": "+385 51 651 539",
             "internalPhoneNumber": "2539",
-            "email": "maja.dundovic@riteh.hr",
+            "email": "mdundovic@riteh.uniri.hr",
             "room": "1-117c",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
-            "name": "Damir Filipović, dipl.ing.strojarstva",
-            "phoneNumber": "+385 51 651564",
+            "name": "doc. dr. sc. Marko Fabić",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "marko.fabic@uniri.hr",
+            "room": "",
+            "entity": ""
+        },
+        {
+            "name": "Damir Filipović dipl.ing.strojarstva",
+            "phoneNumber": "+385 51 651 564",
             "internalPhoneNumber": "2564",
-            "email": "dfilipovic@riteh.hr",
+            "email": "damir.filipovic@riteh.uniri.hr",
             "room": "0-17",
-            "entity": "TS"
+            "entity": ""
         },
         {
             "name": "doc. dr. sc. Matej Fonović",
-            "phoneNumber": "+385 51 554854",
+            "phoneNumber": "+385 51 554 854",
             "internalPhoneNumber": "2854",
-            "email": "mfonovic@riteh.hr",
+            "email": "matej.fonovic@riteh.uniri.hr",
             "room": "2-164",
-            "entity": "Laboratorij za ispitivanje materijala"
+            "entity": ""
         },
         {
             "name": "Natalija Forgić",
-            "phoneNumber": "+385 51 651434",
+            "phoneNumber": "+385 51 651 434",
             "internalPhoneNumber": "2434",
-            "email": "natalija.forgic@riteh.hr",
+            "email": "natalija.forgic@riteh.uniri.hr",
             "room": "2-181",
-            "entity": "SOKP"
+            "entity": ""
         },
         {
             "name": "doc. dr. sc. Vladimir Franki",
-            "phoneNumber": "+385 51 651437",
+            "phoneNumber": "+385 51 651 437",
             "internalPhoneNumber": "2437",
-            "email": "vfranki@riteh.hr",
+            "email": "vladimir.franki@riteh.uniri.hr",
             "room": "1-26",
-            "entity": "ZEE"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Dubravko Franković",
-            "phoneNumber": "+385 51 651439",
+            "phoneNumber": "+385 51 651 439",
             "internalPhoneNumber": "2439",
-            "email": "dubravko.frankovic@riteh.hr",
+            "email": "dubravko.frankovic@riteh.uniri.hr",
             "room": "1-29",
-            "entity": "ZEE"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Marina Franulović",
-            "phoneNumber": "+385 51 651533",
+            "phoneNumber": "+385 51 651 533",
             "internalPhoneNumber": "2533",
-            "email": "marina.franulovic@riteh.hr",
+            "email": "marina.franulovic@riteh.uniri.hr",
             "room": "1-115",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
             "name": "asist. Boris Gašparović",
-            "phoneNumber": "+385 51 651411",
+            "phoneNumber": "+385 51 651 411",
             "internalPhoneNumber": "2411",
-            "email": "bgasparovic@riteh.hr",
+            "email": "boris.gasparovic@riteh.uniri.hr",
             "room": "2_150",
-            "entity": "ZR"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Vladimir Glažar",
-            "phoneNumber": "+385 51 651522",
+            "phoneNumber": "+385 51 651 522",
             "internalPhoneNumber": "2522",
-            "email": "vladimir.glazar@riteh.hr",
+            "email": "vladimir.glazar@riteh.uniri.hr",
             "room": "3-49",
-            "entity": "ZTE"
-        },
-        {
-            "name": "v. asist. dr. sc. Matej Gljušćić",
-            "phoneNumber": "+385 51 651526",
-            "internalPhoneNumber": "2526",
-            "email": "matej.gljuscic@riteh.hr",
-            "room": "1-103",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Petar Gljušćić",
-            "phoneNumber": "+385 51 651536",
+            "phoneNumber": "+385 51 651 536",
             "internalPhoneNumber": "2536",
-            "email": "pgljuscic@riteh.hr",
+            "email": "pgljuscic@riteh.uniri.hr",
             "room": "1-116",
-            "entity": "ZKS"
+            "entity": ""
+        },
+        {
+            "name": "v. asist. dr. sc. Matej Gljušćić",
+            "phoneNumber": "+385 51 651 526",
+            "internalPhoneNumber": "2526",
+            "email": "mgljuscic@riteh.uniri.hr",
+            "room": "1-103",
+            "entity": ""
         },
         {
             "name": "Marica Gnjatović",
-            "phoneNumber": "+385 51 651444",
+            "phoneNumber": "+385 51 651 444",
             "internalPhoneNumber": "2444",
-            "email": "marica.gnjatovic@riteh.hr",
+            "email": "marica.gnjatovic@riteh.uniri.hr",
             "room": "3-11",
-            "entity": "SOKP"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Vera Gradišnik",
-            "phoneNumber": "+385 51 651557",
+            "phoneNumber": "+385 51 651 557",
             "internalPhoneNumber": "2557",
-            "email": "vera.gradisnik@riteh.hr",
+            "email": "vera.gradisnik@riteh.uniri.hr",
             "room": "2-54",
-            "entity": "ZAE"
-        },
-        {
-            "name": "v. asist. dr. sc. Luka Grbčić",
-            "phoneNumber": "+385 51 651418",
-            "internalPhoneNumber": "2418",
-            "email": "luka.grbcic@riteh.hr",
-            "room": "2-33",
-            "entity": "ZMFRI"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Goran Gregov",
-            "phoneNumber": "+385 51 651528",
+            "phoneNumber": "+385 51 651 528",
             "internalPhoneNumber": "2528",
-            "email": "gregovg@riteh.hr",
+            "email": "goran.gregov@riteh.uniri.hr",
             "room": "1-112",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
-            "name": "dipl. oec. Ariana Gregur",
-            "phoneNumber": "+385 51 651584",
+            "name": "Ariana Gregur univ. mag. oec.",
+            "phoneNumber": "+385 51 651 584",
             "internalPhoneNumber": "2584",
-            "email": "agregur@riteh.hr",
+            "email": "ariana.gregur@riteh.uniri.hr",
             "room": "0-60",
-            "entity": "FS"
+            "entity": ""
         },
         {
-            "name": "Željka Gulić, mag.oec.",
-            "phoneNumber": "+385 51 651470",
+            "name": "asist. Ugo Gruden",
+            "phoneNumber": "+385 51 651 513",
+            "internalPhoneNumber": "2513",
+            "email": "ugo.gruden@riteh.uniri.hr",
+            "room": "2-131",
+            "entity": ""
+        },
+        {
+            "name": "Željka Gulić mag.oec.",
+            "phoneNumber": "+385 51 651 470",
             "internalPhoneNumber": "2470",
-            "email": "zdujic@riteh.hr",
+            "email": "zeljka.gulic@riteh.uniri.hr",
             "room": "0-16",
-            "entity": "DEK"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Marko Hadjina",
-            "phoneNumber": "+385 51 651449",
+            "phoneNumber": "+385 51 651 449",
             "internalPhoneNumber": "2449",
-            "email": "marko.hadjina@riteh.hr",
+            "email": "marko.hadjina@riteh.uniri.hr",
             "room": "2-11",
-            "entity": "ZBIMT"
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Franko Hržić",
-            "phoneNumber": "+385 51 505725",
+            "phoneNumber": "+385 51 505 725",
             "internalPhoneNumber": "5725",
-            "email": "fhrzic@riteh.hr",
+            "email": "franko.hrzic@riteh.uniri.hr",
             "room": "1-65",
-            "entity": "ZR"
+            "entity": ""
+        },
+        {
+            "name": "Luka Ilijanić univ. mag. ing. el.",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "luka.ilijanic@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Dario Iljkić",
-            "phoneNumber": "+385 51 651474",
+            "phoneNumber": "+385 51 651 474",
             "internalPhoneNumber": "2474",
-            "email": "dario.iljkic@riteh.hr",
+            "email": "dario.iljkic@riteh.uniri.hr",
             "room": "2-172",
-            "entity": "ZM"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Ivo Ipšić",
-            "phoneNumber": "+385 51 651421",
+            "phoneNumber": "+385 51 651 421",
             "internalPhoneNumber": "2421",
-            "email": "ivo.ipsic@riteh.hr",
-            "room": "1-13",
-            "entity": "ZR"
+            "email": "ivo.ipsic@riteh.uniri.hr",
+            "room": "01-13",
+            "entity": ""
         },
         {
-            "name": "doc. dr. sc. David Ištoković",
-            "phoneNumber": "+385 51 651467",
+            "name": "izv. prof. dr. sc. David Ištoković",
+            "phoneNumber": "+385 51 651 467",
             "internalPhoneNumber": "2467",
-            "email": "distokovic@riteh.hr",
-            "room": "3-08",
-            "entity": "Laboratorij za inteligentne strojeve i obradne sustave"
+            "email": "distokovic@riteh.uniri.hr",
+            "room": "03-08",
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Stefan Ivić",
-            "phoneNumber": "+385 51 651497",
+            "phoneNumber": "+385 51 651 497",
             "internalPhoneNumber": "2497",
-            "email": "stefan.ivic@riteh.hr",
+            "email": "stefan.ivic@riteh.uniri.hr",
             "room": "2-32",
-            "entity": "ZMFRI"
+            "entity": ""
+        },
+        {
+            "name": "asist. Martina Ivić",
+            "phoneNumber": "+385 51 505 724",
+            "internalPhoneNumber": "5724",
+            "email": "martina.ivic@riteh.uniri.hr",
+            "room": "2-40",
+            "entity": ""
         },
         {
             "name": "asist. Karlo Jakac",
-            "phoneNumber": "+385 51 651493",
+            "phoneNumber": "+385 51 651 493",
             "internalPhoneNumber": "2493",
-            "email": "kjakac@riteh.hr",
-            "room": "None",
-            "entity": "ZMFRI"
+            "email": "karlo.jakac@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
-            "name": "asist. Alen Jakoplić",
-            "phoneNumber": "+385 51 651430",
+            "name": "v. asist. dr. sc. Alen Jakoplić",
+            "phoneNumber": "+385 51 651 430",
             "internalPhoneNumber": "2430",
-            "email": "alen.jakoplic@riteh.hr",
+            "email": "alen.jakoplic@riteh.uniri.hr",
             "room": "2-58A",
-            "entity": "ZEE"
+            "entity": ""
+        },
+        {
+            "name": "asist. Darijan Jelušić",
+            "phoneNumber": "+385 51 505 718",
+            "internalPhoneNumber": "5718",
+            "email": "darijan.jelusic@riteh.uniri.hr",
+            "room": "1-48a",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Miroslav Joler",
-            "phoneNumber": "+385 51 651462",
+            "phoneNumber": "+385 51 651 462",
             "internalPhoneNumber": "2462",
-            "email": "mjoler@riteh.hr",
+            "email": "miroslav.joler@riteh.uniri.hr",
             "room": "1-48b",
-            "entity": "ZR"
+            "entity": ""
         },
         {
             "name": "Josip Jurasić",
-            "phoneNumber": "+385 51 651542",
+            "phoneNumber": "+385 51 651 542",
             "internalPhoneNumber": "2542",
-            "email": "jjurasic@riteh.hr",
+            "email": "josip.jurasic@riteh.uniri.hr",
             "room": "1-135",
-            "entity": "TS"
+            "entity": ""
         },
         {
-            "name": "asist. dr. sc. Vedran Jurdana",
-            "phoneNumber": "+385 51 505660",
+            "name": "v. asist. dr. sc. Vedran Jurdana",
+            "phoneNumber": "+385 51 505 660",
             "internalPhoneNumber": "5660",
-            "email": "vedran.jurdana@riteh.hr",
+            "email": "vedran.jurdana@riteh.uniri.hr",
             "room": "2-57",
-            "entity": "ZAE"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Zoran Jurković",
-            "phoneNumber": "+385 51 651466",
+            "phoneNumber": "+385 51 651 466",
             "internalPhoneNumber": "2466",
-            "email": "zoran.jurkovic@riteh.hr",
+            "email": "zoran.jurkovic@riteh.uniri.hr",
             "room": "3-24",
-            "entity": "DEK"
+            "entity": ""
         },
         {
             "name": "Valentina Kajfeš",
-            "phoneNumber": "+385 51 651444",
+            "phoneNumber": "+385 51 651 444",
             "internalPhoneNumber": "2444",
-            "email": "vkajfes@riteh.hr",
-            "room": "None",
-            "entity": "SOKP"
+            "email": "valentina.kajfes@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
-            "name": "doc. dr. sc. Ervin Kamenar",
-            "phoneNumber": "+385 51 651585",
+            "name": "izv. prof. dr. sc. Ervin Kamenar",
+            "phoneNumber": "+385 51 651 585",
             "internalPhoneNumber": "2585",
-            "email": "ekamenar@riteh.hr",
+            "email": "ekamenar@riteh.uniri.hr",
             "room": "1-112",
-            "entity": "Katedra za konstruiranje i precizno inženjerstvo"
+            "entity": ""
         },
         {
             "name": "Ana Kasipović",
-            "phoneNumber": "+385 51 651444",
+            "phoneNumber": "+385 51 651 444",
             "internalPhoneNumber": "2444",
-            "email": "akasipovic@riteh.hr",
+            "email": "ana.kasipovic@riteh.uniri.hr",
             "room": "3-11",
-            "entity": "SOKP"
+            "entity": ""
         },
         {
-            "name": "Tina Kažić Tadić, mag.oec.",
-            "phoneNumber": "+385 51 651465",
+            "name": "Tina Kažić Tadić mag.oec.",
+            "phoneNumber": "+385 51 651 465",
             "internalPhoneNumber": "2465",
-            "email": "tkazic@riteh.hr",
-            "room": "3-07",
-            "entity": "SOKP"
-        },
-        {
-            "name": "v. asist. dr. sc. Mateo Kirinčić",
-            "phoneNumber": "+385 51 651517",
-            "internalPhoneNumber": "2517",
-            "email": "mateo.kirincic@riteh.hr",
-            "room": "2-131",
-            "entity": "ZTE"
+            "email": "tina.kazic@riteh.uniri.hr",
+            "room": "03-07",
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Vedran Kirinčić",
-            "phoneNumber": "+385 51 505717",
+            "phoneNumber": "+385 51 505 717",
             "internalPhoneNumber": "5717",
-            "email": "vedran.kirincic@riteh.hr",
+            "email": "vedran.kirincic@riteh.uniri.hr",
             "room": "1-18",
-            "entity": "ZEE"
+            "entity": ""
         },
         {
-            "name": "asist. Deni Klen",
+            "name": "v. asist. dr. sc. Mateo Kirinčić",
+            "phoneNumber": "+385 51 651 517",
+            "internalPhoneNumber": "2517",
+            "email": "mateo.kirincic@riteh.uniri.hr",
+            "room": "2-131",
+            "entity": ""
+        },
+        {
+            "name": "Damir Koščić dipl. ing.",
+            "phoneNumber": "+385 51 651 545",
+            "internalPhoneNumber": "2545",
+            "email": "damir.koscic@riteh.uniri.hr",
+            "room": "1-53",
+            "entity": ""
+        },
+        {
+            "name": "asist. Ivan Lovro Kovačić",
+            "phoneNumber": "+385 51 651 483",
+            "internalPhoneNumber": "2483",
+            "email": "ivan.lovro.kovacic@riteh.uniri.hr",
+            "room": "3-36",
+            "entity": ""
+        },
+        {
+            "name": "Mária Krajčí univ. mag. ing. comp.",
             "phoneNumber": "",
             "internalPhoneNumber": "",
-            "email": "dklen@riteh.hr",
-            "room": "1-53",
-            "entity": "ZR"
-        },
-        {
-            "name": "Damir Koščić, dipl. ing. str. surad.",
-            "phoneNumber": "+385 51 651545",
-            "internalPhoneNumber": "2545",
-            "email": "dkoscic@riteh.hr",
-            "room": "1-53",
-            "entity": "RC"
+            "email": "mkrajci@riteh.uniri.hr",
+            "room": "1-42",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Lado Kranjčević",
-            "phoneNumber": "+385 51 651401+385 51 651554(Ured)",
-            "internalPhoneNumber": "2401          2554",
-            "email": "lado.kranjcevic@riteh.hr",
+            "phoneNumber": "+385 51 651 401",
+            "internalPhoneNumber": "2401",
+            "email": "lado.kranjcevic@riteh.uniri.hr",
             "room": "0-08",
-            "entity": "DEK"
+            "entity": ""
         },
         {
-            "name": "prof. dr. sc. Božidar Križan, professor emeritus",
-            "phoneNumber": "+385 51 505724",
-            "internalPhoneNumber": "5724",
-            "email": "bozidar.krizan@riteh.hr",
-            "room": "2-39",
-            "entity": "ZKS"
+            "name": "prof. dr. sc. Božidar Križan professor emeritus",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "bozidar.krizan@riteh.uniri.hr",
+            "room": "0-58",
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Sanjin Kršćanski",
-            "phoneNumber": "+385 51 651560",
+            "phoneNumber": "+385 51 651 560",
             "internalPhoneNumber": "2560",
-            "email": "sanjin.krscanski@riteh.hr",
+            "email": "sanjin.krscanski@riteh.uniri.hr",
             "room": "2-137",
-            "entity": "ZTM"
+            "entity": ""
         },
         {
             "name": "asist. Elvis Krulčić",
-            "phoneNumber": "+385 51 651471",
+            "phoneNumber": "+385 51 651 471",
             "internalPhoneNumber": "2471",
-            "email": "ekrulcic@riteh.hr",
-            "room": "3-06",
-            "entity": "ZIIM"
+            "email": "elvis.krulcic@riteh.uniri.hr",
+            "room": "03-06",
+            "entity": ""
         },
         {
-            "name": "prof. dr. sc. Elso Kuljanić, professor emeritus",
-            "phoneNumber": "+385 51 651562",
-            "internalPhoneNumber": "2562",
+            "name": "prof. dr. sc. Elso Kuljanić professor emeritus",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
             "email": "elsokul@gmail.com",
-            "room": "3-27",
-            "entity": "ZIIM"
+            "room": "0-58",
+            "entity": ""
         },
         {
-            "name": "asist. dr. sc. Sandra Kvaternik Simonetti",
-            "phoneNumber": "+385 51 505723",
+            "name": "v. asist. dr. sc. Sandra Kvaternik Simonetti",
+            "phoneNumber": "+385 51 505 723",
             "internalPhoneNumber": "5723",
-            "email": "sandra.kvaternik@riteh.hr",
+            "email": "sandra.kvaternik@riteh.uniri.hr",
             "room": "2-139",
-            "entity": "ZTM"
+            "entity": ""
         },
         {
             "name": "asist. Dario Kvrgić",
-            "phoneNumber": "+385 51 651473",
+            "phoneNumber": "+385 51 651 473",
             "internalPhoneNumber": "2473",
-            "email": "dkvrgic@riteh.hr",
+            "email": "dario.kvrgic@riteh.uniri.hr",
             "room": "2-155",
-            "entity": "ZM"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Domagoj Lanc",
-            "phoneNumber": "+385 51 651495",
+            "phoneNumber": "+385 51 651 495",
             "internalPhoneNumber": "2495",
-            "email": "domagoj.lanc@riteh.hr",
-            "room": "2-138",
-            "entity": "ZTM"
+            "email": "domagoj.lanc@riteh.uniri.hr",
+            "room": "2-175",
+            "entity": ""
         },
         {
             "name": "asist. Luka Lanča",
-            "phoneNumber": "+385 51 651493",
+            "phoneNumber": "+385 51 651 493",
             "internalPhoneNumber": "2493",
-            "email": "llanca@riteh.hr",
-            "room": "None",
-            "entity": "ZMFRI"
+            "email": "luka.lanca@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Kristijan Lenac",
-            "phoneNumber": "+385 51 505664",
+            "phoneNumber": "+385 51 505 664",
             "internalPhoneNumber": "5664",
-            "email": "kristijan.lenac@riteh.hr",
-            "room": "1-49c",
-            "entity": "ZR"
+            "email": "kristijan.lenac@riteh.uniri.hr",
+            "room": "2-55",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Kristian Lenić",
-            "phoneNumber": "+385 51 651518",
+            "phoneNumber": "+385 51 651 518",
             "internalPhoneNumber": "2518",
-            "email": "kristian.lenic@riteh.hr",
+            "email": "kristian.lenic@riteh.uniri.hr",
             "room": "2-104",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
-            "name": "izv. prof. dr. sc. Jonatan Lerga",
-            "phoneNumber": "+385 51 651583",
+            "name": "prof. dr. sc. Jonatan Lerga",
+            "phoneNumber": "+385 51 651 583",
             "internalPhoneNumber": "2583",
-            "email": "jlerga@riteh.hr",
+            "email": "jonatan.lerga@riteh.uniri.hr",
             "room": "1-51",
-            "entity": "DEK"
+            "entity": ""
         },
         {
-            "name": "asist. David Liović",
-            "phoneNumber": "+385 51 505700",
+            "name": "v. asist. dr. sc. David Liovic",
+            "phoneNumber": "+385 51 505 700",
             "internalPhoneNumber": "5700",
-            "email": "dliovic@riteh.hr",
+            "email": "david.liovic@riteh.uniri.hr",
             "room": "1-103",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
-            "name": "asist. Lovro Liverić",
-            "phoneNumber": "+385 51 651464",
+            "name": "v. asist. dr. sc. Lovro Liverić",
+            "phoneNumber": "+385 51 651 464",
             "internalPhoneNumber": "2464",
-            "email": "lliveric@riteh.hr",
+            "email": "lovro.liveric@riteh.uniri.hr",
             "room": "2-74",
-            "entity": "ZM"
+            "entity": ""
+        },
+        {
+            "name": "prof. dr. sc. Sandi Ljubić",
+            "phoneNumber": "+385 51 651 436",
+            "internalPhoneNumber": "2436",
+            "email": "sandi.ljubic@riteh.uniri.hr",
+            "room": "1-49a",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Neven Lovrin",
-            "phoneNumber": "+385 51 651527",
+            "phoneNumber": "+385 51 651 527",
             "internalPhoneNumber": "2527",
-            "email": "neven.lovrin@riteh.hr",
+            "email": "neven.lovrin@riteh.uniri.hr",
             "room": "1-104",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Ivana Lučin",
-            "phoneNumber": "+385 51 651442",
+            "phoneNumber": "+385 51 651 442",
             "internalPhoneNumber": "2442",
-            "email": "ihreljac@riteh.hr",
+            "email": "ivana.lucin@riteh.uniri.hr",
             "room": "2-46",
-            "entity": "ZMFRI"
+            "entity": ""
         },
         {
-            "name": "Igor Lulić, pred.",
-            "phoneNumber": "+385 51 651563",
-            "internalPhoneNumber": "2563",
-            "email": "ilulic@riteh.hr",
-            "room": "3-31",
-            "entity": "ZMFSJ"
-        },
-        {
-            "name": "izv. prof. dr. sc. Sandi Ljubić",
-            "phoneNumber": "+385 51 651436",
-            "internalPhoneNumber": "2436",
-            "email": "sandi.ljubic@riteh.hr",
-            "room": "1-49a",
-            "entity": "ZR"
+            "name": "Igor Lulić v. pred.",
+            "phoneNumber": "+385 51 651 456",
+            "internalPhoneNumber": "2456",
+            "email": "igor.lulic@riteh.uniri.hr",
+            "room": "3-50",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Senka Maćešić",
-            "phoneNumber": "+385 51 651494",
+            "phoneNumber": "+385 51 651 494",
             "internalPhoneNumber": "2494",
-            "email": "senka.macesic@riteh.hr",
+            "email": "senka.macesic@riteh.uniri.hr",
             "room": "0-05",
-            "entity": "ZMFSJ"
+            "entity": ""
         },
         {
             "name": "Lovorka Malinić",
-            "phoneNumber": "+385 51 651411",
+            "phoneNumber": "+385 51 651 411",
             "internalPhoneNumber": "2411",
-            "email": "lovorka@riteh.hr",
+            "email": "lovorka.malinic@riteh.uniri.hr",
             "room": "2-35a",
-            "entity": "ZR"
+            "entity": ""
         },
         {
-            "name": "asist. Ela Marković",
-            "phoneNumber": "+385 51 554530",
-            "internalPhoneNumber": "5530",
-            "email": "emarkovic@riteh.hr",
-            "room": "1-130a",
-            "entity": "ZKS"
+            "name": "Matej Mališa mag. ing. mech.",
+            "phoneNumber": "+385 51 505 724",
+            "internalPhoneNumber": "5724",
+            "email": "matej.malisa1@riteh.uniri.hr",
+            "room": "2-40",
+            "entity": ""
         },
         {
-            "name": "izv. prof. dr. sc. Kristina Marković",
-            "phoneNumber": "+385 051 651535",
-            "internalPhoneNumber": "2535",
-            "email": "kristina.markovic@riteh.hr",
-            "room": "1-117B",
-            "entity": "ZKS"
+            "name": "Daniel Maratović mag. inf.",
+            "phoneNumber": "+385 51 505 662",
+            "internalPhoneNumber": "5662",
+            "email": "daniel.maratovic@riteh.uniri.hr",
+            "room": "0-15",
+            "entity": ""
+        },
+        {
+            "name": "asist. Mirela Marin",
+            "phoneNumber": "+385 51 505 708",
+            "internalPhoneNumber": "5708",
+            "email": "mirela.marin@riteh.uniri.hr",
+            "room": "2 -08b",
+            "entity": ""
         },
         {
             "name": "asist. Valentino Marković",
-            "phoneNumber": "+385 51 651483",
+            "phoneNumber": "+385 51 651 483",
             "internalPhoneNumber": "2483",
-            "email": "vmarkovic@riteh.hr",
+            "email": "valentino.markovic@riteh.uniri.hr",
             "room": "3-36",
-            "entity": "ZMFSJ"
+            "entity": ""
+        },
+        {
+            "name": "asist. Ela Marković",
+            "phoneNumber": "+385 51 554 530",
+            "internalPhoneNumber": "5530",
+            "email": "ela.markovic@riteh.uniri.hr",
+            "room": "1-130a",
+            "entity": ""
+        },
+        {
+            "name": "izv. prof. dr. sc. Kristina Marković",
+            "phoneNumber": "+385 51 651 535",
+            "internalPhoneNumber": "2535",
+            "email": "kristina.markovic@riteh.uniri.hr",
+            "room": "1-117B",
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Ivan Markovinović",
-            "phoneNumber": "+385 51 505720",
+            "phoneNumber": "+385 51 505 720",
             "internalPhoneNumber": "2598",
-            "email": "imarkovinovic@riteh.hr",
+            "email": "ivan.markovinovic@riteh.uniri.hr",
             "room": "L13-250",
-            "entity": "Laboratorij za električna mjerenja i instrumentaciju"
+            "entity": ""
         },
         {
-            "name": "doc. dr. sc. Tea Marohnić",
-            "phoneNumber": "+385 51 651531",
+            "name": "izv. prof. dr. sc. Tea Marohnić",
+            "phoneNumber": "+385 51 651 531",
             "internalPhoneNumber": "2531",
-            "email": "tea.marohnic@riteh.hr",
+            "email": "tmarohnic@riteh.uniri.hr",
             "room": "1-116",
-            "entity": "ZKS"
-        },
-        {
-            "name": "dipl. oec. Bruna Martinović",
-            "phoneNumber": "+385 51 651407",
-            "internalPhoneNumber": "2407",
-            "email": "bruna.martinovic@riteh.hr",
-            "room": "0-60",
-            "entity": "SKN"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Tin Matulja",
-            "phoneNumber": "+385 51 651454",
+            "phoneNumber": "+385 51 651 454",
             "internalPhoneNumber": "2454",
-            "email": "tin.matulja@riteh.hr",
+            "email": "tin.matulja@riteh.uniri.hr",
             "room": "2-11",
-            "entity": "ZBIMT"
+            "entity": ""
         },
         {
-            "name": "doc. dr. sc. Goran Mauša",
-            "phoneNumber": "+385 51 505710",
+            "name": "izv. prof. dr. sc. Goran Mauša",
+            "phoneNumber": "+385 51 505 710",
             "internalPhoneNumber": "5710",
-            "email": "goran.mausa@riteh.hr",
-            "room": "1-49d",
-            "entity": "ZR"
+            "email": "goran.mausa@riteh.uniri.hr",
+            "room": "2-50",
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Vedran Medica-Viola",
-            "phoneNumber": "+385 51 651523",
+            "phoneNumber": "+385 51 651 523",
             "internalPhoneNumber": "2523",
-            "email": "vmedica@riteh.hr",
+            "email": "vedran.medica@riteh.uniri.hr",
             "room": "2-118",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
             "name": "asist. Anna Maria Mihel",
-            "phoneNumber": "+385 51 505726",
+            "phoneNumber": "+385 51 505 726",
             "internalPhoneNumber": "5726",
-            "email": "amihel@riteh.hr",
+            "email": "annamaria.mihel@riteh.uniri.hr",
             "room": "1-64a",
-            "entity": "ZR"
+            "entity": ""
+        },
+        {
+            "name": "asist. Mateo Mikulić",
+            "phoneNumber": "+385 51 505 728",
+            "internalPhoneNumber": "5728",
+            "email": "mateo.mikulic@riteh.uniri.hr",
+            "room": "1-58",
+            "entity": ""
         },
         {
             "name": "Snježana Mikuličić",
-            "phoneNumber": "+385 51 651406",
+            "phoneNumber": "+385 51 651 406",
             "internalPhoneNumber": "2406",
-            "email": "snjezana.mikulicic@riteh.hr",
+            "email": "snjezana.mikulicic@riteh.uniri.hr",
             "room": "0-72",
-            "entity": "SOKP"
+            "entity": ""
         },
         {
             "name": "asist. Petra Miletić",
-            "phoneNumber": "+385 51 651489",
+            "phoneNumber": "+385 51 651 489",
             "internalPhoneNumber": "2489",
-            "email": "pkokotovic@riteh.hr",
+            "email": "petra.kokotovic@riteh.uniri.hr",
             "room": "2-58a",
-            "entity": "ZEE"
-        },
-        {
-            "name": "Lana Miličević",
-            "phoneNumber": "",
-            "internalPhoneNumber": "",
-            "email": "lmilicevic1@riteh.hr",
-            "room": "None",
-            "entity": "Studentski zbor"
-        },
-        {
-            "name": "prof. dr. sc. Špiro Milošević, professor emeritus",
-            "phoneNumber": "+385 51 651513",
-            "internalPhoneNumber": "2513",
-            "email": "spiro.milosevic@riteh.hr",
-            "room": "2-115",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
             "name": "Andrej Miljuš",
-            "phoneNumber": "+385 51 651542",
+            "phoneNumber": "+385 51 651 542",
             "internalPhoneNumber": "2542",
-            "email": "amiljus@riteh.hr",
+            "email": "andrej.miljus@riteh.uniri.hr",
             "room": "1-135",
-            "entity": "TS"
+            "entity": ""
         },
         {
-            "name": "Ana Mirković Pavlović, mag.oec.",
-            "phoneNumber": "+385 51 651423",
+            "name": "Ana Mirković Pavlović mag.oec.",
+            "phoneNumber": "+385 51 651 423",
             "internalPhoneNumber": "2423",
-            "email": "ana@riteh.hr",
+            "email": "ana.mirkovicpavlovic@riteh.uniri.hr",
             "room": "0-62",
-            "entity": "FS"
+            "entity": ""
         },
         {
-            "name": "Tina Mlinarić",
-            "phoneNumber": "",
-            "internalPhoneNumber": "",
-            "email": "tmlinaric@riteh.hr",
-            "room": "None",
-            "entity": "Studentski zbor"
-        },
-        {
-            "name": "dipl. oec. Robert Mohorić",
-            "phoneNumber": "+385 51 651417",
+            "name": "Robert Mohorić dipl. oec.",
+            "phoneNumber": "+385 51 651 417",
             "internalPhoneNumber": "2417",
-            "email": "robert.mohoric@riteh.hr",
+            "email": "robert.mohoric@riteh.uniri.hr",
             "room": "0-62",
-            "entity": "SKN"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Tomislav Mrakovčić",
-            "phoneNumber": "+385 51 651520",
+            "phoneNumber": "+385 51 651 520",
             "internalPhoneNumber": "2520",
-            "email": "tomislav.mrakovcic@riteh.hr",
+            "email": "tomislav.mrakovcic@riteh.uniri.hr",
             "room": "3-48",
-            "entity": "ZTE"
+            "entity": ""
+        },
+        {
+            "name": "Zvonimir Mrle univ. mag. ing. mech.",
+            "phoneNumber": "+385 51 651 487",
+            "internalPhoneNumber": "2487",
+            "email": "zmrle@riteh.uniri.hr",
+            "room": "2-39",
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Vedran Mrzljak",
-            "phoneNumber": "+385 51 651551",
+            "phoneNumber": "+385 51 651 551",
             "internalPhoneNumber": "2551",
-            "email": "vedran.mrzljak@riteh.hr",
+            "email": "vedran.mrzljak@riteh.uniri.hr",
             "room": "2-116",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
-            "name": "Adriana Muždeka Prodanović, univ. spec. oecc.",
-            "phoneNumber": "+385 51 651588",
-            "internalPhoneNumber": "2588",
-            "email": "adriana.muzdeka@riteh.hr",
-            "room": "0-70",
-            "entity": "SSE"
+            "name": "Adriana Muždeka Prodanović univ. spec. oecc.",
+            "phoneNumber": "+385 51 651 410",
+            "internalPhoneNumber": "2410",
+            "email": "adriana.muzdeka@riteh.uniri.hr",
+            "room": "0-69",
+            "entity": ""
         },
         {
             "name": "asist. Mateja Napravnik",
-            "phoneNumber": "+385 51 505728",
+            "phoneNumber": "+385 51 505 728",
             "internalPhoneNumber": "5728",
-            "email": "mnapravnik@riteh.hr",
+            "email": "mateja.napravnik@riteh.uniri.hr",
             "room": "1-58",
-            "entity": "ZR"
-        },
-        {
-            "name": "Julijana Nenadović",
-            "phoneNumber": "+385 51 651444",
-            "internalPhoneNumber": "2444",
-            "email": "jnenadovic@riteh.hr",
-            "room": "None",
-            "entity": "SOKP"
+            "entity": ""
         },
         {
             "name": "asist. Marko Njirjak",
-            "phoneNumber": "+385 51 505707",
+            "phoneNumber": "+385 51 505 707",
             "internalPhoneNumber": "5707",
-            "email": "mnjirjak@riteh.hr",
+            "email": "marko.njirjak@riteh.uniri.hr",
             "room": "1-40",
-            "entity": "ZR"
+            "entity": ""
         },
         {
-            "name": "Sanja Orešković, dipl. knjižničar",
-            "phoneNumber": "+385 51 651422",
+            "name": "Sanja Orešković dipl. knjižničar",
+            "phoneNumber": "+385 51 651 422",
             "internalPhoneNumber": "2422",
-            "email": "soreskovic@riteh.hr",
+            "email": "sanja.oreskovic@riteh.uniri.hr",
             "room": "0-25",
-            "entity": "KNJ"
+            "entity": ""
         },
         {
-            "name": "dipl. oec. Mladen Ostrogović",
-            "phoneNumber": "+385 51 651450",
+            "name": "Mladen Ostrogović dipl. oec.",
+            "phoneNumber": "+385 51 651 450",
             "internalPhoneNumber": "2450",
-            "email": "mladen.ostrogovic@riteh.hr",
+            "email": "mladen.ostrogovic@riteh.uniri.hr",
             "room": "0-63",
-            "entity": "SKN"
+            "entity": ""
         },
         {
-            "name": "asist. Erik Otović",
-            "phoneNumber": "+385 51 505707",
+            "name": "v. asist. dr. sc. Erik Otović",
+            "phoneNumber": "+385 51 505 707",
             "internalPhoneNumber": "5707",
-            "email": "eotovic@riteh.hr",
+            "email": "erik.otovic@riteh.uniri.hr",
             "room": "1-40",
-            "entity": "ZR"
+            "entity": ""
         },
         {
-            "name": "Katarina Pavičić-Ivelja, mag.educ.philol.angl.et phil.",
-            "phoneNumber": "+385 51 651470",
-            "internalPhoneNumber": "2470",
-            "email": "kpavicici@riteh.hr",
-            "room": "0-16",
-            "entity": "DEK"
+            "name": "Martina Pavelić mag.oec.",
+            "phoneNumber": "+385 51 651 465",
+            "internalPhoneNumber": "2465",
+            "email": "martina.pavelic@riteh.uniri.hr",
+            "room": "03 – 07",
+            "entity": ""
+        },
+        {
+            "name": "Katarina Pavičić-Ivelja mag.educ.philol.angl.et phil.",
+            "phoneNumber": "+385 51 651 588",
+            "internalPhoneNumber": "2588",
+            "email": "katarina.pavicic.ivelja@riteh.uniri.hr",
+            "room": "0-70",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Duško Pavletić",
-            "phoneNumber": "+385 51 651463",
+            "phoneNumber": "+385 51 651 463",
             "internalPhoneNumber": "2463",
-            "email": "dusko.pavletic@riteh.hr",
+            "email": "dusko.pavletic@riteh.uniri.hr",
             "room": "3-27",
-            "entity": "ZIIM"
+            "entity": ""
         },
         {
-            "name": "v. asist. dr. sc. Marko Perčić",
-            "phoneNumber": "+385 51 651539",
+            "name": "Luka Peraić mag. ing. mech.",
+            "phoneNumber": "+385 51 505 724",
+            "internalPhoneNumber": "5724",
+            "email": "luka.peraic@riteh.uniri.hr",
+            "room": "2-39",
+            "entity": ""
+        },
+        {
+            "name": "doc. dr. sc. Marko Perčić",
+            "phoneNumber": "+385 51 651 539",
             "internalPhoneNumber": "2539",
-            "email": "marko.percic@riteh.hr",
+            "email": "marko.percic@riteh.uniri.hr",
             "room": "2-119",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Mladen Perinić",
-            "phoneNumber": "+385 51 651488",
+            "phoneNumber": "+385 51 651 488",
             "internalPhoneNumber": "2488",
-            "email": "mladen.perinic@riteh.hr",
+            "email": "mladen.perinic@riteh.uniri.hr",
             "room": "3-28",
-            "entity": "ZIIM"
+            "entity": ""
+        },
+        {
+            "name": "izv. prof. dr. sc. Igor Pešić",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "igor.pesic@uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
             "name": "Ivana Petrović",
-            "phoneNumber": "+385 51 651400",
+            "phoneNumber": "+385 51 651 400",
             "internalPhoneNumber": "2400",
-            "email": "ipetrovi1@riteh.hr",
-            "room": "0-04",
-            "entity": "SOKP"
+            "email": "ivana.petrovic@riteh.uniri.hr",
+            "room": "0-71",
+            "entity": ""
         },
         {
-            "name": "dr. sc. Domagoj Pinčić, str. surad.",
-            "phoneNumber": "+385 51 505718",
-            "internalPhoneNumber": "5718",
-            "email": "dpincic@riteh.hr",
-            "room": "1-48a",
-            "entity": "ZR"
+            "name": "Bruna Pezzino dipl. oec.",
+            "phoneNumber": "+385 51 651 407",
+            "internalPhoneNumber": "2407",
+            "email": "bruna.martinovic@riteh.uniri.hr",
+            "room": "0-60",
+            "entity": ""
         },
         {
-            "name": "Frane Polegubić, mag. ing. sec.",
-            "phoneNumber": "+385 51 651540",
+            "name": "Frane Polegubić mag. ing. sec.",
+            "phoneNumber": "+385 51 651 540",
             "internalPhoneNumber": "2540",
-            "email": "fpolegubic@riteh.hr",
+            "email": "frane.polegubic@riteh.uniri.hr",
             "room": "0-17",
-            "entity": "TS"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Rene Prenc",
-            "phoneNumber": "+385 51 651595",
+            "phoneNumber": "+385 51 651 595",
             "internalPhoneNumber": "2595",
-            "email": "rprenc@riteh.hr",
+            "email": "rene.prenc@riteh.uniri.hr",
             "room": "1.15 b",
-            "entity": "ZEE"
+            "entity": ""
+        },
+        {
+            "name": "Sanja Prpić dipl. oec.",
+            "phoneNumber": "+385 51 651 403",
+            "internalPhoneNumber": "2403",
+            "email": "sanja.prpic@riteh.uniri.hr",
+            "room": "0-07",
+            "entity": ""
         },
         {
             "name": "Božica Prpić",
-            "phoneNumber": "+385 51 651444",
+            "phoneNumber": "+385 51 651 444",
             "internalPhoneNumber": "2444",
-            "email": "bprpic@riteh.hr",
-            "room": "None",
-            "entity": "SOKP"
-        },
-        {
-            "name": "dipl. oec. Sanja Prpić",
-            "phoneNumber": "+385 51 651403",
-            "internalPhoneNumber": "2403",
-            "email": "sanja.prpic@riteh.hr",
-            "room": "0-07",
-            "entity": "DEK"
+            "email": "bozica.prpic@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Jasna Prpić-Oršić",
-            "phoneNumber": "+385 51 651452",
+            "phoneNumber": "+385 51 651 452",
             "internalPhoneNumber": "2452",
-            "email": "jasna.prpic-orsic@riteh.hr",
+            "email": "jasna.prpic.orsic@riteh.uniri.hr",
             "room": "2-10",
-            "entity": "ZBIMT"
+            "entity": ""
         },
         {
-            "name": "Miljenko Pujić",
-            "phoneNumber": "+385 51 651444",
-            "internalPhoneNumber": "2444",
-            "email": "mpujic@riteh.hr",
-            "room": "0-03",
-            "entity": "TS"
+            "name": "izv. prof. dr. sc. Damir Purković",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "damir.purkovic@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
             "name": "asist. Andro Rak",
-            "phoneNumber": "+385 51 651442",
+            "phoneNumber": "+385 51 651 442",
             "internalPhoneNumber": "2442",
-            "email": "arak@riteh.hr",
+            "email": "andro.rak@riteh.uniri.hr",
             "room": "2-34",
-            "entity": "ZMFRI"
+            "entity": ""
         },
         {
-            "name": "asist. dr. sc. Michele Rojnić",
-            "phoneNumber": "+385 51 651443",
-            "internalPhoneNumber": "2443",
-            "email": "mrojnic@riteh.hr",
-            "room": "1-20",
-            "entity": "ZEE"
+            "name": "Štefan Rancinger",
+            "phoneNumber": "+385 51 651 444",
+            "internalPhoneNumber": "2444",
+            "email": "stefan.rancinger@riteh.uniri.hr",
+            "room": "0-03",
+            "entity": ""
+        },
+        {
+            "name": "izv. prof. dr. sc. Lidija Runko Luttenberger",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "lidija.luttenberger@uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
             "name": "asist. Alen Salkanović",
-            "phoneNumber": "+385 51 505719",
+            "phoneNumber": "+385 51 505 719",
             "internalPhoneNumber": "5719",
-            "email": "asalkanovic@riteh.hr",
+            "email": "alen.salkanovic@riteh.uniri.hr",
             "room": "1-65",
-            "entity": "ZR"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Tomislav Senčić",
-            "phoneNumber": "+385 51 651515",
+            "phoneNumber": "+385 51 651 515",
             "internalPhoneNumber": "2515",
-            "email": "tomislav.sencic@riteh.hr",
+            "email": "tomislav.sencic@riteh.uniri.hr",
             "room": "2-116",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Loredana Simčić",
-            "phoneNumber": "+385 51 651486",
+            "phoneNumber": "+385 51 651 486",
             "internalPhoneNumber": "2486",
-            "email": "loredana.simcic@riteh.hr",
+            "email": "loredana.simcic@riteh.uniri.hr",
             "room": "3-32",
-            "entity": "ZMFSJ"
-        },
-        {
-            "name": "izv. prof. dr. sc. Ante Skoblar",
-            "phoneNumber": "+385 51 651498",
-            "internalPhoneNumber": "2498",
-            "email": "ante.skoblar@riteh.hr",
-            "room": "2-140",
-            "entity": "ZTM"
-        },
-        {
-            "name": "asist. Arian Skoki",
-            "phoneNumber": "+385 51 505707",
-            "internalPhoneNumber": "5707",
-            "email": "askoki@riteh.hr",
-            "room": "1-40",
-            "entity": "ZR"
-        },
-        {
-            "name": "prof. dr. sc. Saša Sladić",
-            "phoneNumber": "+385 51 651582(Laboratorij)+385 51 651446(Ured)",
-            "internalPhoneNumber": "2582          2446",
-            "email": "sasa.sladic@riteh.hr",
-            "room": "1-17",
-            "entity": "ZEE"
-        },
-        {
-            "name": "izv. prof. dr. sc. Sunčana Smokvina Hanza",
-            "phoneNumber": "+385 51 651475",
-            "internalPhoneNumber": "2475",
-            "email": "suncana@riteh.hr",
-            "room": "2-170",
-            "entity": "ZM"
-        },
-        {
-            "name": "Erik Smoljan",
-            "phoneNumber": "",
-            "internalPhoneNumber": "",
-            "email": "esmoljan@riteh.hr",
-            "room": "None",
-            "entity": "Studentski zbor"
-        },
-        {
-            "name": "doc. dr. sc. Jelena Srnec Novak",
-            "phoneNumber": "+385 51 554521",
-            "internalPhoneNumber": "5521",
-            "email": "jsrnecnovak@riteh.hr",
-            "room": "1-127",
-            "entity": "ZKS"
-        },
-        {
-            "name": "prof. dr. sc. Nino Stojković",
-            "phoneNumber": "+385 51 651445",
-            "internalPhoneNumber": "2445",
-            "email": "nino.stojkovic@riteh.hr",
-            "room": "1-23",
-            "entity": "ZEE"
-        },
-        {
-            "name": "prof. dr. sc. Viktor Sučić",
-            "phoneNumber": "+385 51 651558",
-            "internalPhoneNumber": "2558",
-            "email": "vsucic@riteh.hr",
-            "room": "1-15a",
-            "entity": "ZAE"
-        },
-        {
-            "name": "asist. Ivan Sulovsky",
-            "phoneNumber": "+385 51 651453",
-            "internalPhoneNumber": "2453",
-            "email": "isulovsky@riteh.hr",
-            "room": "2-11",
-            "entity": "Laboratorij za brodsku hidromehaniku"
-        },
-        {
-            "name": "v. asist. dr. sc. Diego Sušanj",
-            "phoneNumber": "+385 51 505718",
-            "internalPhoneNumber": "5718",
-            "email": "dsusanj@riteh.hr",
-            "room": "1-48a",
-            "entity": "Sveučilišni prijediplomski studij računarstva"
-        },
-        {
-            "name": "Boris Šegota",
-            "phoneNumber": "+385 51 651444",
-            "internalPhoneNumber": "2444",
-            "email": "boris.segota@riteh.hr",
-            "room": "0-03",
-            "entity": "TS"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Jerko Škifić",
-            "phoneNumber": "+385 51 651497",
+            "phoneNumber": "+385 51 651 497",
             "internalPhoneNumber": "2497",
-            "email": "jerko.skific@riteh.hr",
+            "email": "jerko.skific@riteh.uniri.hr",
             "room": "2-32",
-            "entity": "Katedra za računarsko inženjerstvo"
+            "entity": ""
         },
         {
-            "name": "mr. sc. Mario Šlosar-Brnelić, dipl. knjižničar",
-            "phoneNumber": "+385 51 651409",
+            "name": "izv. prof. dr. sc. Ante Skoblar",
+            "phoneNumber": "+385 51 651 498",
+            "internalPhoneNumber": "2498",
+            "email": "ante.skoblar@riteh.uniri.hr",
+            "room": "2-140",
+            "entity": ""
+        },
+        {
+            "name": "asist. Luka Škrlj",
+            "phoneNumber": "+385 51 651 556",
+            "internalPhoneNumber": "2556",
+            "email": "luka.skrlj@riteh.uniri.hr",
+            "room": "1-53",
+            "entity": ""
+        },
+        {
+            "name": "mr. sc. Mario Šlosar-Brnelić dipl. knjižničar",
+            "phoneNumber": "+385 51 651 409",
             "internalPhoneNumber": "2409",
-            "email": "mario.slosar@riteh.hr",
+            "email": "mario.slosar.brnelic@riteh.uniri.hr",
             "room": "0-25",
-            "entity": "KNJ"
+            "entity": ""
+        },
+        {
+            "name": "izv. prof. dr. sc. Sunčana Smokvina Hanza",
+            "phoneNumber": "+385 51 651 475",
+            "internalPhoneNumber": "2475",
+            "email": "suncana.smokvinahanza@riteh.uniri.hr",
+            "room": "2-170",
+            "entity": ""
+        },
+        {
+            "name": "izv. prof. dr. sc. Mateja Šnajdar",
+            "phoneNumber": "",
+            "internalPhoneNumber": "",
+            "email": "mateja.snajdar@uniri.hr",
+            "room": "",
+            "entity": ""
+        },
+        {
+            "name": "izv. prof. dr. sc. Jelena Srnec Novak",
+            "phoneNumber": "+385 51 554 521",
+            "internalPhoneNumber": "5521",
+            "email": "jsrnecnovak@riteh.uniri.hr",
+            "room": "1-127",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Ivan Štajduhar",
-            "phoneNumber": "+385 51 651448",
+            "phoneNumber": "+385 51 651 448",
             "internalPhoneNumber": "2448",
-            "email": "ivan.stajduhar@riteh.hr",
+            "email": "ivan.stajduhar@riteh.uniri.hr",
             "room": "1-49b",
-            "entity": "ZR"
+            "entity": ""
         },
         {
-            "name": "mr. sc. Melita Štefan Trubić, v. pred.",
-            "phoneNumber": "+385 51 651480",
+            "name": "mr. sc. Melita Štefan Trubić v. pred.",
+            "phoneNumber": "+385 51 651 480",
             "internalPhoneNumber": "2480",
-            "email": "mstefan@riteh.hr",
+            "email": "melita.stefan.trubic@riteh.uniri.hr",
             "room": "3-33",
-            "entity": "ZMFSJ"
+            "entity": ""
         },
         {
             "name": "doc. dr. sc. Graciela Šterpin Valić",
-            "phoneNumber": "+385 51 651519",
+            "phoneNumber": "+385 51 651 519",
             "internalPhoneNumber": "2519",
-            "email": "graciela.sterpin@riteh.hr",
+            "email": "graciela.sterpin@riteh.uniri.hr",
             "room": "3-26",
-            "entity": "ZIIM"
+            "entity": ""
         },
         {
-            "name": "Daniel Štifanić, str. surad.",
-            "phoneNumber": "+385 51 501680",
+            "name": "Jelena Štifanić str. surad.",
+            "phoneNumber": "+385 51 501 680",
             "internalPhoneNumber": "2680",
-            "email": "dstifanic@riteh.hr",
+            "email": "jelena.stifanic@riteh.uniri.hr",
             "room": "2-53",
-            "entity": "ZAE"
+            "entity": ""
         },
         {
-            "name": "Jelena Štifanić, str. surad.",
-            "phoneNumber": "+385 51 501680",
+            "name": "Daniel Štifanić str. surad.",
+            "phoneNumber": "+385 51 501 680",
             "internalPhoneNumber": "2680",
-            "email": "jmusulin@riteh.hr",
+            "email": "daniel.stifanic@riteh.uniri.hr",
             "room": "2-53",
-            "entity": "ZAE"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Goranka Štimac Rončević",
-            "phoneNumber": "+385 51 651477",
+            "phoneNumber": "+385 51 651 477",
             "internalPhoneNumber": "2477",
-            "email": "gstimac@riteh.hr",
+            "email": "goranka.stimac@riteh.uniri.hr",
             "room": "2-140",
-            "entity": "Laboratorij za dinamiku strojeva"
+            "entity": ""
         },
         {
-            "name": "Ana Šutalo, struč.spec.eoc.",
-            "phoneNumber": "+385 51 651424",
+            "name": "prof. dr. sc. Nino Stojković",
+            "phoneNumber": "+385 51 651 445",
+            "internalPhoneNumber": "2445",
+            "email": "nino.stojkovic@riteh.uniri.hr",
+            "room": "1-23",
+            "entity": ""
+        },
+        {
+            "name": "prof. dr. sc. Viktor Sučić",
+            "phoneNumber": "+385 51 651 558",
+            "internalPhoneNumber": "2558",
+            "email": "viktor.sucic@riteh.uniri.hr",
+            "room": "1-15a",
+            "entity": ""
+        },
+        {
+            "name": "asist. Ivan Sulovsky",
+            "phoneNumber": "+385 51 651 453",
+            "internalPhoneNumber": "2453",
+            "email": "ivan.sulovsky@riteh.uniri.hr",
+            "room": "2-11",
+            "entity": ""
+        },
+        {
+            "name": "Ana Šutalo mag.oec.",
+            "phoneNumber": "+385 51 651 424",
             "internalPhoneNumber": "2424",
-            "email": "ana.sutalo@riteh.hr",
+            "email": "asutalo@riteh.uniri.hr",
             "room": "0-60",
-            "entity": "FS"
+            "entity": ""
         },
         {
-            "name": "asist. Zoran Šverko",
-            "phoneNumber": "+385 51 505720",
+            "name": "v. asist. dr. sc. Zoran Šverko",
+            "phoneNumber": "+385 51 505 720",
             "internalPhoneNumber": "5720",
-            "email": "zsverko@riteh.hr",
-            "room": "L13/250",
-            "entity": "ZAE"
+            "email": "zoran.sverko@riteh.uniri.hr",
+            "room": "1-20",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Mladen Tomić",
-            "phoneNumber": "+385 51 505712",
+            "phoneNumber": "+385 51 505 712",
             "internalPhoneNumber": "5712",
-            "email": "mladen.tomic@riteh.hr",
+            "email": "mladen.tomic@riteh.uniri.hr",
             "room": "1-47b",
-            "entity": "ZR"
-        },
-        {
-            "name": "v. asist. dr. sc. Fran Torbarina",
-            "phoneNumber": "+385 51 651506",
-            "internalPhoneNumber": "2506",
-            "email": "ftorbarina@riteh.hr",
-            "room": "2-101",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Sanjin Troha",
-            "phoneNumber": "+385 51 651536",
+            "phoneNumber": "+385 51 651 536",
             "internalPhoneNumber": "2536",
-            "email": "sanjin.troha@riteh.hr",
+            "email": "sanjin.troha@riteh.uniri.hr",
             "room": "1-117a",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Anica Trp",
-            "phoneNumber": "+385 51 651514",
+            "phoneNumber": "+385 51 651 514",
             "internalPhoneNumber": "2514",
-            "email": "anica.trp@riteh.hr",
+            "email": "anica.trp@riteh.uniri.hr",
             "room": "2-110",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Anton Turk",
-            "phoneNumber": "+385 51 505709",
+            "phoneNumber": "+385 51 505 709",
             "internalPhoneNumber": "5709",
-            "email": "anton.turk@riteh.hr",
+            "email": "anton.turk@riteh.uniri.hr",
             "room": "2-08a",
-            "entity": "ZBIMT"
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Nikola Turk",
-            "phoneNumber": "+385 51 651559",
+            "phoneNumber": "+385 51 651 559",
             "internalPhoneNumber": "2559",
-            "email": "nturk@riteh.hr",
+            "email": "nikola.turk@riteh.uniri.hr",
             "room": "2-54",
-            "entity": "ZAE"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Goran Turkalj",
-            "phoneNumber": "+385 51 651499",
+            "phoneNumber": "+385 51 651 499",
             "internalPhoneNumber": "2499",
-            "email": "goran.turkalj@riteh.hr",
+            "email": "goran.turkalj@riteh.uniri.hr",
             "room": "2-141",
-            "entity": "ZTM"
+            "entity": ""
         },
         {
             "name": "asist. Matija Varga",
-            "phoneNumber": "+385 51 505702",
+            "phoneNumber": "+385 51 505 702",
             "internalPhoneNumber": "5702",
-            "email": "mvarga@riteh.hr",
+            "email": "matija.varga@riteh.uniri.hr",
             "room": "2-58",
-            "entity": "ZAE"
+            "entity": ""
         },
         {
-            "name": "mr. sc. Elisa Velčić Janjetić, v. pred.",
-            "phoneNumber": "+385 51 651485",
+            "name": "mr. sc. Elisa Velčić Janjetić v. pred.",
+            "phoneNumber": "+385 51 651 485",
             "internalPhoneNumber": "2485",
-            "email": "elisa.velcic@riteh.hr",
+            "email": "elisavj@riteh.uniri.hr",
             "room": "2-40",
-            "entity": "ZMFSJ"
+            "entity": ""
         },
         {
             "name": "Tanja Veljčić",
-            "phoneNumber": "+385 51 651593",
+            "phoneNumber": "+385 51 651 593",
             "internalPhoneNumber": "2593",
-            "email": "tanja.veljcic@riteh.hr",
+            "email": "tanja.veljcic@riteh.uniri.hr",
             "room": "0-70",
-            "entity": "SSE"
+            "entity": ""
         },
         {
             "name": "asist. Nardi Verbanac",
-            "phoneNumber": "+385 51 651591",
+            "phoneNumber": "+385 51 651 591",
             "internalPhoneNumber": "2591",
-            "email": "nverbanac@riteh.hr",
+            "email": "nardi.verbanac@riteh.uniri.hr",
             "room": "0-15",
-            "entity": "ZAE"
+            "entity": ""
         },
         {
-            "name": "Tomo Vergić, dipl. iur.",
-            "phoneNumber": "+385 51 651402",
+            "name": "Tomo Vergić dipl. iur.",
+            "phoneNumber": "+385 51 651 402",
             "internalPhoneNumber": "2402",
-            "email": "tomo.vergic@riteh.hr",
+            "email": "tomo.vergic@riteh.uniri.hr",
             "room": "0-09",
-            "entity": "DEK"
+            "entity": ""
+        },
+        {
+            "name": "asist. Dominik Vičević",
+            "phoneNumber": "+385 51 505 707",
+            "internalPhoneNumber": "5707",
+            "email": "dominik.vicevic@riteh.uniri.hr",
+            "room": "1-40",
+            "entity": ""
+        },
+        {
+            "name": "Marija Vidmar",
+            "phoneNumber": "+385 51 651 444",
+            "internalPhoneNumber": "2444",
+            "email": "marija.vidmar@riteh.uniri.hr",
+            "room": "",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Alfredo Višković",
-            "phoneNumber": "+385 51 651437",
+            "phoneNumber": "+385 51 651 437",
             "internalPhoneNumber": "2437",
-            "email": "alfredo.viskovic@riteh.hr",
+            "email": "alfredo.viskovic@riteh.uniri.hr",
             "room": "1-15 b",
-            "entity": "Katedra za kompleksne energijske sustave"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Saša Vlahinić",
-            "phoneNumber": "+385 51 651447",
+            "phoneNumber": "+385 51 651 447",
             "internalPhoneNumber": "2447",
-            "email": "sasa.vlahinic@riteh.hr",
+            "email": "sasa.vlahinic@riteh.uniri.hr",
             "room": "1-11",
-            "entity": "Katedra za mjerne sustave"
+            "entity": ""
         },
         {
             "name": "v. asist. dr. sc. Maja Vlatković",
-            "phoneNumber": "+385 51 651472",
+            "phoneNumber": "+385 51 651 472",
             "internalPhoneNumber": "2472",
-            "email": "mmarkovic2@riteh.hr",
+            "email": "maja.markovic@riteh.uniri.hr",
             "room": "3-26",
-            "entity": "Laboratorij za tehnička mjerenja"
+            "entity": ""
         },
         {
-            "name": "doc. dr. sc. Ivan Volarić",
-            "phoneNumber": "+385 51 505704",
+            "name": "izv. prof. dr. sc. Ivan Volarić",
+            "phoneNumber": "+385 51 505 704",
             "internalPhoneNumber": "5704",
-            "email": "ivolaric@riteh.hr",
+            "email": "ivan.volaric@riteh.uniri.hr",
             "room": "2-55",
-            "entity": "Laboratorij za statističku analizu i obradu signala"
+            "entity": ""
         },
         {
-            "name": "dipl. oec. Sara Volarić",
+            "name": "Sara Volarić Vučić dipl. oec.",
             "phoneNumber": "+385 51 651 431",
             "internalPhoneNumber": "2431",
-            "email": "svolaric@riteh.hr",
-            "room": "0-63",
-            "entity": "SKN"
+            "email": "svolaric@riteh.uniri.hr",
+            "room": "0-16",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Miroslav Vrankić",
-            "phoneNumber": "+385 51 651441",
+            "phoneNumber": "+385 51 651 441",
             "internalPhoneNumber": "2441",
-            "email": "miroslav.vrankic@riteh.hr",
+            "email": "miroslav.vrankic@riteh.uniri.hr",
             "room": "1-10",
-            "entity": "ZAE"
+            "entity": ""
         },
         {
-            "name": "asist. Ana Vranković Lacković",
-            "phoneNumber": "+385 51 505718",
+            "name": "v. asist. dr. sc. Ana Vranković Lacković",
+            "phoneNumber": "+385 51 505 718",
             "internalPhoneNumber": "5718",
-            "email": "avrankovic@riteh.hr",
+            "email": "ana.vrankovic@riteh.uniri.hr",
             "room": "1-48a",
-            "entity": "ZR"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Željko Vrcan",
-            "phoneNumber": "+385 51 651525",
+            "phoneNumber": "+385 51 651 525",
             "internalPhoneNumber": "2525",
-            "email": "zeljko.vrcan@riteh.hr",
+            "email": "zeljko.vrcan@riteh.uniri.hr",
             "room": "1-102",
-            "entity": "ZKS"
+            "entity": ""
         },
         {
             "name": "asist. Domagoj Vrtovšnik",
-            "phoneNumber": "+385 51 505722",
+            "phoneNumber": "+385 51 505 722",
             "internalPhoneNumber": "5722",
-            "email": "dvrtovsnik@riteh.hr",
+            "email": "domagoj.vrtovsnik@riteh.uniri.hr",
             "room": "2-13a",
-            "entity": "Laboratorij za gradnju i opremanje plovnih objekata"
+            "entity": ""
         },
         {
             "name": "Patricija Vukić",
-            "phoneNumber": "+385 51 651435",
+            "phoneNumber": "+385 51 651 435",
             "internalPhoneNumber": "2435",
-            "email": "pvukic@riteh.hr",
-            "room": "1-21",
-            "entity": "ZEE"
-        },
-        {
-            "name": "asist. Hana Vukotić",
-            "phoneNumber": "+385 51 410893",
-            "internalPhoneNumber": "5893",
-            "email": "hvukotic@riteh.hr",
-            "room": "3-04",
-            "entity": "ZIIM"
+            "email": "patricija.vukic@riteh.uniri.hr",
+            "room": "01-21",
+            "entity": ""
         },
         {
             "name": "Siniša Vukotić",
-            "phoneNumber": "+385 51 651427",
+            "phoneNumber": "+385 51 651 427",
             "internalPhoneNumber": "2427",
-            "email": "sinisa.vukotic@riteh.hr",
+            "email": "sinisa.vukotic@riteh.uniri.hr",
             "room": "1-48",
-            "entity": "RC"
+            "entity": ""
+        },
+        {
+            "name": "asist. Hana Vukotić",
+            "phoneNumber": "+385 51 410 893",
+            "internalPhoneNumber": "5893",
+            "email": "hana.vukotic@riteh.uniri.hr",
+            "room": "3-4",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Igor Wolf",
-            "phoneNumber": "+385 51 651510",
+            "phoneNumber": "+385 51 651 510",
             "internalPhoneNumber": "2510",
-            "email": "igor.wolf@riteh.hr",
+            "email": "igor.wolf@riteh.uniri.hr",
             "room": "2-108",
-            "entity": "ZTE"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Albert Zamarin",
-            "phoneNumber": "+385 51 651457",
+            "phoneNumber": "+385 51 651 457",
             "internalPhoneNumber": "2457",
-            "email": "albert.zamarin@riteh.hr",
+            "email": "albert.zamarin@riteh.uniri.hr",
             "room": "2-14",
-            "entity": "ZBIMT"
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Saša Zelenika",
-            "phoneNumber": "+385 51 651538",
+            "phoneNumber": "+385 51 651 538",
             "internalPhoneNumber": "2538",
-            "email": "sasa.zelenika@riteh.hr",
+            "email": "szelenika@uniri.hr",
             "room": "1-106",
-            "entity": "ZKS"
-        },
-        {
-            "name": "asist. Martin Zlatić",
-            "phoneNumber": "+385 51 651503",
-            "internalPhoneNumber": "2503",
-            "email": "mzlatic@riteh.hr",
-            "room": "2-139",
-            "entity": "ZTM"
+            "entity": ""
         },
         {
             "name": "izv. prof. dr. sc. Samir Žic",
-            "phoneNumber": "+385 51 651553",
+            "phoneNumber": "+385 51 651 553",
             "internalPhoneNumber": "2553",
-            "email": "samir.zic@riteh.hr",
-            "room": "3-02",
-            "entity": "CIM laboratorij"
+            "email": "samir.zic@riteh.uniri.hr",
+            "room": "03-02",
+            "entity": ""
         },
         {
             "name": "prof. dr. sc. Roberto Žigulić",
-            "phoneNumber": "+385 51 651492",
+            "phoneNumber": "+385 51 651 492",
             "internalPhoneNumber": "2492",
-            "email": "roberto.zigulic@riteh.hr",
+            "email": "roberto.zigulic@riteh.uniri.hr",
             "room": "2-177",
-            "entity": "ZTM"
+            "entity": ""
         },
         {
-            "name": "mr. sc. Marijana Živić Đurović, v. pred.",
-            "phoneNumber": "+385 51 651578",
+            "name": "mr. sc. Marijana Živić-Đurović v. pred.",
+            "phoneNumber": "+385 51 651 578",
             "internalPhoneNumber": "2578",
-            "email": "marijana.zivic@riteh.hr",
+            "email": "marijanazd@riteh.uniri.hr",
             "room": "1-29",
-            "entity": "ZEE"
+            "entity": ""
+        },
+        {
+            "name": "asist. Martin Zlatić",
+            "phoneNumber": "+385 51 651 503",
+            "internalPhoneNumber": "2503",
+            "email": "martin.zlatic@riteh.uniri.hr",
+            "room": "2-139",
+            "entity": ""
         },
         {
             "name": "asist. Lucija Žužić",
-            "phoneNumber": "",
-            "internalPhoneNumber": "",
-            "email": "lzuzic@riteh.hr",
+            "phoneNumber": "+385 51 651 556",
+            "internalPhoneNumber": "2556",
+            "email": "lucija.zuzic@riteh.uniri.hr",
             "room": "1-53",
-            "entity": "ZR"
+            "entity": ""
         }
     ],
     "submaps": [

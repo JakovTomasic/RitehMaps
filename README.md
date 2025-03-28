@@ -24,3 +24,11 @@ To start the web application `cd` into the client directory and run `yarn run de
 ## Adding dependencies
 
 In order to add new dependencies, `cd` into client directory and then run `yarn add [package-name]` command.
+
+## Deploy
+
+Steps for deploying the website:
+1. Build: run `npm run build` from the project's root directory
+2. Run with command `npm run start`
+3. Copy content of the latest json file from `/examples` and save (refresh to see if the data persisted)
+4. Change password from the default empty password

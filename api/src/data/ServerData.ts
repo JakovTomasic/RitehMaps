@@ -75,6 +75,13 @@ export const AllMapsDataSchema = z.object({
 export type AllMapsData = z.infer<typeof AllMapsDataSchema>;
 
 
+export const LongtermStorageSchema = z.object({
+    mapData: AllMapsDataSchema,
+    password: z.string(),
+});
+export type LongtermStorage = z.infer<typeof LongtermStorageSchema>;
+
+
 export const ServerChangeDataRequestSchema = z.object({
     password: z.string(),
     data: AllMapsDataSchema,

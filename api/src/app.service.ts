@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { ChangeDataRequest } from './data/Data';
+import { ChangeDataRequest, ChangePasswordRequest } from './data/Data';
 import { JsonStorageService } from './storage/json-storage.service';
-import { AllMapsData, AllMapsDataSchema } from './data/ServerData';
+import { AllMapsData, LongtermStorage, LongtermStorageSchema } from './data/ServerData';
 import { Logger } from '@nestjs/common';
 import { EMPTY_DATA } from './constants';
 
@@ -9,41 +9,48 @@ import { EMPTY_DATA } from './constants';
 export class AppService {
 
   private allData: AllMapsData = EMPTY_DATA;
+  private password: string = "";
 
   constructor(
-    // @InjectRepository(AllData)
-    // private storageRepository: Repository<AllData>,
     private readonly jsonStorageService: JsonStorageService
   ) {
     jsonStorageService.readData().then((result) => {
-      const data = AllMapsDataSchema.safeParse(result);
+      const data = LongtermStorageSchema.safeParse(result);
       if (data.success) {
-        const value: AllMapsData = data.data;
-        this.allData = value;
+        this.allData = data.data.mapData;
+        this.password = data.data.password;
+      } else {
+        Logger.error(`couldn't parse stored data`);
       }
-    }).catch(e => Logger.error(`jsonStorageService.readData() error: ${e.message}`))
+    }).catch(e => Logger.error(`jsonStorageService.readData() error: ${e.message}`));
   }
 
   async getAllData(): Promise<AllMapsData> {
     return this.allData;
   }
+  
+  async changePassord(update: ChangePasswordRequest): Promise<boolean> {
+    if (update.oldPassword === this.password) {
+      this.password = update.newPassword;
+      this.saveLongTerm();
+      return true;
+    } else {
+      Logger.log(`invalid old password: ${update.oldPassword}`)
+      return false;
+    }
+  }
 
   async save(data: ChangeDataRequest): Promise<boolean> {
-    // TODO: implement proper passwords
-    if (data.password === "") {
+    if (data.password === this.password) {
       this.allData = this.filterProfessorsWithRooms(data.data);
-      this.jsonStorageService.saveData(this.allData);
+      this.saveLongTerm();
       return true;
     } else {
       return false;
     }
   }
 
-  getHello(): string {
-    return 'Hello, World!';
-  }
-  
-  filterProfessorsWithRooms(data: AllMapsData): AllMapsData {
+  private filterProfessorsWithRooms(data: AllMapsData): AllMapsData {
     return {
       nodes: data.nodes,
       edges: data.edges,
@@ -51,5 +58,13 @@ export class AppService {
       submaps: data.submaps,
       professors: data.professors.filter(p => p.room.length > 0),
     };
+  }
+  
+  private saveLongTerm() {
+    const storageData: LongtermStorage = {
+      mapData: this.allData,
+      password: this.password,
+    };
+    this.jsonStorageService.saveData(storageData);
   }
 }

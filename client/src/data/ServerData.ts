@@ -81,3 +81,8 @@ export const ServerChangeDataRequestSchema = z.object({
 });
 export type ServerChangeDataRequest = z.infer<typeof ServerChangeDataRequestSchema>;
 
+export const ServerChangePasswordRequestSchema = z.object({
+    oldPassword: z.string(),
+    newPassword: z.string(),
+});
+export type ServerChangePasswordRequest = z.infer<typeof ServerChangePasswordRequestSchema>;

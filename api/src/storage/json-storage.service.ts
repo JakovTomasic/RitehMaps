@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Logger } from '@nestjs/common';
-import { EMPTY_DATA } from 'src/constants';
+import { EMPTY_LONG_TERM_STORAGE_DATA } from 'src/constants';
+import { LongtermStorage } from 'src/data/ServerData';
 
 @Injectable()
 export class JsonStorageService {
@@ -12,11 +13,11 @@ export class JsonStorageService {
     Logger.log(`Using storage file at path: ${this.filePath}`);
     if (!fs.existsSync(this.filePath)) {
       Logger.log("No storage file. New storage file created");
-      fs.writeFileSync(this.filePath, JSON.stringify(EMPTY_DATA, null, 2)); // Initialize empty array
+      fs.writeFileSync(this.filePath, JSON.stringify(EMPTY_LONG_TERM_STORAGE_DATA, null, 2)); // Initialize empty array
     }
   }
 
-  async saveData(newData: any): Promise<boolean> {
+  async saveData(newData: LongtermStorage): Promise<boolean> {
     try {
       await fs.promises.writeFile(this.filePath, JSON.stringify(newData, null, 2));
       return true;

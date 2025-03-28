@@ -53,6 +53,10 @@ export type ChangeDataRequest = {
     data: AllMapsData,
 };
 
+export type ChangePasswordRequest = {
+    oldPassword: string,
+    newPassword: string,
+};
 
 
 

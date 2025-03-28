@@ -218,7 +218,6 @@ export default function AdminFancyEdit(props: Props) {
             </button>
             { !state.expandNodes ? <></> :
                 <div>
-                    {/* TODO: change id should change all places that id is used??? */}
                     { state.temporaryMapData.nodes.map((node, index) => (
                         <div className="m-4 p-4 bg-slate-400" key={node.uuid}>
                             <div className="w-20 inline-block mb-1">id</div>
@@ -290,7 +289,6 @@ export default function AdminFancyEdit(props: Props) {
             </button>
             { !state.expandEdges ? <></> :
                 <div>
-                    {/* TODO: dropdowns for edges? */}
                     { state.temporaryMapData.edges.map((edge, index) => (
                         <div className="m-4 p-4 bg-slate-400" key={edge.uuid}>
                             <div className="w-20 inline-block mb-1">nodeId1</div>
@@ -322,7 +320,6 @@ export default function AdminFancyEdit(props: Props) {
             </button>
             { !state.expandHallways ? <></> :
                 <div>
-                    {/* TODO: change id should change all places that id is used??? */}
                     { state.temporaryMapData.hallways.map((hallway, index) => (
                         <div className="m-4 p-4 bg-slate-400" key={hallway.uuid}>
                             <div className="w-20 inline-block mb-1">id</div>

@@ -1,4 +1,4 @@
-import { findPathWithDijkstra } from "../src/logic/impl/pathfinding/findPathWithDijkstra";
+import { findPathWithDijkstra, findPathWithDijkstraDebug } from "../src/logic/impl/pathfinding/findPathWithDijkstra";
 import { EndNodesGraphMock } from "../src/logic/mock/EndNodesGraphMock";
 import { HallwaysGraphMock } from "../src/logic/mock/HallwaysGraphMock";
 import { MapNodeFilterById } from "../src/types/roomsearch/MapNodeFilterById";
@@ -59,7 +59,7 @@ describe('testing findPathWithDijkstra() with a 9-node graph', () => {
                         mockMapNode("2"), 
                         mockMapNode("8")];
   
-    var path = findPathWithDijkstra(startNodeId, mapNodeFilter, hallwaysGraph)
+    var path = findPathWithDijkstraDebug(startNodeId, mapNodeFilter, hallwaysGraph, 0);
     expect(path).toEqual(expectedPath);
   });
 
@@ -72,7 +72,7 @@ describe('testing findPathWithDijkstra() with a 9-node graph', () => {
                         mockMapNode("5"),
                         mockMapNode("4")];
   
-    var path = findPathWithDijkstra(startNodeId, mapNodeFilter, hallwaysGraph)
+    var path = findPathWithDijkstraDebug(startNodeId, mapNodeFilter, hallwaysGraph, 0);
     expect(path).toEqual(expectedPath);
   });
 
@@ -84,7 +84,7 @@ describe('testing findPathWithDijkstra() with a 9-node graph', () => {
                         mockMapNode("2"), 
                         mockMapNode("1")];
   
-    var path = findPathWithDijkstra(startNodeId, mapNodeFilter, hallwaysGraph)
+    var path = findPathWithDijkstraDebug(startNodeId, mapNodeFilter, hallwaysGraph, 0);
     expect(path).toEqual(expectedPath);
   });
 
@@ -93,7 +93,7 @@ describe('testing findPathWithDijkstra() with a 9-node graph', () => {
     var mapNodeFilter = new MapNodeFilterById("8");
     var expectedPath = [mockMapNode("8")];
   
-    var path = findPathWithDijkstra(startNodeId, mapNodeFilter, hallwaysGraph)
+    var path = findPathWithDijkstraDebug(startNodeId, mapNodeFilter, hallwaysGraph, 0);
     expect(path).toEqual(expectedPath);
   });
 
@@ -102,7 +102,7 @@ describe('testing findPathWithDijkstra() with a 9-node graph', () => {
     var mapNodeFilter = new MapNodeFilterById("9");
     var errorMessage = "Destination cannot be reached.";
 
-    expect(() => findPathWithDijkstra(startNodeId, mapNodeFilter, hallwaysGraph)).toThrowError(errorMessage);
+    expect(() => findPathWithDijkstraDebug(startNodeId, mapNodeFilter, hallwaysGraph, 0)).toThrowError(errorMessage);
   });
 
   test('should throw start location error', () => {
@@ -110,6 +110,6 @@ describe('testing findPathWithDijkstra() with a 9-node graph', () => {
     var mapNodeFilter = new MapNodeFilterById("10");
     var errorMessage = "Start location not valid: 10";
 
-    expect(() => findPathWithDijkstra(startNodeId, mapNodeFilter, hallwaysGraph)).toThrowError(errorMessage);
+    expect(() => findPathWithDijkstraDebug(startNodeId, mapNodeFilter, hallwaysGraph, 0)).toThrowError(errorMessage);
   });
 });

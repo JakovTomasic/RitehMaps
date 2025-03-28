@@ -23,7 +23,8 @@ export class GraphImpl implements Graph {
     }
 
     getNeighbours(nodeId: string): NeighbourConnection[] {
-        const node: GraphNode = this.graph.get(nodeId);
+        const node: GraphNode | undefined = this.graph.get(nodeId);
+        if (node === undefined) return [];
         return node.neighbours.map(neighbour => {
             const connection: NeighbourConnection = {
                 neighbour: neighbour,
@@ -40,7 +41,7 @@ export class GraphImpl implements Graph {
         if (node1.submapId !== node2.submapId) {
             return STAIRS_DISTANCE;
         } else {
-            const submap = this.submapProvider.getSubmapImage(node1.submapId);
+            const submap = this.submapProvider.getSubmap(node1.submapId);
             const submapHeightMeters = submap.height * BUILDING_WIDTH_METERS / submap.width;
             const metersCoordinate1: Dot = {
                 x: node1.xCoordinate * BUILDING_WIDTH_METERS,

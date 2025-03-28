@@ -1,20 +1,18 @@
-import assert from "assert";
-import { AllGraphData } from "../../../data/AllGraphData";
-import { Hallway } from "../../../data/Hallways";
-import { Node, NodeType } from "../../../data/Nodes";
 import { MapNode } from "../../../types/graph/MapNode";
 import { calculateLinesIntersection, calculateProjection } from "../../../utils/Geometry";
 import { Dot } from "../../../types/general/Dot";
 import { Line } from "../../../types/general/Line";
-import { Edge } from "../../../data/Edges";
 import { hallwayToLine, nodeToDot, sameCoordinates } from "./Utils";
+import { AllMapsData, Edge, Hallway, Node, NodeType } from "../../../data/ServerData";
 
 export type GraphNode = {
     node: MapNode;
     neighbours: MapNode[];
+    originalNodeOrHallwayId1: string;
+    originalNodeOrHallwayId2: string;
 }
 
-export function createGraph(graphData: AllGraphData): Map<string, GraphNode> {
+export function createGraph(graphData: AllMapsData): Map<string, GraphNode> {
     const graph = new Map<string, GraphNode>();
 
     addAllNodesWithoutConnections(graph, graphData.nodes);
@@ -36,7 +34,9 @@ function addAllNodesWithoutConnections(graph: Map<string, GraphNode>, nodes: Nod
                 yCoordinate: node.y,
                 nodeType: node.type,
             },
-            neighbours: []
+            neighbours: [],
+            originalNodeOrHallwayId1: node.nodeId,
+            originalNodeOrHallwayId2: node.nodeId,
         };
         graph.set(node.nodeId, graphNode);
     });
@@ -82,13 +82,19 @@ function createNodeProjectionsOntoHallways(
     return allHallwayProjections;
 }
 
-function joinTwoHallways(allHallwayProjections: Map<string, GraphNode[]>, hallway1: Hallway, hallway2: Hallway) {
+function joinTwoHallways(allHallwayProjections: Map<string, GraphNode[]>, hallwayParam1: Hallway | undefined, hallwayParam2: Hallway | undefined) {
+    if (hallwayParam1 === undefined) return;
+    const hallway1 = hallwayParam1!;
+    if (hallwayParam2 === undefined) return;
+    const hallway2 = hallwayParam2!;
 
-    assert(hallway1.submapId === hallway2.submapId);
+    if (hallway1.submapId !== hallway2.submapId) return;
 
     const line1 = hallwayToLine(hallway1);
     const line2 = hallwayToLine(hallway2);
     const intersection = calculateLinesIntersection(line1, line2);
+
+    if (intersection === null) return;
 
     const projectionId: string = `p:${hallway1.id}->${hallway2.id}`;
 
@@ -100,16 +106,19 @@ function joinTwoHallways(allHallwayProjections: Map<string, GraphNode[]>, hallwa
             yCoordinate: intersection.y,
             nodeType: NodeType.NAVIGATION_MIDNODE,
         },
-        neighbours: []
+        neighbours: [],
+        originalNodeOrHallwayId1: hallway1.id,
+        originalNodeOrHallwayId2: hallway2.id,
     };
 
     addHallwayProjection(allHallwayProjections, hallway1.id, graphNode);
     addHallwayProjection(allHallwayProjections, hallway2.id, graphNode);
 }
 
-function projectNodeOntoHallway(allHallwayProjections: Map<string, GraphNode[]>, hallway: Hallway, node: GraphNode) {
-    
-    assert(node.node.submapId === hallway.submapId);
+function projectNodeOntoHallway(allHallwayProjections: Map<string, GraphNode[]>, hallwayParam: Hallway | undefined, node: GraphNode) {
+    if (hallwayParam === undefined) return;
+    const hallway = hallwayParam!;
+    if (node.node.submapId !== hallway.submapId) return;
 
     const dot: Dot = nodeToDot(node.node);
     const line: Line = hallwayToLine(hallway);
@@ -126,7 +135,9 @@ function projectNodeOntoHallway(allHallwayProjections: Map<string, GraphNode[]>,
             yCoordinate: projection.y,
             nodeType: NodeType.NAVIGATION_MIDNODE,
         },
-        neighbours: [node.node]
+        neighbours: [node.node],
+        originalNodeOrHallwayId1: hallway.id,
+        originalNodeOrHallwayId2: node.node.id,
     };
 
     if (!sameCoordinates(node.node, graphNode.node)) {
@@ -141,7 +152,7 @@ function addHallwayProjection(hallwayProjections: Map<string, GraphNode[]>, hall
     if (!hallwayProjections.has(hallwayId)) {
         hallwayProjections.set(hallwayId, [graphNode]);
     } else {
-        hallwayProjections.get(hallwayId).push(graphNode);
+        hallwayProjections.get(hallwayId)?.push(graphNode);
     }
 }
 
@@ -160,8 +171,8 @@ function joinAllHallwayProjections(allHallwayProjections: Map<string, GraphNode[
                     graph.set(node2.node.id, node2);
                 }
 
-                graph.get(node1.node.id).neighbours.push(node2.node);
-                graph.get(node2.node.id).neighbours.push(node1.node);
+                graph.get(node1.node.id)?.neighbours.push(node2.node);
+                graph.get(node2.node.id)?.neighbours.push(node1.node);
             }
         }
     });

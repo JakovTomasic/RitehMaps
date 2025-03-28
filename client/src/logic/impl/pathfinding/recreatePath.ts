@@ -9,9 +9,9 @@ import { Graph } from "../../interfaces/Graph";
 export function recreatePath(destinationNodeId: string, parents: Map<string, string>, graph: Graph): MapNode[] {
 
     let path: MapNode[] = [];
-    let parentId: string;
-    let parentNode: MapNode;
-    let destinationNode: MapNode = graph.getNode(destinationNodeId);
+    let parentId: string | undefined;
+    let parentNode: MapNode | undefined;
+    let destinationNode = graph.getNode(destinationNodeId);
 
     if(destinationNode === undefined)
         throw new Error("Node with id = " + destinationNodeId + " does not exist in the provided graph.");
@@ -20,6 +20,8 @@ export function recreatePath(destinationNodeId: string, parents: Map<string, str
 
     while (parents.has(destinationNodeId)) {
         parentId = parents.get(destinationNodeId);
+        if(parentId === undefined)
+            throw new Error("Destination node with id = " + destinationNodeId + " doesn't have a parent.");
         parentNode = graph.getNode(parentId);
 
         if(parentNode === undefined)

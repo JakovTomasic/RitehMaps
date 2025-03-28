@@ -1,134 +1,126 @@
-import Button from "../components/Button";
-import Header from "../components/Header";
-import Map from "../components/Map";
-import MapCaption from "../components/MapCaption";
-import ZoomToggleButton from "../components/ZoomToggleButton";
 import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
-import { useRouter } from "next/router";
 import { NavigationDirections } from "../types/navigation/NavigationDirections";
-import { NavigationStep } from "../types/navigation/NavigationStep";
 import { useEffect, useState } from "react";
 import { MapNavigatorImpl } from "../logic/impl/pathfinding/MapNavigatorImpl";
 import { GraphImpl } from "../logic/impl/graph/GraphImpl";
 import { createGraph } from "../logic/impl/graph/GraphFactory";
-import { allGraphData } from "../data/AllGraphData";
-import { Submap } from "../types/Submap";
 import { MapCropperImpl } from "../logic/impl/MapCropperImpl";
-import { CentroidScale } from "../types/navigation/CentroidScale";
 import { createMapNodeFilter } from "../logic/impl/MapNodeFilterFactory";
-import { Dot } from "../types/general/Dot";
-import { Line } from "../types/general/Line";
-import { MapDot } from "../types/map_draw_elements/MapDot";
-import { MapPathLine } from "../types/map_draw_elements/MapPathLine";
-import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
+import { UiMapConverterImpl } from "../logic/impl/UiMapConverterImpl";
+import NavigationLayout from "../components/NavigationLayout";
+import { DestinationNode } from "../types/navigation/DestinationNode";
+import { useLocation } from "wouter";
+import { useSearchParams } from "../utils/React";
+import { AllMapsData } from "../data/ServerData";
 
+export const NAVIGATION_PATH = "/nav";
+const START_NODE_ID_PARAM_KEY = "startId";
+const DESTINATION_NODE_ID_PARAM_KEY = "endId";
+const DESTINATION_NAME_PARAM_KEY = "endName";
 
-export default function Navigation(){
+export function createNavigationUrl(startNodeId: string, destinationId: string, destinationName: string): string {
+    const object: any = {};
+    object[START_NODE_ID_PARAM_KEY] = startNodeId;
+    object[DESTINATION_NODE_ID_PARAM_KEY] = destinationId;
+    object[DESTINATION_NAME_PARAM_KEY] = destinationName;
+    const params = new URLSearchParams(object).toString()
+    return `${NAVIGATION_PATH}?${params}`;
+}
+
+type Props = {
+    allMapsData: AllMapsData,
+}
+
+export default function Navigation(props: Props){
     
-    const router = useRouter();
-    const [navDirections, setNavDirections] = useState<NavigationDirections>(undefined);
+    const [location, navigate] = useLocation();
+    const searchParams = useSearchParams();
+    const params = parseParams(searchParams);
+
+    const [navDirections, setNavDirections] = useState<NavigationDirections>(new NavigationDirections([]));
+    const [destinationNode, setDestinationNode] = useState<DestinationNode>({ name: "" });
+
+    const submapProvider = new SubmapProviderImpl(props.allMapsData.submaps);
+    const mapCropper = new MapCropperImpl();
+    const uiMapConverter = new UiMapConverterImpl(submapProvider, mapCropper);
 
     useEffect(() => {
-        if(router.isReady){
-            const data = router.query;
+        if (params != null) {
+            setDestinationNode({ name: params.destinationName });
 
-            const baseGraph = createGraph(allGraphData);
-            const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl());
-            const mapNav = new MapNavigatorImpl(graphImpl);
+            const baseGraph = createGraph(props.allMapsData);
+            const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl(props.allMapsData.submaps));
+            const mapNav = new MapNavigatorImpl(graphImpl, submapProvider);
         
-            const destinationNodeFilter = createMapNodeFilter(data.endNodeId as string);
+            const destinationNodeFilter = createMapNodeFilter(params.destinationId, props.allMapsData);
             if (destinationNodeFilter != null) {
                 const directions: NavigationDirections = mapNav.findShortestPath(
-                    data.startNodeId as string,
+                    params.startId as string,
                     destinationNodeFilter
                 )
                 setNavDirections(directions);
             } else {
-                throw new Error(`Destination node id not valid: ${data.endNodeId}`);
+                throw new Error(`Destination node id not valid: ${params.destinationId}`);
             }
+        } else {
+            throw new Error(`Navigation error - params aren't valid "${searchParams}"`);
         }
-    }, [router.isReady]);
-
-    const navSteps: NavigationStep[] = navDirections?.steps;
-
-    const submap = new SubmapProviderImpl();
+    }, []);
 
     const [currentStepIndex, updateCurrentStepIndex] = useState(0);
     
-    let currentStep: NavigationStep | undefined;
-    let mapElements: MapDrawElement[] = [];
-    let submapImage: Submap | undefined;
-    let centroidCrop: CentroidScale;
-    if (navSteps !== undefined && navSteps.length > 0) {
-        currentStep = navSteps[currentStepIndex];
-        let prevDot = {} as Dot;
-        currentStep.nodes.forEach((node, index) => {
-            const dot = {x: node.xCoordinate, y: node.yCoordinate} as Dot;
-            const mapDot = new MapDot(dot, "#41C7F7", 0.5, 1);
-            mapElements.push(mapDot);
-            if(index > 0){
-                const line = {dot1: prevDot, dot2: dot} as Line;
-                const mapLine = new MapPathLine(line, "#41C7F7", 0.1);
-                mapElements.push(mapLine);
-            }
-            prevDot = dot;         
-        })
-        submapImage = submap.getSubmapImage(currentStep.nodes[0].submapId);
-        const mapCropper = new MapCropperImpl()
-        centroidCrop = mapCropper.crop(currentStep, submapImage.width, submapImage.height)
-    } else {
-        currentStep = undefined;
-        mapElements = undefined;
-        submapImage = undefined;
-        centroidCrop = undefined;
-    }
+    const mapDrawProps = uiMapConverter.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
     
-    const [enableZoom, setZoom] = useState(false);
-
-    return(
+    
+    return (
         <>
-            <div className="absolute w-fill h-full mx-auto left-0 right-0 my-0 max-w-3xl">
-                <div className="h-1/8">
-                    <Header text='Navigation' backPath='/' />
-                </div>
-                {
-                currentStep !== undefined && submapImage !== undefined && centroidCrop !== undefined ?
-                <>
-                    <MapCaption imageCaption={submapImage.caption} />
-                    <div className="absolute right-0">
-                        <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
-                            onClick={() => {setZoom(!enableZoom)}} 
-                        />
-                    </div>
-                    <div className="w-full border h-2/3">
-                        <Map layoutImage={submapImage.path} width={submapImage.width} 
-                        height={submapImage.height} centroidCrop={centroidCrop} rotateAngle={0} 
-                        drawElements={mapElements} enableZoom={enableZoom}/>                    
-                    </div>
-                </>
-                    : <div>Loading...</div>
-                }
-                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
-                    <Button text='Back' 
-                        onClick={() => {
-                            if(currentStepIndex > 0) {
-                                updateCurrentStepIndex(currentStepIndex-1)
-                            }
-                        }}
-                    />
-                    <Button text='Update' onClick={() => {router.push('/')}}/>
-                    <Button text='Next' 
-                        onClick={() => {
-                            if(currentStepIndex < navSteps.length-1) {
-                                updateCurrentStepIndex(currentStepIndex+1)
-                            }
-                        }}
-                    />
-                </div>
-            </div>
-            
+        { mapDrawProps === null ?
+            <>Error</>
+            :
+            <NavigationLayout
+                mapDrawProps={mapDrawProps}
+                rotateAngle={0}
+                showDeviceOrientationWarning={false}
+                zoomButtonVisible={true}
+                zoomEnabledByDefault={false}
+                middleLineVisible={false}
+                isFirstStep={currentStepIndex == 0}
+                isLastStep={navDirections != undefined && currentStepIndex == navDirections.steps.length - 1}
+                destination={destinationNode}
+                onBackClick={() => {
+                    if(currentStepIndex > 0) {
+                        updateCurrentStepIndex(currentStepIndex-1)
+                    }
+                }}
+                onUpdateClick={() => {navigate('/')}}
+                onNextClick={() => {
+                    if(currentStepIndex < navDirections.steps.length-1) {
+                        updateCurrentStepIndex(currentStepIndex+1)
+                    }
+                }}
+            />
+        }
         </>
     );
 }
 
+type params = {
+    startId: string,
+    destinationId: string,
+    destinationName: string,
+}
 
+function parseParams(params: URLSearchParams): params | null {
+    const startId = params.get(START_NODE_ID_PARAM_KEY);
+    const destinationId = params.get(DESTINATION_NODE_ID_PARAM_KEY);
+    const destinationName = params.get(DESTINATION_NAME_PARAM_KEY);
+    if (startId != null && destinationId != null && destinationName != null) {
+        return {
+            startId: startId,
+            destinationId: destinationId,
+            destinationName: destinationName,
+        }
+    } else {
+        return null;
+    }
+}

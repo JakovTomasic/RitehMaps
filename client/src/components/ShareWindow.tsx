@@ -1,5 +1,3 @@
-import React from 'react';
-import { useRouter } from "next/router";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -11,7 +9,7 @@ import {
   WhatsappIcon,
   LinkedinShareButton,
   LinkedinIcon,
-} from 'next-share';
+} from 'react-share';
 import CopyToClipboardIcon from './CopyToClipboardIcon';
 
 export default function ShareWindow() {

@@ -1,49 +1,31 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import PinIcon from "./PinIcon";
 import DotsIcon from "./DotsIcon";
 import ChangeArrowsIcon from "./ChangeArrowsIcon";
 import Search from "./Search";
 import { RoomSearch } from "../logic/interfaces/RoomSearch";
 import GoShareButtons from "./GoShareButtons";
-import { useRouter } from "next/router";
 
 const DEFAULT_START_ID: string = "main_entrance";
 const DEFAULT_START_NAME: string = "entrance";
 
+
 type Prop = {
   roomSearcher: RoomSearch;
+  initialSearchInputs: SearchInputs;
 }
 
-type SearchInputs = {
+export type SearchInputs = {
   startNodeId: string,
   startText: string,
   destinationNodeId: string,
   destinationText: string,
 }
 
-function SearchForm({ roomSearcher }: Prop) {
-  const router = useRouter();
-  const [searchInputs, setSearchInputs] = useState<SearchInputs>({
-    startNodeId: undefined,
-    startText: "",
-    destinationNodeId: undefined,
-    destinationText: "",
-  });
+function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
+  const [searchInputs, setSearchInputs] = useState<SearchInputs>(initialSearchInputs);
   const [showShareDiv, setShowShareDiv] = useState(false);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
-
-  useEffect(() => {
-    if(router.isReady){
-      
-      const data = router.query;
-      setSearchInputs({
-        startNodeId: data.startNodeId as string,
-        destinationNodeId: data.endNodeId as string,
-        startText: data.startText as string,
-        destinationText: data.destinationText as string,
-      });
-    }
-  }, [router.isReady]);
 
   const handleShare = () => {
     setShowShareDiv(!showShareDiv);
@@ -155,6 +137,17 @@ function SearchForm({ roomSearcher }: Prop) {
 
           </div>
           
+          {/* <div className="flex relative py-3 items-center justify-center z-0">
+            <HCIGoButtons 
+                startNodeId={searchInputs.startNodeId} 
+                destinationNodeId={searchInputs.destinationNodeId}
+                startText={searchInputs.startText} 
+                destinationText={searchInputs.destinationText}
+                clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
+                defaultStartNodeId={DEFAULT_START_ID}
+            />
+          </div> */}
+
           <div className="flex relative py-3 items-center justify-center z-0">
             <GoShareButtons 
                 startNodeId={searchInputs.startNodeId} 
@@ -176,4 +169,3 @@ function SearchForm({ roomSearcher }: Prop) {
 }
 
 export default SearchForm;
-

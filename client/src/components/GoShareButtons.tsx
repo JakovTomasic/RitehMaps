@@ -1,14 +1,16 @@
 import React from "react";
-import Link from "next/link";
 import ShareIcon from "./ShareIcon";
 import ShareWindow from "./ShareWindow";
 import ExitXIcon from "./ExitXIcon";
+import { Link } from "wouter";
+import { createNavigationUrl } from "../pages/navigation";
+import { createHomeUrl } from "../pages";
 
 type GoButtonProps = {
-  startNodeId: String;
-  destinationNodeId: String;
-  startText: String;
-  destinationText: String;
+  startNodeId: string;
+  destinationNodeId: string;
+  startText: string;
+  destinationText: string;
   handleShare: () => void;
   showShareDiv: boolean;
   clickable: boolean;
@@ -17,18 +19,14 @@ type GoButtonProps = {
 
 const GoShareButtons: React.FC<GoButtonProps> = (props) => {
   if (props.clickable) {
+
+    const startNodeId = props.startNodeId != null ? props.startNodeId : props.defaultStartNodeId;
+    const startText = props.startText != null ? props.startText : undefined;
    
     return (
       <div className="flex w-full items-center justify-center">
         <Link
-          href={{
-            pathname: "/navigation",
-            query: {
-              startNodeId: (props.startNodeId as string) != null 
-                          ? (props.startNodeId as string) : props.defaultStartNodeId,
-              endNodeId: props.destinationNodeId as string,
-            },
-          }}
+          href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText)}
         >
           <button
             className="mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 
@@ -41,17 +39,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
         </Link>
 
         <Link
-          href={{
-            pathname: "/",
-            query: {
-              startNodeId: (props.startNodeId as string) != null 
-                          ? (props.startNodeId as string) : props.defaultStartNodeId,
-              endNodeId: props.destinationNodeId as string,
-              startText: (props.startText as string) != null 
-                          ? (props.startText as string) : "",
-              destinationText: props.destinationText as string,
-            },
-          }}
+          href={createHomeUrl(startNodeId, startText, props.destinationNodeId, props.destinationText)}
         >
           <button
             className="mx-auto py-2 px-2 rounded-md flex items-center justify-center ml-1 mr-0
@@ -79,7 +67,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
       <div className="flex w-full items-center justify-center"> 
         <button
           className="mx-auto py-2 px-2 rounded-md flex items-center justify-center mr-1 
-                       bg-gray-500 cursor-not-allowed
+                       bg-gray-500 cursor-not-allowed w-10
                         text-white text-sm font-bold"
           type="button"
         >
@@ -88,7 +76,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
 
         <button
           className="mx-auto py-2 px-2 rounded-md flex items-center justify-center ml-1
-                       bg-gray-500 cursor-not-allowed
+                       bg-gray-500 cursor-not-allowed w-10
                         text-white text-sm font-bold"
           type="button"
         >

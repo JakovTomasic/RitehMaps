@@ -24,7 +24,12 @@ export class SimpleMapNavigatorMockExample implements MapNavigator {
                 new NavigationNode(3, 76.10, 74.46),
                 new NavigationNode(3, 91.87, 72.7)
             ])
-            
-        ])
+        ]);
+    }
+    findShortestPathForCompassMode(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections {
+        return this.findShortestPath(startNodeId, endNodeFilter);
+    }
+    findShortestPathForFloorByFloor(startNodeId: string, endNodeFilter: MapNodeFilter): NavigationDirections{
+        return this.findShortestPath(startNodeId, endNodeFilter);
     }
 }

@@ -1,4 +1,4 @@
-import { NodeType } from "../data/Nodes";
+import { NodeType } from "../data/ServerData";
 import { MapNode } from "../types/graph/MapNode";
 
 export function mockMapNode(id: string): MapNode {

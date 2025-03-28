@@ -16,6 +16,19 @@ If you are having problems running the `yarn install` command on Windows due to 
 
 To start the web application `cd` into the client directory and run `yarn run dev` command. The website should be accessible from [http://localhost:3000/](http://localhost:3000/)
 
+### New instructions
+
+- run `npm run dev` and then for every change in client folder run `npm run build`
+- for developing client just go into client folder and run `npm run dev`
+
 ## Adding dependencies
 
 In order to add new dependencies, `cd` into client directory and then run `yarn add [package-name]` command.
+
+## Deploy
+
+Steps for deploying the website:
+1. Build: run `npm run build` from the project's root directory
+2. Run with command `npm run start`
+3. Copy content of the latest json file from `/examples` and save (refresh to see if the data persisted)
+4. Change password from the default empty password

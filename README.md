@@ -32,3 +32,38 @@ Steps for deploying the website:
 2. Run with command `npm run start`
 3. Copy content of the latest json file from `/examples` and save (refresh to see if the data persisted)
 4. Change password from the default empty password
+
+### Vercel
+
+Create two vercel projects. One for the api and one for the client. (I had some problems setting them up in the same repo.)
+- to avoid GitHub integration and force manual production updates create project by running `npx vercel --prod` saying "no" when asked to link to another project and enter the new project name.
+
+You can deploy both front-end and back-end to Vercel.
+
+1. isntall vercel CLI `npm i -g vercel` (if using Nix, enter shell `nix-shell -p nodePackages.vercel` or just run `npx vercel`)
+2. build the project by running `npm run build` from the directory you want to deploy
+3. in the dir you want to deploy run `npx vercel --prod` (non-prod urls won't be public so you can't curl or fetch from them - and also use the shorter domain, not the temporary ones)
+
+#### API
+
+From api root directory, run:
+```bash
+rm -rf dist/ # this may not be needed
+npm run build # this may not be needed
+npx vercel --prod
+```
+Then click on the inspect link and open the shorter linke there - real production link.
+
+
+#### Client
+
+Put API path to production api (vercel link)
+
+From api root directory, run:
+```bash
+rm -rf dist/ # this may not be needed
+npm run build # this may not be needed
+npx vercel --prod
+```
+Then click on the inspect link and open the shorter linke there - real production link.
+

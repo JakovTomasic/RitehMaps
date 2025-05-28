@@ -3,7 +3,7 @@ import { NeighbourConnection } from "../../../types/graph/NeighbourConnection";
 import { MapNodeFilter } from "../../../types/roomsearch/MapNodeFilter";
 import { Graph } from "../../interfaces/Graph";
 import { recreatePath } from "./recreatePath";
-import * as SortedSet from "sorted-set";
+import SortedSet from "sorted-set";
 
 
 const COST_OF_ADDING_NEW_NODE_TO_THE_PATH = 1;

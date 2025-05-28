@@ -26,4 +26,10 @@ export class AppController {
   async changePassword(@Req() req: Request, @Body() changePassword: ChangePasswordRequest): Promise<boolean> {
     return this.appService.changePassord(changePassword);
   }
+
+  @Get("hello")
+  hellp(): string {
+    return "hello";
+  }
+
 }

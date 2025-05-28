@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Logger } from '@nestjs/common';
-import { EMPTY_LONG_TERM_STORAGE_DATA } from 'src/constants';
-import { LongtermStorage } from 'src/data/ServerData';
+import { EMPTY_LONG_TERM_STORAGE_DATA } from '../constants';
+import { LongtermStorage } from '../data/ServerData';
 
 @Injectable()
 export class JsonStorageService {

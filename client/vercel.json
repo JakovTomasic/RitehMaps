@@ -1,0 +1,14 @@
+{
+    "version": 2,
+    "github": {
+      "enabled": false
+    },
+    "routes": [
+      { "src": "/assets/(.*)", "dest": "assets/$1" },
+      { "src": "/images/(.*)", "dest": "images/$1" },
+      { "src": "/submaps/(.*)", "dest": "submaps/$1" },
+      { "src": "/(.*).(js|css|ico|svg)", "dest": "$1.$2" },
+      { "src": "/(.*)", "dest": "index.html" }
+    ]
+  }
+

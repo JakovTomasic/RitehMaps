@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Button from "./Button";
-import Header from "./Header";
 import MyMap from "./Map";
 import MapCaption from "./MapCaption";
 import { MapDrawProps } from "../types/map_draw_elements/MapDrawProps";
@@ -33,10 +32,8 @@ export default function NavigationLayout(props: Prop) {
     return(
         !navigationFinished ?
         <>
-            <div className="absolute w-fill h-full mx-auto left-0 right-0 my-0 max-w-3xl">
-                <div className="h-1/8">
-                    <Header text='Navigation' backPath='/' />
-                </div>
+            <div className="absolute w-full h-full left-0 top-0 flex flex-col">
+
                 {
                 props.mapDrawProps != null ?
                 <>
@@ -53,7 +50,7 @@ export default function NavigationLayout(props: Prop) {
                             />
                         </div>
                      : <></> }
-                    <div className="w-full border h-2/3">
+                    <div className="w-full flex-1 overflow-hidden">
                         { props.middleLineVisible ?
                             <div className="absolute w-full h-full flex flex-col items-center">
                                 <img className="h-16" src="/images/arrow_up.png"></img>
@@ -80,9 +77,6 @@ export default function NavigationLayout(props: Prop) {
         :
         <>
             <div className="absolute w-fill h-full mx-auto left-0 right-0 my-0 max-w-3xl">
-                <div className="h-1/8">
-                    <Header text='Navigation' backPath='/' />
-                </div>
                 <div className="w-full h-2/3 flex flex-col items-center">
 
                     <div className="flex-[0.1]" />

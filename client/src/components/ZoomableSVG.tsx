@@ -62,6 +62,7 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
     }, [centroidCrop, enableZoom])
     
     return (
+        // <svg ref={svgRef} style={{ width: "100%", height: "100%", display: "block" }} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
         <svg height="100%" width="100%" ref={svgRef} viewBox={`0, 0, ${width}, ${height}`}>
             <g transform={`rotate(${rotateAngle}, ${width/2}, ${height/2})translate(${x}, ${y})scale(${scale})`}>
                 {children}

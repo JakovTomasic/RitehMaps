@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { AllMapsData } from "../../data/ServerData";
+import { AdminSaveButton } from "../../pages/admin";
 
 type Props = {
     temporaryMapData: AllMapsData,
+    specialSaveText: string,
     save: (json: string) => void,
 };
 
@@ -26,7 +28,7 @@ export default function AdminTextEdit(props: Props) {
                 rows={25}
                 onChange={(newText) => setState(s => ({ ...s, dataTextInput: newText.target.value }))}
                 value={state.dataTextInput} />
-            <button onClick={save}>Save</button>
+            <AdminSaveButton specialSaveText={props.specialSaveText} save={save} />
         </div>
     );
 }

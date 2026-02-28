@@ -292,23 +292,18 @@ export default function AdminPage(props: Props){
                     </div>
 
                     { state.textMode ?
-                        <>
-                            <AdminTextEdit temporaryMapData={removeUuids(state.mapDateState.temporaryMapData)} save={saveText} />
-                            <div className="text-xl font-bold">{state.saveResultMessage}</div>
-                        </>
+                        <AdminTextEdit specialSaveText={state.saveResultMessage} temporaryMapData={removeUuids(state.mapDateState.temporaryMapData)} save={saveText} />
                         :
-                        <>
-                            <AdminFancyEdit
-                                state={state.mapDateState}
-                                updateState={s => setState(oldS => ({ ...oldS, mapDateState: s }))}
-                                save={saveWithUuids}
-                                showSubmap={showSubmap}
-                                showNode={showNode}
-                                showEdge={showEdge}
-                                showHallway={showHallway}
-                            />
-                            <div className="text-xl font-bold">{state.saveResultMessage}</div>
-                        </>
+                        <AdminFancyEdit
+                            state={state.mapDateState}
+                            specialSaveText={state.saveResultMessage}
+                            updateState={s => setState(oldS => ({ ...oldS, mapDateState: s }))}
+                            save={saveWithUuids}
+                            showSubmap={showSubmap}
+                            showNode={showNode}
+                            showEdge={showEdge}
+                            showHallway={showHallway}
+                        />
                     }
 
                     { state.adminMapPopup === null ? <></> :
@@ -324,5 +319,15 @@ export default function AdminPage(props: Props){
                 </>
             }
         </div>
+    );
+}
+
+export function AdminSaveButton(props: {specialSaveText: string, save: () => void}) {
+    return(
+        <button
+            className={props.specialSaveText.length > 0 ? "text-xl font-bold" : ""}
+            onClick={props.specialSaveText.length > 0 ? () => { } : props.save}>
+            {props.specialSaveText.length > 0 ? props.specialSaveText : "Save"}
+        </button>
     );
 }

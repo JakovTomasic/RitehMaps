@@ -1,9 +1,11 @@
 import { AllMapsDataWithUuids } from "../../data/AdminObjects";
 import { Edge, Hallway, Node, NodeType, ProfessorData, SubMap } from "../../data/ServerData";
 import { v4 as uuidv4 } from "uuid";
+import { AdminSaveButton } from "../../pages/admin";
 
 type Props = {
     state: AdminFancyEditState,
+    specialSaveText: string,
     updateState: (s: AdminFancyEditState) => void,
     save: (newData: AllMapsDataWithUuids) => void,
     showSubmap: (submapId: number) => void,
@@ -221,7 +223,7 @@ export default function AdminFancyEdit(props: Props) {
                     { state.temporaryMapData.nodes.map((node, index) => (
                         <div className="m-4 p-4 bg-slate-400" key={node.uuid}>
                             <div className="w-20 inline-block mb-1">id</div>
-                            <input type="text" value={node.v.nodeId} onChange={ newValue =>
+                            <input className="w-96" type="text" value={node.v.nodeId} onChange={ newValue =>
                                 setState(updateNode(index, (oldNode) => ({
                                     ...oldNode,
                                     nodeId: newValue.target.value,
@@ -229,7 +231,7 @@ export default function AdminFancyEdit(props: Props) {
                             }/>
                             <br/>
                             <div className="w-20 inline-block mb-1">names</div>
-                            <input type="text" value={joinString(node.v.names)} onChange={ newValue =>
+                            <input className="w-96" type="text" value={joinString(node.v.names)} onChange={ newValue =>
                                 setState(updateNode(index, (oldNode) => ({
                                     ...oldNode,
                                     names: splitString(newValue.target.value),
@@ -237,7 +239,7 @@ export default function AdminFancyEdit(props: Props) {
                             }/>
                             <br/>
                             <div className="w-20 inline-block">submapId</div>
-                            <select value={node.v.submapId} onChange={ newValue =>
+                            <select className="w-96" value={node.v.submapId} onChange={ newValue =>
                                 setState(updateNode(index, (oldNode) => {
                                     const sid = parseInt(newValue.target.value);
                                     return {
@@ -251,7 +253,7 @@ export default function AdminFancyEdit(props: Props) {
                             </select>
                             <br/>
                             <div className="w-20 inline-block mb-1">x%</div>
-                            <input type="number" value={node.v.x} onChange={ newValue =>
+                            <input className="w-96" type="number" value={node.v.x} onChange={ newValue =>
                                 setState(updateNode(index, (oldNode) => ({
                                     ...oldNode,
                                     x: parseFloat(newValue.target.value),
@@ -259,7 +261,7 @@ export default function AdminFancyEdit(props: Props) {
                             }/>
                             <br/>
                             <div className="w-20 inline-block mb-1">y%</div>
-                            <input type="number" value={node.v.y} onChange={ newValue =>
+                            <input className="w-96" type="number" value={node.v.y} onChange={ newValue =>
                                 setState(updateNode(index, (oldNode) => ({
                                     ...oldNode,
                                     y: parseFloat(newValue.target.value),
@@ -292,7 +294,7 @@ export default function AdminFancyEdit(props: Props) {
                     { state.temporaryMapData.edges.map((edge, index) => (
                         <div className="m-4 p-4 bg-slate-400" key={edge.uuid}>
                             <div className="w-20 inline-block mb-1">nodeId1</div>
-                            <input type="text" value={edge.v.nodeId1} onChange={ newValue =>
+                            <input className="w-96" type="text" value={edge.v.nodeId1} onChange={ newValue =>
                                 setState(updateEdge(index, (oldEdge) => ({
                                     ...oldEdge,
                                     nodeId1: newValue.target.value,
@@ -300,7 +302,7 @@ export default function AdminFancyEdit(props: Props) {
                             }/>
                             <br/>
                             <div className="w-20 inline-block mb-1">nodeId2</div>
-                            <input type="text" value={edge.v.nodeId2} onChange={ newValue =>
+                            <input className="w-96" type="text" value={edge.v.nodeId2} onChange={ newValue =>
                                 setState(updateEdge(index, (oldEdge) => ({
                                     ...oldEdge,
                                     nodeId2: newValue.target.value,
@@ -323,7 +325,7 @@ export default function AdminFancyEdit(props: Props) {
                     { state.temporaryMapData.hallways.map((hallway, index) => (
                         <div className="m-4 p-4 bg-slate-400" key={hallway.uuid}>
                             <div className="w-20 inline-block mb-1">id</div>
-                            <input type="text" value={hallway.v.id} onChange={ newValue =>
+                            <input className="w-96" type="text" value={hallway.v.id} onChange={ newValue =>
                                 setState(updateHallways(index, (oldHallway) => ({
                                     ...oldHallway,
                                     id: newValue.target.value,
@@ -331,7 +333,7 @@ export default function AdminFancyEdit(props: Props) {
                             }/>
                             <br/>
                             <div className="w-20 inline-block">submapId</div>
-                            <select value={hallway.v.submapId} onChange={ newValue =>
+                            <select className="w-96" value={hallway.v.submapId} onChange={ newValue =>
                                 setState(updateHallways(index, (oldNode) => {
                                     const sid = parseInt(newValue.target.value);
                                     return {
@@ -398,54 +400,54 @@ export default function AdminFancyEdit(props: Props) {
                 <div>
                     { state.temporaryMapData.professors.map((professor, index) => (
                         <div className="m-4 p-4 bg-slate-400" key={professor.uuid}>
-                            <div className="w-20 inline-block mb-1">name</div>
-                            <input type="text" value={professor.v.name} onChange={ newValue =>
+                            <div className="w-32 inline-block mb-1">name</div>
+                            <input className="w-96" type="text" value={professor.v.name} onChange={ newValue =>
                                 setState(updateProfessor(index, (oldProfessor) => ({
                                     ...oldProfessor,
                                     name: newValue.target.value,
                                 })))
                             }/>
                             <br/>
-                            <div className="w-20 inline-block mb-1">phone number</div>
-                            <input type="text" value={professor.v.phoneNumber} onChange={ newValue =>
+                            <div className="w-32 inline-block mb-1">phone number</div>
+                            <input className="w-96" type="text" value={professor.v.phoneNumber} onChange={ newValue =>
                                 setState(updateProfessor(index, (oldProfessor) => ({
                                     ...oldProfessor,
                                     phoneNumber: newValue.target.value,
                                 })))
                             }/>
                             <br/>
-                            <div className="w-20 inline-block mb-1">internal phone number</div>
-                            <input type="text" value={professor.v.internalPhoneNumber} onChange={ newValue =>
+                            <div className="w-32 inline-block mb-1">internal phone number</div>
+                            <input className="w-96" type="text" value={professor.v.internalPhoneNumber} onChange={ newValue =>
                                 setState(updateProfessor(index, (oldProfessor) => ({
                                     ...oldProfessor,
                                     internalPhoneNumber: newValue.target.value,
                                 })))
                             }/>
                             <br/>
-                            <div className="w-20 inline-block mb-1">email</div>
-                            <input type="text" value={professor.v.email} onChange={ newValue =>
+                            <div className="w-32 inline-block mb-1">email</div>
+                            <input className="w-96" type="text" value={professor.v.email} onChange={ newValue =>
                                 setState(updateProfessor(index, (oldProfessor) => ({
                                     ...oldProfessor,
                                     email: newValue.target.value,
                                 })))
                             }/>
                             <br/>
-                            <div className="w-20 inline-block mb-1">room</div>
-                            <input type="text" value={professor.v.room} onChange={ newValue =>
+                            <div className="w-32 inline-block mb-1">room</div>
+                            <input className="w-96" type="text" value={professor.v.room} onChange={ newValue =>
                                 setState(updateProfessor(index, (oldProfessor) => ({
                                     ...oldProfessor,
                                     room: newValue.target.value,
                                 })))
                             }/>
                             <br/>
-                            <div className="w-20 inline-block mb-1">Dio faksa di radi</div>
-                            <input type="text" value={professor.v.entity} onChange={ newValue =>
+                            {/* <div className="w-32 inline-block mb-1">Dio faksa di radi</div>
+                            <input className="w-96" type="text" value={professor.v.entity} onChange={ newValue =>
                                 setState(updateProfessor(index, (oldProfessor) => ({
                                     ...oldProfessor,
                                     entity: newValue.target.value,
                                 })))
                             }/>
-                            <br/>
+                            <br/> */}
                         </div>
                     )) }
                 </div>
@@ -463,7 +465,7 @@ export default function AdminFancyEdit(props: Props) {
                             id = {submap.id}
                             <br/>
                             <div className="w-20 inline-block mb-1">ime karte</div>
-                            <input type="text" value={submap.caption} onChange={ newValue =>
+                            <input className="w-96" type="text" value={submap.caption} onChange={ newValue =>
                                 setState(updateSubmaps(index, (oldSubmap) => ({
                                     ...oldSubmap,
                                     caption: newValue.target.value,
@@ -476,8 +478,7 @@ export default function AdminFancyEdit(props: Props) {
                 </div>
             }
 
-
-            <button onClick={save}>Save</button>
+            <AdminSaveButton specialSaveText={props.specialSaveText} save={save} />
         </div>
     );
 }

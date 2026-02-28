@@ -15,7 +15,7 @@ type Props = {
 }
 
 type State = {
-    mapDateState: AdminFancyEditState,
+    mapDataState: AdminFancyEditState,
     saveResultMessage: string,
     textMode: boolean,
     password: string,
@@ -46,7 +46,7 @@ export default function AdminPage(props: Props){
     const localSubmaps = props.allMapData.submaps.length === 0 ? mockSubmaps : props.allMapData.submaps;
 
     const [state, setState] = useState<State>({
-        mapDateState: {
+        mapDataState: {
             temporaryMapData: {
                 ...addUuids(props.allMapData),
                 submaps: localSubmaps,
@@ -77,7 +77,7 @@ export default function AdminPage(props: Props){
         }));
     };
     const showNode = (nodeId: string) => {
-        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeId);
+        const node = state.mapDataState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeId);
         if (!node) {
             alert("Invalid data!");
             return;
@@ -93,14 +93,14 @@ export default function AdminPage(props: Props){
         }));
     };
     const showEdge = (nodeOrHallwayId1: string, nodeOrHallwayId2: string) => {
-        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId1);
-        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId1);
+        const node = state.mapDataState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId1);
+        const hallway = state.mapDataState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId1);
         if (!node && !hallway) {
             alert(`Invalid data! Cannot find node or hallway with id ${nodeOrHallwayId1}`);
             return;
         }
-        const node2 = state.mapDateState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId2);
-        const hallway2 = state.mapDateState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId2);
+        const node2 = state.mapDataState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId2);
+        const hallway2 = state.mapDataState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId2);
         if (!node2 && !hallway2) {
             alert(`Invalid data! Cannot find node or hallway with id ${nodeOrHallwayId2}`);
             return;
@@ -116,7 +116,7 @@ export default function AdminPage(props: Props){
         }));
     };
     const showHallway = (hallwayId: string) => {
-        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.v.id === hallwayId);
+        const hallway = state.mapDataState.temporaryMapData.hallways.find(h => h.v.id === hallwayId);
         if (!hallway) {
             alert(`Invalid data! Cannot find hallway with id ${hallwayId}`);
             return;
@@ -292,12 +292,32 @@ export default function AdminPage(props: Props){
                     </div>
 
                     { state.textMode ?
-                        <AdminTextEdit specialSaveText={state.saveResultMessage} temporaryMapData={removeUuids(state.mapDateState.temporaryMapData)} save={saveText} />
+                        <AdminTextEdit
+                            specialSaveText={state.saveResultMessage}
+                            temporaryMapData={removeUuids(state.mapDataState.temporaryMapData)}
+                            onTextUpdate={(json: string) => {
+                                const allMapData = AllMapsDataSchema.safeParse(safeParseJson(json));
+                                if (allMapData.success) {
+                                    setState(old => {
+                                        return {
+                                            ...old,
+                                            mapDataState: {
+                                                ...old.mapDataState,
+                                                temporaryMapData: {
+                                                    ...addUuids(allMapData.data),
+                                                    submaps: localSubmaps,
+                                                }
+                                            }
+                                        };
+                                    });
+                                }
+                            }}
+                            save={saveText} />
                         :
                         <AdminFancyEdit
-                            state={state.mapDateState}
+                            state={state.mapDataState}
                             specialSaveText={state.saveResultMessage}
-                            updateState={s => setState(oldS => ({ ...oldS, mapDateState: s }))}
+                            updateState={s => setState(oldS => ({ ...oldS, mapDataState: s }))}
                             save={saveWithUuids}
                             showSubmap={showSubmap}
                             showNode={showNode}
@@ -309,7 +329,7 @@ export default function AdminPage(props: Props){
                     { state.adminMapPopup === null ? <></> :
                         <AdminMapPopup
                             submapId={state.adminMapPopup.submapId}
-                            mapData={removeUuids(state.mapDateState.temporaryMapData)}
+                            mapData={removeUuids(state.mapDataState.temporaryMapData)}
                             nodeToShowId={state.adminMapPopup.nodeToShowId}
                             edgeToShow={state.adminMapPopup.edgeToShow}
                             hallwayToShowId={state.adminMapPopup.hallwayToShowId}

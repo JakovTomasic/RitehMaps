@@ -5,6 +5,7 @@ import { AdminSaveButton } from "../../pages/admin";
 type Props = {
     temporaryMapData: AllMapsData,
     specialSaveText: string,
+    onTextUpdate: (json: string) => void,
     save: (json: string) => void,
 };
 
@@ -26,7 +27,10 @@ export default function AdminTextEdit(props: Props) {
         <div className="flex flex-col w-full">
             <textarea
                 rows={25}
-                onChange={(newText) => setState(s => ({ ...s, dataTextInput: newText.target.value }))}
+                onChange={(newText) => {
+                    setState(s => ({ ...s, dataTextInput: newText.target.value }))
+                    props.onTextUpdate(newText.target.value)
+                }}
                 value={state.dataTextInput} />
             <AdminSaveButton specialSaveText={props.specialSaveText} save={save} />
         </div>

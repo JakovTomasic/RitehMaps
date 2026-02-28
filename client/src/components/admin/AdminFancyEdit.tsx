@@ -113,6 +113,46 @@ function updateSubmaps(index: number, transform: (oldSubmap: SubMap) => SubMap):
     })
 }
 
+function deleteNode(uuid: string): (s: State) => State {
+    return s => ({
+        ...s,
+        temporaryMapData: {
+            ...s.temporaryMapData,
+            nodes: s.temporaryMapData.nodes.filter((v) => v.uuid != uuid),
+        }
+    })
+}
+
+function deleteEdge(uuid: string): (s: State) => State {
+    return s => ({
+        ...s,
+        temporaryMapData: {
+            ...s.temporaryMapData,
+            edges: s.temporaryMapData.edges.filter((v) => v.uuid != uuid),
+        }
+    })
+}
+
+function deleteHallway(uuid: string): (s: State) => State {
+    return s => ({
+        ...s,
+        temporaryMapData: {
+            ...s.temporaryMapData,
+            hallways: s.temporaryMapData.hallways.filter((v) => v.uuid != uuid),
+        }
+    })
+}
+
+function deleteProfessor(uuid: string): (s: State) => State {
+    return s => ({
+        ...s,
+        temporaryMapData: {
+            ...s.temporaryMapData,
+            professors: s.temporaryMapData.professors.filter((v) => v.uuid != uuid),
+        }
+    })
+}
+
 export default function AdminFancyEdit(props: Props) {
 
     const state = props.state;
@@ -279,6 +319,8 @@ export default function AdminFancyEdit(props: Props) {
                             </select>
                             <br/>
                             <button onClick={() => props.showNode(node.v.nodeId)}>Show</button>
+                            <br/>
+                            <DeleteButton onDelete={() => { setState(deleteNode(node.uuid)) }} />
                         </div>
                     )) }
                 </div>
@@ -310,6 +352,8 @@ export default function AdminFancyEdit(props: Props) {
                             }/>
                             <br/>
                             <button onClick={() => props.showEdge(edge.v.nodeId1, edge.v.nodeId2)}>Show</button>
+                            <br/>
+                            <DeleteButton onDelete={() => { setState(deleteEdge(edge.uuid)) }} />
                         </div>
                     )) }
                 </div>
@@ -386,6 +430,8 @@ export default function AdminFancyEdit(props: Props) {
                             </div>
                             <br/>
                             <button onClick={() => props.showHallway(hallway.v.id)}>Show</button>
+                            <br/>
+                            <DeleteButton onDelete={() => { setState(deleteHallway(hallway.uuid)) }} />
                         </div>
                     )) }
                 </div>
@@ -448,6 +494,8 @@ export default function AdminFancyEdit(props: Props) {
                                 })))
                             }/>
                             <br/> */}
+                            <br/>
+                            <DeleteButton onDelete={() => { setState(deleteProfessor(professor.uuid)) }} />
                         </div>
                     )) }
                 </div>
@@ -480,5 +528,20 @@ export default function AdminFancyEdit(props: Props) {
 
             <AdminSaveButton specialSaveText={props.specialSaveText} save={save} />
         </div>
+    );
+}
+
+function DeleteButton({ onDelete }: { onDelete: () => void }) {
+    const handleDelete = () => {
+        const confirmed = window.confirm("Are you sure you want to delete this item?");
+        if (confirmed) {
+            onDelete();
+        }
+    };
+
+    return (
+        <button className="mt-4" onClick={handleDelete}>
+            Delete
+        </button>
     );
 }

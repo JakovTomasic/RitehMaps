@@ -14,12 +14,7 @@ If you are having problems running the `yarn install` command on Windows due to 
 
 ## Run
 
-To start the web application `cd` into the client directory and run `yarn run dev` command. The website should be accessible from [http://localhost:3000/](http://localhost:3000/)
-
-### New instructions
-
-- run `npm run dev` and then for every change in client folder run `npm run build`
-- for developing client just go into client folder and run `npm run dev`
+To start the web application `cd` into the client directory and see respective README files.
 
 ## Adding dependencies
 
@@ -40,7 +35,7 @@ Create two vercel projects. One for the api and one for the client. (I had some 
 
 You can deploy both front-end and back-end to Vercel.
 
-1. isntall vercel CLI `npm i -g vercel` (if using Nix, enter shell `nix-shell -p nodePackages.vercel` or just run `npx vercel`)
+1. install vercel CLI `npm i -g vercel` (if using Nix, enter shell `nix-shell -p nodePackages.vercel` or just run `npx vercel`)
 2. build the project by running `npm run build` from the directory you want to deploy
 3. in the dir you want to deploy run `npx vercel --prod` (non-prod urls won't be public so you can't curl or fetch from them - and also use the shorter domain, not the temporary ones)
 

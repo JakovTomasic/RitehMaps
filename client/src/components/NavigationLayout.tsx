@@ -22,50 +22,82 @@ type Prop = {
     onBackClick: () => void,
     onUpdateClick: () => void,
     onNextClick: () => void,
+    currentStepIndex?: number,
+    totalSteps?: number,
 }
 
 export default function NavigationLayout(props: Prop) {
-    
+
     const [navigationFinished, setNavigationFinished] = useState(false);
     const [enableZoom, setZoom] = useState(props.zoomEnabledByDefault);
+
+    const showProgress = props.totalSteps != null && props.totalSteps > 1 && props.currentStepIndex != null;
 
     return(
         !navigationFinished ?
         <>
-            <div className="absolute w-full h-full left-0 top-0 flex flex-col">
+            <div className="absolute w-full h-full left-0 top-0 flex flex-col bg-gray-50">
+
+                { showProgress &&
+                    <div className="h-1 w-full bg-gray-200">
+                        <div
+                            className="h-1 bg-cyan-500 transition-all duration-300"
+                            style={{ width: `${((props.currentStepIndex! + 1) / props.totalSteps!) * 100}%` }}
+                        />
+                    </div>
+                }
+
+                <div className="z-10 flex items-center justify-between gap-2 px-3 py-2.5 bg-white shadow-sm">
+                    <button
+                        onClick={props.onUpdateClick}
+                        className="flex items-center gap-1 text-sm font-semibold text-cyan-700
+                            hover:text-cyan-800 px-2 py-1.5 rounded-md hover:bg-cyan-50 transition"
+                    >
+                        <span aria-hidden className="leading-none">&larr;</span>
+                        Edit search
+                    </button>
+
+                    { props.mapDrawProps != null &&
+                        <MapCaption imageCaption={props.mapDrawProps.submap.caption} />
+                    }
+
+                    { props.zoomButtonVisible ?
+                        <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'}
+                            onClick={() => {setZoom(!enableZoom)}}
+                        />
+                        : <div className="w-[37px]" />
+                    }
+                </div>
+
+                { props.showDeviceOrientationWarning &&
+                    <div className="bg-red-50 text-red-700 text-sm font-medium text-center py-2 px-4 border-b border-red-100">
+                        Please keep your device parallel to the ground
+                    </div>
+                }
 
                 {
                 props.mapDrawProps != null ?
-                <>
-                    { props.showDeviceOrientationWarning ?
-                        <div className="text-3xl text-red-700 font-semibold text-center tracking-tight">
-                            Please keep your device parallel to the ground
-                        </div> : <></>
-                    }
-                    <MapCaption imageCaption={props.mapDrawProps.submap.caption} />
-                    { props.zoomButtonVisible ?
-                        <div className="absolute right-0">
-                            <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'} 
-                                onClick={() => {setZoom(!enableZoom)}} 
-                            />
-                        </div>
-                     : <></> }
-                    <div className="w-full flex-1 overflow-hidden">
+                    <div className="w-full flex-1 overflow-hidden relative">
                         { props.middleLineVisible ?
-                            <div className="absolute w-full h-full flex flex-col items-center">
+                            <div className="absolute w-full h-full flex flex-col items-center pointer-events-none">
                                 <img className="h-16" src="/images/arrow_up.png"></img>
                             </div>
                         : <></> }
-                        <MyMap layoutImage={props.mapDrawProps.submap.path} width={props.mapDrawProps.submap.width} 
+                        <MyMap layoutImage={props.mapDrawProps.submap.path} width={props.mapDrawProps.submap.width}
                         height={props.mapDrawProps.submap.height} centroidCrop={props.mapDrawProps.centroidCrop}
-                        rotateAngle={props.rotateAngle} drawElements={props.mapDrawProps.mapElements} enableZoom={enableZoom}/>                    
+                        rotateAngle={props.rotateAngle} drawElements={props.mapDrawProps.mapElements} enableZoom={enableZoom}/>
                     </div>
-                </>
-                    : <div>Loading...</div>
+                    : <div className="flex-1 flex items-center justify-center text-gray-400 font-medium">Loading...</div>
                 }
-                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
-                    <Button text='Back' enabled={!props.isFirstStep} onClick={props.onBackClick} />
-                    <Button text='Update' enabled={true} onClick={props.onUpdateClick} />
+
+                <div className="z-10 flex items-center justify-between gap-3 px-4 py-3 bg-white
+                    border-t border-gray-100 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+                    <Button text='Back' enabled={!props.isFirstStep} onClick={props.onBackClick} variant="secondary" />
+                    { showProgress &&
+                        <span className="text-xs font-medium text-gray-400">
+                            Step {props.currentStepIndex! + 1} of {props.totalSteps}
+                        </span>
+                    }
                     <Button
                         text={props.isLastStep ? 'Finish' : 'Next'}
                         enabled={true}
@@ -76,27 +108,24 @@ export default function NavigationLayout(props: Prop) {
         </>
         :
         <>
-            <div className="absolute w-fill h-full mx-auto left-0 right-0 my-0 max-w-3xl">
-                <div className="w-full h-2/3 flex flex-col items-center">
-
-                    <div className="flex-[0.1]" />
-                    <div className="text-3xl font-semibold text-center text-gray-800 tracking-tight">
-                        You have reached your destination!
+            <div className="absolute w-full h-full left-0 top-0 flex flex-col bg-gray-50">
+                <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
+                    <div className="text-2xl font-semibold text-gray-800 tracking-tight">
+                        You have reached your destination
                     </div>
-                    <div className="flex-[0.1]" />
-                    { props.destination.name?.trim()?.length > 0 ?
-                        <div className="text-2xl font-semibold text-center
-                                text-gray-100 tracking-tight p-10 bg-cyan-600 rounded-3xl">
+                    { props.destination.name?.trim()?.length > 0 &&
+                        <div className="mt-4 text-xl font-semibold text-white tracking-tight
+                                px-8 py-4 bg-cyan-600 rounded-2xl shadow-md">
                             { props.destination.name }
-                        </div> : <></>
+                        </div>
                     }
-                    <div className="flex-[0.3]" />
-                    <div className="w-full flex flex-col items-center pl-10">
+                    <div className="mt-8">
                         <FinishFlag />
                     </div>
                 </div>
-                <div className="text-center justify-center flex mx-auto mb-4 inset-x-0 absolute bottom-0 my-12 h-1/7">
-                    <Button text='Back' enabled={!props.isFirstStep} onClick={() => setNavigationFinished(false)} />
+                <div className="z-10 flex items-center justify-center gap-3 px-4 py-3 bg-white
+                    border-t border-gray-100 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+                    <Button text='Back' enabled={!props.isFirstStep} onClick={() => setNavigationFinished(false)} variant="secondary" />
                     <Link href={createHomeUrl()}>
                         <Button text='Home' enabled={true} />
                     </Link>

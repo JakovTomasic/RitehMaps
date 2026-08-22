@@ -104,6 +104,8 @@ export default function Navigation(props: Props){
                         updateCurrentStepIndex(currentStepIndex+1)
                     }
                 }}
+                currentStepIndex={currentStepIndex}
+                totalSteps={navDirections.steps.length}
             />
         }
         </>

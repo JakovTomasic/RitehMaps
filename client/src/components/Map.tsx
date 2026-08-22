@@ -26,9 +26,15 @@ type State = {
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
 /**
- * All sizes below are percentages of the *visible* (cropped) map diagonal, not of the whole submap.
+ * All sizes below are percentages of the *visible* map diagonal (see visibleDiagonal), not of the
+ * whole submap.
  */
 const CLICK_DOT_RADIUS = 0.5;
+/**
+ * The zoomed out view shows a whole floor at once, where a route as thick as the one in the step
+ * focused view buries the floor plan under it - everything is drawn this much thinner there.
+ */
+const ZOOMED_OUT_SIZE_FACTOR = 0.4;
 /** Soft dark shadow drawn under the route, so it stays readable over dark parts of the image. */
 const HALO_COLOR = "#0F172A";
 /** White outline drawn under the route, so it stays readable over light parts of the image. */
@@ -110,16 +116,30 @@ export default class MyMap extends Component<Prop, State>{
         this.state = { clickedCoordinates: "" };
     }
 
-    /** Length of the map diagonal that is currently visible, in map units. */
+    /**
+     * Length of the map diagonal that is currently visible, in map units.
+     *
+     * The crop only applies to the step focused view - with zooming on the user starts out looking
+     * at the whole submap instead. Sizing against the crop there would tie the thickness of the
+     * route to the step's zoom factor, making short steps (which get cropped in the hardest) come
+     * out as hairlines and long ones several times thicker.
+     */
     private visibleDiagonal(): number {
-        const width = this.props.centroidCrop?.scaledWidth || this.props.width;
-        const height = this.props.centroidCrop?.scaledHeight || this.props.height;
+        const cropped = !this.zoomedOut();
+        const width = (cropped ? this.props.centroidCrop?.scaledWidth : null) || this.props.width;
+        const height = (cropped ? this.props.centroidCrop?.scaledHeight : null) || this.props.height;
         return Math.sqrt(width*width + height*height) / Math.SQRT2;
     }
 
     /** Converts a size given in percent of the visible map diagonal into map units. */
     private units(percent: number): number {
-        return percent / 100 * this.visibleDiagonal();
+        const factor = this.zoomedOut() ? ZOOMED_OUT_SIZE_FACTOR : 1;
+        return percent / 100 * factor * this.visibleDiagonal();
+    }
+
+    /** True while the whole submap is on screen instead of the current step's crop. */
+    private zoomedOut(): boolean {
+        return this.props.enableZoom === true;
     }
 
     /** Converts a dot (relative, in percent) into map units. */

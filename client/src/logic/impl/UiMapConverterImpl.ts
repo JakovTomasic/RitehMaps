@@ -15,8 +15,8 @@ const ACTIVE_COLOR = "#0891B2";
 const UPCOMING_COLOR = "#0E7490";
 const COMPLETED_COLOR = "#64748B";
 
-// Sizes are percentages of the *visible* (cropped) map diagonal, so they keep the same
-// on-screen size no matter how far the current step is zoomed in.
+// Sizes are percentages of the *visible* map diagonal, so they keep the same on-screen size
+// no matter how far the current step is zoomed in.
 const ACTIVE_LINE_WIDTH = 2.0;
 const OTHER_LINE_WIDTH = 1.4;
 const MARKER_RADIUS = 2.4;

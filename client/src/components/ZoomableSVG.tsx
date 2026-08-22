@@ -12,59 +12,65 @@ type Prop = {
     enableZoom?: boolean
 }
 
+type Transform = {
+    x: number,
+    y: number,
+    scale: number,
+}
+
+/**
+ * The viewBox is the cropped map, so this shows the whole submap fitted into it - the view
+ * free zooming starts from, and the one d3's own zoom transform starts at.
+ */
+const NEUTRAL_TRANSFORM: Transform = { x: 0, y: 0, scale: 1 };
+
 
 export default function ZoomableSVG( { children, width, height, centroidCrop, rotateAngle, enableZoom }: Prop ){
 
+    const svgRef = useRef<SVGSVGElement>(null)
+    const [transform, setTransform] = useState<Transform>(NEUTRAL_TRANSFORM)
 
-    const svgRef = useRef()
-    const [scale, setScale] = useState(1)
-    const [x, setX] = useState(0)
-    const [y, setY] = useState(0)
-    const originalWidth = width;
-    const originalHeight = height;
+    const viewBoxWidth = centroidCrop.scaledWidth
+    const viewBoxHeight = centroidCrop.scaledHeight
 
-    if(!enableZoom) d3.select(svgRef.current).on(".zoom", null)
+    const { translateX, translateY, stepScale } = centroidCrop;
 
-    width = centroidCrop.scaledWidth
-    height = centroidCrop.scaledHeight
-
+    // Depends on the crop values rather than on the centroidCrop object: the object is rebuilt on
+    // every render of the parent, and re-running this would throw away the user's zoom mid-gesture.
     useEffect(() => {
-        setScale(1)
-        setX(0)
-        setY(0)
-    }, [enableZoom])
 
-    useEffect(() => {
-        setScale(centroidCrop.stepScale)
-        setX(centroidCrop.translateX)
-        setY(centroidCrop.translateY)
-    }, [centroidCrop])
+        const svg = d3.select<SVGSVGElement, unknown>(svgRef.current!)
 
-    useEffect(() => {
-        if(enableZoom){  
-            width = originalWidth;
-            height = originalHeight;           
-            const zoom = d3.zoom().on("zoom", (event: { transform: { x: number; y: number; k: number; }; }) => {
-                let { x, y, k } = event.transform
-                const rotatedPoint = rotatePointClockwise({x: x, y: y}, rotateAngle, {x: width/2, y: height/2})
-                setScale(k)
-                setX(rotatedPoint.x)
-                setY(rotatedPoint.y)
-            })
-
-            d3.select(svgRef.current).call(zoom)       
+        if (!enableZoom) {
+            svg.on(".zoom", null)
+            setTransform({ x: translateX, y: translateY, scale: stepScale })
+            return
         }
-        else{
-            setX(centroidCrop.translateX)
-            setY(centroidCrop.translateY)
-            setScale(centroidCrop.stepScale)        
-        }
-    }, [centroidCrop, enableZoom])
-    
+
+        // With zooming on the user drives the transform, starting from the whole map - applying the
+        // step crop here instead would show a zoomed in map that snaps back on the first gesture,
+        // because d3 keeps its own transform and knows nothing about the crop.
+        setTransform(NEUTRAL_TRANSFORM)
+
+        const zoom = d3.zoom<SVGSVGElement, unknown>().on("zoom", (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
+            const { x, y, k } = event.transform
+            const rotatedPoint = rotatePointClockwise({x: x, y: y}, rotateAngle, {x: width/2, y: height/2})
+            setTransform({ x: rotatedPoint.x, y: rotatedPoint.y, scale: k })
+        })
+
+        svg.call(zoom)
+        // LLM says d3 remembers the last transform on the node, so a previous zoom session (or step) would
+        // otherwise come back the moment the user touches the map.
+        svg.call(zoom.transform, d3.zoomIdentity)
+
+        return () => { svg.on(".zoom", null) }
+
+    }, [translateX, translateY, stepScale, enableZoom, rotateAngle, width, height])
+
     return (
-        // <svg ref={svgRef} style={{ width: "100%", height: "100%", display: "block" }} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
-        <svg height="100%" width="100%" ref={svgRef} viewBox={`0, 0, ${width}, ${height}`}>
-            <g transform={`rotate(${rotateAngle}, ${width/2}, ${height/2})translate(${x}, ${y})scale(${scale})`}>
+        <svg height="100%" width="100%" ref={svgRef} viewBox={`0, 0, ${viewBoxWidth}, ${viewBoxHeight}`}>
+            <g transform={`rotate(${rotateAngle}, ${viewBoxWidth/2}, ${viewBoxHeight/2})`
+                + `translate(${transform.x}, ${transform.y})scale(${transform.scale})`}>
                 {children}
             </g>
         </svg>

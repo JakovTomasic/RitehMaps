@@ -24,18 +24,13 @@ export type SearchInputs = {
 
 function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
   const [searchInputs, setSearchInputs] = useState<SearchInputs>(initialSearchInputs);
-  const [showShareDiv, setShowShareDiv] = useState(false);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
-
-  const handleShare = () => {
-    setShowShareDiv(!showShareDiv);
-  };
 
   return (
 
     <div className="flex items-center w-96">
-      
-        <form className="mx-auto bg-white p-2 w-full">
+
+        <form className="mx-auto bg-white p-5 w-full rounded-2xl shadow-md border border-gray-100">
 
           {/*div that contains sideDecoration (pins and dots, change arrows) and search inputs*/}
           <div className="flex items-center h-full w-full justify-center" >
@@ -50,7 +45,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
             <div className="flex flex-col items-center w-64">
               
               <div className="mb-4 py-1 w-full">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                  <label className="block text-gray-600 text-sm font-semibold mb-1.5">
                     Where are you now?
                   </label>
 
@@ -77,7 +72,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
               </div>
 
                 <div className="mb-4 py-1 w-full">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                  <label className="block text-gray-600 text-sm font-semibold mb-1.5">
                     Where do you want to go?
                   </label>
 
@@ -149,13 +144,11 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
           </div> */}
 
           <div className="flex relative py-3 items-center justify-center z-0">
-            <GoShareButtons 
-                startNodeId={searchInputs.startNodeId} 
+            <GoShareButtons
+                startNodeId={searchInputs.startNodeId}
                 destinationNodeId={searchInputs.destinationNodeId}
-                startText={searchInputs.startText} 
+                startText={searchInputs.startText}
                 destinationText={searchInputs.destinationText}
-                handleShare ={handleShare}
-                showShareDiv={showShareDiv}
                 clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
                 defaultStartNodeId={DEFAULT_START_ID}
             />

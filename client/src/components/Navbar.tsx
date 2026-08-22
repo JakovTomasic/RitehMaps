@@ -1,32 +1,20 @@
 import logo from "/public/images/logo.png";
-import PrettyButton from "./PrettyButton";
 
 const Navbar = () => {
   return (
 
-    <nav className="bg-gray-400 fixed top-0 w-full py-2 px-5">
+    <nav className="bg-white fixed top-0 w-full py-2.5 px-5 shadow-sm z-20">
 
-        <div className="flex justify-between">
+        <div className="flex items-center justify-between">
 
-          <div className="flex items-center">
-            {/*Button that leads to settings*/}
-            <a href="/" className="font-bold text-white text-xl">
-           <PrettyButton/>
-            </a>
-          </div>
+          <a href="/" className="flex items-center font-bold text-lg text-gray-800 hover:text-cyan-700 transition">
+              <img src={logo} alt="logo" width={42} className="mr-2" />
+              Riteh maps
+          </a>
 
-          <div className="flex items-center justify-center">
-            <a href="/" className="flex items-center font-bold text-l  text-white hover:text-gray-200">
-                <img src={logo} alt="logo" width={50} className="mr-1" />
-                Riteh maps
-            </a>
-          </div>
-
-          <div className="flex items-center">
-            <a href="#" className="px-3 py-1 text-white hover:text-gray-200">
-                Map
-            </a>
-          </div>
+          <a href="#" className="px-3 py-1.5 text-sm font-semibold text-cyan-700 hover:text-cyan-800 hover:bg-cyan-50 rounded-md transition">
+              Map
+          </a>
 
         </div>
 

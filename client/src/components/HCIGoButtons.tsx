@@ -13,7 +13,7 @@ const HCIGoButtons: React.FC<HCIGoButtonProps> = (props) => {
   const buttonConfigs = [
     { label: "Floors", path: "/navigation-floor-by-floor" },
     { label: "Steps", path: "/navigation-step-by-step" },
-    { label: "Steps Forward", path: "/navigation-step-by-step-forward" },
+    // { label: "Steps Forward", path: "/navigation-step-by-step-forward" },
     { label: "Compass", path: "/navigation-compass" },
   ];
 

@@ -17,12 +17,19 @@ export const NAVIGATION_PATH = "/nav";
 const START_NODE_ID_PARAM_KEY = "startId";
 const DESTINATION_NODE_ID_PARAM_KEY = "endId";
 const DESTINATION_NAME_PARAM_KEY = "endName";
+const MODE_PARAM_KEY = "mode";
 
-export function createNavigationUrl(startNodeId: string, destinationId: string, destinationName: string): string {
+export enum NavigationMode {
+    FloorByFloor = "floor",
+    StepByStep = "step",
+}
+
+export function createNavigationUrl(startNodeId: string, destinationId: string, destinationName: string, mode: NavigationMode): string {
     const object: any = {};
     object[START_NODE_ID_PARAM_KEY] = startNodeId;
     object[DESTINATION_NODE_ID_PARAM_KEY] = destinationId;
     object[DESTINATION_NAME_PARAM_KEY] = destinationName;
+    object[MODE_PARAM_KEY] = mode;
     const params = new URLSearchParams(object).toString()
     return `${NAVIGATION_PATH}?${params}`;
 }
@@ -54,10 +61,9 @@ export default function Navigation(props: Props){
         
             const destinationNodeFilter = createMapNodeFilter(params.destinationId, props.allMapsData);
             if (destinationNodeFilter != null) {
-                const directions: NavigationDirections = mapNav.findShortestPath(
-                    params.startId as string,
-                    destinationNodeFilter
-                )
+                const directions: NavigationDirections = params.mode === NavigationMode.FloorByFloor
+                    ? mapNav.findShortestPathForFloorByFloor(params.startId as string, destinationNodeFilter)
+                    : mapNav.findShortestPath(params.startId as string, destinationNodeFilter)
                 setNavDirections(directions);
             } else {
                 throw new Error(`Destination node id not valid: ${params.destinationId}`);
@@ -82,7 +88,7 @@ export default function Navigation(props: Props){
                 rotateAngle={0}
                 showDeviceOrientationWarning={false}
                 zoomButtonVisible={true}
-                zoomEnabledByDefault={false}
+                zoomEnabledByDefault={params?.mode === NavigationMode.FloorByFloor}
                 middleLineVisible={false}
                 isFirstStep={currentStepIndex == 0}
                 isLastStep={navDirections != undefined && currentStepIndex == navDirections.steps.length - 1}
@@ -108,17 +114,20 @@ type params = {
     startId: string,
     destinationId: string,
     destinationName: string,
+    mode: NavigationMode,
 }
 
 function parseParams(params: URLSearchParams): params | null {
     const startId = params.get(START_NODE_ID_PARAM_KEY);
     const destinationId = params.get(DESTINATION_NODE_ID_PARAM_KEY);
     const destinationName = params.get(DESTINATION_NAME_PARAM_KEY);
+    const mode = params.get(MODE_PARAM_KEY);
     if (startId != null && destinationId != null && destinationName != null) {
         return {
             startId: startId,
             destinationId: destinationId,
             destinationName: destinationName,
+            mode: mode === NavigationMode.FloorByFloor ? NavigationMode.FloorByFloor : NavigationMode.StepByStep,
         }
     } else {
         return null;

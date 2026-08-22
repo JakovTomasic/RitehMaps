@@ -3,7 +3,7 @@ import ShareIcon from "./ShareIcon";
 import ShareWindow from "./ShareWindow";
 import ExitXIcon from "./ExitXIcon";
 import { Link } from "wouter";
-import { createNavigationUrl } from "../pages/navigation";
+import { createNavigationUrl, NavigationMode } from "../pages/navigation";
 import { createHomeUrl } from "../pages";
 
 type GoButtonProps = {
@@ -25,10 +25,8 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
    
     return (
       <div className="flex w-full items-center justify-center">
-        {/* TODO: floor by floor */}
-        <GoButton text="Quick" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText)} enabled={true} />
-        {/* TODO: step by step */}
-        <GoButton text="Detailed" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText)} enabled={true} />
+        <GoButton text="Quick" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText, NavigationMode.FloorByFloor)} enabled={true} />
+        <GoButton text="Detailed" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText, NavigationMode.StepByStep)} enabled={true} />
 
         <Link
           href={createHomeUrl(startNodeId, startText, props.destinationNodeId, props.destinationText)}

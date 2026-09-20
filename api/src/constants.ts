@@ -23,9 +23,18 @@ export const ADMIN_PASSWORD_HASH_ENV = "ADMIN_PASSWORD_HASH";
  */
 export const MAX_REQUEST_BODY_SIZE = "5mb";
 
-/** Browser origins allowed to call this API. Anything else is rejected by CORS. */
-export const ALLOWED_ORIGINS: string[] = [
+/**
+ * Browser origins allowed to call this API. Anything else is rejected by CORS.
+ * Entries may be exact strings or patterns; `cors` accepts both.
+ */
+export const ALLOWED_ORIGINS: (string | RegExp)[] = [
     "https://ritehmaps.pages.dev",
+    // Cloudflare Pages preview deployments: every push gets its own subdomain,
+    // either a deploy hash (95c0f601.ritehmaps.pages.dev) or a branch alias
+    // (some-branch.ritehmaps.pages.dev). Anchored at both ends and with the dots
+    // escaped on purpose - an unanchored version would also match origins like
+    // https://ritehmaps.pages.dev.evil.com.
+    /^https:\/\/[a-z0-9-]+\.ritehmaps\.pages\.dev$/,
     // The vite dev server, so the admin page works locally.
     ...(process.env.NODE_ENV === "production" ? [] : ["http://localhost:5173"]),
 ];

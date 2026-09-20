@@ -28,7 +28,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
 
   return (
 
-    <div className="flex items-center w-96">
+    <div className="flex items-center w-full max-w-96 px-4">
 
         <form className="mx-auto bg-white p-5 w-full rounded-2xl shadow-md border border-gray-100">
 
@@ -42,7 +42,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
             </div>
 
 
-            <div className="flex flex-col items-center w-64">
+            <div className="flex flex-col items-center w-full min-w-0">
               
               <div className="mb-4 py-1 w-full">
                   <label className="block text-gray-600 text-sm font-semibold mb-1.5">

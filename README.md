@@ -30,10 +30,10 @@ Steps for deploying the website:
 
 ### Vercel
 
-Create two vercel projects. One for the api and one for the client. (I had some problems setting them up in the same repo.)
+Create a vercel project.
 - to avoid GitHub integration and force manual production updates create project by running `npx vercel --prod` saying "no" when asked to link to another project and enter the new project name.
 
-You can deploy both front-end and back-end to Vercel.
+Only the client is deployed this way. See [API](#api-own-server) below.
 
 1. install vercel CLI `npm i -g vercel` (if using Nix, enter shell `nix-shell -p nodePackages.vercel` or just run `npx vercel`)
 2. build the project by running `npm run build` from the directory you want to deploy
@@ -42,9 +42,9 @@ You can deploy both front-end and back-end to Vercel.
 
 #### Client
 
-Put API path to production api (vercel link)
+Point `API_URL` in `client/src/server.ts` at the production api before building; it is committed pointing at the local dev server.
 
-From api root directory, run:
+From the client root directory, run:
 ```bash
 rm -rf dist/ # this may not be needed
 npm run build # this may not be needed
@@ -53,11 +53,70 @@ npx vercel --prod
 Then click on the inspect link and open the shorter linke there - real production link.
 
 
-### API
+### Cloudflare pages
 
-From api root directory, run:
+I've setup everything to pull from Github `prod` branch. It should be automatic.
+
+
+### API (own server)
+
+The API keeps the map in `longterm_storage.json` on disk, so it needs a host with a real filesystem. It is deployed **standalone**: no monorepo scaffolding, no client.
+
+#### Generating the lock file
+
+There is no `api/package-lock.json` in the repo. `client` and `api` are npm workspaces, so the single lock at the repo root covers both of them. Running `npm install --package-lock-only` inside `api/` does **not** create one: npm walks up, finds `"workspaces"` in the root `package.json` and updates the root lock instead. Generate it outside the workspace tree:
+
 ```bash
-rm -rf dist/ # this may not be needed
-npm run build # this may not be needed
-# put it on the server
+cd api/
+rm -rf /tmp/api-lock && mkdir /tmp/api-lock
+cp package.json /tmp/api-lock/
+( cd /tmp/api-lock && npm install --package-lock-only )
+cp /tmp/api-lock/package-lock.json .
 ```
+
+Delete the lock file after deploying.
+
+#### Deploy
+
+From the api root directory, run:
+```bash
+cd api/
+rm -rf dist/
+npm run build
+# put it on the server
+scp -r dist/ scripts/ package.json package-lock.json deployuser@<server ip addr>:/srv/ritehmaps-api/
+rm package-lock.json
+# first deploy only — this is live data, don't overwrite it on later deploys
+scp longterm_storage.json deployuser@<server ip addr>:/srv/ritehmaps-api/longterm_storage.json
+```
+
+The storage file is looked up next to `dist/`, not inside it, so the layout on the server has to be:
+
+```
+/srv/ritehmaps-api/
+├── dist/main.js
+├── longterm_storage.json
+├── package.json
+├── package-lock.json
+└── scripts/hash-password.js
+```
+
+Then, on the server:
+```bash
+cd /srv/ritehmaps-api
+npm ci --omit=dev
+node dist/main.js # or automate this with a service
+```
+
+Never copy `node_modules/` up from your machine: `bcrypt` is a native module and has to be built against the server's Node. For the same reason `npm ci` needs `python3` and a C++ toolchain on the server if no prebuilt binary matches its Node version.
+
+Environment:
+- `ADMIN_PASSWORD_HASH` — see step 1 above. `npm run hash-password` also works on the server, since `bcrypt` is a runtime dependency.
+- `PORT` — the port to listen on, defaults to `3000`.
+- `NODE_ENV=production` — also drops `http://localhost:5173` from the CORS allowlist.
+
+Allowed browser origins are compiled in (`ALLOWED_ORIGINS` in `src/constants.ts`), not read from the environment: if the client is served from anywhere other than `https://ritehmaps.pages.dev`, add the domain there and rebuild.
+
+#### Redeploying
+
+Rebuild, `scp -r dist/`, `systemctl restart ritehmaps-api`. Re-run `npm ci --omit=dev` only when `package.json` changed (regenerate the lock first), and never copy `longterm_storage.json` up again — that would overwrite the live map with your local copy.

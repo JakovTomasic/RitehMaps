@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ChangeDataRequest, ChangePasswordRequest } from './data/Data';
+import { ChangeDataRequest, ChangePasswordRequest, LoginRequest } from './data/Data';
 import { JsonStorageService } from './storage/json-storage.service';
 import { AllMapsData, LongtermStorage, LongtermStorageSchema } from './data/ServerData';
 import { Logger } from '@nestjs/common';
@@ -29,6 +29,10 @@ export class AppService {
     return this.allData;
   }
   
+  async login(request: LoginRequest): Promise<boolean> {
+    return request.password === this.password;
+  }
+
   async changePassord(update: ChangePasswordRequest): Promise<boolean> {
     if (update.oldPassword === this.password) {
       this.password = update.newPassword;

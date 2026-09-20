@@ -48,6 +48,10 @@ export type ProfessorData = {
   entity: string;
 };
 
+export type LoginRequest = {
+    password: string,
+};
+
 export type ChangeDataRequest = {
     password: string,
     data: AllMapsData,

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Request } from 'express';
-import { ChangeDataRequest, ChangePasswordRequest } from './data/Data';
+import { ChangeDataRequest, ChangePasswordRequest, LoginRequest } from './data/Data';
 import { AllMapsData } from './data/ServerData';
 
 
@@ -13,6 +13,13 @@ export class AppController {
   @Get("allData")
   professors(): Promise<AllMapsData> {
     return this.appService.getAllData();
+  }
+
+  // Only checks whether the password is correct, so the admin UI can be unlocked.
+  // Test with: curl -X POST http://localhost:3000/api/login -d '{ "password": "" }' -H "Content-Type: application/json"
+  @Post("login")
+  async login(@Body() login: LoginRequest): Promise<boolean> {
+    return this.appService.login(login);
   }
 
   // Test with: curl -X POST http://localhost:3000/api/save -d '[{ ... mock data here }]' -H "Content-Type: application/json"

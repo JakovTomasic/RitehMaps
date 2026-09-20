@@ -88,10 +88,18 @@ export default function AdminMapPopup(props: Props) {
     );
 
     return(
-        <div className="fixed top-0 left-0 w-full bg-white flex flex-col">
-            { submapName }
-            <br/>
-            <MyMap layoutImage={submap.path} 
+        <div className="fixed inset-0 z-40 flex flex-col overflow-auto bg-white">
+
+            <div className="sticky top-0 z-10 flex items-center gap-3 border-b border-gray-200 bg-white/90 px-4 py-3 backdrop-blur">
+                <span className="truncate font-semibold text-gray-800">{ submapName }</span>
+                <button
+                    className="ml-auto shrink-0 rounded-lg bg-cyan-600 px-4 py-2 font-semibold text-white transition hover:bg-cyan-700"
+                    onClick={props.close}>
+                    Close
+                </button>
+            </div>
+
+            <MyMap layoutImage={submap.path}
                 enableDrawNodes={true}
                 enableZoom={true}
                 width={submap.width}
@@ -99,8 +107,6 @@ export default function AdminMapPopup(props: Props) {
                 drawElements={mapElements}
                 centroidCrop={fullScale}
                 rotateAngle={0}/>
-
-            <button className="text-5xl" onClick={props.close}>Close</button>
         </div>
     );
 }

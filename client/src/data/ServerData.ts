@@ -75,6 +75,11 @@ export const AllMapsDataSchema = z.object({
 export type AllMapsData = z.infer<typeof AllMapsDataSchema>;
 
 
+export const ServerLoginRequestSchema = z.object({
+    password: z.string(),
+});
+export type ServerLoginRequest = z.infer<typeof ServerLoginRequestSchema>;
+
 export const ServerChangeDataRequestSchema = z.object({
     password: z.string(),
     data: AllMapsDataSchema,

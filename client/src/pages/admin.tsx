@@ -247,19 +247,28 @@ export default function AdminPage(props: Props){
                 <AdminChangePassword
                     state={state.changePasswordScreen}
                     onOldPasswordChange={(value) => {
-                        setState(s => ({ ...s, changePasswordScreen: {...s.changePasswordScreen, oldPassword: value} }));
+                        setState((s: State) => {
+                            if (s.changePasswordScreen === null) return s;
+                            else return ({ ...s, changePasswordScreen: {...s.changePasswordScreen, oldPassword: value} });;
+                        });
                     }}
                     onNewPassword1Change={(value) => {
-                        setState(s => ({ ...s, changePasswordScreen: {...s.changePasswordScreen, newPassword1: value} }));
+                        setState(s => {
+                            if (s.changePasswordScreen === null) return s;
+                            else return ({ ...s, changePasswordScreen: {...s.changePasswordScreen, newPassword1: value} })
+                        });
                     }}
                     onNewPassword2Change={(value) => {
-                        setState(s => ({ ...s, changePasswordScreen: {...s.changePasswordScreen, newPassword2: value} }));
+                        setState(s => {
+                            if (s.changePasswordScreen === null) return s;
+                            else return ({ ...s, changePasswordScreen: {...s.changePasswordScreen, newPassword2: value} })
+                        });
                     }}
                     onClose={() => {
                         setState(s => ({ ...s, changePasswordScreen: null }));
                     }}
                     onSave={() => {
-                        changePassword(state.changePasswordScreen);
+                        if (state.changePasswordScreen != null) changePassword(state.changePasswordScreen);
                     }}
                 />
                 :

@@ -6,7 +6,7 @@ import { LongtermStorage } from '../data/ServerData';
 
 @Injectable()
 export class JsonStorageService {
-  private readonly filePath = path.join(__dirname, '../..', 'longterm_storage.json');
+  private readonly filePath = path.join(__dirname, '../../data', 'longterm_storage.json');
   /** Previous contents, kept so a bad save can be undone by hand. */
   private readonly backupPath = `${this.filePath}.bak`;
   private readonly tempPath = `${this.filePath}.tmp`;

@@ -55,8 +55,8 @@ pids
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-longterm_storage.json
+data/longterm_storage.json
 # Written by JsonStorageService around each save.
-longterm_storage.json.bak
-longterm_storage.json.tmp
+data/longterm_storage.json.bak
+data/longterm_storage.json.tmp
 .vercel

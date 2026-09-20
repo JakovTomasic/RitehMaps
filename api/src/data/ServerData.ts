@@ -1,5 +1,15 @@
 import { z } from "zod";
 
+// -----------------------------------------------------------------------------
+// MIRRORED FILE. Everything above the "server only" marker near the bottom must
+// stay identical to client/src/data/ServerData.ts - both sides parse the same
+// JSON, and the numeric NodeType values in particular have to line up exactly.
+// Change a schema here and copy it there in the same commit.
+// -----------------------------------------------------------------------------
+
+/** Shortest password the server will accept when the admin changes it. */
+export const MIN_PASSWORD_LENGTH = 8;
+
 export enum NodeType {
     CLASSROOM,
     STUDENT_ROOM,
@@ -75,12 +85,10 @@ export const AllMapsDataSchema = z.object({
 export type AllMapsData = z.infer<typeof AllMapsDataSchema>;
 
 
-export const LongtermStorageSchema = z.object({
-    mapData: AllMapsDataSchema,
+export const ServerLoginRequestSchema = z.object({
     password: z.string(),
 });
-export type LongtermStorage = z.infer<typeof LongtermStorageSchema>;
-
+export type ServerLoginRequest = z.infer<typeof ServerLoginRequestSchema>;
 
 export const ServerChangeDataRequestSchema = z.object({
     password: z.string(),
@@ -88,3 +96,33 @@ export const ServerChangeDataRequestSchema = z.object({
 });
 export type ServerChangeDataRequest = z.infer<typeof ServerChangeDataRequestSchema>;
 
+export const ServerChangePasswordRequestSchema = z.object({
+    oldPassword: z.string(),
+    newPassword: z.string().min(MIN_PASSWORD_LENGTH),
+});
+export type ServerChangePasswordRequest = z.infer<typeof ServerChangePasswordRequestSchema>;
+
+
+// -----------------------------------------------------------------------------
+// Server only below this line - the client has no business knowing the shape of
+// the storage file, and it must never receive the password hash.
+// -----------------------------------------------------------------------------
+
+export const LongtermStorageSchema = z.object({
+    mapData: AllMapsDataSchema,
+    passwordHash: z.string(),
+});
+export type LongtermStorage = z.infer<typeof LongtermStorageSchema>;
+
+/**
+ * What we accept when *reading* the storage file, as opposed to what we write.
+ * `passwordHash` is optional and the deprecated plaintext `password` is still
+ * tolerated so that a file written before hashing existed still parses - if it
+ * didn't, the whole map would be thrown away along with the old password.
+ * AppService migrates such a file on first read.
+ */
+export const StoredDataSchema = z.object({
+    mapData: AllMapsDataSchema,
+    passwordHash: z.string().optional(),
+});
+export type StoredData = z.infer<typeof StoredDataSchema>;

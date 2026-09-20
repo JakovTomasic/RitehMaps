@@ -1,5 +1,14 @@
 import { z } from "zod";
 
+// -----------------------------------------------------------------------------
+// MIRRORED FILE. Everything must stay identical to api/src/data/ServerData.ts - both
+// sides parse the same JSON, and the numeric NodeType values in particular have to
+// line up exactly. Change a schema here and copy it there in the same commit.
+// -----------------------------------------------------------------------------
+
+/** Shortest password the server will accept when the admin changes it. */
+export const MIN_PASSWORD_LENGTH = 8;
+
 export enum NodeType {
     CLASSROOM,
     STUDENT_ROOM,
@@ -88,6 +97,6 @@ export type ServerChangeDataRequest = z.infer<typeof ServerChangeDataRequestSche
 
 export const ServerChangePasswordRequestSchema = z.object({
     oldPassword: z.string(),
-    newPassword: z.string(),
+    newPassword: z.string().min(MIN_PASSWORD_LENGTH),
 });
 export type ServerChangePasswordRequest = z.infer<typeof ServerChangePasswordRequestSchema>;

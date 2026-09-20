@@ -1,9 +1,19 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
 import { AppService } from './app.service';
-import { Request } from 'express';
-import { ChangeDataRequest, ChangePasswordRequest, LoginRequest } from './data/Data';
-import { AllMapsData } from './data/ServerData';
+import {
+  AllMapsData,
+  ServerChangeDataRequest,
+  ServerChangeDataRequestSchema,
+  ServerChangePasswordRequest,
+  ServerChangePasswordRequestSchema,
+  ServerLoginRequest,
+  ServerLoginRequestSchema,
+} from './data/ServerData';
+import { ZodValidationPipe } from './common/zod-validation.pipe';
 
+/** Tight budget for the endpoints that take a password: 5 tries a minute per IP. */
+const PASSWORD_ATTEMPTS_THROTTLE = { default: { limit: 5, ttl: 60_000 } };
 
 @Controller("api")
 export class AppController {
@@ -16,22 +26,30 @@ export class AppController {
   }
 
   // Only checks whether the password is correct, so the admin UI can be unlocked.
-  // Test with: curl -X POST http://localhost:3000/api/login -d '{ "password": "" }' -H "Content-Type: application/json"
+  // Test with: curl -X POST http://localhost:3000/api/login -d '{ "password": "..." }' -H "Content-Type: application/json"
+  @Throttle(PASSWORD_ATTEMPTS_THROTTLE)
   @Post("login")
-  async login(@Body() login: LoginRequest): Promise<boolean> {
+  async login(
+    @Body(new ZodValidationPipe(ServerLoginRequestSchema)) login: ServerLoginRequest,
+  ): Promise<boolean> {
     return this.appService.login(login);
   }
 
-  // Test with: curl -X POST http://localhost:3000/api/save -d '[{ ... mock data here }]' -H "Content-Type: application/json"
+  // Test with: curl -X POST http://localhost:3000/api/save -d '{ "password": "...", "data": { ... mock data here } }' -H "Content-Type: application/json"
   @Post("save")
-  async save(@Req() req: Request, @Body() dataToSave: ChangeDataRequest): Promise<boolean> {
+  async save(
+    @Body(new ZodValidationPipe(ServerChangeDataRequestSchema)) dataToSave: ServerChangeDataRequest,
+  ): Promise<boolean> {
     return this.appService.save(dataToSave);
   }
 
-  // Test with: curl -X POST http://localhost:3000/api/changePassword -d '{ "oldPassword": "", "newPassword": "a" }' -H "Content-Type: application/json"
+  // Test with: curl -X POST http://localhost:3000/api/changePassword -d '{ "oldPassword": "...", "newPassword": "..." }' -H "Content-Type: application/json"
+  @Throttle(PASSWORD_ATTEMPTS_THROTTLE)
   @Post("changePassword")
-  async changePassword(@Req() req: Request, @Body() changePassword: ChangePasswordRequest): Promise<boolean> {
-    return this.appService.changePassord(changePassword);
+  async changePassword(
+    @Body(new ZodValidationPipe(ServerChangePasswordRequestSchema)) changePassword: ServerChangePasswordRequest,
+  ): Promise<boolean> {
+    return this.appService.changePassword(changePassword);
   }
 
   @Get("hello")

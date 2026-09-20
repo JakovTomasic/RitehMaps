@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { API_URL } from "../server";
-import { AllMapsData, AllMapsDataSchema, ServerChangeDataRequest, ServerChangePasswordRequest, ServerLoginRequest } from "../data/ServerData";
+import { AllMapsData, AllMapsDataSchema, MIN_PASSWORD_LENGTH, ServerChangeDataRequest, ServerChangePasswordRequest, ServerLoginRequest } from "../data/ServerData";
 import AdminTextEdit from "../components/admin/AdminTextEdit";
 import AdminFancyEdit, { AdminFancyEditState } from "../components/admin/AdminFancyEdit";
 import AdminMapPopup from "../components/admin/AdminMapPopup";
@@ -249,6 +249,12 @@ export default function AdminPage(props: Props){
     const changePassword = async (wholeState: ChangePasswordState) => {
         if (wholeState.newPassword1 !== wholeState.newPassword2) {
             setChangePasswordMessage("Error: new passwords differ!");
+            return;
+        }
+        // The server rejects anything shorter, and would only answer with a
+        // generic error - say why here instead.
+        if (wholeState.newPassword1.length < MIN_PASSWORD_LENGTH) {
+            setChangePasswordMessage(`Error: password must be at least ${MIN_PASSWORD_LENGTH} characters!`);
             return;
         }
         const request: ServerChangePasswordRequest = {

@@ -1,7 +1,34 @@
-import { AllMapsData, LongtermStorage } from "./data/ServerData";
+import { AllMapsData } from "./data/ServerData";
 
-export const ALL_DATA_ENTRY_ID = 1;
-export const DEFAULT_PASSWORD = "";
+/**
+ * bcrypt work factor. 12 costs a few hundred ms per hash, which is irrelevant
+ * for an endpoint that is hit a handful of times a day and expensive for anyone
+ * working through a password list.
+ */
+export const BCRYPT_ROUNDS = 12;
+
+/**
+ * Env var holding a bcrypt hash of the admin password. It bootstraps the admin
+ * account when the storage file doesn't carry a hash yet; once the password is
+ * changed through the API the stored hash wins. Generate one with
+ * `npm run hash-password`. There is deliberately no default: with no hash from
+ * either source the admin endpoints stay locked.
+ */
+export const ADMIN_PASSWORD_HASH_ENV = "ADMIN_PASSWORD_HASH";
+
+/**
+ * Body size cap for the JSON parser. A full map save is ~84kb today, well over
+ * the 100kb Nest defaults to once the data grows a little, so this is set high
+ * enough to leave room without accepting arbitrarily large uploads.
+ */
+export const MAX_REQUEST_BODY_SIZE = "5mb";
+
+/** Browser origins allowed to call this API. Anything else is rejected by CORS. */
+export const ALLOWED_ORIGINS: string[] = [
+    "https://ritehmaps.pages.dev",
+    // The vite dev server, so the admin page works locally.
+    ...(process.env.NODE_ENV === "production" ? [] : ["http://localhost:5173"]),
+];
 
 export const EMPTY_DATA: AllMapsData = {
     nodes: [],
@@ -9,9 +36,4 @@ export const EMPTY_DATA: AllMapsData = {
     hallways: [],
     submaps: [],
     professors: [],
-}
-
-export const EMPTY_LONG_TERM_STORAGE_DATA: LongtermStorage = {
-    mapData: EMPTY_DATA,
-    password: DEFAULT_PASSWORD,
 }

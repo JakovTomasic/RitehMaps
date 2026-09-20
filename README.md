@@ -23,10 +23,10 @@ In order to add new dependencies, `cd` into client directory and then run `yarn 
 ## Deploy
 
 Steps for deploying the website:
-1. Build: run `npm run build` from the project's root directory
-2. Run with command `npm run start`
-3. Copy content of the latest json file from `/examples` and save (refresh to see if the data persisted)
-4. Change password from the default empty password
+1. Set the admin password **before the first run**. There is no default password: until the server has one, every admin request is rejected. From the `api` directory run `npm run hash-password`, type the password, and set the printed `ADMIN_PASSWORD_HASH` env var on the server. (Once the password is changed through the admin UI, the hash in the storage file takes over and the env var is only the fallback.)
+2. Build: run `npm run build` from the project's root directory
+3. Run with command `npm run start`
+4. Copy content of the latest json file from `/examples` and save (refresh to see if the data persisted)
 
 ### Vercel
 
@@ -38,16 +38,6 @@ You can deploy both front-end and back-end to Vercel.
 1. install vercel CLI `npm i -g vercel` (if using Nix, enter shell `nix-shell -p nodePackages.vercel` or just run `npx vercel`)
 2. build the project by running `npm run build` from the directory you want to deploy
 3. in the dir you want to deploy run `npx vercel --prod` (non-prod urls won't be public so you can't curl or fetch from them - and also use the shorter domain, not the temporary ones)
-
-#### API
-
-From api root directory, run:
-```bash
-rm -rf dist/ # this may not be needed
-npm run build # this may not be needed
-npx vercel --prod
-```
-Then click on the inspect link and open the shorter linke there - real production link.
 
 
 #### Client
@@ -62,3 +52,12 @@ npx vercel --prod
 ```
 Then click on the inspect link and open the shorter linke there - real production link.
 
+
+### API
+
+From api root directory, run:
+```bash
+rm -rf dist/ # this may not be needed
+npm run build # this may not be needed
+# put it on the server
+```

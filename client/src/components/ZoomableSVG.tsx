@@ -24,6 +24,14 @@ type Transform = {
  */
 const NEUTRAL_TRANSFORM: Transform = { x: 0, y: 0, scale: 1 };
 
+/**
+ * Zoom limits, as multiples of the default zoom level (scale 1 = the whole map visible, see
+ * NEUTRAL_TRANSFORM). Below 1 the map gets smaller than the view, above 1 it's zoomed in - so
+ * MIN_ZOOM_SCALE = 1 means the user can never zoom out past the whole floor.
+ */
+const MIN_ZOOM_SCALE = 1;
+const MAX_ZOOM_SCALE = 16;
+
 
 export default function ZoomableSVG( { children, width, height, centroidCrop, rotateAngle, enableZoom }: Prop ){
 
@@ -52,11 +60,13 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
         // because d3 keeps its own transform and knows nothing about the crop.
         setTransform(NEUTRAL_TRANSFORM)
 
-        const zoom = d3.zoom<SVGSVGElement, unknown>().on("zoom", (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
-            const { x, y, k } = event.transform
-            const rotatedPoint = rotatePointClockwise({x: x, y: y}, rotateAngle, {x: width/2, y: height/2})
-            setTransform({ x: rotatedPoint.x, y: rotatedPoint.y, scale: k })
-        })
+        const zoom = d3.zoom<SVGSVGElement, unknown>()
+            .scaleExtent([MIN_ZOOM_SCALE, MAX_ZOOM_SCALE])
+            .on("zoom", (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
+                const { x, y, k } = event.transform
+                const rotatedPoint = rotatePointClockwise({x: x, y: y}, rotateAngle, {x: width/2, y: height/2})
+                setTransform({ x: rotatedPoint.x, y: rotatedPoint.y, scale: k })
+            })
 
         svg.call(zoom)
         // LLM says d3 remembers the last transform on the node, so a previous zoom session (or step) would

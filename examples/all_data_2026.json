@@ -2364,6 +2364,7 @@
             "names": [
                 "L14",
                 "2-58",
+                "2-58a",
                 "lab za opću elektrotehniku"
             ],
             "submapId": 3,
@@ -5831,7 +5832,7 @@
             "phoneNumber": "+385 51 651 598",
             "internalPhoneNumber": "2598",
             "email": "ivan.markovinovic@riteh.uniri.hr",
-            "room": "2-50/L-13",
+            "room": "L13",
             "entity": ""
         },
         {
@@ -5991,7 +5992,7 @@
             "phoneNumber": "+385 51 651 465",
             "internalPhoneNumber": "2465",
             "email": "martina.pavelic@riteh.uniri.hr",
-            "room": "3 – 07",
+            "room": "3-07",
             "entity": ""
         },
         {
@@ -6335,7 +6336,7 @@
             "phoneNumber": "+385 51 505 702",
             "internalPhoneNumber": "5702",
             "email": "matija.varga@riteh.uniri.hr",
-            "room": "2-48/L-11",
+            "room": "L11",
             "entity": ""
         },
         {
@@ -6359,7 +6360,7 @@
             "phoneNumber": "+385 51 651 591",
             "internalPhoneNumber": "2591",
             "email": "nardi.verbanac@riteh.uniri.hr",
-            "room": "2-48/L-11",
+            "room": "L11",
             "entity": ""
         },
         {
@@ -6536,6 +6537,14 @@
             "internalPhoneNumber": "2556",
             "email": "lucija.zuzic@riteh.uniri.hr",
             "room": "1-53",
+            "entity": ""
+        },
+        {
+            "name": "asist. Nikolina Rodin",
+            "phoneNumber": "+385 51 505 707",
+            "internalPhoneNumber": "5707",
+            "email": "nikolina.rodin@riteh.uniri.hr",
+            "room": "1-40",
             "entity": ""
         }
     ],

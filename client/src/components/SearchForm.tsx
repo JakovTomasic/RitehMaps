@@ -16,10 +16,10 @@ type Prop = {
 }
 
 export type SearchInputs = {
-  startNodeId: string,
-  startText: string,
-  destinationNodeId: string,
-  destinationText: string,
+  startNodeId: string | undefined,
+  startText: string | undefined,
+  destinationNodeId: string | undefined,
+  destinationText: string | undefined,
 }
 
 function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
@@ -107,7 +107,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
                     if (!searchDropdownVisible) {
                       setSearchInputs((prevInputs: SearchInputs) => {
                         let nextDestinationId: string;
-                        let nextDestinationText: string;
+                        let nextDestinationText: string | undefined;
                         if (prevInputs.startNodeId === undefined) {
                           nextDestinationId = DEFAULT_START_ID;
                           nextDestinationText = DEFAULT_START_NAME;

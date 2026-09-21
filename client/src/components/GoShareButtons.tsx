@@ -5,10 +5,10 @@ import { createNavigationUrl, NavigationMode } from "../pages/navigation";
 import { createHomeUrl } from "../pages";
 
 type GoButtonProps = {
-  startNodeId: string;
-  destinationNodeId: string;
-  startText: string;
-  destinationText: string;
+  startNodeId?: string;
+  destinationNodeId?: string;
+  startText?: string;
+  destinationText?: string;
   clickable: boolean;
   defaultStartNodeId: string;
 };
@@ -30,7 +30,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
     }
   };
 
-  if (props.clickable) {
+  if (props.clickable && props.destinationNodeId !== undefined && props.destinationText !== undefined && props.destinationText.length > 0) {
     const startNodeId = props.startNodeId != null ? props.startNodeId : props.defaultStartNodeId;
 
     return (

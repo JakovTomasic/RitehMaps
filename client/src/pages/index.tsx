@@ -5,6 +5,7 @@ import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
 import { RoomSearch } from "../logic/interfaces/RoomSearch";
 import { useSearchParams } from "../utils/React";
+import { useVisibleViewport } from "../utils/SoftKeyboard";
 
 export const SEARCH_PATH = "/";
 const START_NODE_ID_PARAM_KEY = "startId";
@@ -40,12 +41,23 @@ export default function Home(props: Props) {
   const searchParams = useSearchParams();
   const params = resolveMissingTexts(parseParams(searchParams), roomSearch);
 
+  const visibleViewport = useVisibleViewport();
+
   return (
 
-    <div className="fixed h-full w-full bg-gray-50 flex justify-center items-center">
+    /*
+      The page fills what is visible rather than the whole window, so the form re-centers into
+      the strip above the soft keyboard instead of being buried under it. Once the keyboard
+      leaves too little room for the form, this is also the element that scrolls
+      (`my-auto` instead of `items-center` - auto margins center without clipping the overflow).
+    */
+    <div
+      className="fixed left-0 w-full bg-gray-50 flex justify-center overflow-y-auto"
+      style={{ height: visibleViewport.height, top: visibleViewport.offsetTop }}
+    >
       <Navbar />
 
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center my-auto py-4">
         <SearchForm roomSearcher={roomSearch} initialSearchInputs={params} />
       </div>
 

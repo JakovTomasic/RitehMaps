@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
+import { scrollIntoViewOnceKeyboardOpens } from "../utils/SoftKeyboard";
 
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
@@ -14,8 +15,8 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
   const [inputValue, setInputValue] = useState(initialInputValue);
   const [showDropdown, internalSetShowDropdown] = useState(false);
   const [dropdownOptions, setDropdownOptions] = useState<SearchNodeSuggestion[]>([]);
-  const searchRef = useRef(null);
-  
+  const searchRef = useRef<HTMLDivElement | null>(null);
+
   function setShowDropdown(show: boolean) {
     internalSetShowDropdown(show);
     onDropdownVisibilityChange(show);
@@ -37,6 +38,13 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
       const sortedSuggestions = roomSearcher(inputValue);
       setDropdownOptions(sortedSuggestions);
       setShowDropdown(true);
+    }
+  };
+
+  /** Keeps the field (and the room the suggestions drop into) above the phone's soft keyboard. */
+  const handleFocus = () => {
+    if (searchRef.current != null) {
+      scrollIntoViewOnceKeyboardOpens(searchRef.current);
     }
   };
 
@@ -80,8 +88,9 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
                   border-gray-300 rounded-md 
                   focus:outline-none focus:border-cyan-600"
         placeholder={placeholder}
-        value={inputValue} 
+        value={inputValue}
         onChange={handleInputChange}
+        onFocus={handleFocus}
       />
 
       {showDropdown && dropdownOptions.length > 0 && (

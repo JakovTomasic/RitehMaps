@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CopyToClipboardIcon from "./CopyToClipboardIcon";
 import { Link } from "wouter";
-import { createNavigationUrl, NavigationMode } from "../pages/navigation";
+import { createNavigationUrl, NavigationMode, NavigationRoute } from "../pages/navigation";
 import { createHomeUrl } from "../pages";
 
 type GoButtonProps = {
@@ -19,7 +19,12 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
   const handleCopy = async () => {
     const startNodeId = props.startNodeId != null ? props.startNodeId : props.defaultStartNodeId;
     const startText = props.startText != null ? props.startText : undefined;
-    const url = `${window.location.origin}${createHomeUrl(startNodeId, startText, props.destinationNodeId, props.destinationText)}`;
+    const url = `${window.location.origin}${createHomeUrl({
+      startNodeId: startNodeId,
+      startText: startText,
+      destinationNodeId: props.destinationNodeId,
+      destinationText: props.destinationText,
+    })}`;
 
     try {
       await navigator.clipboard.writeText(url);
@@ -32,11 +37,17 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
 
   if (props.clickable && props.destinationNodeId !== undefined && props.destinationText !== undefined && props.destinationText.length > 0) {
     const startNodeId = props.startNodeId != null ? props.startNodeId : props.defaultStartNodeId;
+    const route: NavigationRoute = {
+      startNodeId: startNodeId,
+      startName: props.startText,
+      destinationId: props.destinationNodeId,
+      destinationName: props.destinationText,
+    };
 
     return (
       <div className="relative flex w-full items-center justify-center gap-1.5">
-        <GoButton text="Quick" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText, NavigationMode.Quick)} enabled={true} />
-        <GoButton text="Detailed" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText, NavigationMode.Detailed)} enabled={true} />
+        <GoButton text="Quick" href={createNavigationUrl(route, NavigationMode.Quick)} enabled={true} />
+        <GoButton text="Detailed" href={createNavigationUrl(route, NavigationMode.Detailed)} enabled={true} />
 
         <button
           className="py-[0.55rem] px-[0.7rem] rounded-lg flex items-center justify-center

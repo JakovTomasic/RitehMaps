@@ -12,9 +12,11 @@ import { DestinationNode } from "../types/navigation/DestinationNode";
 import { useLocation } from "wouter";
 import { useSearchParams } from "../utils/React";
 import { AllMapsData } from "../data/ServerData";
+import { createHomeUrl } from "./index";
 
 export const NAVIGATION_PATH = "/nav";
 const START_NODE_ID_PARAM_KEY = "startId";
+const START_NAME_PARAM_KEY = "startName";
 const DESTINATION_NODE_ID_PARAM_KEY = "endId";
 const DESTINATION_NAME_PARAM_KEY = "endName";
 const MODE_PARAM_KEY = "mode";
@@ -26,11 +28,22 @@ export enum NavigationMode {
     Detailed = "detailed",
 }
 
-export function createNavigationUrl(startNodeId: string, destinationId: string, destinationName: string, mode: NavigationMode): string {
-    const object: any = {};
-    object[START_NODE_ID_PARAM_KEY] = startNodeId;
-    object[DESTINATION_NODE_ID_PARAM_KEY] = destinationId;
-    object[DESTINATION_NAME_PARAM_KEY] = destinationName;
+export type NavigationRoute = {
+    startNodeId: string,
+    /** Optional: it can be left empty */
+    startName?: string,
+    destinationId: string,
+    destinationName: string,
+}
+
+export function createNavigationUrl(route: NavigationRoute, mode: NavigationMode): string {
+    const object: Record<string, string> = {};
+    object[START_NODE_ID_PARAM_KEY] = route.startNodeId;
+    if (route.startName != undefined && route.startName.length > 0) {
+        object[START_NAME_PARAM_KEY] = route.startName;
+    }
+    object[DESTINATION_NODE_ID_PARAM_KEY] = route.destinationId;
+    object[DESTINATION_NAME_PARAM_KEY] = route.destinationName;
     object[MODE_PARAM_KEY] = mode;
     const params = new URLSearchParams(object).toString()
     return `${NAVIGATION_PATH}?${params}`;
@@ -100,7 +113,12 @@ export default function Navigation(props: Props){
                         updateCurrentStepIndex(currentStepIndex-1)
                     }
                 }}
-                onUpdateClick={() => {navigate('/')}}
+                onUpdateClick={() => {navigate(createHomeUrl({
+                    startNodeId: params?.startId,
+                    startText: params?.startName,
+                    destinationNodeId: params?.destinationId,
+                    destinationText: params?.destinationName,
+                }))}}
                 onNextClick={() => {
                     if(currentStepIndex < navDirections.steps.length-1) {
                         updateCurrentStepIndex(currentStepIndex+1)
@@ -116,6 +134,7 @@ export default function Navigation(props: Props){
 
 type params = {
     startId: string,
+    startName: string | undefined,
     destinationId: string,
     destinationName: string,
     mode: NavigationMode,
@@ -123,12 +142,14 @@ type params = {
 
 function parseParams(params: URLSearchParams): params | null {
     const startId = params.get(START_NODE_ID_PARAM_KEY);
+    const startName = params.get(START_NAME_PARAM_KEY);
     const destinationId = params.get(DESTINATION_NODE_ID_PARAM_KEY);
     const destinationName = params.get(DESTINATION_NAME_PARAM_KEY);
     const mode = params.get(MODE_PARAM_KEY);
     if (startId != null && destinationId != null && destinationName != null) {
         return {
             startId: startId,
+            startName: startName ?? undefined,
             destinationId: destinationId,
             destinationName: destinationName,
             mode: mode === NavigationMode.Quick ? NavigationMode.Quick : NavigationMode.Detailed,

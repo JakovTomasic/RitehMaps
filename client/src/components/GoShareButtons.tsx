@@ -63,7 +63,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
         {copied && (
           <span className="absolute -top-8 right-8 text-xs font-semibold text-white
                             bg-gray-800 px-2.5 py-1 rounded-md shadow-md whitespace-nowrap">
-            Copied!
+            URL copied!
           </span>
         )}
       </div>

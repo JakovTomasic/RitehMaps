@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type Props = {
     password: string,
     error: string,
@@ -7,6 +9,8 @@ type Props = {
 };
 
 export default function AdminLogin(props: Props) {
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
         <div className="min-h-screen w-full bg-gray-50 flex items-center justify-center p-4">
             <form
@@ -24,16 +28,27 @@ export default function AdminLogin(props: Props) {
                 <label htmlFor="admin-password" className="mb-1 text-sm font-semibold text-gray-700">
                     Password
                 </label>
-                <input
-                    id="admin-password"
-                    type="password"
-                    autoFocus
-                    autoComplete="current-password"
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2 outline-none transition
-                        focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
-                    value={props.password}
-                    onChange={v => props.onPasswordChange(v.target.value)}
-                />
+                <div className="relative w-full">
+                    <input
+                        id="admin-password"
+                        type={showPassword ? "text" : "password"}
+                        autoFocus
+                        autoComplete="current-password"
+                        className="w-full rounded-lg border border-gray-300 pl-3 pr-16 py-2 outline-none transition
+                            focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
+                        value={props.password}
+                        onChange={v => props.onPasswordChange(v.target.value)}
+                    />
+                    <button
+                        type="button"
+                        aria-label={showPassword ? "Hide password" : "Show password"}
+                        aria-pressed={showPassword}
+                        className="absolute inset-y-0 right-0 px-3 text-sm font-semibold text-gray-500
+                            hover:text-cyan-700 transition"
+                        onClick={() => setShowPassword(v => !v)}>
+                        {showPassword ? "Hide" : "Show"}
+                    </button>
+                </div>
 
                 <div className="min-h-[1.5rem] mt-2 text-sm font-semibold text-red-500">
                     {props.error}

@@ -87,7 +87,7 @@ export default function NavigationLayout(props: Prop) {
                         height={props.mapDrawProps.submap.height} centroidCrop={props.mapDrawProps.centroidCrop}
                         rotateAngle={props.rotateAngle} drawElements={props.mapDrawProps.mapElements} enableZoom={enableZoom}/>
                     </div>
-                    : <div className="flex-1 flex items-center justify-center text-gray-400 font-medium">Loading...</div>
+                    : <></>
                 }
 
                 <div className="z-10 flex items-center justify-between gap-3 px-4 py-3 bg-white

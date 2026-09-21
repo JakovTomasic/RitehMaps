@@ -57,19 +57,13 @@ function App() {
       */}
       <Switch>
         <Route path="/" component={() =>
-          <>
-          { state.allMapData === null ?
-            <>loading...</>
-            :
-            <Home allMapData={state.allMapData ?? EMPTY_ALL_MAP_DATA} />
-          }
-          </>
+          <Home allMapData={state.allMapData ?? EMPTY_ALL_MAP_DATA} />
         } />
         {/* <Route path="/graph" component={GraphPage} /> */}
         <Route path={NAVIGATION_PATH} component={() =>
           <>
           { state.allMapData === null ?
-            <>loading...</>
+            <></>
             :
             <Navigation allMapsData={state.allMapData} />
           }
@@ -78,7 +72,7 @@ function App() {
         <Route path="/admin" component={() =>
           <>
           { state.allMapData === null ?
-            <>loading...</>
+            <></>
             :
             <AdminPage allMapData={state.allMapData ?? EMPTY_ALL_MAP_DATA} />
           }

@@ -20,8 +20,10 @@ const DESTINATION_NAME_PARAM_KEY = "endName";
 const MODE_PARAM_KEY = "mode";
 
 export enum NavigationMode {
-    FloorByFloor = "floor",
-    StepByStep = "step",
+    /** One step per floor. */
+    Quick = "quick",
+    /** Multiple steps per floor. */
+    Detailed = "detailed",
 }
 
 export function createNavigationUrl(startNodeId: string, destinationId: string, destinationName: string, mode: NavigationMode): string {
@@ -61,7 +63,7 @@ export default function Navigation(props: Props){
         
             const destinationNodeFilter = createMapNodeFilter(params.destinationId, props.allMapsData);
             if (destinationNodeFilter != null) {
-                const directions: NavigationDirections = params.mode === NavigationMode.FloorByFloor
+                const directions: NavigationDirections = params.mode === NavigationMode.Quick
                     ? mapNav.findShortestPathForFloorByFloor(params.startId as string, destinationNodeFilter)
                     : mapNav.findShortestPath(params.startId as string, destinationNodeFilter)
                 setNavDirections(directions);
@@ -88,7 +90,7 @@ export default function Navigation(props: Props){
                 rotateAngle={0}
                 showDeviceOrientationWarning={false}
                 zoomButtonVisible={true}
-                zoomEnabledByDefault={params?.mode === NavigationMode.FloorByFloor}
+                zoomEnabledByDefault={params?.mode === NavigationMode.Quick}
                 middleLineVisible={false}
                 isFirstStep={currentStepIndex == 0}
                 isLastStep={navDirections != undefined && currentStepIndex == navDirections.steps.length - 1}
@@ -129,7 +131,7 @@ function parseParams(params: URLSearchParams): params | null {
             startId: startId,
             destinationId: destinationId,
             destinationName: destinationName,
-            mode: mode === NavigationMode.FloorByFloor ? NavigationMode.FloorByFloor : NavigationMode.StepByStep,
+            mode: mode === NavigationMode.Quick ? NavigationMode.Quick : NavigationMode.Detailed,
         }
     } else {
         return null;

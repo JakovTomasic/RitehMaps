@@ -35,8 +35,8 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
 
     return (
       <div className="relative flex w-full items-center justify-center gap-1.5">
-        <GoButton text="Quick" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText, NavigationMode.FloorByFloor)} enabled={true} />
-        <GoButton text="Detailed" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText, NavigationMode.StepByStep)} enabled={true} />
+        <GoButton text="Quick" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText, NavigationMode.Quick)} enabled={true} />
+        <GoButton text="Detailed" href={createNavigationUrl(startNodeId, props.destinationNodeId, props.destinationText, NavigationMode.Detailed)} enabled={true} />
 
         <button
           className="py-[0.55rem] px-[0.7rem] rounded-lg flex items-center justify-center

@@ -132,17 +132,6 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
 
           </div>
           
-          {/* <div className="flex relative py-3 items-center justify-center z-0">
-            <HCIGoButtons 
-                startNodeId={searchInputs.startNodeId} 
-                destinationNodeId={searchInputs.destinationNodeId}
-                startText={searchInputs.startText} 
-                destinationText={searchInputs.destinationText}
-                clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
-                defaultStartNodeId={DEFAULT_START_ID}
-            />
-          </div> */}
-
           <div className="flex relative py-3 items-center justify-center z-0">
             <GoShareButtons
                 startNodeId={searchInputs.startNodeId}

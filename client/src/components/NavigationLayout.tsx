@@ -67,21 +67,29 @@ export default function NavigationLayout(props: Prop) {
                     </div>
                 }
 
-                <div className="z-10 flex items-center justify-between gap-2 px-3 py-2.5 bg-white shadow-sm">
+                {/*
+                  A floor caption is a whole sentence ("Main Building, floor 0"), so on a phone it
+                  wraps onto its own line under the controls instead of squeezing between them -
+                  `w-full` on a wrapping flex row is what forces that break. From `sm` up there is
+                  room for all three, and it goes back to the middle of the row.
+                */}
+                <div className="z-10 flex flex-wrap items-center gap-x-2 px-3 py-2 bg-white shadow-sm">
                     <button
                         onClick={props.onUpdateClick}
-                        className="flex items-center gap-1 text-sm font-semibold text-cyan-700
-                            hover:text-cyan-800 px-2 py-1.5 rounded-md hover:bg-cyan-50 transition"
+                        className="order-1 flex items-center gap-1 text-sm font-semibold text-cyan-700
+                            hover:text-cyan-800 px-2 py-1.5 -ml-2 rounded-md hover:bg-cyan-50 transition"
                     >
                         <span aria-hidden className="leading-none">&larr;</span>
                         Edit search
                     </button>
 
-                    { props.mapDrawProps != null &&
-                        <MapCaption imageCaption={props.mapDrawProps.submap.caption} />
-                    }
+                    <div className="order-3 w-full min-w-0 pt-0.5 sm:order-2 sm:w-auto sm:flex-1 sm:pt-0 sm:text-center">
+                        { props.mapDrawProps != null &&
+                            <MapCaption imageCaption={props.mapDrawProps.submap.caption} />
+                        }
+                    </div>
 
-                    <div className="flex items-center gap-1.5 shrink-0">
+                    <div className="order-2 ml-auto flex items-center gap-1.5 shrink-0 sm:order-3 sm:ml-0">
                         { props.compass != null &&
                             <CompassToggleButton
                                 enabled={props.compass.enabled}
@@ -90,11 +98,10 @@ export default function NavigationLayout(props: Prop) {
                                 onClick={props.compass.onToggle}
                             />
                         }
-                        { props.zoomButtonVisible ?
+                        { props.zoomButtonVisible &&
                             <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'}
                                 onClick={() => {setZoom(!enableZoom)}}
                             />
-                            : <div className="w-[37px]" />
                         }
                     </div>
                 </div>

@@ -8,6 +8,18 @@ import { DestinationNode } from "../types/navigation/DestinationNode";
 import FinishFlag from "./FinishFlag";
 import { createHomeUrl } from "../pages";
 import { Link } from "wouter";
+import CompassToggleButton from "./CompassToggleButton";
+
+/** What the screen needs to show a compass button, and what happens when it is pressed. */
+export type CompassControl = {
+    enabled: boolean,
+    available: boolean,
+    /** True while it is still unknown whether the device has a compass at all. */
+    checking: boolean,
+    /** Why the compass can't be turned on, shown to the user until it clears itself. */
+    error: string | null,
+    onToggle: () => void,
+}
 
 type Prop = {
     mapDrawProps: MapDrawProps,
@@ -19,6 +31,8 @@ type Prop = {
     isFirstStep: boolean,
     isLastStep: boolean,
     destination: DestinationNode,
+    /** Left out on screens that don't offer compass mode. */
+    compass?: CompassControl,
     onBackClick: () => void,
     onUpdateClick: () => void,
     onNextClick: () => void,
@@ -61,13 +75,29 @@ export default function NavigationLayout(props: Prop) {
                         <MapCaption imageCaption={props.mapDrawProps.submap.caption} />
                     }
 
-                    { props.zoomButtonVisible ?
-                        <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'}
-                            onClick={() => {setZoom(!enableZoom)}}
-                        />
-                        : <div className="w-[37px]" />
-                    }
+                    <div className="flex items-center gap-1.5 shrink-0">
+                        { props.compass != null &&
+                            <CompassToggleButton
+                                enabled={props.compass.enabled}
+                                available={props.compass.available}
+                                checking={props.compass.checking}
+                                onClick={props.compass.onToggle}
+                            />
+                        }
+                        { props.zoomButtonVisible ?
+                            <ZoomToggleButton zoomImage={enableZoom ? '/images/focus.svg' : '/images/expand.svg'}
+                                onClick={() => {setZoom(!enableZoom)}}
+                            />
+                            : <div className="w-[37px]" />
+                        }
+                    </div>
                 </div>
+
+                { props.compass?.error != null &&
+                    <div className="bg-amber-50 text-amber-800 text-sm font-medium text-center py-2 px-4 border-b border-amber-100">
+                        { props.compass.error }
+                    </div>
+                }
 
                 { props.showDeviceOrientationWarning &&
                     <div className="bg-red-50 text-red-700 text-sm font-medium text-center py-2 px-4 border-b border-red-100">
@@ -79,8 +109,13 @@ export default function NavigationLayout(props: Prop) {
                 props.mapDrawProps != null ?
                     <div className="w-full flex-1 overflow-hidden relative">
                         { props.middleLineVisible ?
-                            <div className="absolute w-full h-full flex flex-col items-center pointer-events-none">
-                                <img className="h-16" src="/images/arrow_up.png"></img>
+                            // We explain to user what the arrow means.
+                            <div className="absolute w-full h-full flex flex-col items-center pointer-events-none z-10">
+                                <img className="h-16 opacity-70" src="/images/arrow_up.png"></img>
+                                <span className="text-[11px] font-semibold uppercase tracking-wide text-gray-500
+                                    bg-white/80 rounded-full px-2 py-0.5">
+                                    You are facing this way
+                                </span>
                             </div>
                         : <></> }
                         <MyMap layoutImage={props.mapDrawProps.submap.path} width={props.mapDrawProps.submap.width}

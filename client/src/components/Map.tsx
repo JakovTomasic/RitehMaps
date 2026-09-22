@@ -35,6 +35,13 @@ const CLICK_DOT_RADIUS = 0.5;
  * focused view buries the floor plan under it - everything is drawn this much thinner there.
  */
 const ZOOMED_OUT_SIZE_FACTOR = 0.4;
+/**
+ * Crop scale from which on the view is tight enough around a step to deserve the full thickness.
+ * Compass mode crops wider than that (a step has to stay inside the view at any angle the map is
+ * turned to, which for a long one means the whole floor), and the closer that gets to showing
+ * everything, the closer the route gets to its zoomed out thickness.
+ */
+const TIGHT_CROP_SCALE = 2;
 /** Soft dark shadow drawn under the route, so it stays readable over dark parts of the image. */
 const HALO_COLOR = "#0F172A";
 /** White outline drawn under the route, so it stays readable over light parts of the image. */
@@ -133,8 +140,20 @@ export default class MyMap extends Component<Prop, State>{
 
     /** Converts a size given in percent of the visible map diagonal into map units. */
     private units(percent: number): number {
-        const factor = this.zoomedOut() ? ZOOMED_OUT_SIZE_FACTOR : 1;
-        return percent / 100 * factor * this.visibleDiagonal();
+        return percent / 100 * this.sizeFactor() * this.visibleDiagonal();
+    }
+
+    /** How much thinner than in a step focused view everything is drawn, see ZOOMED_OUT_SIZE_FACTOR. */
+    private sizeFactor(): number {
+        if (this.zoomedOut()) {
+            return ZOOMED_OUT_SIZE_FACTOR;
+        }
+        const stepScale = this.props.centroidCrop?.stepScale || TIGHT_CROP_SCALE;
+        if (stepScale >= TIGHT_CROP_SCALE) {
+            return 1;
+        }
+        const tightness = (stepScale - 1) / (TIGHT_CROP_SCALE - 1);
+        return ZOOMED_OUT_SIZE_FACTOR + (1 - ZOOMED_OUT_SIZE_FACTOR) * Math.max(tightness, 0);
     }
 
     /** True while the whole submap is on screen instead of the current step's crop. */
@@ -492,7 +511,19 @@ export default class MyMap extends Component<Prop, State>{
             this.drawMap()
         }
 
-        this.drawElements()
+        // The overlay is drawn in map coordinates, which rotating doesn't touch - the wrapping svg
+        // turns the finished drawing. In compass mode the angle changes with every twitch of the
+        // phone, and rebuilding the overlay for each of those would restart the SMIL animations
+        // over and over, leaving the arrows frozen on their first frame.
+        const redrawNeeded = prevProps.drawElements !== this.props.drawElements
+            || prevProps.centroidCrop !== this.props.centroidCrop
+            || prevProps.enableZoom !== this.props.enableZoom
+            || prevProps.width !== this.props.width
+            || prevProps.height !== this.props.height;
+
+        if (redrawNeeded) {
+            this.drawElements()
+        }
     }
 
     render() {

@@ -38,6 +38,12 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
     const svgRef = useRef<SVGSVGElement>(null)
     const [transform, setTransform] = useState<Transform>(NEUTRAL_TRANSFORM)
 
+    // Read inside the zoom handler through a ref: in compass mode the angle changes many times a
+    // second, and having the effect below depend on it would re-install the zoom behaviour - and
+    // reset the user's zoom to identity - just as often.
+    const rotateAngleRef = useRef(rotateAngle)
+    rotateAngleRef.current = rotateAngle
+
     const viewBoxWidth = centroidCrop.scaledWidth
     const viewBoxHeight = centroidCrop.scaledHeight
 
@@ -64,7 +70,7 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
             .scaleExtent([MIN_ZOOM_SCALE, MAX_ZOOM_SCALE])
             .on("zoom", (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
                 const { x, y, k } = event.transform
-                const rotatedPoint = rotatePointClockwise({x: x, y: y}, rotateAngle, {x: width/2, y: height/2})
+                const rotatedPoint = rotatePointClockwise({x: x, y: y}, rotateAngleRef.current, {x: width/2, y: height/2})
                 setTransform({ x: rotatedPoint.x, y: rotatedPoint.y, scale: k })
             })
 
@@ -75,7 +81,7 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
 
         return () => { svg.on(".zoom", null) }
 
-    }, [translateX, translateY, stepScale, enableZoom, rotateAngle, width, height])
+    }, [translateX, translateY, stepScale, enableZoom, width, height])
 
     return (
         <svg height="100%" width="100%" ref={svgRef} viewBox={`0, 0, ${viewBoxWidth}, ${viewBoxHeight}`}>

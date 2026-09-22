@@ -1,6 +1,6 @@
 import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
 import { NavigationDirections } from "../types/navigation/NavigationDirections";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MapNavigatorImpl } from "../logic/impl/pathfinding/MapNavigatorImpl";
 import { GraphImpl } from "../logic/impl/graph/GraphImpl";
 import { createGraph } from "../logic/impl/graph/GraphFactory";
@@ -13,6 +13,8 @@ import { useLocation } from "wouter";
 import { useSearchParams } from "../utils/React";
 import { AllMapsData } from "../data/ServerData";
 import { createHomeUrl } from "./index";
+import { MapRotationCalculatorImpl } from "../logic/impl/MapRotationCalculatorImpl";
+import { CompassAvailability, useCompass } from "../utils/Compass";
 
 export const NAVIGATION_PATH = "/nav";
 const START_NODE_ID_PARAM_KEY = "startId";
@@ -65,6 +67,9 @@ export default function Navigation(props: Props){
     const submapProvider = new SubmapProviderImpl(props.allMapsData.submaps);
     const mapCropper = new MapCropperImpl();
     const uiMapConverter = new UiMapConverterImpl(submapProvider, mapCropper);
+    const mapRotationCalculator = new MapRotationCalculatorImpl(submapProvider);
+
+    const compass = useCompass();
 
     useEffect(() => {
         if (params != null) {
@@ -89,10 +94,23 @@ export default function Navigation(props: Props){
     }, []);
 
     const [currentStepIndex, updateCurrentStepIndex] = useState(0);
-    
-    const mapDrawProps = uiMapConverter.convertNavigationToMapDrawElements(currentStepIndex, navDirections);
-    
-    
+
+    // Memoized because the heading changes many times a second while the user turns: rebuilding
+    // these would hand the map a brand new (but identical) set of elements every time, and the map
+    // would throw away and redraw its whole overlay - arrow animations and all - on each of them.
+    const mapDrawProps = useMemo(
+        () => compass.enabled
+            ? uiMapConverter.convertNavigationToMapDrawElements_compass(currentStepIndex, navDirections)
+            : uiMapConverter.convertNavigationToMapDrawElements(currentStepIndex, navDirections),
+        [currentStepIndex, navDirections, compass.enabled],
+    );
+
+    // How far the map has to be turned for the direction the user faces to point up the screen.
+    const rotateAngle = (compass.heading == null || mapDrawProps == null)
+        ? 0
+        : mapRotationCalculator.rotationForCompass(mapDrawProps.submap.north_angle, compass.heading) ?? 0;
+
+
     return (
         <>
         { mapDrawProps === null ?
@@ -100,11 +118,18 @@ export default function Navigation(props: Props){
             :
             <NavigationLayout
                 mapDrawProps={mapDrawProps}
-                rotateAngle={0}
-                showDeviceOrientationWarning={false}
+                rotateAngle={rotateAngle}
+                showDeviceOrientationWarning={compass.tilted}
                 zoomButtonVisible={true}
                 zoomEnabledByDefault={params?.mode === NavigationMode.Quick}
-                middleLineVisible={false}
+                middleLineVisible={compass.enabled}
+                compass={{
+                    enabled: compass.enabled,
+                    available: compass.availability !== CompassAvailability.Unavailable,
+                    checking: compass.availability === CompassAvailability.Unknown,
+                    error: compass.error,
+                    onToggle: compass.toggle,
+                }}
                 isFirstStep={currentStepIndex == 0}
                 isLastStep={navDirections != undefined && currentStepIndex == navDirections.steps.length - 1}
                 destination={destinationNode}

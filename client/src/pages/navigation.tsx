@@ -98,11 +98,11 @@ export default function Navigation(props: Props){
     // Memoized because the heading changes many times a second while the user turns: rebuilding
     // these would hand the map a brand new (but identical) set of elements every time, and the map
     // would throw away and redraw its whole overlay - arrow animations and all - on each of them.
+    // The compass isn't part of it: the crop already leaves room for the map to turn in, so
+    // switching it on rotates the very same view instead of redrawing it at another zoom level.
     const mapDrawProps = useMemo(
-        () => compass.enabled
-            ? uiMapConverter.convertNavigationToMapDrawElements_compass(currentStepIndex, navDirections)
-            : uiMapConverter.convertNavigationToMapDrawElements(currentStepIndex, navDirections),
-        [currentStepIndex, navDirections, compass.enabled],
+        () => uiMapConverter.convertNavigationToMapDrawElements(currentStepIndex, navDirections),
+        [currentStepIndex, navDirections],
     );
 
     // How far the map has to be turned for the direction the user faces to point up the screen.

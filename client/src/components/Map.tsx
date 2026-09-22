@@ -37,9 +37,9 @@ const CLICK_DOT_RADIUS = 0.5;
 const ZOOMED_OUT_SIZE_FACTOR = 0.4;
 /**
  * Crop scale from which on the view is tight enough around a step to deserve the full thickness.
- * Compass mode crops wider than that (a step has to stay inside the view at any angle the map is
- * turned to, which for a long one means the whole floor), and the closer that gets to showing
- * everything, the closer the route gets to its zoomed out thickness.
+ * A long step gets cropped wider than that (it has to stay inside the view at any angle the map
+ * can be turned to, which for a long one means the whole floor), and the closer that gets to
+ * showing everything, the closer the route gets to its zoomed out thickness.
  */
 const TIGHT_CROP_SCALE = 2;
 /** Soft dark shadow drawn under the route, so it stays readable over dark parts of the image. */

@@ -33,39 +33,12 @@ export class UiMapConverterImpl implements UiMapConverter {
     }
 
     convertNavigationToMapDrawElements(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, 0, false);
-    }
-    convertNavigationToMapDrawElements_stepByStep(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, 0, false);
-    }
-    convertNavigationToMapDrawElements_floorByFloor(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, 0, false);
-    }
-    /**
-     * Same elements as everywhere else, only cropped so the step survives the map being turned to
-     * face whichever way the user does.
-     */
-    convertNavigationToMapDrawElements_compass(currentStepIndex: number, navDirections: NavigationDirections): MapDrawProps | null {
-        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, 0, true);
-    }
-    convertNavigationToMapDrawElements_stepByStepForward(currentStepIndex: number, navDirections: NavigationDirections, rotateAngle: number): MapDrawProps | null {
-        return this.commonConvertNavigationToMapDrawElements(currentStepIndex, navDirections, rotateAngle, false);
-    }
-
-    private commonConvertNavigationToMapDrawElements(
-        currentStepIndex: number,
-        navDirections: NavigationDirections,
-        rotateAngle: number,
-        cropForAnyRotation: boolean,
-    ): MapDrawProps | null {
         const navSteps: NavigationStep[] = navDirections?.steps;
 
         if (navSteps !== undefined && navSteps.length > 0 && currentStepIndex < navSteps.length) {
             const currentStep = navSteps[currentStepIndex];
             const submap = this.submapProvider.getSubmap(currentStep.nodes[0].submapId);
-            const centroidCrop = cropForAnyRotation
-                ? this.mapCropper.cropForAnyRotation(currentStep, submap.width, submap.height)
-                : this.mapCropper.crop(currentStep, submap.width, submap.height, rotateAngle);
+            const centroidCrop = this.mapCropper.crop(currentStep, submap.width, submap.height);
 
             let mapElements: MapDrawElement[] = [];
             let currentStepLines: MapDrawElement[] = [];

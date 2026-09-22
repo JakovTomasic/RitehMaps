@@ -2,8 +2,6 @@ import { MapNode } from "../../../types/graph/MapNode";
 import { Dot } from "../../../types/general/Dot";
 import { Line } from "../../../types/general/Line";
 import { NavigationNode } from "../../../types/navigation/NavigationNode";
-import { NavigationStep } from "../../../types/navigation/NavigationStep";
-import { rotatePointClockwise } from "../../../utils/Geometry";
 import { SubmapProvider } from "../../interfaces/SubmapProvider";
 import { Hallway } from "../../../data/ServerData";
 
@@ -62,43 +60,3 @@ export function navNodeToAbsoluteDot(node: NavigationNode, submapProvider: Subma
     return relativeToAbsoluteCoordinates(navNodeToDot(node), width, height);
 }
 
-export function rotateRelativePointClockwise(
-    point: Dot,
-    angle: number, 
-    width: number, 
-    height: number,
-    centerOfRotation: Dot = {x: width / 2, y: height / 2}
-) : Dot {
-    const absPoint = relativeToAbsoluteCoordinates({x: point.x, y: point.y}, width, height);
-    const rotPoint = rotatePointClockwise({x: absPoint.x, y: absPoint.y}, angle, centerOfRotation);
-    const relPoint = absoluteToRelativeCoordinates({x: rotPoint.x, y: rotPoint.y}, width, height);
-    return {x: relPoint.x, y: relPoint.y};
-}
-
-export function getStepWithRotatedNodes(
-    navigationStep: NavigationStep, 
-    width: number, 
-    height: number,
-    rotateAngle: number = 0
-): NavigationStep {
-
-    if (rotateAngle == 0) return navigationStep;
-
-    let rotatedNodes: NavigationNode[] = [];
-
-    navigationStep.nodes.forEach((node) => {
-        const rotatedPoint = rotateRelativePointClockwise(
-            {x: node.xCoordinate, y: node.yCoordinate}, 
-            rotateAngle, 
-            width, 
-            height,
-        );
-        rotatedNodes.push({
-            submapId: node.submapId,
-            xCoordinate: rotatedPoint.x,
-            yCoordinate: rotatedPoint.y,
-        });
-    });
-
-    return new NavigationStep(rotatedNodes);
-}

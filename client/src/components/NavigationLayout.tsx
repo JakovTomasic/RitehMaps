@@ -16,6 +16,12 @@ export type CompassControl = {
     available: boolean,
     /** True while it is still unknown whether the device has a compass at all. */
     checking: boolean,
+    /**
+     * True while the mode is on but no heading has arrived yet. Some browsers (brave, most of all)
+     * stop running the page while their own permission prompt is up and only pick it back up on
+     * the next touch, so the user is told to give it one instead of watching a map that never turns.
+     */
+    waitingForHeading: boolean,
     /** Why the compass can't be turned on, shown to the user until it clears itself. */
     error: string | null,
     onToggle: () => void,
@@ -116,6 +122,12 @@ export default function NavigationLayout(props: Prop) {
                                     bg-white/80 rounded-full px-2 py-0.5">
                                     You are facing this way
                                 </span>
+                                { props.compass?.waitingForHeading === true &&
+                                    <span className="mt-1 text-[11px] font-semibold text-gray-600
+                                        bg-white/80 rounded-full px-2 py-0.5">
+                                        Tap the map to start the compass
+                                    </span>
+                                }
                             </div>
                         : <></> }
                         <MyMap layoutImage={props.mapDrawProps.submap.path} width={props.mapDrawProps.submap.width}

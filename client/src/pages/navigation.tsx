@@ -127,6 +127,7 @@ export default function Navigation(props: Props){
                     enabled: compass.enabled,
                     available: compass.availability !== CompassAvailability.Unavailable,
                     checking: compass.availability === CompassAvailability.Unknown,
+                    waitingForHeading: compass.enabled && compass.heading == null,
                     error: compass.error,
                     onToggle: compass.toggle,
                 }}

@@ -15,7 +15,10 @@ import { fixAngleBetweenZeroAnd360, shortestAngleDifference } from "./Geometry";
  *    `AbsoluteOrientationSensor`. Firefox instead fires a plain `deviceorientation` marked
  *    `absolute`.
  *  - brave keeps the sensors behind its fingerprinting shield, and a blocked sensor there doesn't
- *    fail, it simply never says anything.
+ *    fail, it simply never says anything. It also puts its own prompt up (one the orientation
+ *    API doesn't know about, since there is no `requestPermission` to call on android) so
+ *    the only way to tell "the user hasn't answered yet" from "this device has no compass" is to
+ *    ask `navigator.permissions` what it thinks of the motion sensors.
  *  - a desktop has all the constructors and no magnetometer, so nothing ever fires. There is no
  *    flag to ask, the only way to tell it apart from a phone is to listen for a while and see
  *    whether a heading shows up - which is why {@link CompassAvailability.Unknown} exists.
@@ -58,8 +61,30 @@ const PROBE_TIMEOUT_MS = 2500;
 const FIRST_READING_TIMEOUT_MS = 5000;
 /** The same again, after a browser that refused access - it is only getting a chance to surprise us. */
 const REFUSED_READING_TIMEOUT_MS = 1500;
+/**
+ * And again, while the browser's own prompt is up: long enough that a user reading it, or fetching
+ * their glasses, is never cut off, but not endless - a prompt that gets dismissed instead of
+ * answered stays "unanswered" forever, and would otherwise leave compass mode on and turning
+ * nothing at all, with nothing on screen to say why.
+ */
+const PROMPT_READING_TIMEOUT_MS = 60000;
 /** How long an error stays on screen. */
 const ERROR_TIMEOUT_MS = 8000;
+/**
+ * How long the orientation events get to answer before a sensor reading is shown instead.
+ *
+ * The two sources measure the same heading in different ways, so handing the map over from one to
+ * the other mid-turn is a jump on screen - which is why only the first one to answer is ever used,
+ * and why the events, the path this app has actually been walked around the building with, are
+ * given this long to be that one.
+ */
+const EVENT_GRACE_MS = 600;
+/**
+ * How often the motion sensor permission is re-read while the browser is asking about it. The
+ * change event is supposed to tell us, but a compass that hangs forever if it doesn't is not a
+ * risk worth taking, and re-reading a permission we already hold is free.
+ */
+const PERMISSION_POLL_MS = 1000;
 /** Readings per second asked of the orientation sensor - the map is smoothed onto frames anyway. */
 const SENSOR_FREQUENCY_HZ = 30;
 
@@ -145,6 +170,95 @@ type HeadingSink = {
     onFailure: (failure: Failure) => void,
 }
 
+/** What the browser says about the motion sensors, before any of them is started. */
+enum SensorPermission {
+    /** The question hasn't come back yet - starting a sensor now could pop a prompt out of nowhere. */
+    Pending = "pending",
+    /** This browser doesn't know these permissions, so it can only be judged by what it sends. */
+    Unknown = "unknown",
+    /** The browser will ask the user before sending anything, and silence until then means nothing. */
+    Prompt = "prompt",
+    Granted = "granted",
+    Denied = "denied",
+}
+
+/** Chromium permissions a compass is built out of - `AbsoluteOrientationSensor` needs all three. */
+const SENSOR_PERMISSION_NAMES = ["magnetometer", "accelerometer", "gyroscope"];
+
+/**
+ * What the browser's own permission store says about the motion sensors, kept up to date.
+ *
+ * This is the only thing that can tell a prompt the user hasn't answered yet from a device with no
+ * compass, and the only thing that notices the user answering it - on android there is no
+ * `requestPermission` to await, the browser simply starts sending headings once it is allowed.
+ */
+function useSensorPermission(): SensorPermission {
+
+    const [permission, setPermission] = useState<SensorPermission>(SensorPermission.Pending);
+
+    useEffect(() => {
+
+        let stopped = false;
+        const statuses: PermissionStatus[] = [];
+        // `PermissionStatus.state` is live, so re-reading the objects we already have is all it
+        // takes - both when the change event fires and when the poll below gives up on it.
+        const reread = () => {
+            if (!stopped) {
+                setPermission(combinePermissions(statuses));
+            }
+        };
+
+        void Promise.all(SENSOR_PERMISSION_NAMES.map(queryPermission)).then(results => {
+            if (stopped) {
+                return;
+            }
+            for (const status of results) {
+                if (status != null) {
+                    statuses.push(status);
+                    status.addEventListener("change", reread);
+                }
+            }
+            reread();
+        });
+
+        const poll = window.setInterval(reread, PERMISSION_POLL_MS);
+
+        return () => {
+            stopped = true;
+            window.clearInterval(poll);
+            for (const status of statuses) {
+                status.removeEventListener("change", reread);
+            }
+        };
+    }, []);
+
+    return permission;
+}
+
+async function queryPermission(name: string): Promise<PermissionStatus | null> {
+    try {
+        return await navigator.permissions.query({ name: name as PermissionName });
+    } catch {
+        // Thrown for a name the browser doesn't know (firefox and webkit have none of these), and
+        // where there is no permissions api at all.
+        return null;
+    }
+}
+
+/** The compass is only as permitted as its least permitted part. */
+function combinePermissions(statuses: PermissionStatus[]): SensorPermission {
+    if (statuses.length === 0) {
+        return SensorPermission.Unknown;
+    }
+    if (statuses.some(status => status.state === "denied")) {
+        return SensorPermission.Denied;
+    }
+    if (statuses.some(status => status.state === "prompt")) {
+        return SensorPermission.Prompt;
+    }
+    return SensorPermission.Granted;
+}
+
 /** Tracks the device heading, and whether there is a compass to track it with at all. */
 export function useCompass(): Compass {
 
@@ -164,14 +278,19 @@ export function useCompass(): Compass {
     /** The most telling thing the sensors said since the last attempt, see FAILURE_ORDER. */
     const failure = useRef<Failure | null>(null);
 
+    const sensorPermission = useSensorPermission();
+
     const hasReading = reading != null;
-    /** True where the browser hands out headings only after being asked (ios, and the like). */
-    const needsPermission = permissionRequest() != null;
     /** True while we are subscribed only to find out whether a heading ever arrives. */
     const probing = availability === CompassAvailability.Unknown;
+    /** True while the browser is showing its own prompt, or is about to - nothing can be concluded then. */
+    const awaitingPrompt = sensorPermission === SensorPermission.Prompt;
     // Subscribing before a permission comes back is harmless - the readings simply start flowing
-    // the moment it is granted, and never if it isn't.
-    const listening = probing || enabled;
+    // the moment it is granted, and never if it isn't. Probing, on the other hand, waits: a browser
+    // that answers with a prompt would throw it in the face of a user who never asked for a compass,
+    // so on those the sources are only started once the button is actually pressed.
+    const listening = enabled
+        || (probing && sensorPermission !== SensorPermission.Pending && !awaitingPrompt);
 
     const smooth = useCallback(() => {
 
@@ -224,6 +343,9 @@ export function useCompass(): Compass {
     const sinkRef = useRef<HeadingSink>({ onReading, onFailure });
     sinkRef.current = { onReading, onFailure };
 
+    // Restarted whenever the permission changes: a sensor started before the user allowed it is
+    // dead for good on chromium, and the heading only starts flowing through a freshly created one.
+    // Without this, allowing the sensors does nothing until the user turns the mode off and on again.
     useEffect(() => {
         if (!listening) {
             return;
@@ -238,8 +360,39 @@ export function useCompass(): Compass {
                 window.cancelAnimationFrame(frame.current);
                 frame.current = null;
             }
+            // Every heading here was measured while these sources were running, so none of them
+            // means anything once they stop. Keeping the last one would point the map wherever the
+            // user happened to be facing back when the probe ran - minutes ago, and usually
+            // somewhere else entirely - for as long as it takes the first fresh reading to arrive.
+            latestReading.current = null;
+            smoothedHeading.current = null;
+            setReading(null);
         };
-    }, [listening]);
+    }, [listening, sensorPermission]);
+
+    // What the browser says about the sensors beats anything that can be inferred from silence.
+    useEffect(() => {
+        if (awaitingPrompt) {
+            // It will ask before it sends anything, so the quiet until then says nothing about the
+            // device - it gets the benefit of the doubt, the same as ios does in initialAvailability.
+            setAvailability(CompassAvailability.Available);
+            return;
+        }
+        if (sensorPermission === SensorPermission.Granted) {
+            // Whatever the sensors complained about while they were still shut is no longer the
+            // reason for anything, and must not be what a later failure gets blamed on.
+            failure.current = null;
+            return;
+        }
+        if (sensorPermission === SensorPermission.Denied) {
+            failure.current = { reason: CompassFailure.Blocked, detail: "motion sensors denied" };
+            setAvailability(CompassAvailability.Unavailable);
+            if (enabled) {
+                setEnabled(false);
+                setError(failureMessage(failure.current));
+            }
+        }
+    }, [sensorPermission, awaitingPrompt, enabled]);
 
     // Nothing announces a missing (or withheld) compass, silence is the only symptom - so a
     // reading that never comes is what settles it, whatever the browser claimed before.
@@ -247,10 +400,15 @@ export function useCompass(): Compass {
         if (!listening || hasReading || askingPermission) {
             return;
         }
-        // A sensor that needs no permission is already running and answers within a frame or two;
-        // one that was just granted can take its time starting up.
-        const timeoutMs = permissionRefused ? REFUSED_READING_TIMEOUT_MS
-            : (enabled && needsPermission) ? FIRST_READING_TIMEOUT_MS
+        // A sensor nobody had to allow is already running and answers within a frame or two; one
+        // that was just allowed can take its time starting up, and the user is waiting for it
+        // either way, so a mode that was actually asked for gets the longer wait. Longest of all
+        // is the browser's own prompt: the silence while it is up is the user reading it, and
+        // giving up there would turn the mode off, tear the sensors down and blame them for being
+        // blocked - seconds before the very tap that allows them.
+        const timeoutMs = awaitingPrompt ? PROMPT_READING_TIMEOUT_MS
+            : permissionRefused ? REFUSED_READING_TIMEOUT_MS
+            : enabled ? FIRST_READING_TIMEOUT_MS
             : PROBE_TIMEOUT_MS;
 
         const timeout = window.setTimeout(() => {
@@ -264,7 +422,7 @@ export function useCompass(): Compass {
         }, timeoutMs);
 
         return () => window.clearTimeout(timeout);
-    }, [listening, hasReading, askingPermission, enabled, permissionRefused, needsPermission]);
+    }, [listening, hasReading, askingPermission, awaitingPrompt, enabled, permissionRefused]);
 
     useEffect(() => {
         if (error == null) {
@@ -336,14 +494,24 @@ export function useCompass(): Compass {
  * The events stay in charge whenever they work: they are the path this app has actually been
  * walked around the building with. The sensor is here for the browsers that keep the events to
  * themselves - and for its errors, which are the only ones that ever say why.
+ *
+ * Only one of them ever reaches the map, though, and once it has, the other is ignored for as long
+ * as these sources run. They read the same magnetometer but correct for the screen's own rotation
+ * at opposite ends - the sensor asks the browser to do it, the event path does it by hand - so
+ * where they disagree they disagree by a quarter turn, and swapping one for the other mid-route
+ * spins the whole map under a user who only turned their head.
  */
 function startHeadingSources(sink: HeadingSink): () => void {
 
-    let eventsAnswered = false;
+    let answered: "events" | "sensor" | null = null;
+    const startedAt = Date.now();
 
     const stopEvents = listenToOrientationEvents({
         onReading: reading => {
-            eventsAnswered = true;
+            if (answered === "sensor") {
+                return;
+            }
+            answered = "events";
             sink.onReading(reading);
         },
         onFailure: sink.onFailure,
@@ -351,9 +519,14 @@ function startHeadingSources(sink: HeadingSink): () => void {
 
     const stopSensor = startOrientationSensor({
         onReading: reading => {
-            if (!eventsAnswered) {
-                sink.onReading(reading);
+            // The events get the first refusal, and a moment to take it: they answer within a
+            // frame or two where they work at all, so still being quiet this long after the start
+            // means this browser isn't going to send them.
+            if (answered === "events" || (answered == null && Date.now() - startedAt < EVENT_GRACE_MS)) {
+                return;
             }
+            answered = "sensor";
+            sink.onReading(reading);
         },
         onFailure: sink.onFailure,
     });

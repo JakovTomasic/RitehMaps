@@ -85,6 +85,12 @@ const EVENT_GRACE_MS = 600;
  * risk worth taking, and re-reading a permission we already hold is free.
  */
 const PERMISSION_POLL_MS = 1000;
+/**
+ * How long a smoothing step waits for the animation frame it asked for before running on a timer
+ * instead. Far longer than a frame, so it costs nothing while the browser is painting normally,
+ * and short enough that a map which has to fall back on it still turns smoothly enough to follow.
+ */
+const SMOOTH_FALLBACK_MS = 100;
 /** Readings per second asked of the orientation sensor - the map is smoothed onto frames anyway. */
 const SENSOR_FREQUENCY_HZ = 30;
 
@@ -200,12 +206,16 @@ function useSensorPermission(): SensorPermission {
 
         let stopped = false;
         const statuses: PermissionStatus[] = [];
-        // `PermissionStatus.state` is live, so re-reading the objects we already have is all it
-        // takes - both when the change event fires and when the poll below gives up on it.
-        const reread = () => {
-            if (!stopped) {
-                setPermission(combinePermissions(statuses));
-            }
+
+        // Asked for again from scratch every time, rather than re-read off the objects we already
+        // hold: their `state` is supposed to follow the browser's, and so is the change event, but
+        // a compass that stays dead because neither did is not worth the calls this would save.
+        const recheck = () => {
+            void Promise.all(SENSOR_PERMISSION_NAMES.map(queryPermission)).then(results => {
+                if (!stopped) {
+                    setPermission(combinePermissions(results));
+                }
+            });
         };
 
         void Promise.all(SENSOR_PERMISSION_NAMES.map(queryPermission)).then(results => {
@@ -215,19 +225,21 @@ function useSensorPermission(): SensorPermission {
             for (const status of results) {
                 if (status != null) {
                     statuses.push(status);
-                    status.addEventListener("change", reread);
+                    // The event is the fast way in: it arrives the moment the user answers, where
+                    // the poll below can be most of a second late.
+                    status.addEventListener("change", recheck);
                 }
             }
-            reread();
+            setPermission(combinePermissions(results));
         });
 
-        const poll = window.setInterval(reread, PERMISSION_POLL_MS);
+        const poll = window.setInterval(recheck, PERMISSION_POLL_MS);
 
         return () => {
             stopped = true;
             window.clearInterval(poll);
             for (const status of statuses) {
-                status.removeEventListener("change", reread);
+                status.removeEventListener("change", recheck);
             }
         };
     }, []);
@@ -246,14 +258,15 @@ async function queryPermission(name: string): Promise<PermissionStatus | null> {
 }
 
 /** The compass is only as permitted as its least permitted part. */
-function combinePermissions(statuses: PermissionStatus[]): SensorPermission {
-    if (statuses.length === 0) {
+function combinePermissions(results: (PermissionStatus | null)[]): SensorPermission {
+    const known = results.filter((status): status is PermissionStatus => status != null);
+    if (known.length === 0) {
         return SensorPermission.Unknown;
     }
-    if (statuses.some(status => status.state === "denied")) {
+    if (known.some(status => status.state === "denied")) {
         return SensorPermission.Denied;
     }
-    if (statuses.some(status => status.state === "prompt")) {
+    if (known.some(status => status.state === "prompt")) {
         return SensorPermission.Prompt;
     }
     return SensorPermission.Granted;
@@ -270,11 +283,15 @@ export function useCompass(): Compass {
     const [enabled, setEnabled] = useState(false);
     const [reading, setReading] = useState<SmoothedReading | null>(null);
     const [error, setError] = useState<string | null>(null);
+    /** Counts the times the page has come back to the front with nothing to show yet, see below. */
+    const [wake, setWake] = useState(0);
 
     // The smoothing runs between renders, on animation frames, so its state lives in refs.
     const latestReading = useRef<Reading | null>(null);
     const smoothedHeading = useRef<number | null>(null);
     const frame = useRef<number | null>(null);
+    /** The same step on a timer, for when the frame it was asked for never comes - see scheduleSmooth. */
+    const fallbackFrame = useRef<number | null>(null);
     /** The most telling thing the sensors said since the last attempt, see FAILURE_ORDER. */
     const failure = useRef<Failure | null>(null);
 
@@ -292,9 +309,43 @@ export function useCompass(): Compass {
     const listening = enabled
         || (probing && sensorPermission !== SensorPermission.Pending && !awaitingPrompt);
 
+    const cancelSmooth = useCallback(() => {
+        if (frame.current != null) {
+            window.cancelAnimationFrame(frame.current);
+            frame.current = null;
+        }
+        if (fallbackFrame.current != null) {
+            window.clearTimeout(fallbackFrame.current);
+            fallbackFrame.current = null;
+        }
+    }, []);
+
+    const smoothRef = useRef<() => void>(() => {});
+
+    /**
+     * Asks for the next smoothing step on the next frame, and on a timer as well.
+     *
+     * A browser only runs animation frames while it is painting, and it stops painting while
+     * something of its own is in front of the page - a permission prompt, most of all. The frame
+     * asked for behind that prompt can go unanswered until the user next touches the screen, and
+     * since a step that never runs never asks for another one, the map would sit there unturned
+     * while the readings pile up - with a heading it already has. The timer is slower than a frame
+     * by a lot, but it runs where frames don't, and whichever arrives first cancels the other.
+     */
+    const scheduleSmooth = useCallback(() => {
+        if (frame.current != null || fallbackFrame.current != null) {
+            return;
+        }
+        const run = () => {
+            cancelSmooth();
+            smoothRef.current();
+        };
+        frame.current = window.requestAnimationFrame(run);
+        fallbackFrame.current = window.setTimeout(run, SMOOTH_FALLBACK_MS);
+    }, [cancelSmooth]);
+
     const smooth = useCallback(() => {
 
-        frame.current = null;
         const target = latestReading.current;
         if (target == null) {
             return;
@@ -319,17 +370,17 @@ export function useCompass(): Compass {
         });
 
         if (!settled) {
-            frame.current = window.requestAnimationFrame(smooth);
+            scheduleSmooth();
         }
-    }, []);
+    }, [scheduleSmooth]);
+
+    smoothRef.current = smooth;
 
     const onReading = useCallback((next: Reading) => {
         latestReading.current = next;
         setAvailability(CompassAvailability.Available);
-        if (frame.current == null) {
-            frame.current = window.requestAnimationFrame(smooth);
-        }
-    }, [smooth]);
+        scheduleSmooth();
+    }, [scheduleSmooth]);
 
     const onFailure = useCallback((next: Failure) => {
         const known = failure.current;
@@ -343,9 +394,10 @@ export function useCompass(): Compass {
     const sinkRef = useRef<HeadingSink>({ onReading, onFailure });
     sinkRef.current = { onReading, onFailure };
 
-    // Restarted whenever the permission changes: a sensor started before the user allowed it is
-    // dead for good on chromium, and the heading only starts flowing through a freshly created one.
-    // Without this, allowing the sensors does nothing until the user turns the mode off and on again.
+    // Restarted whenever the permission changes, or the page comes back to the front: a sensor
+    // started before the user allowed it is dead for good on chromium, and the heading only starts
+    // flowing through a freshly created one. Without this, allowing the sensors does nothing until
+    // the user turns the mode off and on again.
     useEffect(() => {
         if (!listening) {
             return;
@@ -356,10 +408,7 @@ export function useCompass(): Compass {
         });
         return () => {
             stopListening();
-            if (frame.current != null) {
-                window.cancelAnimationFrame(frame.current);
-                frame.current = null;
-            }
+            cancelSmooth();
             // Every heading here was measured while these sources were running, so none of them
             // means anything once they stop. Keeping the last one would point the map wherever the
             // user happened to be facing back when the probe ran - minutes ago, and usually
@@ -368,7 +417,35 @@ export function useCompass(): Compass {
             smoothedHeading.current = null;
             setReading(null);
         };
-    }, [listening, sensorPermission]);
+    }, [listening, sensorPermission, wake, cancelSmooth]);
+
+    /**
+     * The sensors are started again every time the page comes back to the front while the compass
+     * is on and still turning nothing.
+     *
+     * The browser's own prompt is not part of the page: while it is up the page is neither in front
+     * nor touched, and a sensor started behind it can go on sending nothing after it closes - which
+     * is why the map used to sit there unturned until the user tapped it, and why the tap fixed it.
+     * Nothing is disturbed by trying again, since there is no heading yet to lose.
+     */
+    useEffect(() => {
+        if (!enabled || hasReading) {
+            return;
+        }
+        const wakeUp = () => {
+            if (document.visibilityState !== "hidden") {
+                setWake(count => count + 1);
+            }
+        };
+        window.addEventListener("focus", wakeUp);
+        window.addEventListener("pointerdown", wakeUp);
+        document.addEventListener("visibilitychange", wakeUp);
+        return () => {
+            window.removeEventListener("focus", wakeUp);
+            window.removeEventListener("pointerdown", wakeUp);
+            document.removeEventListener("visibilitychange", wakeUp);
+        };
+    }, [enabled, hasReading]);
 
     // What the browser says about the sensors beats anything that can be inferred from silence.
     useEffect(() => {

@@ -53,3 +53,11 @@ $height: calc($width * $n/2); // 2:1 ratio
     transform: translateZ(0.0001px) rotateY(#{calc(-1 * ($n / 1.7))}deg);
   }
 }
+
+// The waving never stops, so it is the kind of motion this setting exists to turn off.
+// The slices keep their tilt, which is what gives the still flag its fold.
+@media (prefers-reduced-motion: reduce) {
+	.FinishFlag-s {
+		animation: none;
+	}
+}

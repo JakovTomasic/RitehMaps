@@ -163,25 +163,53 @@ export default function NavigationLayout(props: Prop) {
         :
         <>
             <div className="absolute w-full h-full left-0 top-0 flex flex-col bg-gray-50">
-                <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-                    <div className="text-2xl font-semibold text-gray-800 tracking-tight">
-                        You have reached your destination
-                    </div>
-                    { props.destination.name?.trim()?.length > 0 &&
-                        <div className="mt-4 text-xl font-semibold text-white tracking-tight
-                                px-8 py-4 bg-cyan-600 rounded-2xl shadow-md">
-                            { props.destination.name }
+
+                {/*
+                  The card centers itself with `my-auto` rather than `justify-center`: the content
+                  is taller than the strip left above the buttons on a phone held sideways,
+                  and auto margins center without clipping the overflow, so it
+                  scrolls in that case instead of losing its bottom half.
+                */}
+                <div className="flex-1 overflow-y-auto flex justify-center px-4 py-6">
+                    <div className="my-auto w-full max-w-96 flex flex-col items-center text-center
+                        bg-white px-6 pt-7 pb-8 rounded-2xl shadow-md border border-gray-100">
+
+                        {/*
+                          The flag hangs off a pole drawn below its own box, so it gets a box tall
+                          enough for both - left to size itself it would lay the pole over the text.
+                        */}
+                        <div className="w-36 h-44 shrink-0">
+                            <FinishFlag />
                         </div>
-                    }
-                    <div className="mt-8">
-                        <FinishFlag />
+
+                        { props.destination.name?.trim()?.length > 0 ?
+                            <>
+                                <p className="text-xs font-semibold uppercase tracking-wide text-cyan-700">
+                                    You have arrived at
+                                </p>
+                                <h1 className="mt-1.5 text-2xl font-semibold text-gray-800 tracking-tight break-words">
+                                    { props.destination.name }
+                                </h1>
+                            </>
+                            :
+                            <h1 className="text-2xl font-semibold text-gray-800 tracking-tight">
+                                You have reached your destination
+                            </h1>
+                        }
+
+                        { props.mapDrawProps != null &&
+                            <p className="mt-2 text-sm font-medium text-gray-500">
+                                { props.mapDrawProps.submap.caption }
+                            </p>
+                        }
                     </div>
                 </div>
-                <div className="z-10 flex items-center justify-center gap-3 px-4 py-3 bg-white
+
+                <div className="z-10 flex items-center justify-between gap-3 px-4 py-3 bg-white
                     border-t border-gray-100 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
-                    <Button text='Back' enabled={!props.isFirstStep} onClick={() => setNavigationFinished(false)} variant="secondary" />
+                    <Button text='Back to map' enabled={true} onClick={() => setNavigationFinished(false)} variant="secondary" />
                     <Link href={createHomeUrl()}>
-                        <Button text='Home' enabled={true} />
+                        <Button text='New search' enabled={true} />
                     </Link>
                 </div>
             </div>

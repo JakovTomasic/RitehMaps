@@ -5,7 +5,6 @@ import MapCaption from "./MapCaption";
 import { MapDrawProps } from "../types/map_draw_elements/MapDrawProps";
 import ZoomToggleButton from "./ZoomToggleButton";
 import { DestinationNode } from "../types/navigation/DestinationNode";
-import FinishFlag from "./FinishFlag";
 import { createHomeUrl } from "../pages";
 import { Link } from "wouter";
 import CompassToggleButton from "./CompassToggleButton";
@@ -172,15 +171,7 @@ export default function NavigationLayout(props: Prop) {
                 */}
                 <div className="flex-1 overflow-y-auto flex justify-center px-4 py-6">
                     <div className="my-auto w-full max-w-96 flex flex-col items-center text-center
-                        bg-white px-6 pt-7 pb-8 rounded-2xl shadow-md border border-gray-100">
-
-                        {/*
-                          The flag hangs off a pole drawn below its own box, so it gets a box tall
-                          enough for both - left to size itself it would lay the pole over the text.
-                        */}
-                        <div className="w-36 h-44 shrink-0">
-                            <FinishFlag />
-                        </div>
+                        bg-white px-6 py-8 rounded-2xl shadow-md border border-gray-100">
 
                         { props.destination.name?.trim()?.length > 0 ?
                             <>

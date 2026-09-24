@@ -16,12 +16,15 @@ Client tests: `cd client && npm test` (jest, `client/tests/`).
   shared zod schemas and the numeric `NodeType` values must stay identical; change both in one commit.
 - `client/src/server.ts` is a manual switch between local/prod `API_URL`. Easy to commit by accident.
 - Floor images are hardcoded in `client/src/data/submaps.ts` (SVGs in `client/public/submaps/`) and
-  keyed by `submapId` from the server data. Adding a floor means touching both.
+  keyed by `submapId` from the server data. Adding a floor means touching both. The same file also
+  hardcodes which building and floor each submap id is (`buildings`) - captions are shown, never
+  parsed, since they're free text an admin can reword.
 - The graph is rebuilt in the browser from nodes/edges/hallways (`logic/impl/graph/GraphFactory.ts`):
   hallways become lines, nodes get projected onto them, then Dijkstra runs over the result.
 
 ## Routing (client)
-- `wouter` v3, mounted in `App.tsx`. Routes: `/` (Home), `/nav` (`NAVIGATION_PATH`), `/admin`.
+- `wouter` v3, mounted in `App.tsx`. Routes: `/` (Home), `/nav` (`NAVIGATION_PATH`),
+  `/map` (`MAP_PATH`, the plain browsable map behind the navbar's "Map"), `/admin`.
 - Link pattern that works: `<Link href={string}><button>...</button></Link>` - string `href` only,
   no `{pathname, query}` objects, no `asChild`.
 
@@ -33,6 +36,8 @@ Client tests: `cd client && npm test` (jest, `client/tests/`).
   is not wired into any UI. All three return `NavigationDirections`, so they're drop-in compatible.
 - **Compass mode is not one of those modes**: it's a header toggle (off by default) that only changes
   how the current route is *shown*, so toggling it can't shuffle the steps under the user.
+  The `/map` page (`pages/map.tsx`) has the same toggle, and shares the header bits with the
+  navigation screen (`CompassToggleButton`, `CompassFacingOverlay`, `Banner`).
   `utils/Compass.ts` (`useCompass`) owns the sensor and has to guess whether a compass exists at all
   by listening for a few seconds - nothing else distinguishes a desktop from a phone. Heading changes
   many times a second, so keep d3 out of it: `MyMap` skips its redraw when only `rotateAngle` changed,

@@ -1,6 +1,7 @@
 import { Route, Switch } from 'wouter'
 import Navigation, { NAVIGATION_PATH } from './pages/navigation'
 import Home from './pages'
+import MapPage, { MAP_PATH } from './pages/map'
 import AdminPage from './pages/admin'
 import { useEffect, useState } from 'react'
 import { API_URL } from './server'
@@ -65,6 +66,15 @@ function App() {
             <></>
             :
             <Navigation allMapsData={state.allMapData} />
+          }
+          </>
+        } />
+        <Route path={MAP_PATH} component={() =>
+          <>
+          { state.allMapData === null ?
+            <></>
+            :
+            <MapPage allMapData={state.allMapData} />
           }
           </>
         } />

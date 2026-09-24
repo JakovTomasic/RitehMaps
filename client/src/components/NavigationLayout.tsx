@@ -8,6 +8,9 @@ import { DestinationNode } from "../types/navigation/DestinationNode";
 import { createHomeUrl } from "../pages";
 import { Link } from "wouter";
 import CompassToggleButton from "./CompassToggleButton";
+import CompassFacingOverlay from "./CompassFacingOverlay";
+import Banner from "./Banner";
+import { COMPASS_MODE_TILT_WARNING } from "../utils/Strings";
 
 /** What the screen needs to show a compass button, and what happens when it is pressed. */
 export type CompassControl = {
@@ -106,35 +109,18 @@ export default function NavigationLayout(props: Prop) {
                 </div>
 
                 { props.compass?.error != null &&
-                    <div className="bg-amber-50 text-amber-800 text-sm font-medium text-center py-2 px-4 border-b border-amber-100">
-                        { props.compass.error }
-                    </div>
+                    <Banner text={props.compass.error} tone="warning" />
                 }
 
                 { props.showDeviceOrientationWarning &&
-                    <div className="bg-red-50 text-red-700 text-sm font-medium text-center py-2 px-4 border-b border-red-100">
-                        Please keep your device parallel to the ground
-                    </div>
+                    <Banner text={COMPASS_MODE_TILT_WARNING} tone="error" />
                 }
 
                 {
                 props.mapDrawProps != null ?
                     <div className="w-full flex-1 overflow-hidden relative">
                         { props.middleLineVisible ?
-                            // We explain to user what the arrow means.
-                            <div className="absolute w-full h-full flex flex-col items-center pointer-events-none z-10">
-                                <img className="h-16 opacity-70" src="/images/arrow_up.png"></img>
-                                <span className="text-[11px] font-semibold uppercase tracking-wide text-gray-500
-                                    bg-white/80 rounded-full px-2 py-0.5">
-                                    You are facing this way
-                                </span>
-                                { props.compass?.waitingForHeading === true &&
-                                    <span className="mt-1 text-[11px] font-semibold text-gray-600
-                                        bg-white/80 rounded-full px-2 py-0.5">
-                                        Tap the map to start the compass
-                                    </span>
-                                }
-                            </div>
+                            <CompassFacingOverlay waitingForHeading={props.compass?.waitingForHeading === true} />
                         : <></> }
                         <MyMap layoutImage={props.mapDrawProps.submap.path} width={props.mapDrawProps.submap.width}
                         height={props.mapDrawProps.submap.height} centroidCrop={props.mapDrawProps.centroidCrop}

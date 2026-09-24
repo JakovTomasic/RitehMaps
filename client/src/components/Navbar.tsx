@@ -1,3 +1,5 @@
+import { Link } from "wouter";
+import { MAP_PATH } from "../pages/map";
 import logo from "/public/images/logo.png";
 
 const Navbar = () => {
@@ -12,9 +14,11 @@ const Navbar = () => {
               Riteh maps
           </a>
 
-          <a href="#" className="px-3 py-1.5 text-sm font-semibold text-cyan-700 hover:text-cyan-800 hover:bg-cyan-50 rounded-md transition">
-              Map
-          </a>
+          <Link href={MAP_PATH}>
+            <button className="px-3 py-1.5 text-sm font-semibold text-cyan-700 hover:text-cyan-800 hover:bg-cyan-50 rounded-md transition">
+                Map
+            </button>
+          </Link>
 
         </div>
 

@@ -53,3 +53,41 @@ export const submaps: HardcodedSubMap[] = [
         "north_angle": NORTH_ANGLE
     }
 ];
+
+export type HardcodedFloor = {
+    submapId: number;
+    /** Short enough for a picker button - the floor number. */
+    label: string;
+}
+
+export type HardcodedBuilding = {
+    name: string;
+    /** Lowest floor first. */
+    floors: HardcodedFloor[];
+}
+
+/**
+ * Which floor plan is which floor of which building, for browsing the map by hand.
+ *
+ * Hardcoded next to the images for the same reason they are: a submap is a fixed thing. The only
+ * thing the server has to say about one is its caption, and that is free text an admin can reword
+ * at any time, so it is shown but never parsed. Adding a floor means adding it here too.
+ */
+export const buildings: HardcodedBuilding[] = [
+    {
+        name: "Main Building",
+        floors: [
+            { submapId: 1, label: "0" },
+            { submapId: 2, label: "1" },
+            { submapId: 3, label: "2" },
+            { submapId: 4, label: "3" },
+        ]
+    },
+    {
+        name: "Lab Building",
+        floors: [
+            { submapId: 101, label: "0" },
+            { submapId: 102, label: "1" },
+        ]
+    }
+];

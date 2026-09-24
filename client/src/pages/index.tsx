@@ -51,27 +51,24 @@ export default function Home(props: Props) {
     /*
       The page fills what is visible rather than the whole window, so the form re-centers into
       the strip above the soft keyboard instead of being buried under it. Once the keyboard
-      leaves too little room for the form, this is also the element that scrolls
-      (`my-auto` instead of `items-center` - auto margins center without clipping the overflow).
+      leaves too little room for the form, this is also the element that scrolls.
     */
     <div
-      className="fixed left-0 w-full bg-gray-50 flex justify-center overflow-y-auto"
+      className="fixed left-0 w-full bg-gray-50 flex flex-col items-center overflow-y-auto"
       style={{ height: visibleViewport.height, top: visibleViewport.offsetTop }}
     >
       <Navbar />
 
-      {/* The bottom padding keeps the form clear of the About link once the column has to scroll. */}
-      <div className="flex flex-col justify-center items-center my-auto pt-4 pb-12">
+      <div className="flex flex-col w-full flex-1 items-center justify-center pt-4">
         <SearchForm roomSearcher={roomSearch} initialSearchInputs={params} />
       </div>
 
       {/*
-        Anchored to the bottom of the visible strip rather than of the window, so the keyboard
-        pushes it up instead of hiding it. It does scroll away with the form when the strip is
-        too short for both.
+        In the flow rather than pinned, so once the soft keyboard leaves too little room it is
+        pushed out of the visible strip and stays reachable by scrolling - the form keeps the space.
       */}
       <button
-        className="absolute bottom-1 left-2 px-2 py-1 text-sm text-gray-400 underline
+        className="self-start shrink-0 mb-1 ml-2 px-2 py-1 text-sm text-gray-400 underline
                    transition hover:text-gray-600"
         onClick={() => setAboutOpen(true)}
         type="button"

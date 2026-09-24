@@ -35,6 +35,15 @@ export const ALLOWED_ORIGINS: (string | RegExp)[] = [
     // escaped on purpose - an unanchored version would also match origins like
     // https://ritehmaps.pages.dev.evil.com.
     /^https:\/\/[a-z0-9-]+\.ritehmaps\.pages\.dev$/,
+    // Faculty/university hosting: uniri.hr itself plus any subdomain at any depth
+    // (ritehmaps.uniri.hr, riteh.uniri.hr, www.riteh.uniri.hr, ...). The path is
+    // irrelevant here - an Origin header is only scheme + host + port, so this one
+    // entry already covers riteh.uniri.hr/maps and any other path on that host.
+    // Same anchoring rules as above: `^`/`$` and escaped dots keep out both
+    // https://uniri.hr.evil.com and https://notuniri.hr. Plain http is left out so
+    // the api is never reachable from a page that was served over a downgradeable
+    // connection.
+    /^https:\/\/([a-z0-9-]+\.)*uniri\.hr$/,
     // The vite dev server, so the admin page works locally.
     ...(process.env.NODE_ENV === "production" ? [] : ["http://localhost:5173"]),
 ];

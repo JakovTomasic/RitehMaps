@@ -1,4 +1,4 @@
-const NORTH_ANGLE = 40;
+const NORTH_ANGLE = 30;
 
 export type HardcodedSubMap = {
     id: number;

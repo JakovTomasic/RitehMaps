@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 import { scrollIntoViewOnceKeyboardOpens } from "../utils/SoftKeyboard";
+import ClearIcon from "./ClearIcon";
 
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
@@ -16,6 +17,7 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
   const [showDropdown, internalSetShowDropdown] = useState(false);
   const [dropdownOptions, setDropdownOptions] = useState<SearchNodeSuggestion[]>([]);
   const searchRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   function setShowDropdown(show: boolean) {
     internalSetShowDropdown(show);
@@ -39,6 +41,14 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
       setDropdownOptions(sortedSuggestions);
       setShowDropdown(true);
     }
+  };
+
+  const handleClearClick = () => {
+    setInputValue("");
+    setDropdownOptions([]);
+    setShowDropdown(false);
+    onSelection(null);
+    inputRef.current?.focus();
   };
 
   /** Keeps the field (and the room the suggestions drop into) above the phone's soft keyboard. */
@@ -83,15 +93,28 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
   return (
     <div className="relative" ref={searchRef}>
       <input
+        ref={inputRef}
         type="text"
-        className="w-full px-3 py-2 border 
-                  border-gray-300 rounded-md 
+        className="w-full pl-3 pr-9 py-2 border
+                  border-gray-300 rounded-md
                   focus:outline-none focus:border-cyan-600"
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
         onFocus={handleFocus}
       />
+
+      {inputValue !== "" && (
+        <button
+          type="button"
+          aria-label="Clear"
+          className="absolute right-0 top-0 h-full px-2.5 flex items-center
+                     text-gray-400 hover:text-gray-700"
+          onClick={handleClearClick}
+        >
+          <ClearIcon />
+        </button>
+      )}
 
       {showDropdown && dropdownOptions.length > 0 && (
         <div className="absolute z-10 w-full max-h-48 overflow-y-auto

@@ -20,6 +20,12 @@ If you are having problems running the `yarn install` command on Windows due to 
 
 Or you can `cd` into the client directory and see respective README files.
 
+## Tests
+
+The tests (jest + ts-jest) live in `client/tests/` and cover the pathfinding logic. Run them from the client directory (see client [README.md](./client/README.md))
+
+The api has no unit tests yet, only the default NestJS e2e scaffold.
+
 ## Adding dependencies
 
 In order to add new dependencies, `cd` into client directory and then run `yarn add [package-name]` command.

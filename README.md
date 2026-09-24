@@ -14,7 +14,11 @@ If you are having problems running the `yarn install` command on Windows due to 
 
 ## Run
 
-To start the web application `cd` into the client directory and see respective README files.
+`npm run dev` at the root of the project runs everything:
+- *client* on 5173
+- *api* on 3000; vite proxies `/api` -> 3000.
+
+Or you can `cd` into the client directory and see respective README files.
 
 ## Adding dependencies
 

@@ -5,8 +5,6 @@ import { rotatePointClockwise } from '../utils/Geometry';
 
 type Prop = {
     children: any
-    width: number
-    height: number
     centroidCrop: CentroidScale
     rotateAngle: number
     enableZoom?: boolean
@@ -32,8 +30,11 @@ const NEUTRAL_TRANSFORM: Transform = { x: 0, y: 0, scale: 1 };
 const MIN_ZOOM_SCALE = 1;
 const MAX_ZOOM_SCALE = 16;
 
+/** A pan is a vector, so it is turned around the origin and not around some point on the map. */
+const ROTATION_ORIGIN = { x: 0, y: 0 };
 
-export default function ZoomableSVG( { children, width, height, centroidCrop, rotateAngle, enableZoom }: Prop ){
+
+export default function ZoomableSVG( { children, centroidCrop, rotateAngle, enableZoom }: Prop ){
 
     const svgRef = useRef<SVGSVGElement>(null)
     const [transform, setTransform] = useState<Transform>(NEUTRAL_TRANSFORM)
@@ -55,9 +56,11 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
 
         const svg = d3.select<SVGSVGElement, unknown>(svgRef.current!)
 
+        const clampedTransform = (transform: Transform) => clamp(transform, viewBoxWidth, viewBoxHeight)
+
         if (!enableZoom) {
             svg.on(".zoom", null)
-            setTransform({ x: translateX, y: translateY, scale: stepScale })
+            setTransform(clampedTransform({ x: translateX, y: translateY, scale: stepScale }))
             return
         }
 
@@ -70,8 +73,9 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
             .scaleExtent([MIN_ZOOM_SCALE, MAX_ZOOM_SCALE])
             .on("zoom", (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
                 const { x, y, k } = event.transform
-                const rotatedPoint = rotatePointClockwise({x: x, y: y}, rotateAngleRef.current, {x: width/2, y: height/2})
-                setTransform({ x: rotatedPoint.x, y: rotatedPoint.y, scale: k })
+                // The pan gets turned back into map coordinates.
+                const rotatedPan = rotatePointClockwise({x: x, y: y}, rotateAngleRef.current, ROTATION_ORIGIN)
+                setTransform(clampedTransform({ x: rotatedPan.x, y: rotatedPan.y, scale: k }))
             })
 
         svg.call(zoom)
@@ -81,7 +85,7 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
 
         return () => { svg.on(".zoom", null) }
 
-    }, [translateX, translateY, stepScale, enableZoom, width, height])
+    }, [translateX, translateY, stepScale, enableZoom, viewBoxWidth, viewBoxHeight])
 
     return (
         <svg height="100%" width="100%" ref={svgRef} viewBox={`0, 0, ${viewBoxWidth}, ${viewBoxHeight}`}>
@@ -91,4 +95,19 @@ export default function ZoomableSVG( { children, width, height, centroidCrop, ro
             </g>
         </svg>
     )
+}
+
+/**
+ * Keeps the middle of the view on the map, so it can never be panned off the screen entirely.
+ */
+function clamp(transform: Transform, viewBoxWidth: number, viewBoxHeight: number): Transform {
+    return {
+        ...transform,
+        x: clampValue(transform.x, viewBoxWidth/2 - viewBoxWidth*transform.scale, viewBoxWidth/2),
+        y: clampValue(transform.y, viewBoxHeight/2 - viewBoxHeight*transform.scale, viewBoxHeight/2),
+    }
+}
+
+function clampValue(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max)
 }

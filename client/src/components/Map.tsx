@@ -530,8 +530,7 @@ export default class MyMap extends Component<Prop, State>{
 
         return(
             <>
-                <ZoomableSVG width={this.props.width} height={this.props.height}
-                    centroidCrop={this.props.centroidCrop} rotateAngle={this.props.rotateAngle}
+                <ZoomableSVG centroidCrop={this.props.centroidCrop} rotateAngle={this.props.rotateAngle}
                     enableZoom={this.props.enableZoom}
                 >
                     <svg ref={(mapRef: SVGSVGElement) => this.mapRef = mapRef}>

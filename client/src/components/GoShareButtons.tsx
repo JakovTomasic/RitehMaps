@@ -12,6 +12,7 @@ type GoButtonProps = {
   destinationText?: string;
   clickable: boolean;
   defaultStartNodeId: string;
+  defaultStartText?: string;
 };
 
 const GoShareButtons: React.FC<GoButtonProps> = (props) => {
@@ -19,11 +20,12 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    const startNodeId = props.startNodeId != null ? props.startNodeId : props.defaultStartNodeId;
-    const startText = props.startText != null ? props.startText : undefined;
+    // The default start is never shared, neither its id nor its name: an empty start box means
+    // "wherever the entrance is", so the link leaves it empty too and the other client fills it
+    // in with its own default, in *their* language.
     const url = `${window.location.origin}${createHomeUrl({
-      startNodeId: startNodeId,
-      startText: startText,
+      startNodeId: props.startNodeId,
+      startText: props.startText,
       destinationNodeId: props.destinationNodeId,
       destinationText: props.destinationText,
     })}`;
@@ -38,10 +40,14 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
   };
 
   if (props.clickable && props.destinationNodeId !== undefined && props.destinationText !== undefined && props.destinationText.length > 0) {
-    const startNodeId = props.startNodeId != null ? props.startNodeId : props.defaultStartNodeId;
+    /** The start the route is built with: the form's, or the default one when it was left empty. */
+    const start = props.startNodeId != null
+      ? { nodeId: props.startNodeId, text: props.startText }
+      : { nodeId: props.defaultStartNodeId, text: props.defaultStartText };
+
     const route: NavigationRoute = {
-      startNodeId: startNodeId,
-      startName: props.startText,
+      startNodeId: start.nodeId,
+      startName: start.text,
       destinationId: props.destinationNodeId,
       destinationName: props.destinationText,
     };

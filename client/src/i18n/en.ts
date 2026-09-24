@@ -48,6 +48,7 @@ export const en = {
         destinationLabel: "Where do you want to go?",
         /** Only a hint of what a start looks like - the real name of that node comes from the map data. */
         startPlaceholder: "entrance",
+        startPreferredActualName: "entrance",
         destinationPlaceholder: "Search",
         swap: "Swap start and destination",
         clear: "Clear",
@@ -86,6 +87,8 @@ export const en = {
         floorDown: "Go one floor down",
         floorUp: "Go one floor up",
         floor: (label: string) => `Floor ${label}`,
+        /** Names the floor plan on screen, in place of the server's own (untranslated) caption. */
+        floorCaption: (building: string, floor: string) => `${building}, floor ${floor}`,
         noFloorPlans: "No floor plans to show.",
         /** The buildings are hardcoded in the client (see data/submaps.ts), so their names are ui text. */
         mainBuilding: "Main Building",

@@ -26,7 +26,7 @@ export const hr: Translations = {
         title: "O Riteh maps projektu",
         subtitle: "Navigacija po zgradama Tehničkog fakulteta u Rijeci.",
         madeBy: (authors: string) => `Izradili: ${authors}. Uz pomoć ostalih na`,
-        github: "GitHub",
+        github: "GitHubu",
         disclaimer: "Karta se održava ručno, pa je moguće da je neka prostorija preimenovana ili "
             + "da se profesor preselio u drugi ured od zadnjeg ažuriranja. Također, stranica ne "
             + "prati gdje se nalazite.",
@@ -37,6 +37,7 @@ export const hr: Translations = {
         startLabel: "Gdje se sada nalazite?",
         destinationLabel: "Kamo želite ići?",
         startPlaceholder: "ulaz",
+        startPreferredActualName: "ulaz",
         destinationPlaceholder: "Pretraži",
         swap: "Zamijeni polazište i odredište",
         clear: "Obriši",
@@ -72,6 +73,7 @@ export const hr: Translations = {
         floorDown: "Kat niže",
         floorUp: "Kat više",
         floor: (label: string) => `Kat ${label}`,
+        floorCaption: (building: string, floor: string) => `${building}, kat ${floor}`,
         noFloorPlans: "Nema tlocrta za prikaz.",
         mainBuilding: "Glavna zgrada",
         labBuilding: "Zgrada laboratorija",

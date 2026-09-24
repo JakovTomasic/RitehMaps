@@ -11,6 +11,7 @@ import CompassToggleButton from "./CompassToggleButton";
 import CompassFacingOverlay from "./CompassFacingOverlay";
 import Banner from "./Banner";
 import { useTranslations } from "../i18n";
+import { submapCaption } from "../data/submaps";
 
 /** What the screen needs to show a compass button, and what happens when it is pressed. */
 export type CompassControl = {
@@ -89,7 +90,7 @@ export default function NavigationLayout(props: Prop) {
 
                     <div className="order-3 w-full min-w-0 pt-0.5 sm:order-2 sm:w-auto sm:flex-1 sm:pt-0 sm:text-center">
                         { props.mapDrawProps != null &&
-                            <MapCaption imageCaption={props.mapDrawProps.submap.caption} />
+                            <MapCaption imageCaption={submapCaption(props.mapDrawProps.submap, t)} />
                         }
                     </div>
 
@@ -183,7 +184,7 @@ export default function NavigationLayout(props: Prop) {
 
                         { props.mapDrawProps != null &&
                             <p className="mt-2 text-sm font-medium text-gray-500">
-                                { props.mapDrawProps.submap.caption }
+                                { submapCaption(props.mapDrawProps.submap, t) }
                             </p>
                         }
                     </div>

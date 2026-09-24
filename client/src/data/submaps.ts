@@ -1,4 +1,5 @@
 import { Translations } from "../i18n/en";
+import { Submap } from "../types/Submap";
 
 const NORTH_ANGLE = 30;
 
@@ -97,3 +98,20 @@ export const buildings: HardcodedBuilding[] = [
         ]
     }
 ];
+
+/**
+ * What a floor plan is called on screen: "Main Building, floor 0", built from the hardcoded
+ * buildings so it follows the ui language.
+ *
+ * The server's caption for the same submap says the same thing, but it is free text written in
+ * whichever language the admin used, so it only stands in for a submap missing from `buildings`.
+ */
+export function submapCaption(submap: Submap, t: Translations): string {
+    for (const building of buildings) {
+        const floor = building.floors.find(floor => floor.submapId === submap.id);
+        if (floor != undefined) {
+            return t.map.floorCaption(building.name(t), floor.label);
+        }
+    }
+    return submap.caption;
+}

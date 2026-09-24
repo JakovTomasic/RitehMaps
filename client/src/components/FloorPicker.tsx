@@ -1,5 +1,6 @@
 import { Building } from "../logic/impl/BuildingsFactory";
 import { useTranslations } from "../i18n";
+import { submapCaption } from "../data/submaps";
 
 type Prop = {
     buildings: Building[],
@@ -61,7 +62,7 @@ export default function FloorPicker(props: Prop) {
                                 onClick={() => props.onFloorSelect(index)}
                                 aria-current={index === props.floorIndex}
                                 aria-label={t.map.floor(floor.label)}
-                                title={floor.submap.caption}
+                                title={submapCaption(floor.submap, t)}
                                 className={`shrink-0 h-11 min-w-[2.75rem] px-3 rounded-full text-sm font-semibold transition
                                     ${index === props.floorIndex
                                         ? "bg-cyan-600 text-white shadow-sm"

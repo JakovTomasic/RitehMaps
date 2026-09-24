@@ -11,12 +11,6 @@ import { isSpecialSearchResultId, specialSearchResultName } from "../data/Specia
 import { useTranslations } from "../i18n";
 
 const DEFAULT_START_ID: string = "main_entrance";
-/**
- * The name that node carries in the map data. Not translated, and not the same thing as the
- * placeholder: this one goes into a field as a picked room, so it has to be a name the search
- * can find again.
- */
-const DEFAULT_START_NAME: string = "entrance";
 
 
 type Prop = {
@@ -53,6 +47,14 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
   }
 
   const swapDisabled = isSpecialSearchResultId(searchInputs.destinationNodeId);
+
+  /**
+   * The default start's first name in the map data. Read from the data rather than written here
+   * because it goes into a field as a picked room, so it has to be a name the search can find
+   * again - and the data is what an admin has translated, not the ui.
+   * startPreferredActualName enables translation (will default to first name if admin renames/removes hardcoded values here)
+   */
+  const defaultStartName = roomSearcher.findSuggestionById(DEFAULT_START_ID, t.search.startPreferredActualName)?.roomName;
 
   // A room keeps the name the map data gives it, whatever language the ui is in, but "nearest
   // toilet" and friends are named by the app - so that one is read again rather than kept, and
@@ -144,7 +146,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
                         let nextDestinationText: string | undefined;
                         if (prevInputs.startNodeId === undefined) {
                           nextDestinationId = DEFAULT_START_ID;
-                          nextDestinationText = DEFAULT_START_NAME;
+                          nextDestinationText = defaultStartName;
                         } else {
                           nextDestinationId = prevInputs.startNodeId;
                           nextDestinationText = prevInputs.startText;
@@ -167,19 +169,18 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
           </div>
 
           {/*
-            Hangs off the destination field rather than standing on its own: the paddings are the
-            widths of the pin and swap columns, so it lines up with the inputs.
+            The toggle hangs off the destination field (the indent is the width of the pin column),
+            while the buttons under it span the whole card - they are wide, and two have to fit.
           */}
-          <div className="pl-10 pr-7">
-            <NearestToiletButtons
-              selectedDestinationId={searchInputs.destinationNodeId}
-              enabled={!searchDropdownVisible}
-              onPick={(destination) => {
-                selectDestination(destination);
-                setDestinationFieldGeneration((generation) => generation + 1);
-              }}
-            />
-          </div>
+          <NearestToiletButtons
+            selectedDestinationId={searchInputs.destinationNodeId}
+            enabled={!searchDropdownVisible}
+            headingIndentClassName="pl-10"
+            onPick={(destination) => {
+              selectDestination(destination);
+              setDestinationFieldGeneration((generation) => generation + 1);
+            }}
+          />
 
           <div className="flex relative mt-3 pt-4 border-t border-gray-100 items-center justify-center z-0">
             <GoShareButtons
@@ -189,6 +190,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
                 destinationText={destinationText}
                 clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
                 defaultStartNodeId={DEFAULT_START_ID}
+                defaultStartText={defaultStartName}
             />
           </div>
 

@@ -8,6 +8,7 @@ import Banner from "../components/Banner";
 import FloorPicker from "../components/FloorPicker";
 import { AllMapsData } from "../data/ServerData";
 import { createBuildings } from "../logic/impl/BuildingsFactory";
+import { submapCaption } from "../data/submaps";
 import { MapRotationCalculatorImpl } from "../logic/impl/MapRotationCalculatorImpl";
 import { SubmapProviderImpl } from "../logic/impl/SubmapProviderImpl";
 import { MapDrawElement } from "../types/map_draw_elements/MapDrawElement";
@@ -101,7 +102,7 @@ export default function MapPage(props: Props) {
 
                 <div className="order-3 w-full min-w-0 pt-0.5 sm:order-2 sm:w-auto sm:flex-1 sm:pt-0 sm:text-center">
                     { submap != undefined &&
-                        <MapCaption imageCaption={submap.caption} />
+                        <MapCaption imageCaption={submapCaption(submap, t)} />
                     }
                 </div>
 

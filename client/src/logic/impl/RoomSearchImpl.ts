@@ -4,6 +4,7 @@ import { NodesContainer } from "../interfaces/NodesContainer";
 import { diacriticToAsciiLetters, stringEquals } from "../../utils/Strings";
 import { specialSearchResults } from "../../data/SpecialSearchResults";
 import { Node, ProfessorData } from "../../data/ServerData";
+import { Translations } from "../../i18n/en";
 
 export class RoomSearchImpl implements RoomSearch {
 
@@ -11,12 +12,17 @@ export class RoomSearchImpl implements RoomSearch {
     private professors: ProfessorData[];
     private nodes: Node[];
     /**
+     * Room and professor names come from the map data and are shown as they were written. Only the
+     * special searches (`specialSuggestions`) are the app's own, so only those need a language.
+     */
+    private translations: Translations;
+    /**
      * Built once per instance: pairing every professor with their office is a scan of all nodes per
      * professor, which is tens of ms on the real data - too much to redo on every keystroke.
      */
     private cachedNodeSuggestions: SearchNodeSuggestion[] | null = null;
 
-    constructor(nodesContainer: NodesContainer, professors: ProfessorData[], nodes: Node[]) {
+    constructor(nodesContainer: NodesContainer, professors: ProfessorData[], nodes: Node[], translations: Translations) {
         // A fix for calling a function from another function (https://stackoverflow.com/a/57028664)
         this.sortedSuggestionsForDestination = this.sortedSuggestionsForDestination.bind(this);
         this.sortedSuggestionsForStart = this.sortedSuggestionsForStart.bind(this);
@@ -25,6 +31,7 @@ export class RoomSearchImpl implements RoomSearch {
         this.nodesContainer = nodesContainer;
         this.professors = professors;
         this.nodes = nodes;
+        this.translations = translations;
     }
 
     sortedSuggestionsForStart(searchedText: string): SearchNodeSuggestion[] {
@@ -124,6 +131,6 @@ export class RoomSearchImpl implements RoomSearch {
     }
 
     private specialSuggestions(): SearchNodeSuggestion[] {
-        return specialSearchResults.map(result => new SearchNodeSuggestion(result.id, result.name));
+        return specialSearchResults.map(result => new SearchNodeSuggestion(result.id, result.name(this.translations)));
     }
 }

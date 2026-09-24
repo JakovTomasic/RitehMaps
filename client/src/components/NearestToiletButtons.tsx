@@ -8,10 +8,12 @@ import {
 import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 import ChevronIcon from "./ChevronIcon";
 import ToiletIcon, { ToiletGender } from "./ToiletIcon";
+import { useTranslations } from "../i18n";
+import { Translations } from "../i18n/en";
 
-const TOILET_SHORTCUTS: { id: string, gender: ToiletGender, label: string }[] = [
-  { id: NEAREST_MEN_TOILET_ID, gender: "men", label: "Men" },
-  { id: NEAREST_WOMEN_TOILET_ID, gender: "women", label: "Women" },
+const TOILET_SHORTCUTS: { id: string, gender: ToiletGender, label: (t: Translations) => string }[] = [
+  { id: NEAREST_MEN_TOILET_ID, gender: "men", label: t => t.search.men },
+  { id: NEAREST_WOMEN_TOILET_ID, gender: "women", label: t => t.search.women },
 ];
 
 type Props = {
@@ -28,6 +30,7 @@ type Props = {
  * route is started the same way as any other and nothing moves under the user.
  */
 function NearestToiletButtons({ selectedDestinationId, enabled, onPick }: Props) {
+  const t = useTranslations();
   // Open on arrival only when a toilet is already the destination (a shared link, or coming back
   // from a route): the picked button has to be visible next to the name in the field.
   const [expanded, setExpanded] = useState(() => isSpecialSearchResultId(selectedDestinationId));
@@ -45,7 +48,7 @@ function NearestToiletButtons({ selectedDestinationId, enabled, onPick }: Props)
         className={`flex items-center gap-1 -ml-0.5 px-0.5 py-1 text-sm font-medium transition
                     ${somethingPicked ? "text-cyan-700" : "text-gray-400 hover:text-gray-600"}`}
       >
-        Nearest toilet
+        {t.search.nearestToilet}
         <ChevronIcon expanded={expanded} />
       </button>
 
@@ -60,17 +63,18 @@ function NearestToiletButtons({ selectedDestinationId, enabled, onPick }: Props)
             }
 
             const selected = selectedDestinationId === specialSearchResult.id;
+            const name = specialSearchResult.name(t);
 
             return (
               <ToiletButton
                 key={shortcut.id}
                 gender={shortcut.gender}
-                label={shortcut.label}
-                name={specialSearchResult.name}
+                label={shortcut.label(t)}
+                name={name}
                 selected={selected}
                 enabled={enabled}
                 onClick={() => onPick(
-                  selected ? null : new SearchNodeSuggestion(specialSearchResult.id, specialSearchResult.name)
+                  selected ? null : new SearchNodeSuggestion(specialSearchResult.id, name)
                 )}
               />
             );

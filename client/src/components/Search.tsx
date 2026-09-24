@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
 import { scrollIntoViewOnceKeyboardOpens } from "../utils/SoftKeyboard";
 import ClearIcon from "./ClearIcon";
+import { useTranslations } from "../i18n";
 
 type Prop = {
   roomSearcher: (searchedText: string) => SearchNodeSuggestion[];
@@ -13,6 +14,7 @@ type Prop = {
 
 function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initialInputValue, placeholder }: Prop) {
 
+  const t = useTranslations();
   const [inputValue, setInputValue] = useState(initialInputValue);
   const [showDropdown, internalSetShowDropdown] = useState(false);
   const [dropdownOptions, setDropdownOptions] = useState<SearchNodeSuggestion[]>([]);
@@ -107,7 +109,7 @@ function Search({ roomSearcher, onSelection, onDropdownVisibilityChange, initial
       {inputValue !== "" && (
         <button
           type="button"
-          aria-label="Clear"
+          aria-label={t.search.clear}
           className="absolute right-0 top-0 h-full px-2.5 flex items-center
                      text-gray-400 hover:text-gray-700"
           onClick={handleClearClick}

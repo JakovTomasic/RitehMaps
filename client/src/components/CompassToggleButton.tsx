@@ -1,4 +1,5 @@
 import CompassIcon from "./CompassIcon";
+import { useTranslations } from "../i18n";
 
 type Prop = {
     enabled: boolean,
@@ -11,13 +12,15 @@ type Prop = {
 
 export default function CompassToggleButton({ enabled, available, checking, onClick }: Prop) {
 
+    const t = useTranslations();
+
     const style = !available ? "bg-gray-100 border-gray-200 text-gray-400"
         : enabled ? "bg-cyan-600 border-cyan-600 text-white"
         : "bg-cyan-50 hover:bg-cyan-100 border-cyan-200 text-cyan-700";
 
-    const label = !available ? "Compass mode - not available on this device"
-        : enabled ? "Turn compass mode off"
-        : "Turn compass mode on - the map follows the way you are facing";
+    const label = !available ? t.compass.unavailable
+        : enabled ? t.compass.turnOff
+        : t.compass.turnOn;
 
     return (
         // Deliberately not a `disabled` button: a disabled one swallows the tap, and then a user

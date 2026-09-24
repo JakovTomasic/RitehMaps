@@ -1,6 +1,7 @@
 import { buildings } from "../../data/submaps";
 import { SubMap } from "../../data/ServerData";
 import { Submap } from "../../types/Submap";
+import { Translations } from "../../i18n/en";
 import { SubmapProvider } from "../interfaces/SubmapProvider";
 
 export type Floor = {
@@ -19,10 +20,10 @@ export type Building = {
  * The hardcoded buildings (see data/submaps.ts) filled in with the floor plans that can actually
  * be drawn - a floor the server never sent has no caption, and nothing to show.
  */
-export function createBuildings(serverSubmaps: SubMap[], submapProvider: SubmapProvider): Building[] {
+export function createBuildings(serverSubmaps: SubMap[], submapProvider: SubmapProvider, t: Translations): Building[] {
     return buildings
         .map(building => ({
-            name: building.name,
+            name: building.name(t),
             floors: building.floors
                 .filter(floor => serverSubmaps.some(serverSubmap => serverSubmap.id === floor.submapId))
                 .map(floor => ({ submap: submapProvider.getSubmap(floor.submapId), label: floor.label })),

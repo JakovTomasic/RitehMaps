@@ -1,7 +1,9 @@
 import { useState } from "react";
 import AboutDialog from "../components/AboutDialog";
+import LanguageToggle from "../components/LanguageToggle";
 import Navbar from "../components/Navbar";
 import SearchForm, { SearchInputs } from "../components/SearchForm";
+import { useTranslations } from "../i18n";
 import { AllMapsData } from "../data/ServerData";
 import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
@@ -37,8 +39,9 @@ type Props = {
 }
 
 export default function Home(props: Props) {
+  const t = useTranslations();
   const nodesContainer = new NodesContainerImpl(props.allMapData.nodes);
-  const roomSearch = new RoomSearchImpl(nodesContainer, props.allMapData.professors, props.allMapData.nodes);
+  const roomSearch = new RoomSearchImpl(nodesContainer, props.allMapData.professors, props.allMapData.nodes, t);
 
   const searchParams = useSearchParams();
   const params = resolveTexts(parseParams(searchParams), roomSearch);
@@ -59,6 +62,11 @@ export default function Home(props: Props) {
     >
       <Navbar />
 
+      {/* The padding clears the navbar (about 55px), which this page draws behind. */}
+      <div className="w-full shrink-0 flex justify-end px-3 pt-16">
+        <LanguageToggle />
+      </div>
+
       <div className="flex flex-col w-full flex-1 items-center justify-center pt-4">
         <SearchForm roomSearcher={roomSearch} initialSearchInputs={params} />
       </div>
@@ -73,7 +81,7 @@ export default function Home(props: Props) {
         onClick={() => setAboutOpen(true)}
         type="button"
       >
-        About
+        {t.home.about}
       </button>
 
       { aboutOpen && <AboutDialog close={() => setAboutOpen(false)} /> }

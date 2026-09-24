@@ -3,6 +3,7 @@ import CopyToClipboardIcon from "./CopyToClipboardIcon";
 import { Link } from "wouter";
 import { createNavigationUrl, NavigationMode, NavigationRoute } from "../pages/navigation";
 import { createHomeUrl } from "../pages";
+import { useTranslations } from "../i18n";
 
 type GoButtonProps = {
   startNodeId?: string;
@@ -14,6 +15,7 @@ type GoButtonProps = {
 };
 
 const GoShareButtons: React.FC<GoButtonProps> = (props) => {
+  const t = useTranslations();
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -46,8 +48,8 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
 
     return (
       <div className="relative flex w-full items-center justify-center gap-1.5">
-        <GoButton text="Quick" href={createNavigationUrl(route, NavigationMode.Quick)} enabled={true} />
-        <GoButton text="Detailed" href={createNavigationUrl(route, NavigationMode.Detailed)} enabled={true} />
+        <GoButton text={t.search.quick} href={createNavigationUrl(route, NavigationMode.Quick)} enabled={true} />
+        <GoButton text={t.search.detailed} href={createNavigationUrl(route, NavigationMode.Detailed)} enabled={true} />
 
         <button
           className="py-[0.55rem] px-[0.7rem] rounded-lg flex items-center justify-center
@@ -55,7 +57,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
                      transition ease-in duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
           type="button"
           onClick={handleCopy}
-          aria-label="Copy link to this route"
+          aria-label={t.search.copyLink}
         >
           <CopyToClipboardIcon />
         </button>
@@ -63,7 +65,7 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
         {copied && (
           <span className="absolute -top-8 right-8 text-xs font-semibold text-white
                             bg-gray-800 px-2.5 py-1 rounded-md shadow-md whitespace-nowrap">
-            URL copied!
+            {t.search.linkCopied}
           </span>
         )}
       </div>
@@ -71,8 +73,8 @@ const GoShareButtons: React.FC<GoButtonProps> = (props) => {
   } else {
     return (
       <div className="flex w-full items-center justify-center gap-1.5">
-        <GoButton text="Quick" enabled={false} />
-        <GoButton text="Detailed" enabled={false} />
+        <GoButton text={t.search.quick} enabled={false} />
+        <GoButton text={t.search.detailed} enabled={false} />
       </div>
     );
   }

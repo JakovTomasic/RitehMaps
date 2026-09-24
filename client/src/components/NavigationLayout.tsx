@@ -10,7 +10,7 @@ import { Link } from "wouter";
 import CompassToggleButton from "./CompassToggleButton";
 import CompassFacingOverlay from "./CompassFacingOverlay";
 import Banner from "./Banner";
-import { COMPASS_MODE_TILT_WARNING } from "../utils/Strings";
+import { useTranslations } from "../i18n";
 
 /** What the screen needs to show a compass button, and what happens when it is pressed. */
 export type CompassControl = {
@@ -50,6 +50,8 @@ type Prop = {
 
 export default function NavigationLayout(props: Prop) {
 
+    const t = useTranslations();
+
     const [navigationFinished, setNavigationFinished] = useState(false);
     const [enableZoom, setZoom] = useState(props.zoomEnabledByDefault);
 
@@ -82,7 +84,7 @@ export default function NavigationLayout(props: Prop) {
                             hover:text-cyan-800 px-2 py-1.5 -ml-2 rounded-md hover:bg-cyan-50 transition"
                     >
                         <span aria-hidden className="leading-none">&larr;</span>
-                        Edit search
+                        {t.navigation.editSearch}
                     </button>
 
                     <div className="order-3 w-full min-w-0 pt-0.5 sm:order-2 sm:w-auto sm:flex-1 sm:pt-0 sm:text-center">
@@ -113,7 +115,7 @@ export default function NavigationLayout(props: Prop) {
                 }
 
                 { props.showDeviceOrientationWarning &&
-                    <Banner text={COMPASS_MODE_TILT_WARNING} tone="error" />
+                    <Banner text={t.compass.keepLevel} tone="error" />
                 }
 
                 {
@@ -131,14 +133,14 @@ export default function NavigationLayout(props: Prop) {
 
                 <div className="z-10 flex items-center justify-between gap-3 px-4 py-3 bg-white
                     border-t border-gray-100 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
-                    <Button text='Back' enabled={!props.isFirstStep} onClick={props.onBackClick} variant="secondary" />
+                    <Button text={t.navigation.back} enabled={!props.isFirstStep} onClick={props.onBackClick} variant="secondary" />
                     { showProgress &&
-                        <span className="text-xs font-medium text-gray-400">
-                            Step {props.currentStepIndex! + 1} of {props.totalSteps}
+                        <span className="text-xs font-medium text-gray-400 text-center">
+                            {t.navigation.stepLabel} <span style={{ whiteSpace: 'nowrap' }}> {t.navigation.stepValue(props.currentStepIndex! + 1, props.totalSteps!)} </span>
                         </span>
                     }
                     <Button
-                        text={props.isLastStep ? 'Finish' : 'Next'}
+                        text={props.isLastStep ? t.navigation.finish : t.navigation.next}
                         enabled={true}
                         onClick={props.isLastStep ? () => { setNavigationFinished(true) } : props.onNextClick}
                     />
@@ -162,20 +164,20 @@ export default function NavigationLayout(props: Prop) {
                         { props.destination.name?.trim()?.length > 0 ?
                             <>
                                 <p className="text-xs font-semibold uppercase tracking-wide text-cyan-700">
-                                    You have arrived at
+                                    {t.navigation.arrivedAt}
                                 </p>
                                 <h1 className="mt-1.5 text-2xl font-semibold text-gray-800 tracking-tight break-words">
                                     { props.destination.name }
                                 </h1>
                                 { props.destination.room != undefined &&
                                     <p className="mt-1 text-base font-medium text-gray-600 break-words">
-                                        Room { props.destination.room }
+                                        { t.navigation.room(props.destination.room) }
                                     </p>
                                 }
                             </>
                             :
                             <h1 className="text-2xl font-semibold text-gray-800 tracking-tight">
-                                You have reached your destination
+                                {t.navigation.arrived}
                             </h1>
                         }
 
@@ -189,9 +191,9 @@ export default function NavigationLayout(props: Prop) {
 
                 <div className="z-10 flex items-center justify-between gap-3 px-4 py-3 bg-white
                     border-t border-gray-100 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
-                    <Button text='Back to map' enabled={true} onClick={() => setNavigationFinished(false)} variant="secondary" />
+                    <Button text={t.navigation.backToMap} enabled={true} onClick={() => setNavigationFinished(false)} variant="secondary" />
                     <Link href={createHomeUrl()}>
-                        <Button text='New search' enabled={true} />
+                        <Button text={t.navigation.newSearch} enabled={true} />
                     </Link>
                 </div>
             </div>

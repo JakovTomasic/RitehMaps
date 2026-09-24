@@ -1,8 +1,11 @@
 import { Link } from "wouter";
 import { MAP_PATH } from "../pages/map";
 import logo from "/public/images/logo.png";
+import { useTranslations } from "../i18n";
 
 const Navbar = () => {
+  const t = useTranslations();
+
   return (
 
     <nav className="bg-white fixed top-0 w-full py-2.5 px-5 shadow-sm z-20">
@@ -16,7 +19,7 @@ const Navbar = () => {
 
           <Link href={MAP_PATH}>
             <button className="px-3 py-1.5 text-sm font-semibold text-cyan-700 hover:text-cyan-800 hover:bg-cyan-50 rounded-md transition">
-                Map
+                {t.navbar.map}
             </button>
           </Link>
 

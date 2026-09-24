@@ -1,3 +1,5 @@
+import { Translations } from "../i18n/en";
+
 const NORTH_ANGLE = 30;
 
 export type HardcodedSubMap = {
@@ -61,7 +63,11 @@ export type HardcodedFloor = {
 }
 
 export type HardcodedBuilding = {
-    name: string;
+    /**
+     * Picked out of a language rather than stored: unlike a submap caption, this name is the
+     * client's own text, so it is translated along with the rest of the ui.
+     */
+    name: (t: Translations) => string;
     /** Lowest floor first. */
     floors: HardcodedFloor[];
 }
@@ -75,7 +81,7 @@ export type HardcodedBuilding = {
  */
 export const buildings: HardcodedBuilding[] = [
     {
-        name: "Main Building",
+        name: t => t.map.mainBuilding,
         floors: [
             { submapId: 1, label: "0" },
             { submapId: 2, label: "1" },
@@ -84,7 +90,7 @@ export const buildings: HardcodedBuilding[] = [
         ]
     },
     {
-        name: "Lab Building",
+        name: t => t.map.labBuilding,
         floors: [
             { submapId: 101, label: "0" },
             { submapId: 102, label: "1" },

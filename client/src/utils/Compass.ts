@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslations } from "../i18n";
+import { Translations } from "../i18n/en";
 import { radiansToDegrees } from "./Math";
 import { fixAngleBetweenZeroAnd360, shortestAngleDifference } from "./Geometry";
 
@@ -127,27 +129,14 @@ enum CompassFailure {
 /** Least to most telling: a later one replaces an earlier one as the reason to report. */
 const FAILURE_ORDER = [CompassFailure.Silent, CompassFailure.Missing, CompassFailure.NoNorth, CompassFailure.Blocked];
 
-/**
- * "Motion sensors" is the browser wide setting behind all of this on chromium, and Brave ships it
- * turned off - which is why turning its Shields off for the site changes nothing, and why every
- * message that could mean "blocked" points at it.
- */
-const SENSOR_SETTING_HINT = "in Brave: Settings, Site settings, Motion sensors";
-
-const FAILURE_MESSAGES: Record<CompassFailure, string> = {
-    [CompassFailure.Silent]:
-        "No compass reading. This device may have no compass, or the browser is blocking motion "
-        + `sensors (${SENSOR_SETTING_HINT}).`,
-    [CompassFailure.Missing]:
-        "This device has no compass sensor.",
-    [CompassFailure.NoNorth]:
-        "This browser reports which way the phone turns but not where north is, so compass mode can't work in it.",
-    [CompassFailure.Blocked]:
-        `The browser is blocking the motion sensors. Turn them on in its settings (${SENSOR_SETTING_HINT}) `
-        + "and reload the page.",
-};
-
-const INSECURE_ERROR = "The compass only works over a secure (https) connection.";
+function failureMessages(t: Translations): Record<CompassFailure, string> {
+    return {
+        [CompassFailure.Silent]: t.compass.failureSilent,
+        [CompassFailure.Missing]: t.compass.failureMissing,
+        [CompassFailure.NoNorth]: t.compass.failureNoNorth,
+        [CompassFailure.Blocked]: t.compass.failureBlocked,
+    };
+}
 
 /** Sensor error names that mean "you may not", as opposed to "there is none". */
 const BLOCKED_ERROR_NAMES = ["NotAllowedError", "SecurityError", "PermissionDeniedError"];
@@ -274,6 +263,10 @@ function combinePermissions(results: (PermissionStatus | null)[]): SensorPermiss
 
 /** Tracks the device heading, and whether there is a compass to track it with at all. */
 export function useCompass(): Compass {
+
+    // The error is a finished sentence by the time it reaches the screen, so one already on screen
+    // keeps the language it was written in. It clears itself after a few seconds either way.
+    const t = useTranslations();
 
     const [availability, setAvailability] = useState<CompassAvailability>(initialAvailability);
     /** True while a permission dialog is up - nothing can be concluded until the user answers it. */
@@ -466,10 +459,10 @@ export function useCompass(): Compass {
             setAvailability(CompassAvailability.Unavailable);
             if (enabled) {
                 setEnabled(false);
-                setError(failureMessage(failure.current));
+                setError(failureMessage(failure.current, t));
             }
         }
-    }, [sensorPermission, awaitingPrompt, enabled]);
+    }, [sensorPermission, awaitingPrompt, enabled, t]);
 
     // Nothing announces a missing (or withheld) compass, silence is the only symptom - so a
     // reading that never comes is what settles it, whatever the browser claimed before.
@@ -494,12 +487,12 @@ export function useCompass(): Compass {
             // Probing happens on its own, without the user asking for anything, and an error
             // popping up out of nowhere would only confuse them.
             if (enabled) {
-                setError(failureMessage(failure.current));
+                setError(failureMessage(failure.current, t));
             }
         }, timeoutMs);
 
         return () => window.clearTimeout(timeout);
-    }, [listening, hasReading, askingPermission, awaitingPrompt, enabled, permissionRefused]);
+    }, [listening, hasReading, askingPermission, awaitingPrompt, enabled, permissionRefused, t]);
 
     useEffect(() => {
         if (error == null) {
@@ -526,7 +519,7 @@ export function useCompass(): Compass {
             // no compass, so say it now instead of turning a dead mode on for a few seconds. The
             // second look is for the device that was merely slow, or in the background - if a
             // heading does turn up, the button quietly comes back to life.
-            setError(failureMessage(failure.current));
+            setError(failureMessage(failure.current, t));
             failure.current = null;
             setAvailability(CompassAvailability.Unknown);
             return;
@@ -553,7 +546,7 @@ export function useCompass(): Compass {
             });
         }
 
-    }, [enabled, availability]);
+    }, [enabled, availability, t]);
 
     return {
         availability: availability,
@@ -841,12 +834,13 @@ async function askPermission(request: PermissionRequest): Promise<boolean> {
  * What to tell the user, with the technical detail in brackets - which is the only thing they can
  * pass on to us when a browser blocks the sensors in some new way of its own.
  */
-function failureMessage(failure: Failure | null): string {
+function failureMessage(failure: Failure | null, t: Translations): string {
     if (typeof window !== "undefined" && window.isSecureContext === false) {
-        return INSECURE_ERROR;
+        return t.compass.insecure;
     }
+    const messages = failureMessages(t);
     if (failure == null) {
-        return FAILURE_MESSAGES[CompassFailure.Silent];
+        return messages[CompassFailure.Silent];
     }
-    return `${FAILURE_MESSAGES[failure.reason]} (${failure.detail})`;
+    return `${messages[failure.reason]} (${failure.detail})`;
 }

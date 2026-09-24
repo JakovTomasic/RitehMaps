@@ -1,4 +1,5 @@
 import { Building } from "../logic/impl/BuildingsFactory";
+import { useTranslations } from "../i18n";
 
 type Prop = {
     buildings: Building[],
@@ -15,6 +16,8 @@ type Prop = {
  * step buttons around the floors for a thumb that is already down there.
  */
 export default function FloorPicker(props: Prop) {
+
+    const t = useTranslations();
 
     const floors = props.buildings[props.buildingIndex]?.floors ?? [];
 
@@ -44,7 +47,7 @@ export default function FloorPicker(props: Prop) {
 
                     <StepButton
                         text="-"
-                        label="Go one floor down"
+                        label={t.map.floorDown}
                         enabled={props.floorIndex > 0}
                         onClick={() => props.onFloorSelect(props.floorIndex - 1)}
                     />
@@ -57,7 +60,7 @@ export default function FloorPicker(props: Prop) {
                                 key={floor.submap.id}
                                 onClick={() => props.onFloorSelect(index)}
                                 aria-current={index === props.floorIndex}
-                                aria-label={`Floor ${floor.label}`}
+                                aria-label={t.map.floor(floor.label)}
                                 title={floor.submap.caption}
                                 className={`shrink-0 h-11 min-w-[2.75rem] px-3 rounded-full text-sm font-semibold transition
                                     ${index === props.floorIndex
@@ -71,7 +74,7 @@ export default function FloorPicker(props: Prop) {
 
                     <StepButton
                         text="+"
-                        label="Go one floor up"
+                        label={t.map.floorUp}
                         enabled={props.floorIndex < floors.length - 1}
                         onClick={() => props.onFloorSelect(props.floorIndex + 1)}
                     />

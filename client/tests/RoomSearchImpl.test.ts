@@ -2,6 +2,7 @@ import { RoomSearchImpl } from "../src/logic/impl/RoomSearchImpl";
 import { NodesContainerImpl } from "../src/logic/impl/NodesContainerImpl";
 import { specialSearchResults } from "../src/data/SpecialSearchResults";
 import { Node, ProfessorData } from "../src/data/ServerData";
+import { en } from "../src/i18n/en";
 
 const OFFICE: Node = { nodeId: "2-56", names: ["2-56", "cabinet"], submapId: 3, x: 0, y: 0, type: 2 };
 const LAB: Node = { nodeId: "2-160", names: ["L18", "2-160"], submapId: 3, x: 0, y: 0, type: 0 };
@@ -18,7 +19,7 @@ const OFFICE_MATE: ProfessorData = { ...PROFESSOR, name: "v. asist. dr. sc. Mart
 
 function roomSearch(): RoomSearchImpl {
     const nodes = [OFFICE, LAB];
-    return new RoomSearchImpl(new NodesContainerImpl(nodes), [PROFESSOR, OFFICE_MATE], nodes);
+    return new RoomSearchImpl(new NodesContainerImpl(nodes), [PROFESSOR, OFFICE_MATE], nodes, en);
 }
 
 describe('testing findSuggestionById()', () => {
@@ -59,7 +60,7 @@ describe('testing findSuggestionById()', () => {
   test('resolves the special searches, which are ids without a node', () => {
     const special = specialSearchResults[0];
 
-    expect(roomSearch().findSuggestionById(special.id)?.roomName).toBe(special.name);
+    expect(roomSearch().findSuggestionById(special.id)?.roomName).toBe(special.name(en));
   });
 
   test('gives nothing for an id the data does not know', () => {

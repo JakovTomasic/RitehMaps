@@ -17,6 +17,7 @@ import { MapRotationCalculatorImpl } from "../logic/impl/MapRotationCalculatorIm
 import { CompassAvailability, useCompass } from "../utils/Compass";
 import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
 import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
+import { useTranslations } from "../i18n";
 
 export const NAVIGATION_PATH = "/nav";
 const START_NODE_ID_PARAM_KEY = "startId";
@@ -58,7 +59,8 @@ type Props = {
 }
 
 export default function Navigation(props: Props){
-    
+
+    const t = useTranslations();
     const [location, navigate] = useLocation();
     const searchParams = useSearchParams();
     const params = parseParams(searchParams);
@@ -81,12 +83,13 @@ export default function Navigation(props: Props){
             new NodesContainerImpl(props.allMapsData.nodes),
             props.allMapsData.professors,
             props.allMapsData.nodes,
+            t,
         );
         return [
             roomSearch.findSuggestionById(params.startId, params.startName),
             roomSearch.findSuggestionById(params.destinationId, params.destinationName),
         ];
-    }, [props.allMapsData, params?.startId, params?.startName, params?.destinationId, params?.destinationName]);
+    }, [props.allMapsData, params?.startId, params?.startName, params?.destinationId, params?.destinationName, t]);
 
     const destinationNode: DestinationNode = {
         name: destinationSuggestion?.person?.name ?? destinationSuggestion?.roomName ?? "",
@@ -141,7 +144,7 @@ export default function Navigation(props: Props){
     return (
         <>
         { mapDrawProps === null ?
-            <>Error</>
+            <>{t.navigation.error}</>
             :
             <NavigationLayout
                 mapDrawProps={mapDrawProps}

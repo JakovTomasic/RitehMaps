@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslations } from "../i18n";
 
 const GITHUB_URL = "https://github.com/JakovTomasic/RitehMaps";
 
@@ -14,6 +15,8 @@ type Props = {
  * the backdrop, the button or Escape - it holds no state, so it can simply be unmounted.
  */
 export default function AboutDialog({ close }: Props) {
+
+    const t = useTranslations();
 
     useEffect(() => {
         const onKeyDown = (event: KeyboardEvent) => {
@@ -44,36 +47,34 @@ export default function AboutDialog({ close }: Props) {
                     className="absolute right-3 top-3 rounded-md px-2 py-1 text-xl leading-none text-gray-400
                                transition hover:bg-gray-100 hover:text-gray-600"
                     onClick={close}
-                    aria-label="Close"
+                    aria-label={t.about.close}
                     type="button"
                 >
                     ×
                 </button>
 
                 <h2 id="about-dialog-title" className="pr-8 text-lg font-bold text-gray-800">
-                    About Riteh maps
+                    {t.about.title}
                 </h2>
 
                 <p className="mt-3 text-sm text-gray-700">
-                    Indoor navigation for the Faculty of Engineering, Rijeka.
+                    {t.about.subtitle}
                 </p>
 
                 <p className="mt-3 text-sm text-gray-700">
-                    Made by {AUTHORS}. And other helpers on{" "}
+                    {t.about.madeBy(AUTHORS)}{" "}
                     <a
                         href={GITHUB_URL}
                         target="_blank"
                         rel="noreferrer"
                         className="font-semibold text-cyan-700 underline hover:text-cyan-800"
                     >
-                        GitHub
+                        {t.about.github}
                     </a>.
                 </p>
 
                 <p className="mt-3 text-xs text-gray-500">
-                    The map is maintained by hand, so a room may have been renamed or a professor
-                    may have moved to a new office since it was last updated. Also, the app does not
-                    track where you are.
+                    {t.about.disclaimer}
                 </p>
             </div>
         </div>

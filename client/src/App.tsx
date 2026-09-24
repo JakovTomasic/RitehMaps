@@ -6,6 +6,7 @@ import AdminPage from './pages/admin'
 import { useEffect, useState } from 'react'
 import { API_URL } from './server'
 import { AllMapsData, AllMapsDataSchema } from './data/ServerData'
+import { useTranslations } from './i18n'
 
 type State = {
   allMapData: AllMapsData | null,
@@ -21,6 +22,8 @@ const EMPTY_ALL_MAP_DATA: AllMapsData = {
 }
 
 function App() {
+
+  const t = useTranslations();
 
   const [state, setState] = useState<State>({
       allMapData: null,
@@ -89,7 +92,7 @@ function App() {
         } />
 
         {/* Default route in a switch */}
-        <Route>404: No such page!</Route>
+        <Route>{t.notFound}</Route>
       </Switch>
     </>
   )

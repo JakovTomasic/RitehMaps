@@ -1,6 +1,4 @@
 
-export const COMPASS_MODE_TILT_WARNING = "Please keep your device parallel to the ground";
-
 export function normalizeForComparison(s: string) {
     return s.toLocaleLowerCase().split(" ").join("");
 }

@@ -7,9 +7,15 @@ import { RoomSearch } from "../logic/interfaces/RoomSearch";
 import GoShareButtons from "./GoShareButtons";
 import NearestToiletButtons from "./NearestToiletButtons";
 import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
-import { isSpecialSearchResultId } from "../data/SpecialSearchResults";
+import { isSpecialSearchResultId, specialSearchResultName } from "../data/SpecialSearchResults";
+import { useTranslations } from "../i18n";
 
 const DEFAULT_START_ID: string = "main_entrance";
+/**
+ * The name that node carries in the map data. Not translated, and not the same thing as the
+ * placeholder: this one goes into a field as a picked room, so it has to be a name the search
+ * can find again.
+ */
 const DEFAULT_START_NAME: string = "entrance";
 
 
@@ -26,6 +32,7 @@ export type SearchInputs = {
 }
 
 function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
+  const t = useTranslations();
   const [searchInputs, setSearchInputs] = useState<SearchInputs>(initialSearchInputs);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
   /**
@@ -47,6 +54,12 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
 
   const swapDisabled = isSpecialSearchResultId(searchInputs.destinationNodeId);
 
+  // A room keeps the name the map data gives it, whatever language the ui is in, but "nearest
+  // toilet" and friends are named by the app - so that one is read again rather than kept, and
+  // switching language on this screen doesn't leave the old language sitting in the field.
+  const destinationText = specialSearchResultName(searchInputs.destinationNodeId, t)
+    ?? searchInputs.destinationText;
+
   return (
 
     <div className="flex items-center w-full max-w-96 px-4">
@@ -67,7 +80,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
               
               <div className="mb-4 py-1 w-full">
                   <label className="block text-gray-600 text-sm font-semibold mb-1.5">
-                    Where are you now?
+                    {t.search.startLabel}
                   </label>
 
                   <div className="flex items-center">
@@ -85,7 +98,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
                         }}
                         onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
                         initialInputValue={searchInputs.startText ?? ""}
-                        placeholder={DEFAULT_START_NAME}
+                        placeholder={t.search.startPlaceholder}
                       />
                     </label> 
                   </div>
@@ -94,7 +107,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
 
                 <div className="py-1 w-full">
                   <label className="block text-gray-600 text-sm font-semibold mb-1.5">
-                    Where do you want to go?
+                    {t.search.destinationLabel}
                   </label>
 
                   <div className="flex items-center">
@@ -104,8 +117,8 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
                       roomSearcher={roomSearcher.sortedSuggestionsForDestination}
                       onSelection={selectDestination}
                       onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
-                      initialInputValue={searchInputs.destinationText ?? ""}
-                      placeholder={"Search"}
+                      initialInputValue={destinationText ?? ""}
+                      placeholder={t.search.destinationPlaceholder}
                     />
                     </label>
                   </div>
@@ -121,7 +134,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
                 */}
                 <button
                   type="button"
-                  aria-label="Swap start and destination"
+                  aria-label={t.search.swap}
                   disabled={swapDisabled}
                   className={swapDisabled ? "opacity-40 cursor-not-allowed" : ""}
                   onClick={() => {
@@ -173,7 +186,7 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
                 startNodeId={searchInputs.startNodeId}
                 destinationNodeId={searchInputs.destinationNodeId}
                 startText={searchInputs.startText}
-                destinationText={searchInputs.destinationText}
+                destinationText={destinationText}
                 clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
                 defaultStartNodeId={DEFAULT_START_ID}
             />

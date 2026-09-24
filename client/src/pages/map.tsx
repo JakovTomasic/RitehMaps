@@ -15,7 +15,7 @@ import { CentroidScale } from "../types/navigation/CentroidScale";
 import { Submap } from "../types/Submap";
 import { CompassAvailability, useCompass } from "../utils/Compass";
 import { createHomeUrl } from "./index";
-import { COMPASS_MODE_TILT_WARNING } from "../utils/Strings";
+import { useTranslations } from "../i18n";
 
 export const MAP_PATH = "/map";
 
@@ -40,9 +40,11 @@ type Selection = {
  */
 export default function MapPage(props: Props) {
 
+    const t = useTranslations();
+
     const buildings = useMemo(
-        () => createBuildings(props.allMapData.submaps, new SubmapProviderImpl(props.allMapData.submaps)),
-        [props.allMapData],
+        () => createBuildings(props.allMapData.submaps, new SubmapProviderImpl(props.allMapData.submaps), t),
+        [props.allMapData, t],
     );
 
     const [selection, setSelection] = useState<Selection>({ buildingIndex: 0, floorIndex: 0 });
@@ -93,7 +95,7 @@ export default function MapPage(props: Props) {
                             hover:text-cyan-800 px-2 py-1.5 -ml-2 rounded-md hover:bg-cyan-50 transition"
                     >
                         <span aria-hidden className="leading-none">&larr;</span>
-                        Search
+                        {t.map.backToSearch}
                     </button>
                 </Link>
 
@@ -118,7 +120,7 @@ export default function MapPage(props: Props) {
             }
 
             { compass.tilted &&
-                <Banner text={COMPASS_MODE_TILT_WARNING} tone="error" />
+                <Banner text={t.compass.keepLevel} tone="error" />
             }
 
             { submap != undefined ?
@@ -148,7 +150,7 @@ export default function MapPage(props: Props) {
                 </>
                 :
                 <div className="flex-1 flex items-center justify-center px-6 text-center text-gray-500 font-medium">
-                    No floor plans to show.
+                    {t.map.noFloorPlans}
                 </div>
             }
 

@@ -5,6 +5,9 @@ import ChangeArrowsIcon from "./ChangeArrowsIcon";
 import Search from "./Search";
 import { RoomSearch } from "../logic/interfaces/RoomSearch";
 import GoShareButtons from "./GoShareButtons";
+import NearestToiletButtons from "./NearestToiletButtons";
+import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
+import { isSpecialSearchResultId } from "../data/SpecialSearchResults";
 
 const DEFAULT_START_ID: string = "main_entrance";
 const DEFAULT_START_NAME: string = "entrance";
@@ -25,6 +28,24 @@ export type SearchInputs = {
 function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
   const [searchInputs, setSearchInputs] = useState<SearchInputs>(initialSearchInputs);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
+  /**
+   * Bumped to remount the destination field. It only picks up a new text when the text it was given
+   * changes, so picking the same shortcut twice (after typing over it) would otherwise leave the
+   * typed text sitting next to the shortcut's id.
+   */
+  const [destinationFieldGeneration, setDestinationFieldGeneration] = useState(0);
+
+  function selectDestination(destination: SearchNodeSuggestion | null) {
+    setSearchInputs((prevInputs: SearchInputs) => {
+      return {
+        ...prevInputs,
+        destinationNodeId: destination?.nodeId,
+        destinationText: destination?.roomName,
+      }
+    });
+  }
+
+  const swapDisabled = isSpecialSearchResultId(searchInputs.destinationNodeId);
 
   return (
 
@@ -71,29 +92,22 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
 
               </div>
 
-                <div className="mb-4 py-1 w-full">
+                <div className="py-1 w-full">
                   <label className="block text-gray-600 text-sm font-semibold mb-1.5">
                     Where do you want to go?
                   </label>
 
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
-                    <Search 
+                    <Search
+                      key={destinationFieldGeneration}
                       roomSearcher={roomSearcher.sortedSuggestionsForDestination}
-                      onSelection={(selectedNode) => {
-                        setSearchInputs((prevInputs: SearchInputs) => {
-                          return {
-                            ...prevInputs,
-                            destinationNodeId: selectedNode?.nodeId,
-                            destinationText: selectedNode?.roomName
-                          }
-                        });
-                      }}
+                      onSelection={selectDestination}
                       onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
                       initialInputValue={searchInputs.destinationText ?? ""}
                       placeholder={"Search"}
                     />
-                    </label> 
+                    </label>
                   </div>
 
                 </div>
@@ -101,8 +115,15 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
             </div>
 
               <div className="w-1px items-center justify-center pl-1 pt-3">
+                {/*
+                  "Nearest toilet" and similar mean "whichever is closest to the start", so they
+                  can't become the start themselves - the swap is off while one is the destination.
+                */}
                 <button
                   type="button"
+                  aria-label="Swap start and destination"
+                  disabled={swapDisabled}
+                  className={swapDisabled ? "opacity-40 cursor-not-allowed" : ""}
                   onClick={() => {
                     if (!searchDropdownVisible) {
                       setSearchInputs((prevInputs: SearchInputs) => {
@@ -131,8 +152,23 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
               </div>
 
           </div>
-          
-          <div className="flex relative py-3 items-center justify-center z-0">
+
+          {/*
+            Hangs off the destination field rather than standing on its own: the paddings are the
+            widths of the pin and swap columns, so it lines up with the inputs.
+          */}
+          <div className="pl-10 pr-7">
+            <NearestToiletButtons
+              selectedDestinationId={searchInputs.destinationNodeId}
+              enabled={!searchDropdownVisible}
+              onPick={(destination) => {
+                selectDestination(destination);
+                setDestinationFieldGeneration((generation) => generation + 1);
+              }}
+            />
+          </div>
+
+          <div className="flex relative mt-3 pt-4 border-t border-gray-100 items-center justify-center z-0">
             <GoShareButtons
                 startNodeId={searchInputs.startNodeId}
                 destinationNodeId={searchInputs.destinationNodeId}

@@ -15,6 +15,8 @@ import { AllMapsData } from "../data/ServerData";
 import { createHomeUrl } from "./index";
 import { MapRotationCalculatorImpl } from "../logic/impl/MapRotationCalculatorImpl";
 import { CompassAvailability, useCompass } from "../utils/Compass";
+import { NodesContainerImpl } from "../logic/impl/NodesContainerImpl";
+import { RoomSearchImpl } from "../logic/impl/RoomSearchImpl";
 
 export const NAVIGATION_PATH = "/nav";
 const START_NODE_ID_PARAM_KEY = "startId";
@@ -62,7 +64,34 @@ export default function Navigation(props: Props){
     const params = parseParams(searchParams);
 
     const [navDirections, setNavDirections] = useState<NavigationDirections>(new NavigationDirections([]));
-    const [destinationNode, setDestinationNode] = useState<DestinationNode>({ name: "" });
+
+    // The names in the url only say which of an id's several names was searched by (a room can hold
+    // half a dozen professors, and the id alone can't tell them apart). They are matched against the
+    // map data and the data's own copy is what gets shown, so a shared link can't relabel a room.
+    //
+    // Memoized on the url, not on every render: this screen re-renders on every compass reading and
+    // the lookup builds the whole suggestion list, which is tens of ms on the real data.
+    //
+    // This fixes security concerns where someone could inject any string as the destination name in the url.
+    const [startSuggestion, destinationSuggestion] = useMemo(() => {
+        if (params == null) {
+            return [undefined, undefined];
+        }
+        const roomSearch = new RoomSearchImpl(
+            new NodesContainerImpl(props.allMapsData.nodes),
+            props.allMapsData.professors,
+            props.allMapsData.nodes,
+        );
+        return [
+            roomSearch.findSuggestionById(params.startId, params.startName),
+            roomSearch.findSuggestionById(params.destinationId, params.destinationName),
+        ];
+    }, [props.allMapsData, params?.startId, params?.startName, params?.destinationId, params?.destinationName]);
+
+    const destinationNode: DestinationNode = {
+        name: destinationSuggestion?.person?.name ?? destinationSuggestion?.roomName ?? "",
+        room: destinationSuggestion?.person?.room,
+    };
 
     const submapProvider = new SubmapProviderImpl(props.allMapsData.submaps);
     const mapCropper = new MapCropperImpl();
@@ -73,8 +102,6 @@ export default function Navigation(props: Props){
 
     useEffect(() => {
         if (params != null) {
-            setDestinationNode({ name: params.destinationName });
-
             const baseGraph = createGraph(props.allMapsData);
             const graphImpl = new GraphImpl(baseGraph, new SubmapProviderImpl(props.allMapsData.submaps));
             const mapNav = new MapNavigatorImpl(graphImpl, submapProvider);
@@ -139,11 +166,14 @@ export default function Navigation(props: Props){
                         updateCurrentStepIndex(currentStepIndex-1)
                     }
                 }}
+                // Back to the search form with both fields filled in the way the map data spells
+                // them, so what the form offers to edit is the route that was actually walked.
+                // And to avoid string injection in the url.
                 onUpdateClick={() => {navigate(createHomeUrl({
                     startNodeId: params?.startId,
-                    startText: params?.startName,
+                    startText: startSuggestion?.roomName,
                     destinationNodeId: params?.destinationId,
-                    destinationText: params?.destinationName,
+                    destinationText: destinationSuggestion?.roomName,
                 }))}}
                 onNextClick={() => {
                     if(currentStepIndex < navDirections.steps.length-1) {
@@ -158,11 +188,12 @@ export default function Navigation(props: Props){
     );
 }
 
+/** Both stand and destination names are only optional hints for `RoomSearch.findSuggestionById`, the ids do the work. */
 type params = {
     startId: string,
     startName: string | undefined,
     destinationId: string,
-    destinationName: string,
+    destinationName: string | undefined,
     mode: NavigationMode,
 }
 
@@ -172,12 +203,12 @@ function parseParams(params: URLSearchParams): params | null {
     const destinationId = params.get(DESTINATION_NODE_ID_PARAM_KEY);
     const destinationName = params.get(DESTINATION_NAME_PARAM_KEY);
     const mode = params.get(MODE_PARAM_KEY);
-    if (startId != null && destinationId != null && destinationName != null) {
+    if (startId != null && destinationId != null) {
         return {
             startId: startId,
             startName: startName ?? undefined,
             destinationId: destinationId,
-            destinationName: destinationName,
+            destinationName: destinationName ?? undefined,
             mode: mode === NavigationMode.Quick ? NavigationMode.Quick : NavigationMode.Detailed,
         }
     } else {

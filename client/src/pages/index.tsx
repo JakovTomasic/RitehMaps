@@ -39,7 +39,7 @@ export default function Home(props: Props) {
   const roomSearch = new RoomSearchImpl(nodesContainer, props.allMapData.professors, props.allMapData.nodes);
 
   const searchParams = useSearchParams();
-  const params = resolveMissingTexts(parseParams(searchParams), roomSearch);
+  const params = resolveTexts(parseParams(searchParams), roomSearch);
 
   const visibleViewport = useVisibleViewport();
 
@@ -76,17 +76,20 @@ function parseParams(searchParams: URLSearchParams): SearchInputs {
 }
 
 /**
- * A url can carry a node id without the room name shown in the input.
- * In such case, a name is looked up so the form still fills in.
+ * A url carries an id plus the name it was searched by, and the name is never taken at face value:
+ * the id is looked up and the map data's own spelling fills the input, so a shared link shows the
+ * room it actually leads to. A url with no id is left alone - that text selects nothing, it is just
+ * what someone typed into the box.
+ * This fixes security concerns where someone could inject any string as the destination name in the url.
  */
-function resolveMissingTexts(searchInputs: SearchInputs, roomSearch: RoomSearch): SearchInputs {
+function resolveTexts(searchInputs: SearchInputs, roomSearch: RoomSearch): SearchInputs {
     return {
       ...searchInputs,
-      startText: searchInputs.startText ?? roomNameOf(searchInputs.startNodeId, roomSearch),
-      destinationText: searchInputs.destinationText ?? roomNameOf(searchInputs.destinationNodeId, roomSearch),
+      startText: nameOf(searchInputs.startNodeId, searchInputs.startText, roomSearch),
+      destinationText: nameOf(searchInputs.destinationNodeId, searchInputs.destinationText, roomSearch),
     };
 }
 
-function roomNameOf(nodeId: string | undefined, roomSearch: RoomSearch): string | undefined {
-    return nodeId != undefined ? roomSearch.findRoomByNodeId(nodeId)?.roomName : undefined;
+function nameOf(nodeId: string | undefined, name: string | undefined, roomSearch: RoomSearch): string | undefined {
+    return nodeId != undefined ? roomSearch.findSuggestionById(nodeId, name)?.roomName : name;
 }

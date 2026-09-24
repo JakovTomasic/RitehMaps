@@ -167,6 +167,11 @@ export default function NavigationLayout(props: Prop) {
                                 <h1 className="mt-1.5 text-2xl font-semibold text-gray-800 tracking-tight break-words">
                                     { props.destination.name }
                                 </h1>
+                                { props.destination.room != undefined &&
+                                    <p className="mt-1 text-base font-medium text-gray-600 break-words">
+                                        Room { props.destination.room }
+                                    </p>
+                                }
                             </>
                             :
                             <h1 className="text-2xl font-semibold text-gray-800 tracking-tight">

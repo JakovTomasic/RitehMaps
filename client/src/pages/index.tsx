@@ -1,3 +1,5 @@
+import { useState } from "react";
+import AboutDialog from "../components/AboutDialog";
 import Navbar from "../components/Navbar";
 import SearchForm, { SearchInputs } from "../components/SearchForm";
 import { AllMapsData } from "../data/ServerData";
@@ -42,6 +44,7 @@ export default function Home(props: Props) {
   const params = resolveTexts(parseParams(searchParams), roomSearch);
 
   const visibleViewport = useVisibleViewport();
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   return (
 
@@ -57,9 +60,26 @@ export default function Home(props: Props) {
     >
       <Navbar />
 
-      <div className="flex flex-col justify-center items-center my-auto py-4">
+      {/* The bottom padding keeps the form clear of the About link once the column has to scroll. */}
+      <div className="flex flex-col justify-center items-center my-auto pt-4 pb-12">
         <SearchForm roomSearcher={roomSearch} initialSearchInputs={params} />
       </div>
+
+      {/*
+        Anchored to the bottom of the visible strip rather than of the window, so the keyboard
+        pushes it up instead of hiding it. It does scroll away with the form when the strip is
+        too short for both.
+      */}
+      <button
+        className="absolute bottom-1 left-2 px-2 py-1 text-sm text-gray-400 underline
+                   transition hover:text-gray-600"
+        onClick={() => setAboutOpen(true)}
+        type="button"
+      >
+        About
+      </button>
+
+      { aboutOpen && <AboutDialog close={() => setAboutOpen(false)} /> }
 
     </div>
 

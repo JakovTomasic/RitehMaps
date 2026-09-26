@@ -1,5 +1,4 @@
 
-
 export function normalizeForComparison(s: string) {
     return s.toLocaleLowerCase().split(" ").join("");
 }

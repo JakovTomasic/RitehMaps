@@ -1,4 +1,7 @@
-const NORTH_ANGLE = 40;
+import { Translations } from "../i18n/en";
+import { Submap } from "../types/Submap";
+
+const NORTH_ANGLE = 30;
 
 export type HardcodedSubMap = {
     id: number;
@@ -53,3 +56,62 @@ export const submaps: HardcodedSubMap[] = [
         "north_angle": NORTH_ANGLE
     }
 ];
+
+export type HardcodedFloor = {
+    submapId: number;
+    /** Short enough for a picker button - the floor number. */
+    label: string;
+}
+
+export type HardcodedBuilding = {
+    /**
+     * Picked out of a language rather than stored: unlike a submap caption, this name is the
+     * client's own text, so it is translated along with the rest of the ui.
+     */
+    name: (t: Translations) => string;
+    /** Lowest floor first. */
+    floors: HardcodedFloor[];
+}
+
+/**
+ * Which floor plan is which floor of which building, for browsing the map by hand.
+ *
+ * Hardcoded next to the images for the same reason they are: a submap is a fixed thing. The only
+ * thing the server has to say about one is its caption, and that is free text an admin can reword
+ * at any time, so it is shown but never parsed. Adding a floor means adding it here too.
+ */
+export const buildings: HardcodedBuilding[] = [
+    {
+        name: t => t.map.mainBuilding,
+        floors: [
+            { submapId: 1, label: "0" },
+            { submapId: 2, label: "1" },
+            { submapId: 3, label: "2" },
+            { submapId: 4, label: "3" },
+        ]
+    },
+    {
+        name: t => t.map.labBuilding,
+        floors: [
+            { submapId: 101, label: "0" },
+            { submapId: 102, label: "1" },
+        ]
+    }
+];
+
+/**
+ * What a floor plan is called on screen: "Main Building, floor 0", built from the hardcoded
+ * buildings so it follows the ui language.
+ *
+ * The server's caption for the same submap says the same thing, but it is free text written in
+ * whichever language the admin used, so it only stands in for a submap missing from `buildings`.
+ */
+export function submapCaption(submap: Submap, t: Translations): string {
+    for (const building of buildings) {
+        const floor = building.floors.find(floor => floor.submapId === submap.id);
+        if (floor != undefined) {
+            return t.map.floorCaption(building.name(t), floor.label);
+        }
+    }
+    return submap.caption;
+}

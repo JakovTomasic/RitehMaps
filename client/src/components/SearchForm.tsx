@@ -5,9 +5,12 @@ import ChangeArrowsIcon from "./ChangeArrowsIcon";
 import Search from "./Search";
 import { RoomSearch } from "../logic/interfaces/RoomSearch";
 import GoShareButtons from "./GoShareButtons";
+import NearestToiletButtons from "./NearestToiletButtons";
+import { SearchNodeSuggestion } from "../types/roomsearch/SearchNodeSuggestion";
+import { isSpecialSearchResultId, specialSearchResultName } from "../data/SpecialSearchResults";
+import { useTranslations } from "../i18n";
 
 const DEFAULT_START_ID: string = "main_entrance";
-const DEFAULT_START_NAME: string = "entrance";
 
 
 type Prop = {
@@ -16,26 +19,54 @@ type Prop = {
 }
 
 export type SearchInputs = {
-  startNodeId: string,
-  startText: string,
-  destinationNodeId: string,
-  destinationText: string,
+  startNodeId: string | undefined,
+  startText: string | undefined,
+  destinationNodeId: string | undefined,
+  destinationText: string | undefined,
 }
 
 function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
+  const t = useTranslations();
   const [searchInputs, setSearchInputs] = useState<SearchInputs>(initialSearchInputs);
-  const [showShareDiv, setShowShareDiv] = useState(false);
   const [searchDropdownVisible, setSearchDropdownVisible] = useState(false);
+  /**
+   * Bumped to remount the destination field. It only picks up a new text when the text it was given
+   * changes, so picking the same shortcut twice (after typing over it) would otherwise leave the
+   * typed text sitting next to the shortcut's id.
+   */
+  const [destinationFieldGeneration, setDestinationFieldGeneration] = useState(0);
 
-  const handleShare = () => {
-    setShowShareDiv(!showShareDiv);
-  };
+  function selectDestination(destination: SearchNodeSuggestion | null) {
+    setSearchInputs((prevInputs: SearchInputs) => {
+      return {
+        ...prevInputs,
+        destinationNodeId: destination?.nodeId,
+        destinationText: destination?.roomName,
+      }
+    });
+  }
+
+  const swapDisabled = isSpecialSearchResultId(searchInputs.destinationNodeId);
+
+  /**
+   * The default start's first name in the map data. Read from the data rather than written here
+   * because it goes into a field as a picked room, so it has to be a name the search can find
+   * again - and the data is what an admin has translated, not the ui.
+   * startPreferredActualName enables translation (will default to first name if admin renames/removes hardcoded values here)
+   */
+  const defaultStartName = roomSearcher.findSuggestionById(DEFAULT_START_ID, t.search.startPreferredActualName)?.roomName;
+
+  // A room keeps the name the map data gives it, whatever language the ui is in, but "nearest
+  // toilet" and friends are named by the app - so that one is read again rather than kept, and
+  // switching language on this screen doesn't leave the old language sitting in the field.
+  const destinationText = specialSearchResultName(searchInputs.destinationNodeId, t)
+    ?? searchInputs.destinationText;
 
   return (
 
-    <div className="flex items-center w-96">
-      
-        <form className="mx-auto bg-white p-2 w-full">
+    <div className="flex items-center w-full max-w-96 px-4">
+
+        <form className="mx-auto bg-white p-5 w-full rounded-2xl shadow-md border border-gray-100">
 
           {/*div that contains sideDecoration (pins and dots, change arrows) and search inputs*/}
           <div className="flex items-center h-full w-full justify-center" >
@@ -47,11 +78,11 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
             </div>
 
 
-            <div className="flex flex-col items-center w-64">
+            <div className="flex flex-col items-center w-full min-w-0">
               
               <div className="mb-4 py-1 w-full">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Where are you now?
+                  <label className="block text-gray-600 text-sm font-semibold mb-1.5">
+                    {t.search.startLabel}
                   </label>
 
                   <div className="flex items-center">
@@ -69,36 +100,29 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
                         }}
                         onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
                         initialInputValue={searchInputs.startText ?? ""}
-                        placeholder={DEFAULT_START_NAME}
+                        placeholder={t.search.startPlaceholder}
                       />
                     </label> 
                   </div>
 
               </div>
 
-                <div className="mb-4 py-1 w-full">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Where do you want to go?
+                <div className="py-1 w-full">
+                  <label className="block text-gray-600 text-sm font-semibold mb-1.5">
+                    {t.search.destinationLabel}
                   </label>
 
                   <div className="flex items-center">
                     <label className="relative right-0 text-gray-500 focus-within:text-gray-700 w-full">
-                    <Search 
+                    <Search
+                      key={destinationFieldGeneration}
                       roomSearcher={roomSearcher.sortedSuggestionsForDestination}
-                      onSelection={(selectedNode) => {
-                        setSearchInputs((prevInputs: SearchInputs) => {
-                          return {
-                            ...prevInputs,
-                            destinationNodeId: selectedNode?.nodeId,
-                            destinationText: selectedNode?.roomName
-                          }
-                        });
-                      }}
+                      onSelection={selectDestination}
                       onDropdownVisibilityChange={visible => setSearchDropdownVisible(visible)}
-                      initialInputValue={searchInputs.destinationText ?? ""}
-                      placeholder={"Search"}
+                      initialInputValue={destinationText ?? ""}
+                      placeholder={t.search.destinationPlaceholder}
                     />
-                    </label> 
+                    </label>
                   </div>
 
                 </div>
@@ -106,16 +130,23 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
             </div>
 
               <div className="w-1px items-center justify-center pl-1 pt-3">
+                {/*
+                  "Nearest toilet" and similar mean "whichever is closest to the start", so they
+                  can't become the start themselves - the swap is off while one is the destination.
+                */}
                 <button
                   type="button"
+                  aria-label={t.search.swap}
+                  disabled={swapDisabled}
+                  className={swapDisabled ? "opacity-40 cursor-not-allowed" : ""}
                   onClick={() => {
                     if (!searchDropdownVisible) {
                       setSearchInputs((prevInputs: SearchInputs) => {
                         let nextDestinationId: string;
-                        let nextDestinationText: string;
+                        let nextDestinationText: string | undefined;
                         if (prevInputs.startNodeId === undefined) {
                           nextDestinationId = DEFAULT_START_ID;
-                          nextDestinationText = DEFAULT_START_NAME;
+                          nextDestinationText = defaultStartName;
                         } else {
                           nextDestinationId = prevInputs.startNodeId;
                           nextDestinationText = prevInputs.startText;
@@ -136,28 +167,30 @@ function SearchForm({ roomSearcher, initialSearchInputs }: Prop) {
               </div>
 
           </div>
-          
-          {/* <div className="flex relative py-3 items-center justify-center z-0">
-            <HCIGoButtons 
-                startNodeId={searchInputs.startNodeId} 
-                destinationNodeId={searchInputs.destinationNodeId}
-                startText={searchInputs.startText} 
-                destinationText={searchInputs.destinationText}
-                clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
-                defaultStartNodeId={DEFAULT_START_ID}
-            />
-          </div> */}
 
-          <div className="flex relative py-3 items-center justify-center z-0">
-            <GoShareButtons 
-                startNodeId={searchInputs.startNodeId} 
+          {/*
+            The toggle hangs off the destination field (the indent is the width of the pin column),
+            while the buttons under it span the whole card - they are wide, and two have to fit.
+          */}
+          <NearestToiletButtons
+            selectedDestinationId={searchInputs.destinationNodeId}
+            enabled={!searchDropdownVisible}
+            headingIndentClassName="pl-10"
+            onPick={(destination) => {
+              selectDestination(destination);
+              setDestinationFieldGeneration((generation) => generation + 1);
+            }}
+          />
+
+          <div className="flex relative mt-3 pt-4 border-t border-gray-100 items-center justify-center z-0">
+            <GoShareButtons
+                startNodeId={searchInputs.startNodeId}
                 destinationNodeId={searchInputs.destinationNodeId}
-                startText={searchInputs.startText} 
-                destinationText={searchInputs.destinationText}
-                handleShare ={handleShare}
-                showShareDiv={showShareDiv}
+                startText={searchInputs.startText}
+                destinationText={destinationText}
                 clickable={searchInputs.destinationNodeId != undefined && !searchDropdownVisible}
                 defaultStartNodeId={DEFAULT_START_ID}
+                defaultStartText={defaultStartName}
             />
           </div>
 

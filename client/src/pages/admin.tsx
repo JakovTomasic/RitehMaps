@@ -1,29 +1,46 @@
 import { useState } from "react";
 import { z } from "zod";
 import { API_URL } from "../server";
-import { AllMapsData, AllMapsDataSchema, ServerChangeDataRequest, ServerChangePasswordRequest } from "../data/ServerData";
+import { AllMapsData, AllMapsDataSchema, MIN_PASSWORD_LENGTH, ServerChangeDataRequest, ServerChangePasswordRequest, ServerLoginRequest } from "../data/ServerData";
 import AdminTextEdit from "../components/admin/AdminTextEdit";
-import Button from "../components/Button";
 import AdminFancyEdit, { AdminFancyEditState } from "../components/admin/AdminFancyEdit";
 import AdminMapPopup from "../components/admin/AdminMapPopup";
 import { submaps } from "../data/submaps";
 import { addUuids, AllMapsDataWithUuids, removeUuids } from "../data/AdminObjects";
-import AdminChangePassword, { ChangePasswordState, EMPTY_PASSWORD_CHANGE_STATE } from "../components/admin/AdminChangePassword";
+import AdminChangePassword, { ChangePasswordState, EMPTY_PASSWORD_CHANGE_STATE, PASSWORD_CHANGED_MESSAGE } from "../components/admin/AdminChangePassword";
+import AdminLogin from "../components/admin/AdminLogin";
+
+export const SAVED_MESSAGE = "Saved";
 
 type Props = {
     allMapData: AllMapsData,
 }
 
 type State = {
-    mapDateState: AdminFancyEditState,
+    mapDataState: AdminFancyEditState,
     saveResultMessage: string,
     textMode: boolean,
+    // The password confirmed by the server, empty until logged in. Used for saving.
     password: string,
+    loginScreen: LoginScreenState,
     // null iff popup isn't visible
     adminMapPopup: AdminMapPopupState | null,
     // null iff change password screen isn't visible
     changePasswordScreen: ChangePasswordState | null,
 }
+
+// null iff the admin is logged in (= everything below is unlocked)
+type LoginScreenState = {
+    passwordInput: string,
+    error: string,
+    checking: boolean,
+} | null;
+
+const EMPTY_LOGIN_SCREEN_STATE: LoginScreenState = {
+    passwordInput: "",
+    error: "",
+    checking: false,
+};
 
 type AdminMapPopupState = {
     submapId: number,
@@ -46,7 +63,7 @@ export default function AdminPage(props: Props){
     const localSubmaps = props.allMapData.submaps.length === 0 ? mockSubmaps : props.allMapData.submaps;
 
     const [state, setState] = useState<State>({
-        mapDateState: {
+        mapDataState: {
             temporaryMapData: {
                 ...addUuids(props.allMapData),
                 submaps: localSubmaps,
@@ -60,6 +77,7 @@ export default function AdminPage(props: Props){
         saveResultMessage: "",
         textMode: true,
         password: "",
+        loginScreen: EMPTY_LOGIN_SCREEN_STATE,
         adminMapPopup: null,
         changePasswordScreen: null,
     });
@@ -77,7 +95,7 @@ export default function AdminPage(props: Props){
         }));
     };
     const showNode = (nodeId: string) => {
-        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeId);
+        const node = state.mapDataState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeId);
         if (!node) {
             alert("Invalid data!");
             return;
@@ -93,14 +111,14 @@ export default function AdminPage(props: Props){
         }));
     };
     const showEdge = (nodeOrHallwayId1: string, nodeOrHallwayId2: string) => {
-        const node = state.mapDateState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId1);
-        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId1);
+        const node = state.mapDataState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId1);
+        const hallway = state.mapDataState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId1);
         if (!node && !hallway) {
             alert(`Invalid data! Cannot find node or hallway with id ${nodeOrHallwayId1}`);
             return;
         }
-        const node2 = state.mapDateState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId2);
-        const hallway2 = state.mapDateState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId2);
+        const node2 = state.mapDataState.temporaryMapData.nodes.find(n => n.v.nodeId === nodeOrHallwayId2);
+        const hallway2 = state.mapDataState.temporaryMapData.hallways.find(h => h.v.id === nodeOrHallwayId2);
         if (!node2 && !hallway2) {
             alert(`Invalid data! Cannot find node or hallway with id ${nodeOrHallwayId2}`);
             return;
@@ -116,7 +134,7 @@ export default function AdminPage(props: Props){
         }));
     };
     const showHallway = (hallwayId: string) => {
-        const hallway = state.mapDateState.temporaryMapData.hallways.find(h => h.v.id === hallwayId);
+        const hallway = state.mapDataState.temporaryMapData.hallways.find(h => h.v.id === hallwayId);
         if (!hallway) {
             alert(`Invalid data! Cannot find hallway with id ${hallwayId}`);
             return;
@@ -129,6 +147,57 @@ export default function AdminPage(props: Props){
                 edgeToShow: null,
                 hallwayToShowId: hallway.v.id,
             },
+        }));
+    };
+
+    const logIn = async () => {
+        if (state.loginScreen === null) return;
+        const password = state.loginScreen.passwordInput;
+        setState(s => ({
+            ...s,
+            loginScreen: s.loginScreen === null ? null : { ...s.loginScreen, checking: true, error: "" },
+        }));
+        const request: ServerLoginRequest = { password };
+        fetch(`${API_URL}/login`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(request),
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                const data = z.boolean().safeParse(result);
+                if (data.success && data.data === true) {
+                    // Unlocks everything below
+                    setState(s => ({ ...s, password: password, loginScreen: null }));
+                } else {
+                    setLoginError("Wrong password");
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                setLoginError("Server error");
+                return null;
+            });
+    };
+
+    const setLoginError = (error: string) => {
+        setState(s => ({
+            ...s,
+            loginScreen: s.loginScreen === null ? null : { ...s.loginScreen, checking: false, error: error },
+        }));
+    };
+
+    const logOut = () => {
+        setState(s => ({
+            ...s,
+            password: "",
+            loginScreen: EMPTY_LOGIN_SCREEN_STATE,
+            saveResultMessage: "",
+            adminMapPopup: null,
+            changePasswordScreen: null,
         }));
     };
 
@@ -162,39 +231,30 @@ export default function AdminPage(props: Props){
             .then((result) => {
                 const data = z.boolean().safeParse(result);
                 if (data.success && data.data === true) {
-                    setState(s => ({
-                        ...s,
-                        saveResultMessage: "saved",
-                        temporaryAllMapData: allMapData,
-                    }));
+                    setState(s => ({ ...s, saveResultMessage: SAVED_MESSAGE }));
                     setTimeout(() => {
                         setState(s => ({ ...s, saveResultMessage: "" }));
                     }, 3000);
                 } else {
-                    setState(s => ({
-                        ...s,
-                        saveResultMessage: "Server error",
-                        temporaryAllMapData: allMapData,
-                    }));
+                    setState(s => ({ ...s, saveResultMessage: "Server error" }));
                 }
             })
             .catch(error => {
                 console.error(error);
-                setState(s => ({
-                    ...s,
-                    saveResultMessage: "Server error: " + error,
-                    temporaryAllMapData: allMapData,
-                }));
+                setState(s => ({ ...s, saveResultMessage: "Server error: " + error }));
                 return null;
             });
     };
 
     const changePassword = async (wholeState: ChangePasswordState) => {
         if (wholeState.newPassword1 !== wholeState.newPassword2) {
-            setState(s => ({
-                ...s,
-                changePasswordScreen: s.changePasswordScreen !== null ? { ...s.changePasswordScreen, error: "Error: new passwords differ!" } : null,
-            }));
+            setChangePasswordMessage("Error: new passwords differ!");
+            return;
+        }
+        // The server rejects anything shorter, and would only answer with a
+        // generic error - say why here instead.
+        if (wholeState.newPassword1.length < MIN_PASSWORD_LENGTH) {
+            setChangePasswordMessage(`Error: password must be at least ${MIN_PASSWORD_LENGTH} characters!`);
             return;
         }
         const request: ServerChangePasswordRequest = {
@@ -213,115 +273,197 @@ export default function AdminPage(props: Props){
             .then((result) => {
                 const data = z.boolean().safeParse(result);
                 if (data.success && data.data === true) {
-                    setState(s => ({
-                        ...s,
-                        changePasswordScreen: s.changePasswordScreen !== null ? { ...s.changePasswordScreen, error: "Password changed" } : null,
-                    }));
+                    setChangePasswordMessage(PASSWORD_CHANGED_MESSAGE);
                     setTimeout(() => {
                         setState(s => ({
                             ...s,
+                            // Keep saving working after the password changed
+                            password: wholeState.newPassword1,
                             // Close the change password screen (this isn't perfect if user closes it manually and then opens it again)
-                            changePasswordScreen: null, 
+                            changePasswordScreen: null,
                         }));
                     }, 1500);
                 } else {
-                    setState(s => ({
-                        ...s,
-                        changePasswordScreen: s.changePasswordScreen !== null ? { ...s.changePasswordScreen, error: "Error changing password" } : null,
-                    }));
+                    setChangePasswordMessage("Error changing password");
                 }
             })
             .catch(error => {
                 console.error(error);
-                setState(s => ({
-                    ...s,
-                    changePasswordScreen: s.changePasswordScreen !== null ? { ...s.changePasswordScreen, error: "Error changing password" } : null,
-                }));
+                setChangePasswordMessage("Error changing password");
                 return null;
             });
     };
 
+    const setChangePasswordMessage = (message: string) => {
+        setState(s => ({
+            ...s,
+            changePasswordScreen: s.changePasswordScreen === null ? null : { ...s.changePasswordScreen, error: message },
+        }));
+    };
+
+    // Everything below is hidden until the server confirms the password
+    if (state.loginScreen !== null) {
+        const loginScreen = state.loginScreen;
+        return (
+            <AdminLogin
+                password={loginScreen.passwordInput}
+                error={loginScreen.error}
+                checking={loginScreen.checking}
+                onPasswordChange={(value) => {
+                    setState(s => ({
+                        ...s,
+                        loginScreen: s.loginScreen === null ? null : { ...s.loginScreen, passwordInput: value, error: "" },
+                    }));
+                }}
+                onSubmit={logIn}
+            />
+        );
+    }
+
     return(
-        <div className="relative w-full mx-auto my-0 flex flex-col pt-4">
-            { state.changePasswordScreen ?
+        <div className="min-h-screen w-full bg-gray-50">
+
+            <header className="sticky top-0 z-10 border-b border-gray-200 bg-white/90 backdrop-blur">
+                <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-2 px-4 py-3">
+
+                    <h1 className="mr-auto text-lg font-bold text-gray-800">Admin</h1>
+
+                    <div className="flex rounded-lg bg-gray-100 p-1">
+                        <button
+                            className={modeTabStyle(state.textMode)}
+                            onClick={() => setState(s => ({ ...s, textMode: true }))}>
+                            Text
+                        </button>
+                        <button
+                            className={modeTabStyle(!state.textMode)}
+                            onClick={() => setState(s => ({ ...s, textMode: false }))}>
+                            Fancy
+                        </button>
+                    </div>
+
+                    <button
+                        className={headerButtonStyle}
+                        onClick={() => {
+                            // Open change passwords screen
+                            setState(s => ({ ...s, changePasswordScreen: EMPTY_PASSWORD_CHANGE_STATE }));
+                        }}>
+                        Change password
+                    </button>
+
+                    <button className={headerButtonStyle} onClick={logOut}>
+                        Log out
+                    </button>
+
+                </div>
+            </header>
+
+            <main className="mx-auto max-w-5xl px-4 py-6">
+                { state.textMode ?
+                    <AdminTextEdit
+                        specialSaveText={state.saveResultMessage}
+                        temporaryMapData={removeUuids(state.mapDataState.temporaryMapData)}
+                        onTextUpdate={(json: string) => {
+                            const allMapData = AllMapsDataSchema.safeParse(safeParseJson(json));
+                            if (allMapData.success) {
+                                setState(old => {
+                                    return {
+                                        ...old,
+                                        mapDataState: {
+                                            ...old.mapDataState,
+                                            temporaryMapData: {
+                                                ...addUuids(allMapData.data),
+                                                submaps: localSubmaps,
+                                            }
+                                        }
+                                    };
+                                });
+                            }
+                        }}
+                        save={saveText} />
+                    :
+                    <AdminFancyEdit
+                        state={state.mapDataState}
+                        specialSaveText={state.saveResultMessage}
+                        updateState={s => setState(oldS => ({ ...oldS, mapDataState: s }))}
+                        save={saveWithUuids}
+                        showSubmap={showSubmap}
+                        showNode={showNode}
+                        showEdge={showEdge}
+                        showHallway={showHallway}
+                    />
+                }
+            </main>
+
+            { state.changePasswordScreen === null ? <></> :
                 <AdminChangePassword
                     state={state.changePasswordScreen}
                     onOldPasswordChange={(value) => {
-                        setState(s => ({ ...s, changePasswordScreen: {...s.changePasswordScreen, oldPassword: value} }));
+                        setState((s: State) => {
+                            if (s.changePasswordScreen === null) return s;
+                            else return ({ ...s, changePasswordScreen: {...s.changePasswordScreen, oldPassword: value} });
+                        });
                     }}
                     onNewPassword1Change={(value) => {
-                        setState(s => ({ ...s, changePasswordScreen: {...s.changePasswordScreen, newPassword1: value} }));
+                        setState(s => {
+                            if (s.changePasswordScreen === null) return s;
+                            else return ({ ...s, changePasswordScreen: {...s.changePasswordScreen, newPassword1: value} })
+                        });
                     }}
                     onNewPassword2Change={(value) => {
-                        setState(s => ({ ...s, changePasswordScreen: {...s.changePasswordScreen, newPassword2: value} }));
+                        setState(s => {
+                            if (s.changePasswordScreen === null) return s;
+                            else return ({ ...s, changePasswordScreen: {...s.changePasswordScreen, newPassword2: value} })
+                        });
                     }}
                     onClose={() => {
                         setState(s => ({ ...s, changePasswordScreen: null }));
                     }}
                     onSave={() => {
-                        changePassword(state.changePasswordScreen);
+                        if (state.changePasswordScreen != null) changePassword(state.changePasswordScreen);
                     }}
                 />
-                :
-                <>
-                    Password:
-                    <input type="password" 
-                        className="mb-6 bg-slate-300 w-64"
-                        value={state.password}
-                        onChange={ newValue =>
-                        setState(s => ({ ...s, password: newValue.target.value }))
-                    }/>
+            }
 
-                    <button
-                        className="mb-11 w-48 bg-stone-500"
-                        onClick={() => {
-                            // Open change passwords screen
-                            setState(s => ({ ...s, changePasswordScreen: EMPTY_PASSWORD_CHANGE_STATE }));
-                        }}
-                    >change password</button>
+            { state.adminMapPopup === null ? <></> :
+                <AdminMapPopup
+                    submapId={state.adminMapPopup.submapId}
+                    mapData={removeUuids(state.mapDataState.temporaryMapData)}
+                    nodeToShowId={state.adminMapPopup.nodeToShowId}
+                    edgeToShow={state.adminMapPopup.edgeToShow}
+                    hallwayToShowId={state.adminMapPopup.hallwayToShowId}
+                    close={() => setState(s => ({ ...s, adminMapPopup: null }))}
+                />
+            }
 
-                    <div className="mb-11 flex flex-row">
-                        <Button
-                            enabled={true}    
-                            text="Text"
-                            onClick={() => setState(s => ({ ...s, textMode: true }))} />
-                        <Button
-                            enabled={true}    
-                            text="Fancy"
-                            onClick={() => setState(s => ({ ...s, textMode: false }))} />
-                    </div>
+        </div>
+    );
+}
 
-                    { state.textMode ?
-                        <>
-                            <AdminTextEdit temporaryMapData={removeUuids(state.mapDateState.temporaryMapData)} save={saveText} />
-                            <div className="text-xl font-bold">{state.saveResultMessage}</div>
-                        </>
-                        :
-                        <>
-                            <AdminFancyEdit
-                                state={state.mapDateState}
-                                updateState={s => setState(oldS => ({ ...oldS, mapDateState: s }))}
-                                save={saveWithUuids}
-                                showSubmap={showSubmap}
-                                showNode={showNode}
-                                showEdge={showEdge}
-                                showHallway={showHallway}
-                            />
-                            <div className="text-xl font-bold">{state.saveResultMessage}</div>
-                        </>
-                    }
+const headerButtonStyle = "rounded-lg border border-gray-200 px-3 py-1.5 text-sm font-semibold text-gray-600 \
+    transition hover:bg-gray-100 hover:text-gray-800";
 
-                    { state.adminMapPopup === null ? <></> :
-                        <AdminMapPopup
-                            submapId={state.adminMapPopup.submapId}
-                            mapData={removeUuids(state.mapDateState.temporaryMapData)}
-                            nodeToShowId={state.adminMapPopup.nodeToShowId}
-                            edgeToShow={state.adminMapPopup.edgeToShow}
-                            hallwayToShowId={state.adminMapPopup.hallwayToShowId}
-                            close={() => setState(s => ({ ...s, adminMapPopup: null }))}
-                        />
-                    }
-                </>
+function modeTabStyle(active: boolean): string {
+    return `rounded-md px-4 py-1.5 text-sm font-semibold transition ${
+        active ? "bg-white text-cyan-700 shadow-sm" : "text-gray-500 hover:text-gray-700"
+    }`;
+}
+
+export function AdminSaveButton(props: {specialSaveText: string, save: () => void}) {
+    const hasMessage = props.specialSaveText.length > 0;
+    const saved = props.specialSaveText === SAVED_MESSAGE;
+    return(
+        <div className="sticky bottom-0 z-10 mt-6 flex items-center gap-3 border-t border-gray-200 bg-white/90 px-4 py-3 backdrop-blur">
+            <button
+                className={`rounded-lg px-5 py-2 font-semibold text-white transition ${
+                    hasMessage ? "cursor-default bg-cyan-300" : "bg-cyan-600 hover:bg-cyan-700"
+                }`}
+                onClick={hasMessage ? () => { } : props.save}>
+                Save
+            </button>
+            { !hasMessage ? <></> :
+                <span className={`text-sm font-semibold ${saved ? "text-emerald-600" : "text-red-500"}`}>
+                    {props.specialSaveText}
+                </span>
             }
         </div>
     );

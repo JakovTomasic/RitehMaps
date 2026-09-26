@@ -4,22 +4,34 @@ import { NodesContainer } from "../interfaces/NodesContainer";
 import { diacriticToAsciiLetters, stringEquals } from "../../utils/Strings";
 import { specialSearchResults } from "../../data/SpecialSearchResults";
 import { Node, ProfessorData } from "../../data/ServerData";
+import { Translations } from "../../i18n/en";
 
 export class RoomSearchImpl implements RoomSearch {
 
     private nodesContainer: NodesContainer;
     private professors: ProfessorData[];
     private nodes: Node[];
+    /**
+     * Room and professor names come from the map data and are shown as they were written. Only the
+     * special searches (`specialSuggestions`) are the app's own, so only those need a language.
+     */
+    private translations: Translations;
+    /**
+     * Built once per instance: pairing every professor with their office is a scan of all nodes per
+     * professor, which is tens of ms on the real data - too much to redo on every keystroke.
+     */
+    private cachedNodeSuggestions: SearchNodeSuggestion[] | null = null;
 
-    constructor(nodesContainer: NodesContainer, professors: ProfessorData[], nodes: Node[]) {
+    constructor(nodesContainer: NodesContainer, professors: ProfessorData[], nodes: Node[], translations: Translations) {
         // A fix for calling a function from another function (https://stackoverflow.com/a/57028664)
         this.sortedSuggestionsForDestination = this.sortedSuggestionsForDestination.bind(this);
         this.sortedSuggestionsForStart = this.sortedSuggestionsForStart.bind(this);
-        this.findRoomByNodeId = this.findRoomByNodeId.bind(this);
+        this.findSuggestionById = this.findSuggestionById.bind(this);
         
         this.nodesContainer = nodesContainer;
         this.professors = professors;
         this.nodes = nodes;
+        this.translations = translations;
     }
 
     sortedSuggestionsForStart(searchedText: string): SearchNodeSuggestion[] {
@@ -38,9 +50,8 @@ export class RoomSearchImpl implements RoomSearch {
 
     sortedSuggestionsForDestination(searchedText: string): SearchNodeSuggestion[] {
 
-        const matchingSpecialSearchResults = specialSearchResults
-            .filter(result => this.searchIncludes(searchedText, result.name))
-            .map(result => new SearchNodeSuggestion(result.id, result.name));
+        const matchingSpecialSearchResults = this.specialSuggestions()
+            .filter(suggestion => this.searchIncludes(searchedText, suggestion.roomName));
 
         return this.sortedSuggestionsForStart(searchedText).concat(matchingSpecialSearchResults);
     }
@@ -50,11 +61,22 @@ export class RoomSearchImpl implements RoomSearch {
         return undefined;
     }
 
-    findRoomByNodeId(nodeId: string): SearchNodeSuggestion | undefined {
-        const listOfSuggestions: SearchNodeSuggestion[] = this.allNodeSuggestions();
-        const foundSuggestion = listOfSuggestions.find((suggestion) => stringEquals(suggestion.nodeId, nodeId));
+    findSuggestionById(id: string, preferredName?: string): SearchNodeSuggestion | undefined {
+        const candidates: SearchNodeSuggestion[] = this.allSuggestions()
+            .filter((suggestion) => stringEquals(suggestion.nodeId, id));
 
-        return foundSuggestion;  
+        if (candidates.length === 0) {
+            return undefined;
+        }
+        if (preferredName != undefined) {
+            const preferred = candidates.find((suggestion) => stringEquals(suggestion.roomName, preferredName));
+            if (preferred != undefined) {
+                return preferred;
+            }
+        }
+        // The room itself: node names come before the people sitting in them, and a room can hold
+        // several of those, so there is no one person to fall back to.
+        return candidates[0];
     }
 
     findNodeId(nodeNameOrId: string): string | undefined {
@@ -78,6 +100,10 @@ export class RoomSearchImpl implements RoomSearch {
     }
 
     private allNodeSuggestions(): SearchNodeSuggestion[] {
+        if (this.cachedNodeSuggestions != null) {
+            return this.cachedNodeSuggestions;
+        }
+
         const nodeSuggestions : SearchNodeSuggestion[] = this.nodes.flatMap((node: Node) =>
             node.names.map((name) => new SearchNodeSuggestion(node.nodeId, name))
         );
@@ -85,13 +111,26 @@ export class RoomSearchImpl implements RoomSearch {
             const roomId = this.findNodeId(professor.room);
             if (roomId != undefined) {
                 const formattedName = `${professor.name} (${professor.room})`;
-                return new SearchNodeSuggestion(roomId, formattedName);
+                return new SearchNodeSuggestion(roomId, formattedName, {
+                    name: professor.name,
+                    room: professor.room,
+                });
             } else {
                 console.error(`ERROR: professor office not found: ${professor.room} for ${professor.name}`);
                 return [];
             }
         });
 
-        return nodeSuggestions.concat(professorSuggestions);
+        this.cachedNodeSuggestions = nodeSuggestions.concat(professorSuggestions);
+        return this.cachedNodeSuggestions;
+    }
+
+    /** Everything an id can stand for: rooms, the people in them, and the special searches. */
+    private allSuggestions(): SearchNodeSuggestion[] {
+        return this.allNodeSuggestions().concat(this.specialSuggestions());
+    }
+
+    private specialSuggestions(): SearchNodeSuggestion[] {
+        return specialSearchResults.map(result => new SearchNodeSuggestion(result.id, result.name(this.translations)));
     }
 }

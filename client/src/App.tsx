@@ -1,10 +1,12 @@
 import { Route, Switch } from 'wouter'
 import Navigation, { NAVIGATION_PATH } from './pages/navigation'
 import Home from './pages'
+import MapPage, { MAP_PATH } from './pages/map'
 import AdminPage from './pages/admin'
 import { useEffect, useState } from 'react'
 import { API_URL } from './server'
 import { AllMapsData, AllMapsDataSchema } from './data/ServerData'
+import { useTranslations } from './i18n'
 
 type State = {
   allMapData: AllMapsData | null,
@@ -20,6 +22,8 @@ const EMPTY_ALL_MAP_DATA: AllMapsData = {
 }
 
 function App() {
+
+  const t = useTranslations();
 
   const [state, setState] = useState<State>({
       allMapData: null,
@@ -57,28 +61,30 @@ function App() {
       */}
       <Switch>
         <Route path="/" component={() =>
-          <>
-          { state.allMapData === null ?
-            <>loading...</>
-            :
-            <Home allMapData={state.allMapData ?? EMPTY_ALL_MAP_DATA} />
-          }
-          </>
+          <Home allMapData={state.allMapData ?? EMPTY_ALL_MAP_DATA} />
         } />
-        {/* <Route path="/graph" component={GraphPage} /> */}
         <Route path={NAVIGATION_PATH} component={() =>
           <>
           { state.allMapData === null ?
-            <>loading...</>
+            <></>
             :
             <Navigation allMapsData={state.allMapData} />
+          }
+          </>
+        } />
+        <Route path={MAP_PATH} component={() =>
+          <>
+          { state.allMapData === null ?
+            <></>
+            :
+            <MapPage allMapData={state.allMapData} />
           }
           </>
         } />
         <Route path="/admin" component={() =>
           <>
           { state.allMapData === null ?
-            <>loading...</>
+            <></>
             :
             <AdminPage allMapData={state.allMapData ?? EMPTY_ALL_MAP_DATA} />
           }
@@ -86,7 +92,7 @@ function App() {
         } />
 
         {/* Default route in a switch */}
-        <Route>404: No such page!</Route>
+        <Route>{t.notFound}</Route>
       </Switch>
     </>
   )

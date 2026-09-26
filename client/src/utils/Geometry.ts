@@ -119,6 +119,14 @@ export function rotatePointClockwise(point: Dot, angle: number, referencePoint: 
     return rotatedPoint;
 }
 
+/**
+ * Signed degrees to turn from one angle to the other, taking the short way around: turning from
+ * 350 to 10 is +20, not -340.
+ */
+export function shortestAngleDifference(from: number, to: number): number {
+    return fixAngleBetweenZeroAnd360(to - from + 180) - 180;
+}
+
 export function fixAngleBetweenZeroAnd360(degrees: number): number {
     const fullCirclesDistance = Math.floor(Math.abs(degrees) / 360);
     const result = (degrees + fullCirclesDistance * 360);

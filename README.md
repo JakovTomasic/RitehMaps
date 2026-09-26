@@ -2,8 +2,6 @@
 
 The goal of this project is to provide easy-to-use indoor navigation without using real-time positioning data. It is primarily developed for [the Faculty of Engineering, Rijeka](http://www.riteh.uniri.hr/).
 
-Please read the [wiki](https://github.com/JakovTomasic/RitehMaps/wiki) before contributing to the project.
-
 ## Installation
 
 To install the code open a terminal and run `git clone git@github.com:JakovTomasic/RitehMaps.git` command. A directory `RitehMaps` with all files (from the main branch) will be created. Simply run `cd RitehMaps` to enter the directory.
